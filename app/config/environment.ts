@@ -1,33 +1,37 @@
-import loadConfigFromMeta from '@embroider/config-meta-loader';
-import { assert } from '@ember/debug';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
+import { getGlobalConfig } from '@embroider/macros/src/addon/runtime';
 
-const config = loadConfigFromMeta('bandits-web') as unknown;
-
-assert(
-  'config is not an object',
-  typeof config === 'object' && config !== null
-);
-assert(
-  'modulePrefix was not detected on your config',
-  'modulePrefix' in config && typeof config.modulePrefix === 'string'
-);
-assert(
-  'locationType was not detected on your config',
-  'locationType' in config && typeof config.locationType === 'string'
-);
-assert(
-  'rootURL was not detected on your config',
-  'rootURL' in config && typeof config.rootURL === 'string'
-);
-assert(
-  'APP was not detected on your config',
-  'APP' in config && typeof config.APP === 'object'
-);
-
-export default config as {
+interface Config {
+  isTesting?: boolean;
+  environment: string;
   modulePrefix: string;
   podModulePrefix?: string;
-  locationType: string;
+  locationType: 'history' | 'hash' | 'none' | 'auto';
   rootURL: string;
-  APP: Record<string, unknown>;
-} & Record<string, unknown>;
+  EmberENV?: Record<string, unknown>;
+  APP: Record<string, unknown> & { rootElement?: string; autoboot?: boolean };
+}
+
+const ENV: Config = {
+  modulePrefix: 'bandits-web',
+  environment: import.meta.env.DEV ? 'development' : 'production',
+  rootURL: '/',
+  locationType: 'history',
+  EmberENV: {},
+  APP: {},
+};
+
+export default ENV;
+
+export function enterTestMode() {
+  ENV.locationType = 'none';
+  ENV.APP.rootElement = '#ember-testing';
+  ENV.APP.autoboot = false;
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+  const config = getGlobalConfig()['@embroider/macros'];
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  if (config) config.isTesting = true;
+}

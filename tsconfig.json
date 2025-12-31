@@ -8,6 +8,11 @@
       "bandits-web/*": ["./app/*"],
       "*": ["./types/*"]
     },
-    "types": ["ember-source/types", "@embroider/core/virtual", "vite/client"]
+    "types": [
+      "ember-source/types",
+      "@embroider/core/virtual",
+      "vite/client",
+      "@glint/ember-tsc/types"
+    ]
   }
 }
