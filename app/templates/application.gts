@@ -59,6 +59,10 @@ export default <template>
       <div class="sky">
         <h1 class="title" {{on "click" toggleColorScheme}}>The Bay Bandits</h1>
         <h2>Trail Running Community</h2>
+
+        <Request @query={{query}}>
+          <:content> <h2>Exciting Things are Happening on Trails Near You</h2> </:content>
+        </Request>
       </div>
 
       <svg class="hill-svg back-hill" viewBox="0 0 1440 320" preserveAspectRatio="none">
@@ -81,10 +85,6 @@ export default <template>
         <div class="tree tree-right-4"></div>
       </div>
     </div>
-
-    <Request @query={{query}}>
-      <:content> <h2>Welcome to Bandits</h2> </:content>
-    </Request>
   </section>
 
   {{outlet}}
