@@ -9,6 +9,23 @@ const query = {
 
 let colorScheme: 'light only' | 'dark only' | null = null;
 
+function initializeColorScheme() {
+  const preferredScheme = globalThis.localStorage.getItem('preferred-color-scheme');
+  if (preferredScheme === 'dark') {
+    colorScheme = 'dark only';
+    // eslint-disable-next-line no-undef
+    document.body.style.colorScheme = 'dark only';
+    // eslint-disable-next-line no-undef
+    document.body.classList.add('dark-mode');
+  } else if (preferredScheme === 'light') {
+    colorScheme = 'light only';
+    // eslint-disable-next-line no-undef
+    document.body.style.colorScheme = 'light only';
+    // eslint-disable-next-line no-undef
+    document.body.classList.add('light-mode');
+  }
+}
+
 function toggleColorScheme() {
   if (colorScheme === 'light only') {
     colorScheme = 'dark only';
@@ -18,6 +35,7 @@ function toggleColorScheme() {
     document.body.classList.remove('light-mode');
     // eslint-disable-next-line no-undef
     document.body.classList.add('dark-mode');
+    globalThis.localStorage.setItem('preferred-color-scheme', 'dark');
   } else {
     colorScheme = 'light only';
     // eslint-disable-next-line no-undef
@@ -26,6 +44,7 @@ function toggleColorScheme() {
     document.body.classList.remove('dark-mode');
     // eslint-disable-next-line no-undef
     document.body.classList.add('light-mode');
+    globalThis.localStorage.setItem('preferred-color-scheme', 'light');
   }
 }
 
@@ -33,6 +52,7 @@ export default <template>
   {{pageTitle "Bandits | The Bay Area Trail Running Community"}}
 
   <section class="page">
+    {{(initializeColorScheme)}}
 
     <div class="landscape-container">
 
@@ -54,9 +74,11 @@ export default <template>
         <div class="tree tree-left-1"></div>
         <div class="tree tree-left-2"></div>
         <div class="tree tree-left-3"></div>
+        <div class="tree tree-right-0"></div>
         <div class="tree tree-right-1"></div>
         <div class="tree tree-right-2"></div>
         <div class="tree tree-right-3"></div>
+        <div class="tree tree-right-4"></div>
       </div>
     </div>
 

@@ -38,6 +38,7 @@ body {
     --color-hill-back: #581c87; /* Darker Purple */
     --color-hill-front: #4ade80;/* Light Green */
     --tree-color: #052c16;
+    --alt-tree-color: #ff69b4; /* Pink */
     --title: #4ade80;
     --text-primary: #e0e0e0;
   }
@@ -115,19 +116,27 @@ body.dark-mode {
 .tree-left-1 { left: 0; }
 .tree-left-2 { left: 15vw; transform: scale(0.9); }
 .tree-left-3 { left: 30vw; transform: scale(0.8); }
-.tree-right-1 { right: 0; transform: scaleX(-1); }
+.tree-right-4 { right: 0; transform: scaleX(-1); }
 .tree-right-2 { right: 15vw; transform: scaleX(-1) scale(0.9); }
 .tree-right-3 { right: 30vw; transform: scaleX(-1) scale(0.8); }
+.tree-right-0 { bottom: 10vh; right: 25vw; transform: scale(.8); background-color: var(--alt-tree-color); }
+.tree-right-1 { bottom: 10vh; right: 17vw; transform: scale(.8); background-color: var(--alt-tree-color); }
 
 h1.title {
   font-family: 'Caesar Dressing';
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: 800;
   text-align: center;
   color: var(--title);
+  padding-bottom: 2rem;
+  width: fit-content;
+  margin: 4rem auto 2rem auto;
+  border-bottom: 2px solid var(--title);
 }
 
 h2 {
   text-align: center;
   color: var(--text-primary);
+  font-size: 2rem;
+  font-weight: 300;
 }
