@@ -143,7 +143,7 @@ body.dark-mode {
 .tree-right-1 { bottom: 10vh; right: 17vw; transform: scale(.8); background-color: var(--alt-tree-color); }
 
 .sky {
-  padding-bottom: 20vmax;
+  padding-bottom: 30vmax;
 }
 
 h2 {
