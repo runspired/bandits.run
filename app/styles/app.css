@@ -1,6 +1,4 @@
 /* Ember supports plain CSS out of the box. More info: https://cli.emberjs.com/release/advanced-use/stylesheets/ */
-/* Importing a Google Font: Caesar Dressing */
-@import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&display=swap');
 
 * {
   box-sizing: border-box;
@@ -9,8 +7,7 @@
 html {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: Montserrat, -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 /* 1. Default Light Mode */
@@ -71,6 +68,7 @@ body.light-mode {
   --subtitle: var(--theme-pink);
   --schedule-text: var(--theme-brown);
   --text-primary: #2f3947;
+
   background: #fff;
 }
 
@@ -84,6 +82,7 @@ body.dark-mode {
   --subtitle: var(--theme-gold);
   --schedule-text: var(--theme-gold);
   --text-primary: #e0e0e0;
+
   background: #000;
 }
 
@@ -151,10 +150,9 @@ h2 {
   font-weight: 300;
 }
 
-
 h1.title {
-  font-family: 'Caesar Dressing';
   font-size: 4rem;
+  font-style: italic;
   font-weight: 800;
   text-align: center;
   color: var(--title);
@@ -163,6 +161,7 @@ h1.title {
   margin: 4rem auto 1rem auto;
   border-bottom: 3px solid var(--title);
 }
+
 h1.title::before {
   content: '';
   display: block;
