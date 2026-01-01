@@ -75,7 +75,97 @@
       "type": "schedule-day",
       "attributes": {
         "day": 2,
-        "events": []
+        "events": [
+          {
+          "title": "Tilden Tuesday",
+          "hosts": [
+            {
+              "name": "Berkeley Run Club",
+              "link": ""
+            }
+          ],
+          "organizers": [
+            {
+              "name": ""
+            }
+          ],
+          "runs": [
+            {
+              "name": "Beginners Run",
+              "leaders": [],
+              "distance": "3-4 Mi, 300ft ⛰",
+              "pace": "Easy",
+              "category": "no-drop",
+              "meetTime": "17:55",
+              "startTime": "18",
+              "eventLink": null,
+              "routeLink": null
+            },
+            {
+              "name": "Main Run",
+              "leaders": [],
+              "distance": "6-8 Mi, 1400-2000ft ⛰",
+              "pace": "Easy",
+              "category": "no-drop",
+              "meetTime": "18:25",
+              "startTime": "18:35",
+              "eventLink": null,
+              "routeLink": null
+            }
+          ],
+          "location": {
+            "name": "Lone Oak",
+            "address": "199 Loop Rd, Berkeley, CA 94708",
+            "link": "https://maps.app.goo.gl/2qCCe5tQW93tWXXx6"
+          },
+          "description": "",
+          "recurrence": {
+            "frequency": "weekly",
+            "interval": 1,
+            "unit": "weeks",
+            "weekNumber": null
+          }
+        },
+        {
+          "title": "Tuesday 🐠",
+          "hosts": [
+            {
+              "name": "Salmon Run Club",
+              "link": "https://www.strava.com/clubs/963747"
+            }
+          ],
+          "organizers": [
+            {
+              "name": "Thomas Stitt"
+            }
+          ],
+          "runs": [
+            {
+              "name": "",
+              "leaders": [],
+              "distance": "6-8 Mi, 1100-1600ft ⛰",
+              "pace": "Moderate",
+              "category": "no-drop",
+              "meetTime": "18:30",
+              "startTime": "18:35",
+              "eventLink": null,
+              "routeLink": null
+            }
+          ],
+          "location": {
+              "name": "Skyline Gate",
+              "address": "8490 Skyline Blvd, Oakland, CA 94611",
+              "link": "https://maps.app.goo.gl/YSR9bX1i2iNTYxW18"
+            },
+          "description": "",
+          "recurrence": {
+            "frequency": "weekly",
+            "interval": 1,
+            "unit": "weeks",
+            "weekNumber": null
+          }
+        }
+        ]
       }
     },
     {
@@ -145,7 +235,47 @@
       "type": "schedule-day",
       "attributes": {
         "day": 6,
-        "events": []
+        "events": [
+          {
+          "title": "SFRC Saturday",
+          "hosts": [
+            {
+              "name": "SFRC",
+              "link": ""
+            }
+          ],
+          "organizers": [
+            {
+              "name": ""
+            }
+          ],
+          "runs": [
+            {
+              "name": "",
+              "leaders": [],
+              "distance": "12-15 Mi, 1800-2500ft ⛰",
+              "pace": "hard",
+              "category": "at-your-own-pace",
+              "meetTime": "08:15",
+              "startTime": "08:30",
+              "eventLink": null,
+              "routeLink": null
+            }
+          ],
+          "location": {
+            "name": "SFRC Mill Valley Store",
+            "address": "11500 Skyline Blvd Oakland CA 94619 United States",
+            "link": "https://maps.app.goo.gl/Fjh333R161WWKuGB6"
+          },
+          "description": "",
+          "recurrence": {
+            "frequency": "weekly",
+            "interval": 1,
+            "unit": "weeks",
+            "weekNumber": null
+          }
+        }
+        ]
       }
     },
     {
@@ -153,7 +283,47 @@
       "type": "schedule-day",
       "attributes": {
         "day": 0,
-        "events": []
+        "events": [
+          {
+          "title": "Beer Bucket",
+          "hosts": [
+            {
+              "name": "Beer Bucket Runners",
+              "link": ""
+            }
+          ],
+          "organizers": [
+            {
+              "name": ""
+            }
+          ],
+          "runs": [
+            {
+              "name": "",
+              "leaders": [],
+              "distance": "12-15 Mi, 1800-2500ft ⛰",
+              "pace": "easy",
+              "category": "at-your-own-pace",
+              "meetTime": "08:15",
+              "startTime": "08:30",
+              "eventLink": null,
+              "routeLink": null
+            }
+          ],
+          "location": {
+            "name": "Varies Each Week",
+            "address": "",
+            "link": ""
+          },
+          "description": "",
+          "recurrence": {
+            "frequency": "weekly",
+            "interval": 1,
+            "unit": "weeks",
+            "weekNumber": null
+          }
+        }
+        ]
       }
     }
   ]

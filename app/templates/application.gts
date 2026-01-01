@@ -100,22 +100,21 @@ export default <template>
     <div class="landscape-container">
 
       <div class="sky">
-        <h1 class="title" {{on "click" toggleColorScheme}}>The Bay Bandits</h1>
+        <h1 class="title" {{on "click" toggleColorScheme}}>Bay Bandits</h1>
         <h2 class="subtitle">Trail Running Community</h2>
 
         <Request @query={{query}}>
           <:loading> <h2>Peeking through the trees...</h2> </:loading>
           <:content as |days|>
-            <h2>Exciting Things are Happening on Trails Near You</h2>
             <div class="schedule">
-              <h3 class="section-title">Schedule</h3>
+              <h3 class="section-title">Find Your Trail Friends</h3>
               {{#each (sortDaysByFirstDayOfWeek days.data) as |day|}}
                 <div class="day-schedule">
                   <h3>{{formatDay day.day}}</h3>
                   {{#if day.events.length}}
                   <ul class="day-events">
                     {{#each day.events as |event|}}
-                      <li>
+                      <li class="day-event">
                         <span class="event-title">{{event.title}}</span>
                         <span class="event-location">@ <a href="{{event.location.link}}">{{event.location.name}}</a></span>
                         <span class="event-hosts">with {{#each event.hosts as |host|}}<span class="host">{{host.name}}</span>{{/each}}</span>
