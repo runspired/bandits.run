@@ -1,3 +1,160 @@
 {
-  "data": []
+  "data": [
+    {
+      "id": "monday",
+      "type": "schedule-day",
+      "attributes": {
+        "day": 1,
+        "events": [
+          {
+            "title": "RUNDAY",
+            "hosts": [
+              {
+                "name": "The Bandits",
+                "link": "https://bandits.run"
+              }
+            ],
+            "organizers": [
+              {
+                "name": "Chris Thoburn"
+              }
+            ],
+            "runs": [
+              {
+                "name": "Long",
+                "leaders": [],
+                "distance": "7-9 Mi, 1200-2000ft ⛰",
+                "pace": "Easy to Moderate",
+                "category": "no-drop",
+                "meetTime": "18",
+                "startTime": "18:15",
+                "eventLink": null,
+                "routeLink": null
+              },
+              {
+                "name": "Social",
+                "leaders": [],
+                "distance": "3-5 Mi, 600-1000ft ⛰",
+                "pace": "Very Easy",
+                "category": "no-drop",
+                "meetTime": "18:15",
+                "startTime": "18:30",
+                "eventLink": null,
+                "routeLink": null
+              },
+              {
+                "name": "Short",
+                "leaders": [],
+                "distance": "6-8 Mi, 1000-1600ft ⛰",
+                "pace": "Easy to Moderate",
+                "category": "no-drop",
+                "meetTime": "18:15",
+                "startTime": "18:30",
+                "eventLink": null,
+                "routeLink": null
+              }
+            ],
+            "location": {
+              "name": "Skyline Gate",
+              "address": "8490 Skyline Blvd, Oakland, CA 94611",
+              "link": "https://maps.app.goo.gl/YSR9bX1i2iNTYxW18"
+            },
+            "description": "",
+            "recurrence": {
+              "frequency": "weekly",
+              "interval": 1,
+              "unit": "weeks",
+              "weekNumber": null
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "tuesday",
+      "type": "schedule-day",
+      "attributes": {
+        "day": 2,
+        "events": []
+      }
+    },
+    {
+      "id": "wednesday",
+      "type": "schedule-day",
+      "attributes": {
+        "day": 3,
+        "events": []
+      }
+    },
+    {
+      "id": "thursday",
+      "type": "schedule-day",
+      "attributes": {
+        "day": 4,
+        "events": [{
+          "title": "RUNRISE",
+          "hosts": [
+            {
+              "name": "The Bandits",
+              "link": "https://bandits.run"
+            }
+          ],
+          "organizers": [
+            {
+              "name": "Chris Thoburn"
+            }
+          ],
+          "runs": [
+            {
+              "name": "",
+              "leaders": [],
+              "distance": "6-8 Mi, 1100-1600ft ⛰",
+              "pace": "Easy",
+              "category": "no-drop",
+              "meetTime": "05:55",
+              "startTime": "06:00",
+              "eventLink": null,
+              "routeLink": null
+            }
+          ],
+          "location": {
+            "name": "Serpentine Prairie",
+            "address": "11500 Skyline Blvd Oakland CA 94619 United States",
+            "link": "https://maps.app.goo.gl/Fjh333R161WWKuGB6"
+          },
+          "description": "",
+          "recurrence": {
+            "frequency": "weekly",
+            "interval": 1,
+            "unit": "weeks",
+            "weekNumber": null
+          }
+        }]
+      }
+    },
+    {
+      "id": "friday",
+      "type": "schedule-day",
+      "attributes": {
+        "day": 5,
+        "events": []
+      }
+    },
+    {
+      "id": "saturday",
+      "type": "schedule-day",
+      "attributes": {
+        "day": 6,
+        "events": []
+      }
+    },
+    {
+      "id": "sunday",
+      "type": "schedule-day",
+      "attributes": {
+        "day": 0,
+        "events": []
+      }
+    }
+  ]
 }

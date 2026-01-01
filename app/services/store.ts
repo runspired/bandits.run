@@ -1,3 +1,4 @@
+import { ScheduleDaySchema } from '#app/data/schedule.ts';
 import { useRecommendedStore } from '@warp-drive/core';
 import { JSONAPICache } from '@warp-drive/json-api';
 
@@ -7,7 +8,7 @@ const Store = useRecommendedStore({
     // -- your handlers here
   ],
   schemas: [
-    // -- your schemas here
+    ScheduleDaySchema
   ],
 });
 
