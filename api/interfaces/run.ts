@@ -28,6 +28,13 @@ export interface TrailRun {
    * A list of runs associated with the event
    */
   runs: RunOption[];
+  /**
+   * Link to the event page for the entire Trail Run Event (if any).
+   *
+   * Use this if the entire event shares a single link, use the
+   * eventLink field on the RunOption interface if each run option has its own event link.
+   */
+  eventLink: string | null;
 }
 
 export interface Recurrence {
@@ -53,7 +60,7 @@ export interface Recurrence {
    * For monthly recurrences, the week number in the month (1 = first week, 2 = second week, etc.)
    * E.G. "2nd Tuesday of every month" would be frequency: 'monthly', day: 2, weekNumber: 2, interval: 1
    */
-  weekNumber: number | null;
+  weekNumber: 1 | 2 | 3 | 4 | 5 | null;
   /**
    * Specific date for one-time events (YYYY-MM-DD format). Null for recurring events.
    * For recurring annual events on a specific date, this will be the date of the first occurrence.
@@ -108,7 +115,10 @@ export interface RunOption {
    */
   startTime: string;
   /**
-   * Link to the event page for this run option (if any)
+   * Link to the event page for this run option (if any).
+   *
+   * Use this if each run option has its own event link, use the
+   * eventLink field on the TrailRun interface if the entire event shares a single link.
    */
   eventLink: string | null;
   /**

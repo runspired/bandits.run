@@ -4,6 +4,7 @@ export const data = {
   "title": "RUNRISE",
   "hosts": ['1'],
   "organizers": ['6', '5'],
+  "eventLink": "https://www.strava.com/clubs/504077/group_events/1528207",
   "runs": [
     {
       "name": "",

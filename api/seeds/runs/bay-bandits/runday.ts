@@ -13,9 +13,10 @@ export const data = {
   },
   hosts: ['1'],
   organizers: ['1'],
+  eventLink: null,
   runs: [
     {
-      name: "Long",
+      name: "Longer",
       leaders: [],
       distance: "7-9 Mi",
       vert: "1200-2000ft",
@@ -23,7 +24,7 @@ export const data = {
       category: "no-drop",
       meetTime: "18",
       startTime: "18:15",
-      eventLink: null,
+      eventLink: "https://www.strava.com/clubs/504077/group_events/1513300",
       stravaRouteLink: null,
       gpxLink: null
     },
@@ -36,12 +37,12 @@ export const data = {
       category: "no-drop",
       meetTime: "18:15",
       startTime: "18:30",
-      eventLink: null,
+      eventLink: "https://www.strava.com/clubs/504077/group_events/1449709",
       stravaRouteLink: null,
       gpxLink: null
     },
     {
-      name: "Short",
+      name: "Shorter",
       leaders: [],
       distance: "6-8 Mi",
       vert: "1000-1600ft",
@@ -49,7 +50,7 @@ export const data = {
       category: "no-drop",
       meetTime: "18:15",
       startTime: "18:30",
-      eventLink: null,
+      eventLink: "https://www.strava.com/clubs/504077/group_events/1449710",
       stravaRouteLink: null,
       gpxLink: null
     }
