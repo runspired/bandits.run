@@ -9,7 +9,8 @@ export const data = {
     frequency: 'weekly',
     interval: 1,
     weekNumber: null,
-    date: null
+    date: null,
+    holiday: null
   },
   hosts: ['1'],
   organizers: ['1'],

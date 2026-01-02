@@ -53,6 +53,7 @@ export const data = {
     "frequency": "monthly",
     "interval": 1,
     "weekNumber": 2,
-    "date": null
+    "date": null,
+    holiday: null
   }
 } satisfies TrailRun;

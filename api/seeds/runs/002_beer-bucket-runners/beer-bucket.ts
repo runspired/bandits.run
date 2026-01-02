@@ -1,9 +1,9 @@
 import type { TrailRun } from "../../../interfaces/run";
 
 export const data = {
-  "title": "5th Saturday | Dealer's Choice",
-  "hosts": ['1'],
-  "organizers": ['1', '7'],
+  "title": "Beer Bucket",
+  "hosts": ['2'],
+  "organizers": ['12'],
   "eventLink": "",
   "runs": [
     {
@@ -13,46 +13,47 @@ export const data = {
       "vert": "1200-2000ft",
       "pace": "Easy",
       "category": "at-your-own-pace",
-      "meetTime": "08:15",
-      "startTime": "08:30",
+      "meetTime": "08:30",
+      "startTime": "08:35",
       "eventLink": null,
       "stravaRouteLink": null,
       "gpxLink": null
     },
     {
-      "name": "12ish",
+      "name": "11ish",
       "leaders": [],
-      "distance": "~12 Mi",
+      "distance": "~11 Mi",
       "vert": "1800-3000ft",
       "pace": "Easy",
       "category": "at-your-own-pace",
-      "meetTime": "08:15",
-      "startTime": "08:30",
+      "meetTime": "08:30",
+      "startTime": "08:35",
       "eventLink": null,
       "stravaRouteLink": null,
       "gpxLink": null
     },
     {
-      "name": "16ish",
+      "name": "14ish",
       "leaders": [],
-      "distance": "~16 Mi",
+      "distance": "~14 Mi",
       "vert": "2700-4000ft",
       "pace": "Easy",
       "category": "at-your-own-pace",
-      "meetTime": "08:15",
-      "startTime": "08:30",
+      "meetTime": "08:30",
+      "startTime": "08:35",
       "eventLink": null,
       "stravaRouteLink": null,
       "gpxLink": null
     }
   ],
-  "location": "",
+  "location": "14",
   "description": "",
   "recurrence": {
-    "day": 6,
-    "frequency": "monthly",
+    "day": 0,
+    "frequency": "weekly",
     "interval": 1,
-    "weekNumber": 5,
-    "date": null
+    "weekNumber": null,
+    "date": null,
+    holiday: null
   }
 } satisfies TrailRun;

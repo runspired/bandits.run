@@ -40,8 +40,11 @@ export interface TrailRun {
 export interface Recurrence {
   /**
    * Day of the week the run occurs on (0 = Sunday, 6 = Saturday)
+   *
+   * Should only be null for recurring annual events on specific dates
+   * or floating date holidays.
    */
-  day: 0 | 1 | 2 | 3 | 4 | 5 | 6;
+  day: 0 | 1 | 2 | 3 | 4 | 5 | 6 | null;
   /**
    * Frequency of the recurrence
    *
@@ -66,6 +69,14 @@ export interface Recurrence {
    * For recurring annual events on a specific date, this will be the date of the first occurrence.
    */
   date: string | null;
+  /**
+   * Specialized Floating Dates for annual recurring events on these days. If the event is not
+   * on a floating date holiday, this should be null.
+   *
+   * If the floating date holiday is not in this list, it is not currently supported. A single-use
+   * run with the specific date should be created instead.
+   */
+  holiday: 'July 4th' | 'Thanksgiving Day' | 'Summer Solstice' | 'Winter Solstice' | null;
 }
 
 

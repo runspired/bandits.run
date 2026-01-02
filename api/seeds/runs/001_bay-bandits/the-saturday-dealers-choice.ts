@@ -1,10 +1,10 @@
 import type { TrailRun } from "../../../interfaces/run";
 
 export const data = {
-  "title": "1st Saturday | Trampas",
+  "title": "5th Saturday | Dealer's Choice",
   "hosts": ['1'],
   "organizers": ['1', '7'],
-  "eventLink": "https://www.strava.com/clubs/504077/group_events/1983259",
+  "eventLink": "",
   "runs": [
     {
       "name": "8ish",
@@ -46,13 +46,14 @@ export const data = {
       "gpxLink": null
     }
   ],
-  "location": "5",
+  "location": "",
   "description": "",
   "recurrence": {
     "day": 6,
     "frequency": "monthly",
     "interval": 1,
-    "weekNumber": 1,
-    "date": null
+    "weekNumber": 5,
+    "date": null,
+    holiday: null
   }
 } satisfies TrailRun;

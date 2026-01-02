@@ -1,7 +1,7 @@
 import type { TrailRun } from "../../../interfaces/run";
 
 export const data = {
-  "title": "4th Saturday | Briones",
+  "title": "3rd Saturday | Chabot",
   "hosts": ['1'],
   "organizers": ['1', '7'],
   "eventLink": "https://www.strava.com/clubs/504077/group_events/1983259",
@@ -46,13 +46,14 @@ export const data = {
       "gpxLink": null
     }
   ],
-  "location": "6",
+  "location": "4",
   "description": "",
   "recurrence": {
     "day": 6,
     "frequency": "monthly",
     "interval": 1,
-    "weekNumber": 4,
-    "date": null
+    "weekNumber": 3,
+    "date": null,
+    holiday: null
   }
 } satisfies TrailRun;
