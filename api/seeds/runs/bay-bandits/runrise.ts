@@ -3,7 +3,7 @@ import type { TrailRun } from "../../../interfaces/run";
 export const data = {
   "title": "RUNRISE",
   "hosts": ['1'],
-  "organizers": ['5'],
+  "organizers": ['6', '5'],
   "runs": [
     {
       "name": "",

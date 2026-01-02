@@ -1,11 +1,11 @@
 import type { User } from "../../interfaces/user";
 
 export const data = {
-  firstName: "Sean",
-  lastName: "McPherson",
+  firstName: "Patrick",
+  lastName: "Rabuzzi",
   email: "",
   phoneNumber: "",
   hasWhatsApp: true,
-  stravaId: "2920753",
+  stravaId: "7278715",
   instagramHandle: ""
 } satisfies User;
