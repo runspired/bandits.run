@@ -237,44 +237,40 @@
         "day": 6,
         "events": [
           {
-          "title": "SFRC Saturday",
-          "hosts": [
-            {
-              "name": "SFRC",
-              "link": ""
+            "title": "SFRC Saturday",
+            "hosts": [
+              {
+                "name": "San Francisco Running Company",
+                "link": "https://www.sfrunco.com/about-us/weeklyruns/"
+              }
+            ],
+            "organizers": [],
+            "runs": [
+              {
+                "name": "",
+                "leaders": [],
+                "distance": "12-15 Mi, 1800-2500ft ⛰",
+                "pace": "hard",
+                "category": "at-your-own-pace",
+                "meetTime": "08:15",
+                "startTime": "08:30",
+                "eventLink": null,
+                "routeLink": null
+              }
+            ],
+            "location": {
+              "name": "SFRC Mill Valley Store",
+              "address": "247 Shoreline Hwy, Mill Valley, CA 94941",
+              "link": "https://maps.app.goo.gl/Z4ygcrMUK9nPN1PX8"
+            },
+            "description": "",
+            "recurrence": {
+              "frequency": "weekly",
+              "interval": 1,
+              "unit": "weeks",
+              "weekNumber": null
             }
-          ],
-          "organizers": [
-            {
-              "name": ""
-            }
-          ],
-          "runs": [
-            {
-              "name": "",
-              "leaders": [],
-              "distance": "12-15 Mi, 1800-2500ft ⛰",
-              "pace": "hard",
-              "category": "at-your-own-pace",
-              "meetTime": "08:15",
-              "startTime": "08:30",
-              "eventLink": null,
-              "routeLink": null
-            }
-          ],
-          "location": {
-            "name": "SFRC Mill Valley Store",
-            "address": "11500 Skyline Blvd Oakland CA 94619 United States",
-            "link": "https://maps.app.goo.gl/Fjh333R161WWKuGB6"
-          },
-          "description": "",
-          "recurrence": {
-            "frequency": "weekly",
-            "interval": 1,
-            "unit": "weeks",
-            "weekNumber": null
           }
-        }
         ]
       }
     },
