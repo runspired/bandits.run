@@ -100,7 +100,7 @@ export default <template>
     <div class="landscape-container">
 
       <div class="sky">
-        <h1 class="title" {{on "click" toggleColorScheme}}>Bay Bandits</h1>
+        <h1 class="title" role="button" aria-roledescription="toggle color scheme" {{on "click" toggleColorScheme}}>Bay Bandits</h1>
         <h2 class="subtitle">Trail Running Community</h2>
 
         <Request @query={{query}}>
