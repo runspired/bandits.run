@@ -1,6 +1,7 @@
 {
   "extends": "@ember/app-tsconfig",
-  "include": ["app", "tests", "types", "api"],
+  "include": ["app", "tests", "types"],
+  "exclude": ["api"],
   "compilerOptions": {
     "allowJs": true,
     "paths": {
