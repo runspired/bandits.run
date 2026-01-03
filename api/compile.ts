@@ -14,7 +14,7 @@
  */
 
 import { readdir, readFile } from 'fs/promises';
-import { join, basename } from 'path';
+import { join } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import MarkdownIt from 'markdown-it';
@@ -30,7 +30,7 @@ import type { TrailRun } from './interfaces/run.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-export interface CompiledData {
+export interface AggregateData {
   organizations: Map<string, Organization & { id: string; descriptionHtml?: string }>;
   users: Map<string, User & { id: string; descriptionHtml?: string }>;
   locations: Map<string, Location & { id: string; descriptionHtml?: string }>;
@@ -258,7 +258,7 @@ async function loadRuns(
 /**
  * Main compile function
  */
-export async function compile(): Promise<CompiledData> {
+export async function collect(): Promise<AggregateData> {
   const seedsDir = join(__dirname, 'seeds');
 
   console.log('🔄 Compiling seed data...\n');
@@ -300,9 +300,37 @@ export async function compile(): Promise<CompiledData> {
 }
 
 /**
+ * compile into json files with the data in json:api format which we place in /public/api
+ *
+ * each organization and run-overview will have its own json file
+ *
+ * - organization/[id].json
+ * - organization/[id]/runs/id.json
+ * - weeks/[year]-[weeknumber]-[monday|sunday].json
+ * - months/[year]-[monthnumber].json
+ *
+ * during compilation, we compile into a structure of "weeks" by year + year week number
+ * with monday and sunday as start of week variants
+ *
+ * as well as "months" by year + month number
+ */
+export async function compile(): Promise<AggregateData> {
+  const aggregateData = await collect();
+  const { organizations, users, locations, runs } = aggregateData;
+
+  for (const [id, org] of organizations) {
+
+  }
+
+
+
+  return aggregateData;
+}
+
+/**
  * Pretty print the compiled data
  */
-export function printData(data: CompiledData): void {
+export function printData(data: AggregateData): void {
   console.log('═'.repeat(80));
   console.log('ORGANIZATIONS');
   console.log('═'.repeat(80));

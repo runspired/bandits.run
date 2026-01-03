@@ -41,7 +41,7 @@ const parserOptions = {
 };
 
 export default defineConfig([
-  globalIgnores(['dist/', 'coverage/', '!**/.*']),
+  globalIgnores(['dist/', 'coverage/', '!**/.*', 'api/']),
   js.configs.recommended,
   ember.configs.base,
   ember.configs.gjs,
