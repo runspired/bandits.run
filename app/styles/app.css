@@ -129,20 +129,27 @@ body.dark-mode {
   width: 20vw;
   height: 60vh;
   background-color: var(--tree-color);
-  -webkit-mask: url('/redwood.svg') no-repeat bottom center / contain;
   mask: url('/redwood.svg') no-repeat bottom center / contain;
   z-index: 3;
   transition: background-color var(--transition-speed) ease;
 }
 
 .tree-left-0 { left: 5vw; transform: scale(1); }
+
 .tree-left-1 { left: 0; }
+
 .tree-left-2 { left: 15vw; transform: scale(0.9); }
+
 .tree-left-3 { left: 30vw; transform: scale(0.8); }
+
 .tree-right-4 { right: 0; transform: scaleX(-1); }
+
 .tree-right-2 { right: 15vw; transform: scaleX(-1) scale(0.9); }
+
 .tree-right-3 { right: 30vw; transform: scaleX(-1) scale(0.8); }
+
 .tree-right-0 { bottom: 10vh; right: 25vw; transform: scale(.8); background-color: var(--alt-tree-color); }
+
 .tree-right-1 { bottom: 10vh; right: 17vw; transform: scale(.8); background-color: var(--alt-tree-color); }
 
 .sky {
@@ -165,7 +172,7 @@ h1.title {
   color: var(--title);
   padding-bottom: 1rem;
   width: fit-content;
-  margin: 4rem auto 1rem auto;
+  margin: 4rem auto 1rem;
   border-bottom: 3px solid var(--title);
 }
 
@@ -177,7 +184,6 @@ h1.title::before {
   height: 3rem;
   margin: 1rem;
   background-color: var(--title);
-  -webkit-mask: url('/logo-orange-chevron.svg') no-repeat bottom left / contain;
   mask: url('/logo-orange-chevron.svg') no-repeat bottom left / contain;
 }
 
@@ -191,7 +197,7 @@ h2.subtitle {
 
 div.schedule {
   max-width: 50rem;
-  margin: 0rem auto;
+  margin: 0 auto;
 }
 
 div.day-schedule {
@@ -201,12 +207,13 @@ div.day-schedule {
   margin: .5rem auto;
   padding: .5rem 1rem;
   color: var(--schedule-text);
-  background: rgba(0, 0, 0, 0.05);
+  background: rgb(0 0 0 / 5%);
 }
 
 div.event-run {
   margin-left: 2rem;
 }
+
 li.day-event:not(:first-of-type) {
   border-top: 1px dashed var(--schedule-text);
   padding-top: .5rem;
@@ -216,21 +223,26 @@ li.day-event:not(:first-of-type) {
 span.event-title {
   font-weight: 600;
 }
+
 span.event-location {
   margin-left: 1rem;
 }
+
 span.event-run-time {
   font-weight: 600;
   font-size: .8rem;
 }
+
 span.event-run-name {
   margin-left: 1rem;
   font-size: .8rem;
 }
+
 span.event-hosts {
   margin-left: 1rem;
   font-size: .8rem;
 }
+
 span.host {
   font-style: italic;
   margin-left: 1rem;
@@ -242,16 +254,20 @@ a {
   text-decoration: none;
   font-style: italic;
 }
+
 a:hover {
   text-decoration: underline;
 }
+
 a:visited {
   color: var(--schedule-text);
 }
+
 a:active {
   color: var(--schedule-text);
 }
-a:focused {
+
+a:focus {
   color: var(--schedule-text);
 }
 
@@ -270,6 +286,7 @@ h3 {
   margin: 0;
   color: var(--schedule-text);
 }
+
 .day-schedule h3 {
   min-width: 7.5rem;
   border-right: 1px solid var(--schedule-text);
@@ -291,7 +308,7 @@ p.error-message {
   padding: 1.5rem 2rem;
   border-radius: 12px;
   border-left: 5px solid #fbbf24;
-  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
+  box-shadow: 0 4px 12px rgb(220 38 38 / 25%);
   font-weight: 500;
   position: relative;
   margin: 2rem auto;
@@ -314,14 +331,14 @@ p.error-message::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
 }
 
 /* Dark mode adjustments */
 @media (prefers-color-scheme: dark) {
   p.error-message {
     background: linear-gradient(135deg, #b91c1c, #c2410c);
-    box-shadow: 0 4px 12px rgba(185, 28, 28, 0.3);
+    box-shadow: 0 4px 12px rgb(185 28 28 / 30%);
     border-left-color: var(--theme-gold);
   }
 
@@ -332,7 +349,7 @@ p.error-message::before {
 
 body.dark-mode p.error-message {
   background: linear-gradient(135deg, #b91c1c, #c2410c);
-  box-shadow: 0 4px 12px rgba(185, 28, 28, 0.3);
+  box-shadow: 0 4px 12px rgb(185 28 28 / 30%);
   border-left-color: var(--theme-gold);
 }
 
@@ -347,26 +364,26 @@ ul {
 }
 
 /* Mobile responsive font-size adjustment */
-@media (max-width: 600px) {
+@media (width <= 600px) {
   html {
     font-size: 85%;
   }
 }
 
 
-@media (max-width: 500px) {
+@media (width <= 500px) {
   html {
     font-size: 75%;
   }
 }
 
-@media (max-width: 400px) {
+@media (width <= 400px) {
   html {
     font-size: 62%;
   }
 }
 
-@media (max-width: 375px) {
+@media (width <= 375px) {
   html {
     font-size: 50%;
   }

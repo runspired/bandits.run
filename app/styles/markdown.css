@@ -103,6 +103,7 @@
   margin: 0.5em 0;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 .markdown-content li > p {
   margin: 0.5em 0;
 }
@@ -117,7 +118,7 @@
 }
 
 .markdown-content code {
-  font-family: 'Monaco', 'Menlo', 'Courier New', monospace;
+  font-family: Monaco, Menlo, 'Courier New', monospace;
   font-size: 0.875em;
 }
 
@@ -138,6 +139,7 @@
   color: var(--color-text-secondary, #64748b);
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 .markdown-content blockquote > p {
   margin: 0.5em 0;
 }
@@ -192,12 +194,12 @@
 
 .markdown-content .custom-block-title {
   font-weight: 600;
-  margin: 0 0 0.5em 0;
+  margin: 0 0 0.5em;
 }
 
 .markdown-content .custom-block.tip {
   border-color: #42b983;
-  background-color: rgba(66, 185, 131, 0.1);
+  background-color: rgb(66 185 131 / 10%);
 }
 
 .markdown-content .custom-block.tip .custom-block-title {
@@ -206,7 +208,7 @@
 
 .markdown-content .custom-block.warning {
   border-color: #e7c000;
-  background-color: rgba(231, 192, 0, 0.1);
+  background-color: rgb(231 192 0 / 10%);
 }
 
 .markdown-content .custom-block.warning .custom-block-title {
@@ -215,7 +217,7 @@
 
 .markdown-content .custom-block.danger {
   border-color: #c00;
-  background-color: rgba(204, 0, 0, 0.1);
+  background-color: rgb(204 0 0 / 10%);
 }
 
 .markdown-content .custom-block.danger .custom-block-title {
@@ -224,7 +226,7 @@
 
 .markdown-content .custom-block.info {
   border-color: #3b82f6;
-  background-color: rgba(59, 130, 246, 0.1);
+  background-color: rgb(59 130 246 / 10%);
 }
 
 .markdown-content .custom-block.info .custom-block-title {
@@ -233,7 +235,7 @@
 
 .markdown-content .custom-block.details {
   border-color: #64748b;
-  background-color: rgba(100, 116, 139, 0.1);
+  background-color: rgb(100 116 139 / 10%);
 }
 
 .markdown-content .custom-block.details .custom-block-title {
@@ -285,22 +287,22 @@
   }
 
   .markdown-content .custom-block.tip {
-    background-color: rgba(66, 185, 131, 0.15);
+    background-color: rgb(66 185 131 / 15%);
   }
 
   .markdown-content .custom-block.warning {
-    background-color: rgba(231, 192, 0, 0.15);
+    background-color: rgb(231 192 0 / 15%);
   }
 
   .markdown-content .custom-block.danger {
-    background-color: rgba(204, 0, 0, 0.15);
+    background-color: rgb(204 0 0 / 15%);
   }
 
   .markdown-content .custom-block.info {
-    background-color: rgba(59, 130, 246, 0.15);
+    background-color: rgb(59 130 246 / 15%);
   }
 
   .markdown-content .custom-block.details {
-    background-color: rgba(100, 116, 139, 0.15);
+    background-color: rgb(100 116 139 / 15%);
   }
 }
