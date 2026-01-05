@@ -22,7 +22,7 @@ import Shiki from '@shikijs/markdown-it';
 import anchor from 'markdown-it-anchor';
 import attrs from 'markdown-it-attrs';
 import container from 'markdown-it-container';
-import type { Organization } from './interfaces/organization.js';
+import type { JSONAPIOrganization, Organization } from './interfaces/organization.js';
 import type { User } from './interfaces/user.js';
 import type { Location } from './interfaces/location.js';
 import type { TrailRun } from './interfaces/run.js';
@@ -256,7 +256,7 @@ async function loadRuns(
 }
 
 /**
- * Main compile function
+ * Gather all seed data into structured maps
  */
 export async function collect(): Promise<AggregateData> {
   const seedsDir = join(__dirname, 'seeds');
@@ -304,6 +304,7 @@ export async function collect(): Promise<AggregateData> {
  *
  * each organization and run-overview will have its own json file
  *
+ * - organization.json
  * - organization/[id].json
  * - organization/[id]/runs/id.json
  * - weeks/[year]-[weeknumber]-[monday|sunday].json
@@ -318,13 +319,105 @@ export async function compile(): Promise<AggregateData> {
   const aggregateData = await collect();
   const { organizations, users, locations, runs } = aggregateData;
 
-  for (const [id, org] of organizations) {
+  const organizationPayloads = {
+    all: {
+      data: new Array<any>(),
+      included: new Map<string, any>(),
+    },
+    byId: new Map<string, any>(),
+    runs: new Map<string, Map<string, any>>(),
+    runsById: new Map<string, Map<string, any>>(),
+  };
 
+  for (const [id, org] of organizations) {
+    transformOrganization(id, org, organizationPayloads, aggregateData);
   }
 
 
 
   return aggregateData;
+}
+
+function transformOrganization(
+  id: string,
+  org: Organization & { id: string; descriptionHtml?: string },
+  payloads: {
+    all: { data: JSONAPIOrganization[]; included: Map<string, any> };
+    byId: Map<string, {
+      data: JSONAPIOrganization,
+      included: any[],
+    }>;
+    runs: Map<string, Map<string, any>>;
+    runsById: Map<string, Map<string, any>>;
+  },
+  aggregateData: AggregateData
+): void {
+  const orgData: JSONAPIOrganization = {
+    type: 'organization',
+    id,
+    attributes: {
+      name: org.name,
+      website: org.website || null,
+      stravaId: org.stravaId || null,
+      stravaHandle: org.stravaHandle || null,
+      meetupId: org.meetupId || null,
+      instagramHandle: org.instagramHandle || null,
+      email: org.email || null,
+      phoneNumber: org.phoneNumber || null,
+      descriptionHtml: org.descriptionHtml || null,
+    },
+    relationships: {
+      runs: {
+        links: {
+          related: `/api/organization/${id}/runs`,
+        },
+        meta: {
+          count: 0,
+        }
+      },
+      contacts: {
+        data: org.contacts.map((userId) => ({ type: 'user', id: userId })),
+      },
+    },
+  };
+
+  // Process runs for this organization
+  const runsForOrg = Array.from(aggregateData.runs.values()).filter(
+    (run) => run.organizationId === id
+  );
+
+  const runsPayload = new Map<string, any>();
+
+  for (const run of runsForOrg) {
+    const runData: any = {
+      type: 'trail-run',
+      id: run.id,
+      attributes: {
+        title: run.title,
+        location: run.location,
+        recurrence: run.recurrence,
+        runs: run.runs,
+        descriptionHtml: run.descriptionHtml || null,
+      },
+      relationships: {
+        organization: {
+          data: { type: 'organization', id },
+        },
+      },
+    };
+
+    // Add to organization's relationships
+    orgData.relationships.runs.data.push({ type: 'trail-run', id: run.id });
+
+    // Store run payload
+    runsPayload.set(run.id, runData);
+  }
+
+  // Store organization payloads
+  payloads.all.data.push(orgData);
+  payloads.byId.set(id, orgData);
+  payloads.runs.set(id, runsPayload);
+  payloads.runsById.set(id, runsPayload);
 }
 
 /**
