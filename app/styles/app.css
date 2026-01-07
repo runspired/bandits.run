@@ -151,7 +151,7 @@ body.dark-mode {
 .landscape-container {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  min-height: 100dvh;
   background-color: var(--bg-sky);
   overflow: hidden;
   transition: background-color var(--transition-speed) ease;
