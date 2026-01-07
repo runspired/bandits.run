@@ -5,6 +5,12 @@ import { initializeColorScheme, toggleColorScheme as baseToggleColorScheme } fro
 
 let useTransparentBackground = false;
 
+// Sky image state
+let skyImageData: string | null = null; // base64 encoded image
+let skyImageScale = 1; // scale factor for image
+let skyImageOffsetX = 0; // horizontal offset in pixels
+let skyImageOffsetY = 0; // vertical offset in pixels
+
 const lightThemeDefaultColors = {
   logo: null as string | null,
   background: null as string | null,
@@ -354,6 +360,85 @@ function isDebugMode(): boolean {
   const queryString = hash.substring(queryStart + 1);
   const urlParams = new URLSearchParams(queryString);
   return urlParams.get('debug') === 'true';
+}
+
+// Sky image handlers
+function handleSkyImageUpload(event: Event) {
+  const input = event.target as HTMLInputElement;
+  const file = input.files?.[0];
+
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    skyImageData = e.target?.result as string;
+    skyImageScale = 1;
+    skyImageOffsetX = 0;
+    skyImageOffsetY = 0;
+
+    // Show controls
+    const controls = globalThis.document.getElementById('sky-image-controls');
+    if (controls) {
+      controls.style.display = 'block';
+    }
+
+    updatePreviews();
+  };
+  reader.readAsDataURL(file);
+}
+
+function clearSkyImage() {
+  skyImageData = null;
+  skyImageScale = 1;
+  skyImageOffsetX = 0;
+  skyImageOffsetY = 0;
+
+  const input = globalThis.document.querySelector('.sky-image-input') as HTMLInputElement;
+  if (input) input.value = '';
+
+  // Hide controls
+  const controls = globalThis.document.getElementById('sky-image-controls');
+  if (controls) {
+    controls.style.display = 'none';
+  }
+
+  updatePreviews();
+}
+
+function handleSkyImageScale(event: Event) {
+  const input = event.target as HTMLInputElement;
+  skyImageScale = parseFloat(input.value);
+
+  const valueLabel = globalThis.document.querySelector('.sky-image-scale-value');
+  if (valueLabel) {
+    valueLabel.textContent = skyImageScale.toFixed(1);
+  }
+
+  updatePreviews();
+}
+
+function handleSkyImageOffsetX(event: Event) {
+  const input = event.target as HTMLInputElement;
+  skyImageOffsetX = parseFloat(input.value);
+
+  const valueLabel = globalThis.document.querySelector('.sky-image-offset-x-value');
+  if (valueLabel) {
+    valueLabel.textContent = skyImageOffsetX.toString();
+  }
+
+  updatePreviews();
+}
+
+function handleSkyImageOffsetY(event: Event) {
+  const input = event.target as HTMLInputElement;
+  skyImageOffsetY = parseFloat(input.value);
+
+  const valueLabel = globalThis.document.querySelector('.sky-image-offset-y-value');
+  if (valueLabel) {
+    valueLabel.textContent = skyImageOffsetY.toString();
+  }
+
+  updatePreviews();
 }
 
 // Get title color with opacity
@@ -1019,13 +1104,45 @@ function generateStravaBannerSVG(): Promise<SVGSVGElement> {
 
   const colors = getThemeColors();
 
-  // Sky background
-  const skyColor = applyOpacityToColor(colors.sky, colors.skyOpacity);
-  const skyRect = globalThis.document.createElementNS(svgNS, 'rect');
-  skyRect.setAttribute('width', width.toString());
-  skyRect.setAttribute('height', height.toString());
-  skyRect.setAttribute('fill', skyColor);
-  svg.appendChild(skyRect);
+  // Add background image if available
+  if (skyImageData) {
+    const defs = globalThis.document.createElementNS(svgNS, 'defs');
+    const pattern = globalThis.document.createElementNS(svgNS, 'pattern');
+    pattern.setAttribute('id', 'skyImagePattern');
+    pattern.setAttribute('x', '0');
+    pattern.setAttribute('y', '0');
+    pattern.setAttribute('width', width.toString());
+    pattern.setAttribute('height', height.toString());
+    pattern.setAttribute('patternUnits', 'userSpaceOnUse');
+
+    const image = globalThis.document.createElementNS(svgNS, 'image');
+    // We'll need to embed the image data
+    image.setAttribute('href', skyImageData);
+    image.setAttribute('x', skyImageOffsetX.toString());
+    image.setAttribute('y', skyImageOffsetY.toString());
+    image.setAttribute('width', (width * skyImageScale).toString());
+    image.setAttribute('height', (height * skyImageScale).toString());
+    image.setAttribute('preserveAspectRatio', 'xMidYMid slice');
+
+    pattern.appendChild(image);
+    defs.appendChild(pattern);
+    svg.appendChild(defs);
+
+    // Use pattern as background
+    const skyRect = globalThis.document.createElementNS(svgNS, 'rect');
+    skyRect.setAttribute('width', width.toString());
+    skyRect.setAttribute('height', height.toString());
+    skyRect.setAttribute('fill', 'url(#skyImagePattern)');
+    svg.appendChild(skyRect);
+  } else {
+    // Sky background
+    const skyColor = applyOpacityToColor(colors.sky, colors.skyOpacity);
+    const skyRect = globalThis.document.createElementNS(svgNS, 'rect');
+    skyRect.setAttribute('width', width.toString());
+    skyRect.setAttribute('height', height.toString());
+    skyRect.setAttribute('fill', skyColor);
+    svg.appendChild(skyRect);
+  }
 
   // Calculate hill positioning
   // Hills from homepage use viewBox="0 0 1440 320" - scale proportionally to banner width
@@ -1171,6 +1288,24 @@ function generateStravaBannerSVG(): Promise<SVGSVGElement> {
     const centerX = width / 2;
     const centerY = height * 0.35; // Move up from center (0.5) to 0.35
     const logoGroup = globalThis.document.createElementNS(svgNS, 'g');
+
+    // If using sky image, add a semi-transparent colored rectangle behind logo/tagline
+    if (skyImageData) {
+      const backgroundColor = getBackgroundColor();
+
+      // Estimate logo area height
+      const estimatedHeight = 170;
+
+      const bgRect = globalThis.document.createElementNS(svgNS, 'rect');
+      bgRect.setAttribute('x', (centerX - 250).toString());
+      bgRect.setAttribute('y', (centerY - 80).toString());
+      bgRect.setAttribute('width', '500');
+      bgRect.setAttribute('height', estimatedHeight.toString());
+      bgRect.setAttribute('fill', backgroundColor);
+      bgRect.setAttribute('opacity', '0.75');
+      bgRect.setAttribute('rx', '8'); // rounded corners
+      svg.appendChild(bgRect);
+    }
 
     // Chevron - sized to match the height of the capital letters (reduced by 20%)
     const chevronSize = 40;
@@ -1504,6 +1639,71 @@ function generateStravaBannerPreview() {
           >
             Reset Current Theme Colors
           </button>
+        </div>
+
+        <h2>Sky Background Image</h2>
+        <div class="color-controls">
+          <div class="color-picker-group">
+            <label for="sky-image">Upload Background Image:</label>
+            <input
+              type="file"
+              id="sky-image"
+              class="sky-image-input"
+              accept="image/*"
+              {{on "change" handleSkyImageUpload}}
+            />
+          </div>
+          <div id="sky-image-controls" style="display: none;">
+            <button
+              type="button"
+              class="download-btn reset-btn"
+              {{on "click" clearSkyImage}}
+            >
+              Clear Background Image
+            </button>
+            <div class="opacity-control-group">
+              <label for="sky-image-scale">Image Scale:
+                <span class="sky-image-scale-value">1.0</span></label>
+              <input
+                type="range"
+                id="sky-image-scale"
+                class="sky-image-scale-input"
+                min="0.5"
+                max="3"
+                step="0.1"
+                value="1"
+                {{on "input" handleSkyImageScale}}
+              />
+            </div>
+            <div class="opacity-control-group">
+              <label for="sky-image-offset-x">Image Offset X:
+                <span class="sky-image-offset-x-value">0</span></label>
+              <input
+                type="range"
+                id="sky-image-offset-x"
+                class="sky-image-offset-x-input"
+                min="-500"
+                max="500"
+                step="10"
+                value="0"
+                {{on "input" handleSkyImageOffsetX}}
+              />
+            </div>
+            <div class="opacity-control-group">
+              <label for="sky-image-offset-y">Image Offset Y:
+                <span class="sky-image-offset-y-value">0</span></label>
+              <input
+                type="range"
+                id="sky-image-offset-y"
+                class="sky-image-offset-y-input"
+                min="-500"
+                max="500"
+                step="10"
+                value="0"
+                {{on "input" handleSkyImageOffsetY}}
+              />
+            </div>
+          </div>
         </div>
 
         <h2>Logo Downloads</h2>
