@@ -1641,10 +1641,56 @@ function generateStravaBannerPreview() {
           </button>
         </div>
 
-        <h2>Sky Background Image</h2>
+        <h2>Logo Downloads</h2>
+        <div class="download-buttons">
+          <button
+            type="button"
+            class="download-btn chevron-only-toggle-btn"
+            {{on "click" toggleChevronOnly}}
+          >
+            Chevron Only: Disabled
+          </button>
+          <button
+            type="button"
+            class="download-btn circle-toggle-btn"
+            {{on "click" toggleCircleMask}}
+          >
+            Toggle Circle Mask
+          </button>
+          <button
+            type="button"
+            class="download-btn fit-to-content-btn"
+            {{on "click" toggleFitToContent}}
+          >
+            Toggle Fit to Content
+          </button>
+          <button
+            type="button"
+            class="download-btn transparent-toggle-btn"
+            {{on "click" toggleTransparentBackground}}
+          >
+            Background: Themed
+          </button>
+          <button
+            type="button"
+            class="download-btn"
+            {{on "click" downloadAsSVG}}
+          >
+            Download Logo SVG
+          </button>
+          <button
+            type="button"
+            class="download-btn"
+            {{on "click" downloadAsPNG}}
+          >
+            Download Logo PNG
+          </button>
+        </div>
+
+        <h2>Strava Club Header</h2>
         <div class="color-controls">
           <div class="color-picker-group">
-            <label for="sky-image">Upload Background Image:</label>
+            <label for="sky-image">Upload Background Image (optional):</label>
             <input
               type="file"
               id="sky-image"
@@ -1705,54 +1751,6 @@ function generateStravaBannerPreview() {
             </div>
           </div>
         </div>
-
-        <h2>Logo Downloads</h2>
-        <div class="download-buttons">
-          <button
-            type="button"
-            class="download-btn chevron-only-toggle-btn"
-            {{on "click" toggleChevronOnly}}
-          >
-            Chevron Only: Disabled
-          </button>
-          <button
-            type="button"
-            class="download-btn circle-toggle-btn"
-            {{on "click" toggleCircleMask}}
-          >
-            Toggle Circle Mask
-          </button>
-          <button
-            type="button"
-            class="download-btn fit-to-content-btn"
-            {{on "click" toggleFitToContent}}
-          >
-            Toggle Fit to Content
-          </button>
-          <button
-            type="button"
-            class="download-btn transparent-toggle-btn"
-            {{on "click" toggleTransparentBackground}}
-          >
-            Background: Themed
-          </button>
-          <button
-            type="button"
-            class="download-btn"
-            {{on "click" downloadAsSVG}}
-          >
-            Download Logo SVG
-          </button>
-          <button
-            type="button"
-            class="download-btn"
-            {{on "click" downloadAsPNG}}
-          >
-            Download Logo PNG
-          </button>
-        </div>
-
-        <h2>Strava Club Header</h2>
         <div class="strava-banner-section themeable">
           <div class="strava-banner-info">
             <p>Banner dimensions: 1210px × 593px. Top/bottom 100px may be hidden on Desktop.</p>

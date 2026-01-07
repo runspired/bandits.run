@@ -15,6 +15,19 @@ html {
 
 /* 1. Default Light Mode */
 :root {
+  /**
+    Available Colors
+
+    These should only be used to define the "meaningful" colors below.
+  **/
+  --theme-fall-orange: rgb(255, 64, 39);
+  --theme-fall-blue: rgb(156,226,254);
+  --theme-fall-beige: rgb(238, 222,189);
+  --theme-fall-white: #fff;
+  --theme-fall-black: #000;
+  --theme-spring-light-sky: #f3e8ff;
+  --theme-spring-dark-sky: #1e1b4b;
+  --theme-spring-tree-green: #052c16;
   --theme-gold: #ffc474;
   --theme-brown: #8b5e3c;
   --theme-pink: #ff69b4;
@@ -22,19 +35,67 @@ html {
   --theme-dark-purple: #581c87;
   --theme-green: #06a743;
   --theme-light-green: #4ade80;
-  --bg-sky: #f3e8ff;
-  --color-hill-back: var(--theme-pink);
-  --color-hill-front: var(--theme-purple);
-  --tree-color: #052c16;
-  --alt-tree-color: var(--theme-green);
-  --title: var(--theme-purple);
-  --subtitle: var(--theme-pink);
-  --schedule-text: var(--theme-brown);
-  --text-primary: #2f3947;
+  /*
+    Meaningful Colors:
+
+    These variables take theme colors and assign them to specific
+    roles in the theme.
+
+  */
+  /* SPRING THEME */
+  /*
+  --light-theme-sky: var(--theme-spring-light-sky);
+  --light-theme-hill-back: var(--theme-pink);
+  --light-theme-hill-front: var(--theme-purple);
+  --light-theme-tree-color: var(--theme-spring-tree-green);
+  --light-theme-alt-tree-color: var(--theme-green);
+  --light-theme-title: var(--theme-purple);
+  --light-theme-subtitle: var(--theme-pink);
+  --light-theme-schedule-text: var(--theme-brown);
+  --light-theme-text-primary: #2f3947;
+  --dark-theme-sky: var(--theme-spring-dark-sky);
+  --dark-theme-hill-back: var(--theme-dark-purple);
+  --dark-theme-hill-front: var(--theme-light-green);
+  --dark-theme-tree-color: var(--theme-spring-tree-green);
+  --dark-theme-alt-tree-color: var(--theme-gold);
+  --dark-theme-title: var(--theme-light-green);
+  --dark-theme-subtitle: var(--theme-gold);
+  --dark-theme-schedule-text: var(--theme-gold);
+  --dark-theme-text-primary: #e0e0e0;
+  */
+  /* FALL THEME */
+  --light-theme-sky: var(--theme-fall-beige);
+  --light-theme-hill-back: var(--theme-fall-black);
+  --light-theme-hill-front: var(--theme-fall-orange);
+  --light-theme-tree-color: var(--theme-fall-white);
+  --light-theme-alt-tree-color: var(--theme-fall-orange);
+  --light-theme-title: var(--theme-fall-orange);
+  --light-theme-subtitle: var(--theme-fall-black);
+  --light-theme-schedule-text: var(--theme-fall-black);
+  --light-theme-text-primary: #2f3947;
+  --dark-theme-sky: var(--theme-fall-black);
+  --dark-theme-hill-back: var(--theme-fall-orange);
+  --dark-theme-hill-front: var(--theme-fall-beige);
+  --dark-theme-tree-color: var(--theme-fall-black);
+  --dark-theme-alt-tree-color: var(--theme-fall-white);
+  --dark-theme-title: var(--theme-fall-beige);
+  --dark-theme-subtitle: var(--theme-fall-orange);
+  --dark-theme-schedule-text: var(--theme-fall-beige);
+  --dark-theme-text-primary: #e0e0e0;
+
   --transition-speed: 0.6s;
 }
 
 body {
+  --bg-sky: var(--light-theme-sky);
+  --color-hill-back: var(--light-theme-hill-back);
+  --color-hill-front: var(--light-theme-hill-front);
+  --tree-color: var(--light-theme-tree-color);
+  --alt-tree-color: var(--light-theme-alt-tree-color);
+  --title: var(--light-theme-title);
+  --subtitle: var(--light-theme-subtitle);
+  --schedule-text: var(--light-theme-schedule-text);
+  --text-primary: var(--light-theme-text-primary);
   background: #fff;
   margin: 0;
   padding: 0;
@@ -43,48 +104,45 @@ body {
 
 /* 2. System Dark Mode (Automatic) */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --bg-sky: #1e1b4b;
-    --color-hill-back: var(--theme-dark-purple);
-    --color-hill-front: var(--theme-light-green);
-    --tree-color: #052c16;
-    --alt-tree-color: var(--theme-gold);
-    --title: var(--theme-light-green);
-    --subtitle: var(--theme-gold);
-    --schedule-text: var(--theme-gold);
-    --text-primary: #e0e0e0;
-  }
-
   body {
+    --bg-sky: var(--dark-theme-sky);
+    --color-hill-back: var(--dark-theme-hill-back);
+    --color-hill-front: var(--dark-theme-hill-front);
+    --tree-color: var(--dark-theme-tree-color);
+    --alt-tree-color: var(--dark-theme-alt-tree-color);
+    --title: var(--dark-theme-title);
+    --subtitle: var(--dark-theme-subtitle);
+    --schedule-text: var(--dark-theme-schedule-text);
+    --text-primary: var(--dark-theme-text-primary);
     background: #000;
   }
 }
 
 /* 3. Manual Overrides (Highest Priority) */
 body.light-mode {
-  --bg-sky: #f3e8ff;
-  --color-hill-back: var(--theme-pink);
-  --color-hill-front: var(--theme-purple);
-  --tree-color: #052c16;
-  --alt-tree-color: var(--theme-green);
-  --title: var(--theme-purple);
-  --subtitle: var(--theme-pink);
-  --schedule-text: var(--theme-brown);
-  --text-primary: #2f3947;
+  --bg-sky: var(--light-theme-sky);
+  --color-hill-back: var(--light-theme-hill-back);
+  --color-hill-front: var(--light-theme-hill-front);
+  --tree-color: var(--light-theme-tree-color);
+  --alt-tree-color: var(--light-theme-alt-tree-color);
+  --title: var(--light-theme-title);
+  --subtitle: var(--light-theme-subtitle);
+  --schedule-text: var(--light-theme-schedule-text);
+  --text-primary: var(--light-theme-text-primary);
 
   background: #fff;
 }
 
 body.dark-mode {
-  --bg-sky: #1e1b4b;
-  --color-hill-back: var(--theme-dark-purple);
-  --color-hill-front: var(--theme-light-green);
-  --tree-color: #052c16;
-  --alt-tree-color: var(--theme-gold);
-  --title: var(--theme-light-green);
-  --subtitle: var(--theme-gold);
-  --schedule-text: var(--theme-gold);
-  --text-primary: #e0e0e0;
+  --bg-sky: var(--dark-theme-sky);
+  --color-hill-back: var(--dark-theme-hill-back);
+  --color-hill-front: var(--dark-theme-hill-front);
+  --tree-color: var(--dark-theme-tree-color);
+  --alt-tree-color: var(--dark-theme-alt-tree-color);
+  --title: var(--dark-theme-title);
+  --subtitle: var(--dark-theme-subtitle);
+  --schedule-text: var(--dark-theme-schedule-text);
+  --text-primary: var(--dark-theme-text-primary);
 
   background: #000;
 }
@@ -220,7 +278,7 @@ h2 {
   width: 50.2vmax;
   height: 50.2vmax;
   padding: 0vmax;
-  border: .1vmax solid var(--theme-pink);
+  border: .1vmax solid #333;
   align-content: center;
   background-image:
     linear-gradient(45deg, #ccc 25%, transparent 25%),
@@ -240,7 +298,7 @@ h2 {
 }
 
 .branding .square-logo.circle-mask {
-  border: 2px dotted var(--theme-pink);
+  border: 2px dotted #333;
   border-radius: 50%;
   overflow: hidden;
 }
