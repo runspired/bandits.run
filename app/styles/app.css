@@ -163,13 +163,53 @@ h2 {
   font-weight: 300;
 }
 
+.branding h2 {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.branding .preview-box .preview-container.small-logo-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 0;
+  border: 1px solid #333;
+  padding: 0;
+}
+
+.branding .preview-box .preview-container.small-logo-preview .svg-preview-target {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.branding .small-logo-preview svg {
+  border: none;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
 .branding .square-logo {
   width: 50vmax;
   height: 50vmax;
-  padding: 6vmax;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
   align-content: center;
   border: 1px dotted transparent;
   transition: border-radius 0.4s ease, border 0.4s ease, width 1s ease, height 1s ease, padding 1s ease;
+}
+
+.branding .square-logo svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .branding .logo-container {
@@ -271,15 +311,22 @@ h1.title.broken::before {
 }
 
 .color-controls {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 1.5rem;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   margin: 1.5rem auto;
-  padding: 1rem;
+  padding: 1.5rem;
   background: rgba(0, 0, 0, 0.05);
   border-radius: 12px;
-  max-width: fit-content;
+  max-width: 90vw;
+}
+
+.color-controls .reset-btn {
+  grid-column: 1 / -1;
+  justify-self: center;
+  margin-top: 0.5rem;
 }
 
 .color-picker-group {
@@ -664,4 +711,142 @@ ul {
   html {
     font-size: 50%;
   }
+}
+
+/* Mobile-friendly layout tweaks */
+@media (width <= 768px) {
+  .sky {
+    padding-bottom: 18vmax;
+  }
+
+  .branding .logo-container {
+    width: 92vw;
+    height: auto;
+    padding: 1.5rem;
+  }
+
+  .branding .square-logo {
+    width: 92vw;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  .branding .square-logo.fit-to-content {
+    width: 82vw;
+  }
+
+  h1.title.broken {
+    font-size: 9vw;
+    line-height: 10vw;
+    text-align: center;
+  }
+
+  .color-controls {
+    grid-template-columns: 1fr;
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+
+  .color-picker-group,
+  .opacity-control-group {
+    justify-content: space-between;
+  }
+
+  .download-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .download-btn {
+    width: 100%;
+  }
+
+  .strava-banner-section {
+    max-width: 95vw;
+    margin: 1.5rem auto;
+  }
+
+  .strava-banner-preview-container {
+    padding: 0.5rem;
+  }
+
+  .preview-section {
+    flex-direction: column;
+    gap: 1rem;
+    margin: 1.5rem auto;
+  }
+
+  .preview-container,
+  .preview-box {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .preview-container {
+    height: auto;
+  }
+}
+
+/* Strava Banner Section */
+.strava-banner-section {
+  max-width: 90vw;
+  margin: 2rem auto;
+}
+
+.strava-banner-info {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.strava-banner-info p {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  opacity: 0.8;
+}
+
+.strava-banner-preview-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+  padding: 1rem;
+  background:
+    linear-gradient(45deg, #ccc 25%, transparent 25%),
+    linear-gradient(-45deg, #ccc 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #ccc 75%),
+    linear-gradient(-45deg, transparent 75%, #ccc 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  background-color: #fff;
+  border: 2px solid var(--text-primary);
+  border-radius: 8px;
+  overflow: auto;
+  position: relative;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  .strava-banner-preview-container {
+    background-image:
+      linear-gradient(45deg, #444 25%, transparent 25%),
+      linear-gradient(-45deg, #444 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #444 75%),
+      linear-gradient(-45deg, transparent 75%, #444 75%);
+    background-color: #222;
+  }
+}
+
+body.dark-mode .strava-banner-preview-container {
+  background-image:
+    linear-gradient(45deg, #444 25%, transparent 25%),
+    linear-gradient(-45deg, #444 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #444 75%),
+    linear-gradient(-45deg, transparent 75%, #444 75%);
+  background-color: #222;
+}
+
+.strava-banner-preview-container svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
