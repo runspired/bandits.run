@@ -5,7 +5,10 @@ import { initializeColorScheme, toggleColorScheme } from './index.gts';
 
 let useTransparentBackground = false;
 let customLogoColor: string | null = null;
+let customBackgroundColor: string | null = null;
 let logoOpacity = 1;
+let defaultBackgroundColor: string | null = null;
+let backgroundOpacity = 1;
 
 function handleColorChange(event: Event) {
   const input = event.target as HTMLInputElement;
@@ -25,6 +28,28 @@ function handleOpacityChange(event: Event) {
   ) as HTMLElement;
   if (label) {
     label.textContent = Math.round(logoOpacity * 100) + '%';
+  }
+
+  updatePreviews();
+}
+
+function handleBackgroundColorChange(event: Event) {
+  const input = event.target as HTMLInputElement;
+  customBackgroundColor = input.value;
+  updateBackgroundColor();
+  updatePreviews();
+}
+
+function handleBackgroundOpacityChange(event: Event) {
+  const input = event.target as HTMLInputElement;
+  backgroundOpacity = parseFloat(input.value);
+  updateBackgroundColor();
+
+  const label = globalThis.document.querySelector(
+    '.background-opacity-value'
+  ) as HTMLElement;
+  if (label) {
+    label.textContent = Math.round(backgroundOpacity * 100) + '%';
   }
 
   updatePreviews();
@@ -74,7 +99,31 @@ function updateLogoColor() {
   }
 }
 
-function resetLogoColor() {
+function updateBackgroundColor() {
+  const root = globalThis.document.documentElement;
+  const logoElement = globalThis.document.querySelector(
+    '.square-logo'
+  ) as HTMLElement;
+  if (!root) return;
+
+  if (customBackgroundColor) {
+    root.style.setProperty('--bg-sky', customBackgroundColor);
+  } else {
+    root.style.removeProperty('--bg-sky');
+  }
+
+  const backgroundColor = getBackgroundColor();
+
+  if (logoElement) {
+    if (useTransparentBackground) {
+      logoElement.style.backgroundColor = '';
+    } else {
+      logoElement.style.backgroundColor = backgroundColor;
+    }
+  }
+}
+
+function resetColors() {
   const titleElement = globalThis.document.querySelector(
     'h1.title'
   ) as HTMLElement;
@@ -83,7 +132,9 @@ function resetLogoColor() {
   ) as HTMLElement;
 
   customLogoColor = null;
+  customBackgroundColor = null;
   logoOpacity = 1;
+  backgroundOpacity = 1;
 
   if (titleElement) {
     titleElement.style.color = '';
@@ -103,6 +154,16 @@ function resetLogoColor() {
   const opacityLabel = globalThis.document.querySelector(
     '.opacity-value'
   ) as HTMLElement;
+  const backgroundInput = globalThis.document.querySelector(
+    '.background-color-input'
+  ) as HTMLInputElement;
+  const backgroundOpacityInput = globalThis.document.querySelector(
+    '.background-opacity-input'
+  ) as HTMLInputElement;
+  const backgroundOpacityLabel = globalThis.document.querySelector(
+    '.background-opacity-value'
+  ) as HTMLElement;
+  const root = globalThis.document.documentElement;
 
   if (colorInput && titleElement) {
     // Get the computed color from the theme
@@ -120,10 +181,31 @@ function resetLogoColor() {
     opacityLabel.textContent = '100%';
   }
 
+  if (backgroundOpacityInput) {
+    backgroundOpacityInput.value = '1';
+  }
+  if (backgroundOpacityLabel) {
+    backgroundOpacityLabel.textContent = '100%';
+  }
+
+  if (backgroundInput && root) {
+    const computedBg = globalThis
+      .getComputedStyle(root)
+      .getPropertyValue('--bg-sky')
+      .trim();
+    const hex = rgbToHex(computedBg || defaultBackgroundColor || '#f3e8ff');
+    backgroundInput.value = hex;
+  }
+
+  updateBackgroundColor();
+
   updatePreviews();
 }
 
 function rgbToHex(rgb: string): string {
+  if (rgb.startsWith('#')) {
+    return rgb;
+  }
   // Handle rgb(r, g, b) or rgba(r, g, b, a) format
   const match = rgb.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)/);
   if (!match) return '#9333ea'; // fallback
@@ -141,6 +223,64 @@ function rgbToHex(rgb: string): string {
       })
       .join('')
   );
+}
+
+type RGB = { r: number; g: number; b: number };
+
+function parseColorToRgb(color: string): RGB | null {
+  if (color.startsWith('#')) {
+    const hex = color.slice(1);
+    if (hex.length === 3) {
+      const r = parseInt(hex[0] + hex[0], 16);
+      const g = parseInt(hex[1] + hex[1], 16);
+      const b = parseInt(hex[2] + hex[2], 16);
+      return { r, g, b };
+    }
+    if (hex.length === 6) {
+      const r = parseInt(hex.slice(0, 2), 16);
+      const g = parseInt(hex.slice(2, 4), 16);
+      const b = parseInt(hex.slice(4, 6), 16);
+      return { r, g, b };
+    }
+    return null;
+  }
+
+  const match = color.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+  if (!match) return null;
+
+  return {
+    r: parseInt(match[1], 10),
+    g: parseInt(match[2], 10),
+    b: parseInt(match[3], 10),
+  };
+}
+
+function applyOpacityToColor(color: string, opacity: number): string {
+  const rgb = parseColorToRgb(color);
+  if (!rgb) return color;
+
+  return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${opacity})`;
+}
+
+function initializeBackgroundPicker() {
+  const bgInput = globalThis.document.querySelector(
+    '.background-color-input'
+  ) as HTMLInputElement;
+  const root = globalThis.document.documentElement;
+
+  if (bgInput && root) {
+    const computedBg = globalThis
+      .getComputedStyle(root)
+      .getPropertyValue('--bg-sky')
+      .trim();
+
+    if (!defaultBackgroundColor) {
+      defaultBackgroundColor = computedBg || '#f3e8ff';
+    }
+
+    const hex = rgbToHex(computedBg || defaultBackgroundColor);
+    bgInput.value = hex;
+  }
 }
 
 function initializeColorPicker() {
@@ -166,9 +306,21 @@ const initColorPicker = modifier(() => {
   // Initialize color picker after a short delay to ensure DOM is ready
   globalThis.setTimeout(() => {
     initializeColorPicker();
+    initializeBackgroundPicker();
+    updateBackgroundColor();
     updatePreviews();
   }, 100);
 });
+
+function isDebugMode(): boolean {
+  const hash = globalThis.location.hash;
+  const queryStart = hash.indexOf('?');
+  if (queryStart === -1) return false;
+
+  const queryString = hash.substring(queryStart + 1);
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.get('debug') === 'true';
+}
 
 // Get title color with opacity
 function getTitleColor(): string {
@@ -200,6 +352,30 @@ function getTitleColor(): string {
     }
   }
   return titleColor;
+}
+
+function getBackgroundBaseColor(): string {
+  const root = globalThis.document.documentElement;
+
+  if (customBackgroundColor) {
+    return customBackgroundColor;
+  }
+
+  const computedBg = globalThis
+    .getComputedStyle(root)
+    .getPropertyValue('--bg-sky')
+    .trim();
+
+  if (!defaultBackgroundColor && computedBg) {
+    defaultBackgroundColor = computedBg;
+  }
+
+  return computedBg || defaultBackgroundColor || '#f3e8ff';
+}
+
+function getBackgroundColor(): string {
+  const baseColor = getBackgroundBaseColor();
+  return applyOpacityToColor(baseColor, backgroundOpacity);
 }
 
 // Shared logo dimension calculations
@@ -268,11 +444,8 @@ function generateSVG(size: number, titleColor: string): Promise<SVGSVGElement> {
   rect.setAttribute('height', size.toString());
 
   if (!useTransparentBackground) {
-    const skyColor = globalThis
-      .getComputedStyle(globalThis.document.documentElement)
-      .getPropertyValue('--bg-sky')
-      .trim();
-    rect.setAttribute('fill', skyColor || '#f3e8ff');
+    const backgroundColor = getBackgroundColor();
+    rect.setAttribute('fill', backgroundColor);
   } else {
     rect.setAttribute('fill', 'none');
   }
@@ -377,7 +550,6 @@ function generatePNG(
     chevronMargin,
     fontSize,
     lineHeight,
-    iconOffsetY,
     offsetX,
     offsetY,
   } = calculateLogoDimensions(size);
@@ -389,11 +561,8 @@ function generatePNG(
 
   // Draw background
   if (!useTransparentBackground) {
-    const skyColor = globalThis
-      .getComputedStyle(globalThis.document.documentElement)
-      .getPropertyValue('--bg-sky')
-      .trim();
-    ctx.fillStyle = skyColor || '#f3e8ff';
+    const backgroundColor = getBackgroundColor();
+    ctx.fillStyle = backgroundColor;
     ctx.fillRect(0, 0, size, size);
   } else {
     ctx.clearRect(0, 0, size, size);
@@ -534,6 +703,7 @@ function toggleTransparentBackground() {
     }
   }
 
+  updateBackgroundColor();
   updatePreviews();
 }
 
@@ -646,14 +816,16 @@ function downloadAsPNG() {
     <div class="landscape-container">
 
       <div class="sky branding">
-        <div class="square-logo">
-          {{! template-lint-disable require-presentational-children }}
-          <h1
-            class="title broken"
-            role="button"
-            aria-roledescription="toggle color scheme"
-            {{on "click" toggleColorScheme}}
-          >Bay<br />Bandits</h1>
+        <div class="logo-container">
+          <div class="square-logo">
+            {{! template-lint-disable require-presentational-children }}
+            <h1
+              class="title broken"
+              role="button"
+              aria-roledescription="toggle color scheme"
+              {{on "click" toggleColorScheme}}
+            >Bay<br />Bandits</h1>
+          </div>
         </div>
 
         <div class="color-controls" {{initColorPicker}}>
@@ -665,6 +837,30 @@ function downloadAsPNG() {
               class="logo-color-input"
               value="#9333ea"
               {{on "input" handleColorChange}}
+            />
+          </div>
+          <div class="color-picker-group">
+            <label for="background-color">Background Color:</label>
+            <input
+              type="color"
+              id="background-color"
+              class="background-color-input"
+              value="#f3e8ff"
+              {{on "input" handleBackgroundColorChange}}
+            />
+          </div>
+          <div class="opacity-control-group">
+            <label for="background-opacity">Background Opacity:
+              <span class="background-opacity-value">100%</span></label>
+            <input
+              type="range"
+              id="background-opacity"
+              class="background-opacity-input"
+              min="0"
+              max="1"
+              step="0.01"
+              value="1"
+              {{on "input" handleBackgroundOpacityChange}}
             />
           </div>
           <div class="opacity-control-group">
@@ -684,9 +880,9 @@ function downloadAsPNG() {
           <button
             type="button"
             class="download-btn reset-btn"
-            {{on "click" resetLogoColor}}
+            {{on "click" resetColors}}
           >
-            Reset Color
+            Reset Colors
           </button>
         </div>
 
@@ -735,18 +931,20 @@ function downloadAsPNG() {
           </button>
         </div>
 
-        <div class="preview-section">
-          <div class="preview-box">
-            <h3>SVG Preview</h3>
-            <div class="preview-container svg-preview" id="svg-preview"></div>
-          </div>
-          <div class="preview-box">
-            <h3>PNG Preview</h3>
-            <div class="preview-container png-preview">
-              <canvas id="png-preview"></canvas>
+        {{#if (isDebugMode)}}
+          <div class="preview-section">
+            <div class="preview-box">
+              <h3>SVG Preview</h3>
+              <div class="preview-container svg-preview" id="svg-preview"></div>
+            </div>
+            <div class="preview-box">
+              <h3>PNG Preview</h3>
+              <div class="preview-container png-preview">
+                <canvas id="png-preview"></canvas>
+              </div>
             </div>
           </div>
-        </div>
+        {{/if}}
       </div>
     </div>
   </section>

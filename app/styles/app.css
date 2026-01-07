@@ -164,28 +164,24 @@ h2 {
 }
 
 .branding .square-logo {
-  display: block;
-  margin: 2rem auto;
   width: 50vmax;
   height: 50vmax;
   padding: 6vmax;
-  border: 1px solid var(--text-primary);
   align-content: center;
+  border: 1px dotted transparent;
   transition: border-radius 0.4s ease, border 0.4s ease, width 1s ease, height 1s ease, padding 1s ease;
 }
 
-.branding .square-logo.fit-to-content {
-  height: 12vmax;
-  padding: 0;
-  width: 38vmax;
-}
-
-.branding .square-logo.circle-mask {
-  border-radius: 50%;
-  overflow: hidden;
-}
-
-.branding .square-logo.transparent-bg {
+.branding .logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem auto;
+  width: 50.2vmax;
+  height: 50.2vmax;
+  padding: 0vmax;
+  border: .1vmax solid var(--theme-pink);
+  align-content: center;
   background-image:
     linear-gradient(45deg, #ccc 25%, transparent 25%),
     linear-gradient(-45deg, #ccc 25%, transparent 25%),
@@ -196,8 +192,25 @@ h2 {
   background-color: #fff;
 }
 
+.branding .square-logo.fit-to-content {
+  height: 12vmax;
+  padding: 0;
+  width: 38vmax;
+  border: 1px dotted #fff;
+}
+
+.branding .square-logo.circle-mask {
+  border: 2px dotted var(--theme-pink);
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.branding .square-logo.transparent-bg {
+  background: none;
+}
+
 @media (prefers-color-scheme: dark) {
-  .branding .square-logo.transparent-bg {
+  .branding .logo-container, body.dark-mode .preview-container {
     background-image:
       linear-gradient(45deg, #444 25%, transparent 25%),
       linear-gradient(-45deg, #444 25%, transparent 25%),
@@ -207,7 +220,7 @@ h2 {
   }
 }
 
-body.dark-mode .branding .square-logo.transparent-bg {
+body.dark-mode .branding .logo-container, body.dark-mode .preview-container {
   background-image:
     linear-gradient(45deg, #444 25%, transparent 25%),
     linear-gradient(-45deg, #444 25%, transparent 25%),
