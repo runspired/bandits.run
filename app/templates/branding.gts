@@ -3,6 +3,15 @@ import { on } from '@ember/modifier';
 import { modifier } from 'ember-modifier';
 import { initializeColorScheme, toggleColorScheme as baseToggleColorScheme } from './index.gts';
 
+const SiteManifest = {
+  "name": "The Bay Bandits",
+  "short_name": "Bandits",
+  "icons": [],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone"
+};
+
 let useTransparentBackground = false;
 
 // Sky image state
@@ -379,7 +388,7 @@ function handleSkyImageUpload(event: Event) {
     // Show controls
     const controls = globalThis.document.getElementById('sky-image-controls');
     if (controls) {
-      controls.style.display = 'block';
+      controls.classList.remove('hidden');
     }
 
     updatePreviews();
@@ -399,7 +408,7 @@ function clearSkyImage() {
   // Hide controls
   const controls = globalThis.document.getElementById('sky-image-controls');
   if (controls) {
-    controls.style.display = 'none';
+    controls.classList.add('hidden');
   }
 
   updatePreviews();
@@ -1074,6 +1083,697 @@ function downloadAsPNG() {
     });
 }
 
+function downloadAssetsAsZip() {
+  const logoElement = globalThis.document.querySelector(
+    '.square-logo'
+  ) as HTMLElement;
+  if (!logoElement) return;
+
+  // Store current theme state and chevron mode
+  const currentTheme = globalThis.document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+  const currentChevronOnly = chevronOnly;
+
+  // Define all asset configurations for each theme
+  const themeAssetConfigs = [
+    // Site icons (required sizes) - with text
+    { name: 'favicon-32x32.png', size: 32, isFavicon: true, chevronOnly: false, invertColors: false },
+    { name: 'favicon.ico', size: 32, isIco: true, chevronOnly: false, invertColors: false },
+    { name: 'apple-touch-icon-180x180.png', size: 180, chevronOnly: false, invertColors: false },
+    { name: 'android-chrome-192x192.png', size: 192, chevronOnly: false, invertColors: false },
+    { name: 'android-chrome-512x512.png', size: 512, chevronOnly: false, invertColors: false },
+
+    // Site icons (required sizes) - with text, inverted colors
+    { name: 'favicon-32x32-inverted.png', size: 32, isFavicon: true, chevronOnly: false, invertColors: true },
+    { name: 'favicon-inverted.ico', size: 32, isIco: true, chevronOnly: false, invertColors: true },
+    { name: 'apple-touch-icon-180x180-inverted.png', size: 180, chevronOnly: false, invertColors: true },
+    { name: 'android-chrome-192x192-inverted.png', size: 192, chevronOnly: false, invertColors: true },
+    { name: 'android-chrome-512x512-inverted.png', size: 512, chevronOnly: false, invertColors: true },
+
+    // Site icons (required sizes) - chevron only
+    { name: 'favicon-32x32-chevron.png', size: 32, isFavicon: true, chevronOnly: true, invertColors: false },
+    { name: 'favicon-chevron.ico', size: 32, isIco: true, chevronOnly: true, invertColors: false },
+    { name: 'apple-touch-icon-180x180-chevron.png', size: 180, chevronOnly: true, invertColors: false },
+    { name: 'android-chrome-192x192-chevron.png', size: 192, chevronOnly: true, invertColors: false },
+    { name: 'android-chrome-512x512-chevron.png', size: 512, chevronOnly: true, invertColors: false },
+
+    // Site icons (required sizes) - chevron only, inverted colors
+    { name: 'favicon-32x32-chevron-inverted.png', size: 32, isFavicon: true, chevronOnly: true, invertColors: true },
+    { name: 'favicon-chevron-inverted.ico', size: 32, isIco: true, chevronOnly: true, invertColors: true },
+    { name: 'apple-touch-icon-180x180-chevron-inverted.png', size: 180, chevronOnly: true, invertColors: true },
+    { name: 'android-chrome-192x192-chevron-inverted.png', size: 192, chevronOnly: true, invertColors: true },
+    { name: 'android-chrome-512x512-chevron-inverted.png', size: 512, chevronOnly: true, invertColors: true },
+
+    // SVG logos - both variants
+    { name: 'logo.svg', isVector: true, chevronOnly: false, invertColors: false },
+    { name: 'logo-inverted.svg', isVector: true, chevronOnly: false, invertColors: true },
+    { name: 'logo-chevron.svg', isVector: true, chevronOnly: true, invertColors: false },
+    { name: 'logo-chevron-inverted.svg', isVector: true, chevronOnly: true, invertColors: true },
+
+    // Social media previews - logo based (with text)
+    { name: 'og-logo-600x600.png', size: 600, scale: 2, chevronOnly: false, invertColors: false },
+    { name: 'og-logo-600x600-inverted.png', size: 600, scale: 2, chevronOnly: false, invertColors: true },
+
+    // Social media previews - logo based (chevron only)
+    { name: 'og-logo-600x600-chevron.png', size: 600, scale: 2, chevronOnly: true, invertColors: false },
+    { name: 'og-logo-600x600-chevron-inverted.png', size: 600, scale: 2, chevronOnly: true, invertColors: true },
+  ];
+
+  const bannerAssetConfigs = [
+    // Social media previews - banner based (PNG)
+    { name: 'og-banner-1200x630.png', isBanner: true, width: 1200, height: 630 },
+    { name: 'og-banner-1210x593.png', isBanner: true, width: 1210, height: 593 },
+  ];
+
+  const bannerSvgConfigs = [
+    // Banner SVGs for each theme
+    { name: 'og-banner-1210x593.svg', isBannerSvg: true },
+  ];
+
+  const adaptiveSvgConfigs = [
+    // Adaptive SVGs that switch between light/dark theme automatically
+    { name: 'logo-adaptive.svg', chevronOnly: false, invertColors: false, isBannerSvg: false },
+    { name: 'logo-adaptive-inverted.svg', chevronOnly: false, invertColors: true, isBannerSvg: false },
+    { name: 'logo-chevron-adaptive.svg', chevronOnly: true, invertColors: false, isBannerSvg: false },
+    { name: 'logo-chevron-adaptive-inverted.svg', chevronOnly: true, invertColors: true, isBannerSvg: false },
+    { name: 'og-banner-adaptive.svg', isBannerSvg: true },
+  ];
+
+  const assets: { [key: string]: Blob } = {};
+
+  // Helper to get theme-specific folder name
+  const getThemeFolder = (isDark: boolean) => isDark ? 'dark' : 'light';
+
+  // Function to switch theme
+  const switchTheme = (targetTheme: 'light' | 'dark', callback: () => void) => {
+    const isDark = globalThis.document.body.classList.contains('dark-mode');
+    const needsSwitch = (targetTheme === 'dark' && !isDark) || (targetTheme === 'light' && isDark);
+
+    if (needsSwitch) {
+      toggleColorScheme();
+      globalThis.setTimeout(callback, 100);
+    } else {
+      callback();
+    }
+  };
+
+  // Helper function to convert PNG canvas to ICO format
+  const canvasToIco = (canvas: HTMLCanvasElement): Promise<Blob> => {
+    return new Promise((resolve, reject) => {
+      canvas.toBlob((pngBlob) => {
+        if (!pngBlob) {
+          reject(new Error('Failed to create PNG blob'));
+          return;
+        }
+
+        // Read the PNG data
+        const reader = new FileReader();
+        reader.onload = () => {
+          const pngData = new Uint8Array(reader.result as ArrayBuffer);
+
+          // Create ICO header (6 bytes) + image directory (16 bytes)
+          const icoHeader = new Uint8Array(6 + 16 + pngData.length);
+
+          // ICO header
+          icoHeader[0] = 0; // Reserved
+          icoHeader[1] = 0;
+          icoHeader[2] = 1; // Type: 1 = ICO
+          icoHeader[3] = 0;
+          icoHeader[4] = 1; // Number of images
+          icoHeader[5] = 0;
+
+          // Image directory entry
+          icoHeader[6] = 32; // Width (0 = 256)
+          icoHeader[7] = 32; // Height (0 = 256)
+          icoHeader[8] = 0;  // Color palette
+          icoHeader[9] = 0;  // Reserved
+          icoHeader[10] = 1; // Color planes
+          icoHeader[11] = 0;
+          icoHeader[12] = 32; // Bits per pixel
+          icoHeader[13] = 0;
+
+          // Image size (little-endian)
+          const imageSize = pngData.length;
+          icoHeader[14] = imageSize & 0xFF;
+          icoHeader[15] = (imageSize >> 8) & 0xFF;
+          icoHeader[16] = (imageSize >> 16) & 0xFF;
+          icoHeader[17] = (imageSize >> 24) & 0xFF;
+
+          // Image offset (little-endian) - after header and directory
+          icoHeader[18] = 22; // 6 + 16
+          icoHeader[19] = 0;
+          icoHeader[20] = 0;
+          icoHeader[21] = 0;
+
+          // Copy PNG data after header
+          icoHeader.set(pngData, 22);
+
+          const icoBlob = new Blob([icoHeader], { type: 'image/x-icon' });
+          resolve(icoBlob);
+        };
+        reader.onerror = () => reject(new Error('Failed to read PNG data'));
+        reader.readAsArrayBuffer(pngBlob);
+      }, 'image/png');
+    });
+  };
+
+  // Helper to swap logo and background colors in current mode
+  const swapLogoAndBackgroundColors = () => {
+    const modeColors = getCurrentModeColors();
+
+    // Store original values
+    const originalLogo = modeColors.logo;
+    const originalBg = modeColors.background;
+
+    // Get current effective colors (including defaults if needed)
+    const defaults = getCurrentModeDefaults();
+    const effectiveLogo = originalLogo || defaults.logo;
+    const effectiveBg = originalBg || defaults.background;
+
+    // Swap them in the mode colors
+    modeColors.logo = effectiveBg;
+    modeColors.background = effectiveLogo;
+
+    // Return a function to restore original values
+    return () => {
+      modeColors.logo = originalLogo;
+      modeColors.background = originalBg;
+    };
+  };
+
+  // Helper to generate adaptive SVG with prefers-color-scheme
+  const generateAdaptiveSVG = async (
+    isBanner: boolean,
+    chevronOnly: boolean = false,
+    invertColors: boolean = false
+  ): Promise<SVGElement> => {
+    // Get colors for both themes
+    const originalTheme = globalThis.document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+
+    // Generate light theme SVG
+    if (originalTheme === 'dark') {
+      toggleColorScheme();
+      await new Promise(resolve => globalThis.setTimeout(resolve, 100));
+    }
+
+    const restoreLight = invertColors ? swapLogoAndBackgroundColors() : null;
+    const lightTitleColor = getTitleColor();
+    const lightBgColor = getBackgroundColor();
+    if (restoreLight) restoreLight();
+
+    // Switch to dark theme
+    toggleColorScheme();
+    await new Promise(resolve => globalThis.setTimeout(resolve, 100));
+
+    const restoreDark = invertColors ? swapLogoAndBackgroundColors() : null;
+    const darkTitleColor = getTitleColor();
+    const darkBgColor = getBackgroundColor();
+    if (restoreDark) restoreDark();
+
+    // Restore original theme if needed
+    if (originalTheme === 'light') {
+      toggleColorScheme();
+      await new Promise(resolve => globalThis.setTimeout(resolve, 100));
+    }
+
+    // Create the adaptive SVG
+    const svg = isBanner ? await generateStravaBannerSVG() : await generateSVG(300, lightTitleColor);
+
+    // Add style element with media queries
+    const style = globalThis.document.createElementNS('http://www.w3.org/2000/svg', 'style');
+    style.textContent = `
+      .logo-fill { fill: ${lightTitleColor}; }
+      .bg-fill { fill: ${lightBgColor}; }
+
+      @media (prefers-color-scheme: dark) {
+        .logo-fill { fill: ${darkTitleColor}; }
+        .bg-fill { fill: ${darkBgColor}; }
+      }
+    `;
+    svg.insertBefore(style, svg.firstChild);
+
+    // Update all elements to use classes
+    const rects = svg.querySelectorAll('rect');
+    rects.forEach(rect => {
+      const currentFill = rect.getAttribute('fill');
+      rect.removeAttribute('fill');
+      // Background rects typically use the sky/background color
+      if (currentFill && (currentFill.includes('bg-sky') || currentFill === lightBgColor)) {
+        rect.setAttribute('class', 'bg-fill');
+      } else {
+        rect.setAttribute('class', 'logo-fill');
+      }
+    });
+
+    // Update all text and path elements to use logo-fill class
+    const logoElements = svg.querySelectorAll('text, path, polygon, ellipse, circle');
+    logoElements.forEach(el => {
+      el.removeAttribute('fill');
+      el.setAttribute('class', 'logo-fill');
+    });
+
+    return svg;
+  };
+
+  // Function to generate and add each asset
+  const generateAsset = (
+    config: typeof themeAssetConfigs[0] | typeof bannerAssetConfigs[0],
+    themeName: 'light' | 'dark',
+    callback: () => void
+  ) => {
+    const themeFolder = getThemeFolder(themeName === 'dark');
+
+    // Set chevron mode for this asset if applicable
+    const needsChevronToggle = 'chevronOnly' in config && config.chevronOnly !== chevronOnly;
+    if (needsChevronToggle) {
+      chevronOnly = config.chevronOnly!;
+    }
+
+    // Swap colors if this is an inverted asset
+    const shouldInvert = 'invertColors' in config && config.invertColors;
+    const restoreColors = shouldInvert ? swapLogoAndBackgroundColors() : null;
+
+    if ('isBanner' in config && config.isBanner) {
+      // Generate banner variant
+      generateStravaBannerSVG()
+        .then((svg) => {
+          // Create canvas at specified dimensions
+          const canvas = globalThis.document.createElement('canvas');
+          canvas.width = config.width!;
+          canvas.height = config.height!;
+
+          const ctx = canvas.getContext('2d');
+          if (!ctx) throw new Error('Cannot get canvas context');
+
+          // Serialize SVG to data URL
+          const svgData = new XMLSerializer().serializeToString(svg);
+          const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+          const url = URL.createObjectURL(svgBlob);
+
+          // Load SVG as image
+          const img = new globalThis.Image();
+          img.crossOrigin = 'anonymous';
+
+          img.onload = () => {
+            // Draw SVG to canvas, cropping/scaling as needed
+            const scale = Math.max(config.width / 1210, config.height / 593);
+            const scaledWidth = 1210 * scale;
+            const scaledHeight = 593 * scale;
+            const offsetX = (config.width - scaledWidth) / 2;
+            const offsetY = (config.height - scaledHeight) / 2;
+
+            ctx.drawImage(img, offsetX, offsetY, scaledWidth, scaledHeight);
+            URL.revokeObjectURL(url);
+
+            canvas.toBlob((blob) => {
+              if (blob) {
+                assets[`${themeFolder}/${config.name}`] = blob;
+              }
+              if (restoreColors) restoreColors();
+              callback();
+            }, 'image/png');
+          };
+
+          img.onerror = () => {
+            URL.revokeObjectURL(url);
+            if (restoreColors) restoreColors();
+            callback();
+          };
+
+          img.src = url;
+        })
+        .catch(() => {
+          if (restoreColors) restoreColors();
+          callback();
+        });
+    } else if ('isVector' in config && config.isVector) {
+      // Generate SVG
+      const originalBg = useTransparentBackground;
+      if (shouldInvert) {
+        useTransparentBackground = false; // Ensure background is rendered
+      }
+
+      generateSVG(300, getTitleColor())
+        .then((svg) => {
+          const svgData = new XMLSerializer().serializeToString(svg);
+          const blob = new Blob([svgData], { type: 'image/svg+xml' });
+          assets[`${themeFolder}/${config.name}`] = blob;
+          if (restoreColors) restoreColors();
+          useTransparentBackground = originalBg;
+          callback();
+        })
+        .catch(() => {
+          if (restoreColors) restoreColors();
+          useTransparentBackground = originalBg;
+          callback();
+        });
+    } else if ('isIco' in config && config.isIco) {
+      // Generate ICO file
+      const size = ('size' in config && config.size) ? config.size : 32;
+      const scale = 1; // ICO should be exactly 32x32
+
+      generatePNG(size, getTitleColor(), scale)
+        .then((canvas) => canvasToIco(canvas))
+        .then((icoBlob) => {
+          assets[`${themeFolder}/${config.name}`] = icoBlob;
+          if (restoreColors) restoreColors();
+          callback();
+        })
+        .catch(() => {
+          if (restoreColors) restoreColors();
+          callback();
+        });
+    } else {
+      // Generate PNG
+      const size = ('size' in config && config.size) ? config.size : 300;
+      const scale = ('scale' in config && config.scale) ? config.scale : (size >= 512 ? 2 : 1);
+
+      generatePNG(size, getTitleColor(), scale)
+        .then((canvas) => {
+          canvas.toBlob((blob) => {
+            if (blob) {
+              assets[`${themeFolder}/${config.name}`] = blob;
+            }
+            if (restoreColors) restoreColors();
+            callback();
+          }, 'image/png');
+        })
+        .catch(() => {
+          if (restoreColors) restoreColors();
+          callback();
+        });
+    }
+  };
+
+  // Generate assets for a specific theme
+  const generateThemeAssets = (themeName: 'light' | 'dark', callback: () => void) => {
+    switchTheme(themeName, () => {
+      const allConfigs = [...themeAssetConfigs, ...bannerAssetConfigs];
+      let configIndex = 0;
+
+      const generateNextAsset = () => {
+        if (configIndex < allConfigs.length) {
+          const config = allConfigs[configIndex]!;
+          configIndex++;
+          generateAsset(config, themeName, generateNextAsset);
+        } else {
+          callback();
+        }
+      };
+
+      generateNextAsset();
+    });
+  };
+
+  // Generate banner SVGs for a specific theme
+  const generateBannerSVGs = (themeName: 'light' | 'dark', callback: () => void) => {
+    switchTheme(themeName, () => {
+      let configIndex = 0;
+      const themeFolder = getThemeFolder(themeName === 'dark');
+
+      const generateNextBannerSVG = () => {
+        if (configIndex < bannerSvgConfigs.length) {
+          const config = bannerSvgConfigs[configIndex]!;
+          configIndex++;
+
+          generateStravaBannerSVG()
+            .then((svg) => {
+              const svgData = new XMLSerializer().serializeToString(svg);
+              const blob = new Blob([svgData], { type: 'image/svg+xml' });
+              assets[`${themeFolder}/${config.name}`] = blob;
+              generateNextBannerSVG();
+            })
+            .catch(() => {
+              generateNextBannerSVG();
+            });
+        } else {
+          callback();
+        }
+      };
+
+      generateNextBannerSVG();
+    });
+  };
+
+  // Generate adaptive SVGs
+  const generateAdaptiveSVGs = (callback: () => void) => {
+    let configIndex = 0;
+
+    const generateNextAdaptiveSVG = () => {
+      if (configIndex < adaptiveSvgConfigs.length) {
+        const config = adaptiveSvgConfigs[configIndex]!;
+        configIndex++;
+
+        const isBanner = config.isBannerSvg || false;
+        const chevronOnlyValue = config.chevronOnly || false;
+        const invertColorsValue = config.invertColors || false;
+
+        // Set chevron mode if applicable
+        if (!isBanner) {
+          const needsChevronToggle = chevronOnlyValue !== chevronOnly;
+          if (needsChevronToggle) {
+            chevronOnly = chevronOnlyValue;
+          }
+        }
+
+        // Generate the adaptive SVG
+        generateAdaptiveSVG(isBanner, chevronOnlyValue, invertColorsValue)
+          .then((svg) => {
+            const svgData = new XMLSerializer().serializeToString(svg);
+            const blob = new Blob([svgData], { type: 'image/svg+xml' });
+            assets[config.name] = blob;
+            generateNextAdaptiveSVG();
+          })
+          .catch(() => {
+            generateNextAdaptiveSVG();
+          });
+      } else {
+        callback();
+      }
+    };
+
+    generateNextAdaptiveSVG();
+  };
+
+  // Generate all assets for both themes
+  generateThemeAssets('light', () => {
+    generateThemeAssets('dark', () => {
+      // Generate banner SVGs for both themes
+      generateBannerSVGs('light', () => {
+        generateBannerSVGs('dark', () => {
+          // Generate adaptive SVGs
+          generateAdaptiveSVGs(() => {
+            // Restore original theme and chevron mode
+            chevronOnly = currentChevronOnly;
+            switchTheme(currentTheme, () => {
+              // Create manifest files for both themes
+              const lightManifest = JSON.stringify({
+                ...SiteManifest,
+                icons: [
+                  { src: "light/android-chrome-192x192-chevron-inverted.png", sizes: "192x192", type: "image/png" },
+                  { src: "light/android-chrome-512x512-chevron-inverted.png", type: "image/png", sizes: "512x512", purpose: "maskable" },
+                  { src: "light/android-chrome-512x512-chevron-inverted.png", sizes: "512x512", type: "image/png" }
+                ]
+              }, null, 2);
+
+              const darkManifest = JSON.stringify({
+                ...SiteManifest,
+                icons: [
+                  { src: "dark/android-chrome-192x192-chevron-inverted.png", sizes: "192x192", type: "image/png" },
+                  { src: "dark/android-chrome-512x512-chevron-inverted.png", type: "image/png", sizes: "512x512", purpose: "maskable" },
+                  { src: "dark/android-chrome-512x512-chevron-inverted.png", sizes: "512x512", type: "image/png" }
+                ]
+              }, null, 2);
+
+              assets['light/site.manifest'] = new Blob([lightManifest], { type: 'application/json' });
+              assets['dark/site.manifest'] = new Blob([darkManifest], { type: 'application/json' });
+
+              // All assets generated, create zip
+              createAndDownloadZip(assets);
+            });
+          });
+        });
+      });
+    });
+  });
+}
+
+// Create zip file and download
+function createAndDownloadZip(assets: { [key: string]: Blob }) {
+  // Load JSZip from CDN
+  const script = globalThis.document.createElement('script');
+  script.src = 'https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js';
+  script.onload = () => {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment
+      const JSZip = (globalThis as any).JSZip;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-assignment
+      const zip = new JSZip();
+
+      // Add all assets to zip
+      for (const [filename, blob] of Object.entries(assets)) {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+        zip.file(filename, blob);
+      }
+
+      // Add a README file
+      const readme = `
+Bay Bandits Logo Assets
+=======================
+
+This package contains assets for both light and dark themes, organized in separate folders.
+Each theme includes both full logo (with text) and chevron-only variants.
+
+STRUCTURE:
+----------
+light/               Light theme assets
+  ├── favicon-32x32.png              Favicon 32x32 PNG (with text)
+  ├── favicon-32x32-inverted.png     Favicon 32x32 PNG (with text, inverted colors)
+  ├── favicon.ico                    Favicon ICO format (with text)
+  ├── favicon-inverted.ico           Favicon ICO format (with text, inverted colors)
+  ├── favicon-32x32-chevron.png      Favicon 32x32 PNG (chevron only)
+  ├── favicon-32x32-chevron-inverted.png  Favicon 32x32 PNG (chevron only, inverted)
+  ├── favicon-chevron.ico            Favicon ICO format (chevron only)
+  ├── favicon-chevron-inverted.ico   Favicon ICO format (chevron only, inverted)
+  ├── apple-touch-icon-180x180.png   Apple Touch Icon 180x180 (with text)
+  ├── apple-touch-icon-180x180-inverted.png   Apple Touch Icon (with text, inverted)
+  ├── apple-touch-icon-180x180-chevron.png    Apple Touch Icon (chevron only)
+  ├── apple-touch-icon-180x180-chevron-inverted.png  Apple Touch Icon (chevron, inverted)
+  ├── android-chrome-192x192.png     App icon 192x192 (with text)
+  ├── android-chrome-192x192-inverted.png     App icon 192x192 (with text, inverted)
+  ├── android-chrome-192x192-chevron.png      App icon 192x192 (chevron only)
+  ├── android-chrome-192x192-chevron-inverted.png  App icon 192x192 (chevron, inverted)
+  ├── android-chrome-512x512.png     App icon 512x512 (with text)
+  ├── android-chrome-512x512-inverted.png     App icon 512x512 (with text, inverted)
+  ├── android-chrome-512x512-chevron.png      App icon 512x512 (chevron only)
+  ├── android-chrome-512x512-chevron-inverted.png  App icon 512x512 (chevron, inverted)
+  ├── logo.svg                       Vector logo (with text)
+  ├── logo-inverted.svg              Vector logo (with text, inverted colors)
+  ├── logo-chevron.svg               Vector logo (chevron only)
+  ├── logo-chevron-inverted.svg      Vector logo (chevron only, inverted colors)
+  ├── og-logo-600x600.png            Social media preview square (with text)
+  ├── og-logo-600x600-inverted.png   Social media preview square (with text, inverted)
+  ├── og-logo-600x600-chevron.png    Social media preview square (chevron only)
+  ├── og-logo-600x600-chevron-inverted.png  Social media preview (chevron, inverted)
+  ├── og-banner-1200x630.png         Social media preview landscape banner PNG
+  ├── og-banner-1210x593.png         Social media preview PNG (Strava dimensions)
+  ├── og-banner-1210x593.svg         Social media preview SVG (Strava dimensions)
+  └── site.manifest                  Web app manifest (references light theme icons)
+
+dark/                Dark theme assets
+  └── [same structure as light/]
+
+logo-adaptive.svg                    Adaptive SVG (with text, auto-switches light/dark)
+logo-adaptive-inverted.svg           Adaptive SVG (with text, inverted, auto-switches)
+logo-chevron-adaptive.svg            Adaptive SVG (chevron only, auto-switches)
+logo-chevron-adaptive-inverted.svg   Adaptive SVG (chevron only, inverted, auto-switches)
+og-banner-adaptive.svg               Adaptive banner SVG (auto-switches light/dark)
+
+USAGE NOTES:
+------------
+Logo Variants:
+- Files without "-chevron" suffix include the full logo with "BAY BANDITS" text
+- Files with "-chevron" suffix contain only the chevron icon (no text)
+- Files with "-inverted" suffix swap the logo and background colors
+  (e.g., if normal has purple logo on light background, inverted has light logo on purple background)
+- Inverted variants are useful for creating visual contrast or matching different background contexts
+- Choose the variant that best fits your use case and design needs
+
+Site Icons:
+- favicon.ico: Traditional favicon format for broad browser compatibility
+- favicon-32x32.png: Modern PNG favicon for <link rel="icon" sizes="32x32" href="...">
+- apple-touch-icon-180x180.png: Use in <link rel="apple-touch-icon" sizes="180x180" href="...">
+- android-chrome-192x192.png & android-chrome-512x512.png: Referenced in site.manifest
+- Chevron-only variants available for minimal/compact designs
+
+Site Manifest:
+- Use site.manifest as your web app manifest file
+- Update icon paths in the manifest to match your deployment structure
+- Serve with Content-Type: application/manifest+json
+- Default manifest references full logos; update to -chevron variants if preferred
+
+Social Media Previews (og:image):
+- og-logo-600x600.png: Square variant (with text)
+- og-logo-600x600-inverted.png: Square variant (with text, inverted colors)
+- og-logo-600x600-chevron.png: Square variant (chevron only)
+- og-logo-600x600-chevron-inverted.png: Square variant (chevron only, inverted colors)
+- og-banner-1200x630.png: Standard Open Graph landscape format PNG (1.91:1 ratio)
+- og-banner-1210x593.png: Strava club header dimensions PNG
+- og-banner-1210x593.svg: Strava club header dimensions SVG (per theme)
+- og-banner-adaptive.svg: Adaptive banner SVG (auto-switches with prefers-color-scheme)
+
+Example HTML:
+<!-- Traditional favicon -->
+<link rel="icon" href="/light/favicon.ico">
+<!-- Modern PNG favicons -->
+<link rel="icon" type="image/png" sizes="32x32" href="/light/favicon-32x32.png">
+<!-- Apple Touch Icon -->
+<link rel="apple-touch-icon" sizes="180x180" href="/light/apple-touch-icon-180x180.png">
+<!-- Web App Manifest -->
+<link rel="manifest" href="/light/site.manifest">
+<!-- Open Graph image -->
+<meta property="og:image" content="https://yourdomain.com/light/og-banner-1200x630.png">
+
+For chevron-only icons:
+<link rel="icon" href="/light/favicon-chevron.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/light/favicon-32x32-chevron.png">
+
+For inverted color icons:
+<link rel="icon" href="/light/favicon-inverted.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/light/favicon-32x32-inverted.png">
+
+Banner SVGs:
+<!-- Theme-specific banner SVG -->
+<img src="/light/og-banner-1210x593.svg" alt="Bay Bandits Banner">
+<!-- Adaptive banner that auto-switches -->
+<img src="/og-banner-adaptive.svg" alt="Bay Bandits Banner">
+
+Adaptive SVGs (automatically switch between light/dark based on user's system preference):
+<!-- Adaptive SVG that changes with prefers-color-scheme -->
+<img src="/logo-adaptive.svg" alt="Bay Bandits Logo">
+<!-- Chevron-only adaptive variant -->
+<img src="/logo-chevron-adaptive.svg" alt="Bay Bandits Chevron">
+<!-- Adaptive banner -->
+<img src="/og-banner-adaptive.svg" alt="Bay Bandits Banner">
+
+Adaptive SVG Features:
+- Automatically adapts to user's system color scheme preference (light/dark mode)
+- Uses CSS @media (prefers-color-scheme: dark) internally
+- Single file that works in both themes
+- Recommended for websites that support system-based theme switching
+- Five variants: normal, inverted, chevron, chevron-inverted, and banner
+- Each variant automatically switches colors between light and dark modes
+- Banner SVG is perfect for hero sections, headers, or social media that support SVG
+
+Generated: ${new Date().toISOString()}
+Theme: Both light and dark variants included
+      `.trim();
+
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+      zip.file('README.txt', readme);
+
+      // Generate and download
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+      zip.generateAsync({ type: 'blob' }).then((blob: Blob) => {
+        const url = URL.createObjectURL(blob);
+        const a = globalThis.document.createElement('a');
+        a.href = url;
+        a.download = 'bay-bandits-logo-assets.zip';
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+    } catch (error) {
+      globalThis.console.error('Error creating zip file:', error);
+      globalThis.console.log('JSZip library may not be loaded yet. Please try again.');
+    }
+  };
+
+  script.onerror = () => {
+    globalThis.console.error('Error loading JSZip library');
+  };
+
+  globalThis.document.head.appendChild(script);
+}
+
 // Get theme color values for banner generation
 function getThemeColors() {
   const logoColor = getTitleColor();
@@ -1685,6 +2385,13 @@ function generateStravaBannerPreview() {
           >
             Download Logo PNG
           </button>
+          <button
+            type="button"
+            class="download-btn"
+            {{on "click" downloadAssetsAsZip}}
+          >
+            Download All Assets (ZIP)
+          </button>
         </div>
 
         <h2>Strava Club Header</h2>
@@ -1699,7 +2406,7 @@ function generateStravaBannerPreview() {
               {{on "change" handleSkyImageUpload}}
             />
           </div>
-          <div id="sky-image-controls" style="display: none;">
+          <div id="sky-image-controls" class="hidden">
             <button
               type="button"
               class="download-btn reset-btn"

@@ -98,6 +98,11 @@ body {
   --text-primary: var(--light-theme-text-primary);
   background: #fff;
   margin: 0;
+}
+
+/* Utility classes */
+.hidden {
+  display: none !important;
   padding: 0;
   transition: background var(--transition-speed) ease;
 }
