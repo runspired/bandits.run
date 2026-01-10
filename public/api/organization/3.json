@@ -1,0 +1,51 @@
+{
+  "data": {
+    "type": "organization",
+    "id": "3",
+    "attributes": {
+      "name": "Salmon Run Club",
+      "website": "https://www.strava.com/clubs/963747",
+      "stravaId": "963747",
+      "stravaHandle": null,
+      "meetupId": null,
+      "instagramHandle": "salmonrunclub",
+      "email": null,
+      "phoneNumber": null,
+      "descriptionHtml": null
+    },
+    "relationships": {
+      "runs": {
+        "links": {
+          "related": "/api/organization/3/runs.json"
+        },
+        "meta": {
+          "count": 1
+        }
+      },
+      "contacts": {
+        "data": [
+          {
+            "type": "user",
+            "id": "4"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "user",
+      "id": "4",
+      "attributes": {
+        "firstName": "Tom",
+        "lastName": "Stitt",
+        "email": null,
+        "phoneNumber": null,
+        "hasWhatsApp": true,
+        "stravaId": "2175208",
+        "instagramHandle": "thomasstitt",
+        "descriptionHtml": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "data": {
+    "type": "trail-run",
+    "id": "2-new-years-day",
+    "attributes": {
+      "title": "BBR New Year's Day Diablo Run",
+      "recurrence": {
+        "day": null,
+        "frequency": "annually",
+        "interval": 1,
+        "weekNumber": null,
+        "monthNumber": null,
+        "date": "2026-01-01",
+        "holiday": null
+      },
+      "runs": [
+        {
+          "name": "",
+          "leaders": [],
+          "distance": "14 Mi",
+          "vert": "4000ft",
+          "pace": "Easy",
+          "category": "at-your-own-pace",
+          "meetTime": "09:00",
+          "startTime": "09:15",
+          "eventLink": null,
+          "stravaRouteLink": null,
+          "gpxLink": null
+        }
+      ],
+      "description": null,
+      "descriptionHtml": null,
+      "eventLink": null
+    },
+    "relationships": {
+      "location": {
+        "data": {
+          "type": "location",
+          "id": "9"
+        }
+      },
+      "hosts": {
+        "data": [
+          {
+            "type": "organization",
+            "id": "2"
+          }
+        ]
+      },
+      "organizers": {
+        "data": [
+          {
+            "type": "user",
+            "id": "2"
+          }
+        ]
+      },
+      "owner": {
+        "data": {
+          "type": "organization",
+          "id": "2"
+        }
+      },
+      "occurrences": {
+        "data": [
+          {
+            "type": "realized-event-date",
+            "id": "2-new-years-day-2026-12-31"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "location",
+      "id": "9",
+      "attributes": {
+        "name": "Mitchell Canyon",
+        "latitude": 37.92049,
+        "longitude": -121.941554,
+        "region": "Mt. Diablo",
+        "address": {
+          "street": "96 Mitchell Canyon Rd",
+          "city": "Clayton",
+          "state": "CA",
+          "zip": "94517"
+        },
+        "googleMapsLink": "https://maps.app.goo.gl/qhbD6PBnsuS8JJJM9",
+        "descriptionHtml": null
+      }
+    },
+    {
+      "type": "organization",
+      "id": "2",
+      "attributes": {
+        "name": "Beer Bucket Runners",
+        "website": "https://www.strava.com/clubs/BeerBucketRun",
+        "stravaId": "1058474",
+        "stravaHandle": "BeerBucketRun",
+        "meetupId": null,
+        "instagramHandle": "beer_bucket_run",
+        "email": null,
+        "phoneNumber": null,
+        "descriptionHtml": null
+      },
+      "relationships": {
+        "runs": {
+          "links": {
+            "related": "/api/organization/2/runs.json"
+          },
+          "meta": {
+            "count": 3
+          }
+        },
+        "contacts": {
+          "data": [
+            {
+              "type": "user",
+              "id": "2"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "user",
+      "id": "2",
+      "attributes": {
+        "firstName": "Karen",
+        "lastName": "Barnes",
+        "email": null,
+        "phoneNumber": null,
+        "hasWhatsApp": true,
+        "stravaId": "97687403",
+        "instagramHandle": "traillove_kb",
+        "descriptionHtml": null
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-new-years-day-2026-12-31",
+      "attributes": {
+        "date": "2026-12-31",
+        "weekNumberMonday": 53,
+        "weekNumberSunday": 53
+      },
+      "relationships": {}
+    }
+  ]
+}

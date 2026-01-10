@@ -1,0 +1,51 @@
+{
+  "data": {
+    "type": "organization",
+    "id": "2",
+    "attributes": {
+      "name": "Beer Bucket Runners",
+      "website": "https://www.strava.com/clubs/BeerBucketRun",
+      "stravaId": "1058474",
+      "stravaHandle": "BeerBucketRun",
+      "meetupId": null,
+      "instagramHandle": "beer_bucket_run",
+      "email": null,
+      "phoneNumber": null,
+      "descriptionHtml": null
+    },
+    "relationships": {
+      "runs": {
+        "links": {
+          "related": "/api/organization/2/runs.json"
+        },
+        "meta": {
+          "count": 3
+        }
+      },
+      "contacts": {
+        "data": [
+          {
+            "type": "user",
+            "id": "2"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "user",
+      "id": "2",
+      "attributes": {
+        "firstName": "Karen",
+        "lastName": "Barnes",
+        "email": null,
+        "phoneNumber": null,
+        "hasWhatsApp": true,
+        "stravaId": "97687403",
+        "instagramHandle": "traillove_kb",
+        "descriptionHtml": null
+      }
+    }
+  ]
+}

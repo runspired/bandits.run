@@ -37,6 +37,36 @@ export interface TrailRun {
   eventLink: string | null;
 }
 
+export interface JSONAPITrailRun {
+  type: 'trail-run';
+  id: string;
+  attributes: {
+    title: string;
+    description: string | null;
+    recurrence: Recurrence;
+    eventLink: string | null;
+    runs: RunOption[];
+    descriptionHtml: string | null;
+  };
+  relationships: {
+    location: {
+      data: { type: 'location', id: string }
+    },
+    hosts: {
+      data: { type: 'organization', id: string }[]
+    };
+    organizers: {
+      data: { type: 'user', id: string }[]
+    };
+    owner: {
+      data: { type: 'organization', id: string }
+    },
+    occurrences: {
+      data: { type: 'realized-event-date', id: string }[]
+    }
+  };
+}
+
 export interface Recurrence {
   /**
    * Day of the week the run occurs on (0 = Sunday, 6 = Saturday)
@@ -48,6 +78,7 @@ export interface Recurrence {
   /**
    * Frequency of the recurrence
    *
+   * - once: occurs only once on the specified date
    * - weekly: occurs every week on the specified day
    * - monthly: occurs once a month on the specified day + week number
    * - annually: occurs once a year on the specified day + week number
@@ -57,6 +88,9 @@ export interface Recurrence {
    * For weekly recurrences, the interval in weeks between occurrences (e.g., every 2 weeks).
    * For monthly recurrences, the interval in months between occurrences (e.g., every 3 months for a quarterly run).
    * For annual recurrences, this should always be 1.
+   *
+   * For weekly and monthly recurrences, a start date must be set
+   * to determine the first occurrence if the interval is greater than 1.
    */
   interval: 1 | 2 | 3 | 4 | 5 | 6;
   /**
@@ -65,8 +99,16 @@ export interface Recurrence {
    */
   weekNumber: 1 | 2 | 3 | 4 | 5 | null;
   /**
+   * For Annual recurrences, the month of the year (1 = January, 12 = December)
+   * E.G. "3rd Thursday of November every year" would be frequency: 'annually', day: 4, weekNumber: 3, month: 11
+   */
+  monthNumber: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | null;
+  /**
    * Specific date for one-time events (YYYY-MM-DD format). Null for recurring events.
    * For recurring annual events on a specific date, this will be the date of the first occurrence.
+   *
+   * For recurring weekly or monthly events with an interval greater than 1, this will be the date
+   * of the first occurrence.
    */
   date: string | null;
   /**
@@ -76,7 +118,7 @@ export interface Recurrence {
    * If the floating date holiday is not in this list, it is not currently supported. A single-use
    * run with the specific date should be created instead.
    */
-  holiday: 'July 4th' | 'Thanksgiving Day' | 'Summer Solstice' | 'Winter Solstice' | null;
+  holiday: 'Thanksgiving Day' | 'Summer Solstice' | 'Winter Solstice' | null;
 }
 
 
@@ -140,4 +182,68 @@ export interface RunOption {
    * Link to a GPX file for this run option (if any)
    */
   gpxLink: string | null;
+}
+
+export interface JSONAPIRealizedEventDate {
+  type: 'realized-event-date';
+  /**
+   * The ID of the event + the date for uniqueness
+   */
+  id: string;
+  attributes: {
+   /**
+    * Specific date for the event occurrence (YYYY-MM-DD format).
+    */
+    date: string;
+   /**
+    * Week number when weeks start on Monday (1-53)
+    */
+    weekNumberMonday: number;
+   /**
+    * Week number when weeks start on Sunday (1-53)
+    */
+    weekNumberSunday: number;
+  },
+  relationships: {
+    event: {
+      data: { type: 'trail-run', id: string }
+    },
+  }
+}
+
+export interface JSONAPIMonth {
+  type: 'month';
+  /**
+   * The ID is in the format YYYY-MM (e.g., "2024-06" for June 2024)
+   */
+  id: string;
+  attributes: {
+    year: number;
+    month: number;
+  },
+  relationships: {
+    events: {
+      data: { type: 'realized-event-date', id: string }[]
+    }
+  }
+}
+
+export interface JSONAPIWeek {
+  type: 'week';
+  /**
+   * The ID is in the format YYYY-WW-startDay (e.g., "2024-23-sunday" for the week starting Sunday of week 23 in 2024)
+   */
+  id: string;
+  attributes: {
+    year: number;
+    weekNumber: number;
+    startDay: 'sunday' | 'monday';
+    startDate: string;
+    endDate: string;
+  },
+  relationships: {
+    events: {
+      data: { type: 'realized-event-date', id: string }[]
+    }
+  }
 }

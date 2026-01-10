@@ -27,6 +27,7 @@ export const data = {
     "frequency": "annually",
     "interval": 1,
     "weekNumber": null,
+    "monthNumber": null,
     "date": "2026-01-01",
     holiday: null
   }

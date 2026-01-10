@@ -9,6 +9,7 @@ export const data = {
     frequency: 'weekly',
     interval: 1,
     weekNumber: null,
+    "monthNumber": null,
     date: null,
     holiday: null
   },

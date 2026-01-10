@@ -1,0 +1,879 @@
+{
+  "data": {
+    "type": "trail-run",
+    "id": "5-ninja-thursday",
+    "attributes": {
+      "title": "Trail Thursdays",
+      "recurrence": {
+        "day": 4,
+        "frequency": "weekly",
+        "interval": 1,
+        "weekNumber": null,
+        "monthNumber": null,
+        "date": null,
+        "holiday": null
+      },
+      "runs": [
+        {
+          "name": "Ninja Lite",
+          "leaders": [],
+          "distance": "8.5 Mi",
+          "vert": "1400ft",
+          "pace": "Easy",
+          "category": "at-your-own-pace",
+          "meetTime": "05:55",
+          "startTime": "06:00",
+          "eventLink": null,
+          "stravaRouteLink": null,
+          "gpxLink": null
+        }
+      ],
+      "description": null,
+      "descriptionHtml": null,
+      "eventLink": "https://www.instagram.com/trailthursday/"
+    },
+    "relationships": {
+      "location": {
+        "data": {
+          "type": "location",
+          "id": "15"
+        }
+      },
+      "hosts": {
+        "data": [
+          {
+            "type": "organization",
+            "id": "5"
+          }
+        ]
+      },
+      "organizers": {
+        "data": [
+          {
+            "type": "user",
+            "id": "8"
+          }
+        ]
+      },
+      "owner": {
+        "data": {
+          "type": "organization",
+          "id": "5"
+        }
+      },
+      "occurrences": {
+        "data": [
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-01-08"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-01-15"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-01-22"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-01-29"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-02-05"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-02-12"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-02-19"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-02-26"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-03-05"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-03-12"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-03-19"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-03-26"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-04-02"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-04-09"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-04-16"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-04-23"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-04-30"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-05-07"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-05-14"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-05-21"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-05-28"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-06-04"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-06-11"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-06-18"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-06-25"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-07-02"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-07-09"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-07-16"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-07-23"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-07-30"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-08-06"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-08-13"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-08-20"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-08-27"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-09-03"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-09-10"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-09-17"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-09-24"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-10-01"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-10-08"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-10-15"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-10-22"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-10-29"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-11-05"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-11-12"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-11-19"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-11-26"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-12-03"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-12-10"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-12-17"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-12-24"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2026-12-31"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-ninja-thursday-2027-01-07"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "location",
+      "id": "15",
+      "attributes": {
+        "name": "SCA Trailhead",
+        "latitude": 37.832273,
+        "longitude": -122.482329,
+        "region": "Marin Headlands",
+        "address": {
+          "street": "Conzelman Rd",
+          "city": "Mill Valley",
+          "state": "CA",
+          "zip": "94941"
+        },
+        "googleMapsLink": "https://maps.app.goo.gl/gYdG5fCJjsbJ4SY56",
+        "descriptionHtml": null
+      }
+    },
+    {
+      "type": "organization",
+      "id": "5",
+      "attributes": {
+        "name": "San Francisco Running Company",
+        "website": "https://www.sfrunco.com/about-us/weeklyruns/",
+        "stravaId": "15879",
+        "stravaHandle": "san-francisco-running-company",
+        "meetupId": null,
+        "instagramHandle": "sfrunco",
+        "email": null,
+        "phoneNumber": null,
+        "descriptionHtml": null
+      },
+      "relationships": {
+        "runs": {
+          "links": {
+            "related": "/api/organization/5/runs.json"
+          },
+          "meta": {
+            "count": 3
+          }
+        },
+        "contacts": {
+          "data": [
+            {
+              "type": "user",
+              "id": "8"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "user",
+      "id": "8",
+      "attributes": {
+        "firstName": "Jojo",
+        "lastName": "Roldan",
+        "email": null,
+        "phoneNumber": null,
+        "hasWhatsApp": true,
+        "stravaId": "2860482",
+        "instagramHandle": "from_here_we_go",
+        "descriptionHtml": null
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-01-08",
+      "attributes": {
+        "date": "2026-01-08",
+        "weekNumberMonday": 2,
+        "weekNumberSunday": 2
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-01-15",
+      "attributes": {
+        "date": "2026-01-15",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-01-22",
+      "attributes": {
+        "date": "2026-01-22",
+        "weekNumberMonday": 4,
+        "weekNumberSunday": 4
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-01-29",
+      "attributes": {
+        "date": "2026-01-29",
+        "weekNumberMonday": 5,
+        "weekNumberSunday": 5
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-02-05",
+      "attributes": {
+        "date": "2026-02-05",
+        "weekNumberMonday": 6,
+        "weekNumberSunday": 6
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-02-12",
+      "attributes": {
+        "date": "2026-02-12",
+        "weekNumberMonday": 7,
+        "weekNumberSunday": 7
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-02-19",
+      "attributes": {
+        "date": "2026-02-19",
+        "weekNumberMonday": 8,
+        "weekNumberSunday": 8
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-02-26",
+      "attributes": {
+        "date": "2026-02-26",
+        "weekNumberMonday": 9,
+        "weekNumberSunday": 9
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-03-05",
+      "attributes": {
+        "date": "2026-03-05",
+        "weekNumberMonday": 10,
+        "weekNumberSunday": 10
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-03-12",
+      "attributes": {
+        "date": "2026-03-12",
+        "weekNumberMonday": 11,
+        "weekNumberSunday": 11
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-03-19",
+      "attributes": {
+        "date": "2026-03-19",
+        "weekNumberMonday": 12,
+        "weekNumberSunday": 12
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-03-26",
+      "attributes": {
+        "date": "2026-03-26",
+        "weekNumberMonday": 13,
+        "weekNumberSunday": 13
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-04-02",
+      "attributes": {
+        "date": "2026-04-02",
+        "weekNumberMonday": 14,
+        "weekNumberSunday": 14
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-04-09",
+      "attributes": {
+        "date": "2026-04-09",
+        "weekNumberMonday": 15,
+        "weekNumberSunday": 15
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-04-16",
+      "attributes": {
+        "date": "2026-04-16",
+        "weekNumberMonday": 16,
+        "weekNumberSunday": 16
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-04-23",
+      "attributes": {
+        "date": "2026-04-23",
+        "weekNumberMonday": 17,
+        "weekNumberSunday": 17
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-04-30",
+      "attributes": {
+        "date": "2026-04-30",
+        "weekNumberMonday": 18,
+        "weekNumberSunday": 18
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-05-07",
+      "attributes": {
+        "date": "2026-05-07",
+        "weekNumberMonday": 19,
+        "weekNumberSunday": 19
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-05-14",
+      "attributes": {
+        "date": "2026-05-14",
+        "weekNumberMonday": 20,
+        "weekNumberSunday": 20
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-05-21",
+      "attributes": {
+        "date": "2026-05-21",
+        "weekNumberMonday": 21,
+        "weekNumberSunday": 21
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-05-28",
+      "attributes": {
+        "date": "2026-05-28",
+        "weekNumberMonday": 22,
+        "weekNumberSunday": 22
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-06-04",
+      "attributes": {
+        "date": "2026-06-04",
+        "weekNumberMonday": 23,
+        "weekNumberSunday": 23
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-06-11",
+      "attributes": {
+        "date": "2026-06-11",
+        "weekNumberMonday": 24,
+        "weekNumberSunday": 24
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-06-18",
+      "attributes": {
+        "date": "2026-06-18",
+        "weekNumberMonday": 25,
+        "weekNumberSunday": 25
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-06-25",
+      "attributes": {
+        "date": "2026-06-25",
+        "weekNumberMonday": 26,
+        "weekNumberSunday": 26
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-07-02",
+      "attributes": {
+        "date": "2026-07-02",
+        "weekNumberMonday": 27,
+        "weekNumberSunday": 27
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-07-09",
+      "attributes": {
+        "date": "2026-07-09",
+        "weekNumberMonday": 28,
+        "weekNumberSunday": 28
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-07-16",
+      "attributes": {
+        "date": "2026-07-16",
+        "weekNumberMonday": 29,
+        "weekNumberSunday": 29
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-07-23",
+      "attributes": {
+        "date": "2026-07-23",
+        "weekNumberMonday": 30,
+        "weekNumberSunday": 30
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-07-30",
+      "attributes": {
+        "date": "2026-07-30",
+        "weekNumberMonday": 31,
+        "weekNumberSunday": 31
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-08-06",
+      "attributes": {
+        "date": "2026-08-06",
+        "weekNumberMonday": 32,
+        "weekNumberSunday": 32
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-08-13",
+      "attributes": {
+        "date": "2026-08-13",
+        "weekNumberMonday": 33,
+        "weekNumberSunday": 33
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-08-20",
+      "attributes": {
+        "date": "2026-08-20",
+        "weekNumberMonday": 34,
+        "weekNumberSunday": 34
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-08-27",
+      "attributes": {
+        "date": "2026-08-27",
+        "weekNumberMonday": 35,
+        "weekNumberSunday": 35
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-09-03",
+      "attributes": {
+        "date": "2026-09-03",
+        "weekNumberMonday": 36,
+        "weekNumberSunday": 36
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-09-10",
+      "attributes": {
+        "date": "2026-09-10",
+        "weekNumberMonday": 37,
+        "weekNumberSunday": 37
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-09-17",
+      "attributes": {
+        "date": "2026-09-17",
+        "weekNumberMonday": 38,
+        "weekNumberSunday": 38
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-09-24",
+      "attributes": {
+        "date": "2026-09-24",
+        "weekNumberMonday": 39,
+        "weekNumberSunday": 39
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-10-01",
+      "attributes": {
+        "date": "2026-10-01",
+        "weekNumberMonday": 40,
+        "weekNumberSunday": 40
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-10-08",
+      "attributes": {
+        "date": "2026-10-08",
+        "weekNumberMonday": 41,
+        "weekNumberSunday": 41
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-10-15",
+      "attributes": {
+        "date": "2026-10-15",
+        "weekNumberMonday": 42,
+        "weekNumberSunday": 42
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-10-22",
+      "attributes": {
+        "date": "2026-10-22",
+        "weekNumberMonday": 43,
+        "weekNumberSunday": 43
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-10-29",
+      "attributes": {
+        "date": "2026-10-29",
+        "weekNumberMonday": 44,
+        "weekNumberSunday": 44
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-11-05",
+      "attributes": {
+        "date": "2026-11-05",
+        "weekNumberMonday": 45,
+        "weekNumberSunday": 45
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-11-12",
+      "attributes": {
+        "date": "2026-11-12",
+        "weekNumberMonday": 46,
+        "weekNumberSunday": 46
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-11-19",
+      "attributes": {
+        "date": "2026-11-19",
+        "weekNumberMonday": 47,
+        "weekNumberSunday": 47
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-11-26",
+      "attributes": {
+        "date": "2026-11-26",
+        "weekNumberMonday": 48,
+        "weekNumberSunday": 48
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-12-03",
+      "attributes": {
+        "date": "2026-12-03",
+        "weekNumberMonday": 49,
+        "weekNumberSunday": 49
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-12-10",
+      "attributes": {
+        "date": "2026-12-10",
+        "weekNumberMonday": 50,
+        "weekNumberSunday": 50
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-12-17",
+      "attributes": {
+        "date": "2026-12-17",
+        "weekNumberMonday": 51,
+        "weekNumberSunday": 51
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-12-24",
+      "attributes": {
+        "date": "2026-12-24",
+        "weekNumberMonday": 52,
+        "weekNumberSunday": 52
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-12-31",
+      "attributes": {
+        "date": "2026-12-31",
+        "weekNumberMonday": 53,
+        "weekNumberSunday": 53
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2027-01-07",
+      "attributes": {
+        "date": "2027-01-07",
+        "weekNumberMonday": 2,
+        "weekNumberSunday": 2
+      },
+      "relationships": {}
+    }
+  ]
+}

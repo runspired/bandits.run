@@ -1,0 +1,151 @@
+{
+  "data": {
+    "type": "trail-run",
+    "id": "2-winter-solstice",
+    "attributes": {
+      "title": "Winter Solstice Sunrise on Mt. Tam",
+      "recurrence": {
+        "day": null,
+        "frequency": "annually",
+        "interval": 1,
+        "weekNumber": null,
+        "monthNumber": null,
+        "date": null,
+        "holiday": "Winter Solstice"
+      },
+      "runs": [
+        {
+          "name": "",
+          "leaders": [],
+          "distance": "10 Mi",
+          "vert": "2500ft",
+          "pace": "Easy",
+          "category": "at-your-own-pace",
+          "meetTime": "05:30",
+          "startTime": "05:45",
+          "eventLink": null,
+          "stravaRouteLink": null,
+          "gpxLink": null
+        }
+      ],
+      "description": null,
+      "descriptionHtml": null,
+      "eventLink": null
+    },
+    "relationships": {
+      "location": {
+        "data": {
+          "type": "location",
+          "id": "8"
+        }
+      },
+      "hosts": {
+        "data": [
+          {
+            "type": "organization",
+            "id": "2"
+          }
+        ]
+      },
+      "organizers": {
+        "data": [
+          {
+            "type": "user",
+            "id": "2"
+          }
+        ]
+      },
+      "owner": {
+        "data": {
+          "type": "organization",
+          "id": "2"
+        }
+      },
+      "occurrences": {
+        "data": [
+          {
+            "type": "realized-event-date",
+            "id": "2-winter-solstice-2026-12-21"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "location",
+      "id": "8",
+      "attributes": {
+        "name": "Mill Valley Depot",
+        "latitude": 37.906024,
+        "longitude": -122.548075,
+        "region": "Mt. Tamalpais",
+        "address": {
+          "street": "87 Throckmorton Ave",
+          "city": "Mill Valley",
+          "state": "CA",
+          "zip": "94941"
+        },
+        "googleMapsLink": "https://maps.app.goo.gl/pSSi6SuSsHTo965t7",
+        "descriptionHtml": null
+      }
+    },
+    {
+      "type": "organization",
+      "id": "2",
+      "attributes": {
+        "name": "Beer Bucket Runners",
+        "website": "https://www.strava.com/clubs/BeerBucketRun",
+        "stravaId": "1058474",
+        "stravaHandle": "BeerBucketRun",
+        "meetupId": null,
+        "instagramHandle": "beer_bucket_run",
+        "email": null,
+        "phoneNumber": null,
+        "descriptionHtml": null
+      },
+      "relationships": {
+        "runs": {
+          "links": {
+            "related": "/api/organization/2/runs.json"
+          },
+          "meta": {
+            "count": 3
+          }
+        },
+        "contacts": {
+          "data": [
+            {
+              "type": "user",
+              "id": "2"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "user",
+      "id": "2",
+      "attributes": {
+        "firstName": "Karen",
+        "lastName": "Barnes",
+        "email": null,
+        "phoneNumber": null,
+        "hasWhatsApp": true,
+        "stravaId": "97687403",
+        "instagramHandle": "traillove_kb",
+        "descriptionHtml": null
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-winter-solstice-2026-12-21",
+      "attributes": {
+        "date": "2026-12-21",
+        "weekNumberMonday": 52,
+        "weekNumberSunday": 52
+      },
+      "relationships": {}
+    }
+  ]
+}

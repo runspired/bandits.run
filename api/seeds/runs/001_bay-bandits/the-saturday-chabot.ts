@@ -53,6 +53,7 @@ export const data = {
     "frequency": "monthly",
     "interval": 1,
     "weekNumber": 3,
+    "monthNumber": null,
     "date": null,
     holiday: null
   }

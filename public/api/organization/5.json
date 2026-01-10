@@ -1,0 +1,51 @@
+{
+  "data": {
+    "type": "organization",
+    "id": "5",
+    "attributes": {
+      "name": "San Francisco Running Company",
+      "website": "https://www.sfrunco.com/about-us/weeklyruns/",
+      "stravaId": "15879",
+      "stravaHandle": "san-francisco-running-company",
+      "meetupId": null,
+      "instagramHandle": "sfrunco",
+      "email": null,
+      "phoneNumber": null,
+      "descriptionHtml": null
+    },
+    "relationships": {
+      "runs": {
+        "links": {
+          "related": "/api/organization/5/runs.json"
+        },
+        "meta": {
+          "count": 3
+        }
+      },
+      "contacts": {
+        "data": [
+          {
+            "type": "user",
+            "id": "8"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "user",
+      "id": "8",
+      "attributes": {
+        "firstName": "Jojo",
+        "lastName": "Roldan",
+        "email": null,
+        "phoneNumber": null,
+        "hasWhatsApp": true,
+        "stravaId": "2860482",
+        "instagramHandle": "from_here_we_go",
+        "descriptionHtml": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "data": {
+    "type": "organization",
+    "id": "4",
+    "attributes": {
+      "name": "Berkeley Run Club",
+      "website": "https://www.meetup.com/runbrc/",
+      "stravaId": "25365",
+      "stravaHandle": null,
+      "meetupId": "runbrc",
+      "instagramHandle": null,
+      "email": null,
+      "phoneNumber": null,
+      "descriptionHtml": null
+    },
+    "relationships": {
+      "runs": {
+        "links": {
+          "related": "/api/organization/4/runs.json"
+        },
+        "meta": {
+          "count": 1
+        }
+      },
+      "contacts": {
+        "data": [
+          {
+            "type": "user",
+            "id": "3"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "user",
+      "id": "3",
+      "attributes": {
+        "firstName": "Edward",
+        "lastName": "Holets",
+        "email": null,
+        "phoneNumber": null,
+        "hasWhatsApp": true,
+        "stravaId": "12268454",
+        "instagramHandle": "nedword",
+        "descriptionHtml": null
+      }
+    }
+  ]
+}

@@ -46,13 +46,14 @@ export const data = {
       "gpxLink": null
     }
   ],
-  "location": "",
+  "location": "16",
   "description": "",
   "recurrence": {
     "day": 6,
     "frequency": "monthly",
     "interval": 1,
     "weekNumber": 5,
+    "monthNumber": null,
     "date": null,
     holiday: null
   }

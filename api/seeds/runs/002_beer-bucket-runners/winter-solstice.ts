@@ -27,6 +27,7 @@ export const data = {
     "frequency": "annually",
     "interval": 1,
     "weekNumber": null,
+    "monthNumber": null,
     "date": null,
     holiday: 'Winter Solstice'
   }

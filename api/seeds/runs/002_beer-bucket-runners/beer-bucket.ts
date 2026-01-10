@@ -3,7 +3,7 @@ import type { TrailRun } from "../../../interfaces/run";
 export const data = {
   "title": "Beer Bucket",
   "hosts": ['2'],
-  "organizers": ['12'],
+  "organizers": ['2'],
   "eventLink": "",
   "runs": [
     {
@@ -53,6 +53,7 @@ export const data = {
     "frequency": "weekly",
     "interval": 1,
     "weekNumber": null,
+    "monthNumber": null,
     "date": null,
     holiday: null
   }

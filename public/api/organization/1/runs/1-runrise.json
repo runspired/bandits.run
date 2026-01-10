@@ -1,0 +1,911 @@
+{
+  "data": {
+    "type": "trail-run",
+    "id": "1-runrise",
+    "attributes": {
+      "title": "RUNRISE",
+      "recurrence": {
+        "day": 4,
+        "frequency": "weekly",
+        "interval": 1,
+        "weekNumber": null,
+        "monthNumber": null,
+        "date": null,
+        "holiday": null
+      },
+      "runs": [
+        {
+          "name": "",
+          "leaders": [],
+          "distance": "6-8 Mi",
+          "vert": "1100-1600ft",
+          "pace": "Easy",
+          "category": "no-drop",
+          "meetTime": "05:55",
+          "startTime": "06:00",
+          "eventLink": null,
+          "stravaRouteLink": null,
+          "gpxLink": null
+        }
+      ],
+      "description": null,
+      "descriptionHtml": null,
+      "eventLink": "https://www.strava.com/clubs/504077/group_events/1528207"
+    },
+    "relationships": {
+      "location": {
+        "data": {
+          "type": "location",
+          "id": "2"
+        }
+      },
+      "hosts": {
+        "data": [
+          {
+            "type": "organization",
+            "id": "1"
+          }
+        ]
+      },
+      "organizers": {
+        "data": [
+          {
+            "type": "user",
+            "id": "6"
+          },
+          {
+            "type": "user",
+            "id": "5"
+          }
+        ]
+      },
+      "owner": {
+        "data": {
+          "type": "organization",
+          "id": "1"
+        }
+      },
+      "occurrences": {
+        "data": [
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-01-08"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-01-15"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-01-22"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-01-29"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-02-05"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-02-12"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-02-19"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-02-26"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-03-05"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-03-12"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-03-19"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-03-26"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-04-02"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-04-09"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-04-16"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-04-23"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-04-30"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-05-07"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-05-14"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-05-21"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-05-28"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-06-04"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-06-11"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-06-18"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-06-25"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-07-02"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-07-09"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-07-16"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-07-23"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-07-30"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-08-06"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-08-13"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-08-20"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-08-27"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-09-03"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-09-10"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-09-17"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-09-24"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-10-01"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-10-08"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-10-15"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-10-22"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-10-29"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-11-05"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-11-12"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-11-19"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-11-26"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-12-03"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-12-10"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-12-17"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-12-24"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2026-12-31"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2027-01-07"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "location",
+      "id": "2",
+      "attributes": {
+        "name": "Serpentine Prairie",
+        "latitude": 37.80348,
+        "longitude": -122.176789,
+        "region": "Reinhardt Redwood Regional Park",
+        "address": {
+          "street": "11500 Skyline Blvd",
+          "city": "Oakland",
+          "state": "CA",
+          "zip": "94619"
+        },
+        "googleMapsLink": "https://maps.app.goo.gl/Fjh333R161WWKuGB6",
+        "descriptionHtml": null
+      }
+    },
+    {
+      "type": "organization",
+      "id": "1",
+      "attributes": {
+        "name": "Bay Bandits",
+        "website": "https://bandits.run",
+        "stravaId": "504077",
+        "stravaHandle": "outlawed",
+        "meetupId": null,
+        "instagramHandle": "baybandits",
+        "email": null,
+        "phoneNumber": null,
+        "descriptionHtml": "<h1 id=\"about-bay-bandits\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#about-bay-bandits\">#</a> About Bay Bandits</h1>\n<p>The Bay Bandits is a <strong>trail running community</strong> based in the San Francisco Bay Area, dedicated to bringing runners together for weekly trail adventures.</p>\n<h2 id=\"our-mission\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#our-mission\">#</a> Our Mission</h2>\n<p>We believe in:</p>\n<ul>\n<li>Making trail running accessible to everyone</li>\n<li>Building a supportive community</li>\n<li>Exploring the beautiful trails of the Bay Area</li>\n<li>Having fun while staying fit</li>\n</ul>\n<h2 id=\"weekly-runs\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#weekly-runs\">#</a> Weekly Runs</h2>\n<p>We organize regular group runs throughout the week, with options for all fitness levels:</p>\n<div class=\"custom-block tip\"><p class=\"custom-block-title\">No-Drop Policy</p>\n<p>All our runs follow a no-drop policy, meaning no one gets left behind. We regroup at key points to keep everyone together.</p>\n</div>\n<h3 id=\"what-to-expect\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#what-to-expect\">#</a> What to Expect</h3>\n<ul>\n<li><strong>Varied terrain</strong>: From easy fire roads to technical single track</li>\n<li><strong>Different paces</strong>: Options for social runners and those looking for a workout</li>\n<li><strong>Friendly atmosphere</strong>: Welcoming to runners of all backgrounds</li>\n<li><strong>Post-run hangouts</strong>: Optional socializing after the run</li>\n</ul>\n<div class=\"custom-block warning\"><p class=\"custom-block-title\">Trail Conditions</p>\n<p>Always check the latest trail conditions before heading out. Trails can be muddy after rain!</p>\n</div>\n<h2 id=\"getting-started\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#getting-started\">#</a> Getting Started</h2>\n<p>New to trail running? No problem! Here’s how to join:</p>\n<ol>\n<li>Check out our schedule on this site</li>\n<li>Show up at the meeting location 15 minutes early</li>\n<li>Introduce yourself to the run leaders</li>\n<li>Choose a pace group that fits your level</li>\n<li>Have fun!</li>\n</ol>\n<h2 id=\"community-values\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#community-values\">#</a> Community Values</h2>\n<pre class=\"shiki shiki-themes github-light github-dark\" style=\"background-color:#fff;--shiki-dark-bg:#24292e;color:#24292e;--shiki-dark:#e1e4e8\" tabindex=\"0\"><code class=\"language-javascript\"><span class=\"line\"><span style=\"color:#D73A49;--shiki-dark:#F97583\">const</span><span style=\"color:#005CC5;--shiki-dark:#79B8FF\"> ourValues</span><span style=\"color:#D73A49;--shiki-dark:#F97583\"> =</span><span style=\"color:#24292E;--shiki-dark:#E1E4E8\"> {</span></span>\n<span class=\"line\"><span style=\"color:#24292E;--shiki-dark:#E1E4E8\">  inclusive: </span><span style=\"color:#005CC5;--shiki-dark:#79B8FF\">true</span><span style=\"color:#24292E;--shiki-dark:#E1E4E8\">,</span></span>\n<span class=\"line\"><span style=\"color:#24292E;--shiki-dark:#E1E4E8\">  supportive: </span><span style=\"color:#005CC5;--shiki-dark:#79B8FF\">true</span><span style=\"color:#24292E;--shiki-dark:#E1E4E8\">,</span></span>\n<span class=\"line\"><span style=\"color:#24292E;--shiki-dark:#E1E4E8\">  funFocused: </span><span style=\"color:#005CC5;--shiki-dark:#79B8FF\">true</span><span style=\"color:#24292E;--shiki-dark:#E1E4E8\">,</span></span>\n<span class=\"line\"><span style=\"color:#24292E;--shiki-dark:#E1E4E8\">  trailsFirst: </span><span style=\"color:#005CC5;--shiki-dark:#79B8FF\">true</span></span>\n<span class=\"line\"><span style=\"color:#24292E;--shiki-dark:#E1E4E8\">};</span></span></code></pre>\n<p>We strive to create an environment where everyone feels welcome, regardless of pace or experience level.</p>\n<h2 id=\"connect-with-us\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#connect-with-us\">#</a> Connect With Us</h2>\n<ul>\n<li><strong>Strava Club</strong>: Join us on Strava to see routes and connect with members</li>\n<li><strong>Instagram</strong>: <a href=\"https://instagram.com/baybandits\">@baybandits</a> for photos and updates</li>\n<li><strong>Website</strong>: <a href=\"https://bandits.run\">bandits.run</a></li>\n</ul>\n<div class=\"custom-block info\"><p class=\"custom-block-title\">Stay Updated</p>\n<p>Follow us on social media for last-minute trail condition updates and schedule changes!</p>\n</div>\n"
+      },
+      "relationships": {
+        "runs": {
+          "links": {
+            "related": "/api/organization/1/runs.json"
+          },
+          "meta": {
+            "count": 7
+          }
+        },
+        "contacts": {
+          "data": [
+            {
+              "type": "user",
+              "id": "1"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "user",
+      "id": "6",
+      "attributes": {
+        "firstName": "Sean",
+        "lastName": "McPherson",
+        "email": null,
+        "phoneNumber": null,
+        "hasWhatsApp": true,
+        "stravaId": "2920753",
+        "instagramHandle": null,
+        "descriptionHtml": null
+      }
+    },
+    {
+      "type": "user",
+      "id": "5",
+      "attributes": {
+        "firstName": "Josh",
+        "lastName": "Moser",
+        "email": null,
+        "phoneNumber": null,
+        "hasWhatsApp": true,
+        "stravaId": null,
+        "instagramHandle": null,
+        "descriptionHtml": null
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-01-08",
+      "attributes": {
+        "date": "2026-01-08",
+        "weekNumberMonday": 2,
+        "weekNumberSunday": 2
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-01-15",
+      "attributes": {
+        "date": "2026-01-15",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-01-22",
+      "attributes": {
+        "date": "2026-01-22",
+        "weekNumberMonday": 4,
+        "weekNumberSunday": 4
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-01-29",
+      "attributes": {
+        "date": "2026-01-29",
+        "weekNumberMonday": 5,
+        "weekNumberSunday": 5
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-02-05",
+      "attributes": {
+        "date": "2026-02-05",
+        "weekNumberMonday": 6,
+        "weekNumberSunday": 6
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-02-12",
+      "attributes": {
+        "date": "2026-02-12",
+        "weekNumberMonday": 7,
+        "weekNumberSunday": 7
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-02-19",
+      "attributes": {
+        "date": "2026-02-19",
+        "weekNumberMonday": 8,
+        "weekNumberSunday": 8
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-02-26",
+      "attributes": {
+        "date": "2026-02-26",
+        "weekNumberMonday": 9,
+        "weekNumberSunday": 9
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-03-05",
+      "attributes": {
+        "date": "2026-03-05",
+        "weekNumberMonday": 10,
+        "weekNumberSunday": 10
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-03-12",
+      "attributes": {
+        "date": "2026-03-12",
+        "weekNumberMonday": 11,
+        "weekNumberSunday": 11
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-03-19",
+      "attributes": {
+        "date": "2026-03-19",
+        "weekNumberMonday": 12,
+        "weekNumberSunday": 12
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-03-26",
+      "attributes": {
+        "date": "2026-03-26",
+        "weekNumberMonday": 13,
+        "weekNumberSunday": 13
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-04-02",
+      "attributes": {
+        "date": "2026-04-02",
+        "weekNumberMonday": 14,
+        "weekNumberSunday": 14
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-04-09",
+      "attributes": {
+        "date": "2026-04-09",
+        "weekNumberMonday": 15,
+        "weekNumberSunday": 15
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-04-16",
+      "attributes": {
+        "date": "2026-04-16",
+        "weekNumberMonday": 16,
+        "weekNumberSunday": 16
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-04-23",
+      "attributes": {
+        "date": "2026-04-23",
+        "weekNumberMonday": 17,
+        "weekNumberSunday": 17
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-04-30",
+      "attributes": {
+        "date": "2026-04-30",
+        "weekNumberMonday": 18,
+        "weekNumberSunday": 18
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-05-07",
+      "attributes": {
+        "date": "2026-05-07",
+        "weekNumberMonday": 19,
+        "weekNumberSunday": 19
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-05-14",
+      "attributes": {
+        "date": "2026-05-14",
+        "weekNumberMonday": 20,
+        "weekNumberSunday": 20
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-05-21",
+      "attributes": {
+        "date": "2026-05-21",
+        "weekNumberMonday": 21,
+        "weekNumberSunday": 21
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-05-28",
+      "attributes": {
+        "date": "2026-05-28",
+        "weekNumberMonday": 22,
+        "weekNumberSunday": 22
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-06-04",
+      "attributes": {
+        "date": "2026-06-04",
+        "weekNumberMonday": 23,
+        "weekNumberSunday": 23
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-06-11",
+      "attributes": {
+        "date": "2026-06-11",
+        "weekNumberMonday": 24,
+        "weekNumberSunday": 24
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-06-18",
+      "attributes": {
+        "date": "2026-06-18",
+        "weekNumberMonday": 25,
+        "weekNumberSunday": 25
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-06-25",
+      "attributes": {
+        "date": "2026-06-25",
+        "weekNumberMonday": 26,
+        "weekNumberSunday": 26
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-07-02",
+      "attributes": {
+        "date": "2026-07-02",
+        "weekNumberMonday": 27,
+        "weekNumberSunday": 27
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-07-09",
+      "attributes": {
+        "date": "2026-07-09",
+        "weekNumberMonday": 28,
+        "weekNumberSunday": 28
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-07-16",
+      "attributes": {
+        "date": "2026-07-16",
+        "weekNumberMonday": 29,
+        "weekNumberSunday": 29
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-07-23",
+      "attributes": {
+        "date": "2026-07-23",
+        "weekNumberMonday": 30,
+        "weekNumberSunday": 30
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-07-30",
+      "attributes": {
+        "date": "2026-07-30",
+        "weekNumberMonday": 31,
+        "weekNumberSunday": 31
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-08-06",
+      "attributes": {
+        "date": "2026-08-06",
+        "weekNumberMonday": 32,
+        "weekNumberSunday": 32
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-08-13",
+      "attributes": {
+        "date": "2026-08-13",
+        "weekNumberMonday": 33,
+        "weekNumberSunday": 33
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-08-20",
+      "attributes": {
+        "date": "2026-08-20",
+        "weekNumberMonday": 34,
+        "weekNumberSunday": 34
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-08-27",
+      "attributes": {
+        "date": "2026-08-27",
+        "weekNumberMonday": 35,
+        "weekNumberSunday": 35
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-09-03",
+      "attributes": {
+        "date": "2026-09-03",
+        "weekNumberMonday": 36,
+        "weekNumberSunday": 36
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-09-10",
+      "attributes": {
+        "date": "2026-09-10",
+        "weekNumberMonday": 37,
+        "weekNumberSunday": 37
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-09-17",
+      "attributes": {
+        "date": "2026-09-17",
+        "weekNumberMonday": 38,
+        "weekNumberSunday": 38
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-09-24",
+      "attributes": {
+        "date": "2026-09-24",
+        "weekNumberMonday": 39,
+        "weekNumberSunday": 39
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-10-01",
+      "attributes": {
+        "date": "2026-10-01",
+        "weekNumberMonday": 40,
+        "weekNumberSunday": 40
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-10-08",
+      "attributes": {
+        "date": "2026-10-08",
+        "weekNumberMonday": 41,
+        "weekNumberSunday": 41
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-10-15",
+      "attributes": {
+        "date": "2026-10-15",
+        "weekNumberMonday": 42,
+        "weekNumberSunday": 42
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-10-22",
+      "attributes": {
+        "date": "2026-10-22",
+        "weekNumberMonday": 43,
+        "weekNumberSunday": 43
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-10-29",
+      "attributes": {
+        "date": "2026-10-29",
+        "weekNumberMonday": 44,
+        "weekNumberSunday": 44
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-11-05",
+      "attributes": {
+        "date": "2026-11-05",
+        "weekNumberMonday": 45,
+        "weekNumberSunday": 45
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-11-12",
+      "attributes": {
+        "date": "2026-11-12",
+        "weekNumberMonday": 46,
+        "weekNumberSunday": 46
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-11-19",
+      "attributes": {
+        "date": "2026-11-19",
+        "weekNumberMonday": 47,
+        "weekNumberSunday": 47
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-11-26",
+      "attributes": {
+        "date": "2026-11-26",
+        "weekNumberMonday": 48,
+        "weekNumberSunday": 48
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-12-03",
+      "attributes": {
+        "date": "2026-12-03",
+        "weekNumberMonday": 49,
+        "weekNumberSunday": 49
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-12-10",
+      "attributes": {
+        "date": "2026-12-10",
+        "weekNumberMonday": 50,
+        "weekNumberSunday": 50
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-12-17",
+      "attributes": {
+        "date": "2026-12-17",
+        "weekNumberMonday": 51,
+        "weekNumberSunday": 51
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-12-24",
+      "attributes": {
+        "date": "2026-12-24",
+        "weekNumberMonday": 52,
+        "weekNumberSunday": 52
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-12-31",
+      "attributes": {
+        "date": "2026-12-31",
+        "weekNumberMonday": 53,
+        "weekNumberSunday": 53
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2027-01-07",
+      "attributes": {
+        "date": "2027-01-07",
+        "weekNumberMonday": 2,
+        "weekNumberSunday": 2
+      },
+      "relationships": {}
+    },
+    {
+      "type": "user",
+      "id": "1",
+      "attributes": {
+        "firstName": "Chris",
+        "lastName": "Thoburn",
+        "email": "runspired@gmail.com",
+        "phoneNumber": "17138983236",
+        "hasWhatsApp": true,
+        "stravaId": "runspired",
+        "instagramHandle": "runspired",
+        "descriptionHtml": null
+      }
+    }
+  ]
+}
