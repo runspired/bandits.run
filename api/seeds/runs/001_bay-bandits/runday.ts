@@ -1,4 +1,4 @@
-import type { TrailRun } from "../../../interfaces/run";
+import type { TrailRun } from "../../../interfaces/trail-run";
 
 export const data = {
   title: 'RUNDAY',

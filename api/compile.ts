@@ -25,7 +25,7 @@ import container from 'markdown-it-container';
 import type { JSONAPIOrganization, Organization } from './interfaces/organization.js';
 import type { JSONAPIUser, User } from './interfaces/user.js';
 import type { JSONAPILocation, Location } from './interfaces/location.js';
-import type { JSONAPIRealizedEventDate, JSONAPITrailRun, TrailRun, JSONAPIMonth, JSONAPIWeek } from './interfaces/run.js';
+import type { JSONAPIRealizedEventDate, JSONAPITrailRun, TrailRun, JSONAPIMonth, JSONAPIWeek } from './interfaces/trail-run.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
