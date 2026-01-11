@@ -29,31 +29,31 @@ const ThemedPage: TOC<{
           </div>
           <div class="header-controls">
             <BackButton />
+            <div class="mode-toggle">
+              {{!-- template-lint-disable require-presentational-children --}}
+              <div
+                class="toggle-track {{if colorSchemeManager.isDarkMode 'checked'}}"
+                {{on "click" colorSchemeManager.toggleColorScheme}}
+                role="switch"
+                tabindex="0"
+                aria-label="Toggle dark mode"
+                aria-checked={{if colorSchemeManager.isDarkMode "true" "false"}}
+              >
+                <span class="toggle-knob" aria-hidden="true">
+                  {{#if colorSchemeManager.isDarkMode}}
+                    <FaIcon @icon={{faMoon}} />
+                  {{else}}
+                    <FaIcon @icon={{faSun}} />
+                  {{/if}}
+                </span>
+              </div>
+            </div>
             <HamburgerMenu>
               <VtLink @route="index"><FaIcon @icon={{faHome}} /> Home</VtLink>
               <VtLink @route="organizations.index"><FaIcon @icon={{faUsers}} />
                 Organizations</VtLink>
               <LinkTo @route="branding"><FaIcon @icon={{faPalette}} />
                 Branding</LinkTo>
-              <div class="mode-toggle">
-                {{!-- template-lint-disable require-presentational-children --}}
-                <div
-                  class="toggle-track {{if colorSchemeManager.isDarkMode 'checked'}}"
-                  {{on "click" colorSchemeManager.toggleColorScheme}}
-                  role="switch"
-                  tabindex="0"
-                  aria-label="Toggle dark mode"
-                  aria-checked={{if colorSchemeManager.isDarkMode "true" "false"}}
-                >
-                  <span class="toggle-knob" aria-hidden="true">
-                    {{#if colorSchemeManager.isDarkMode}}
-                      <FaIcon @icon={{faMoon}} />
-                    {{else}}
-                      <FaIcon @icon={{faSun}} />
-                    {{/if}}
-                  </span>
-                </div>
-              </div>
             </HamburgerMenu>
           </div>
         </div>

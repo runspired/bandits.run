@@ -9,36 +9,45 @@ class ColorSchemeManager {
     );
     if (preferredScheme === 'dark') {
       this.colorScheme = 'dark only';
-      // eslint-disable-next-line no-undef
+
       document.body.style.colorScheme = 'dark only';
-      // eslint-disable-next-line no-undef
+
       document.body.classList.add('dark-mode');
     } else if (preferredScheme === 'light') {
       this.colorScheme = 'light only';
-      // eslint-disable-next-line no-undef
+
       document.body.style.colorScheme = 'light only';
-      // eslint-disable-next-line no-undef
+
       document.body.classList.add('light-mode');
+    } else {
+      // get the user's system preference
+      const prefersDark = globalThis.matchMedia('(prefers-color-scheme: dark)')
+        .matches;
+      if (prefersDark) {
+        this.colorScheme = 'dark only';
+      } else {
+        this.colorScheme = 'light only';
+      }
     }
   }
 
   toggleColorScheme = () => {
     if (this.colorScheme === 'light only') {
       this.colorScheme = 'dark only';
-      // eslint-disable-next-line no-undef
+
       document.body.style.colorScheme = 'dark only';
-      // eslint-disable-next-line no-undef
+
       document.body.classList.remove('light-mode');
-      // eslint-disable-next-line no-undef
+
       document.body.classList.add('dark-mode');
       globalThis.localStorage.setItem('preferred-color-scheme', 'dark');
     } else {
       this.colorScheme = 'light only';
-      // eslint-disable-next-line no-undef
+
       document.body.style.colorScheme = 'light only';
-      // eslint-disable-next-line no-undef
+
       document.body.classList.remove('dark-mode');
-      // eslint-disable-next-line no-undef
+
       document.body.classList.add('light-mode');
       globalThis.localStorage.setItem('preferred-color-scheme', 'light');
     }

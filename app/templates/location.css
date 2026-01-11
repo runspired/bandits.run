@@ -1,0 +1,107 @@
+.location-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.location-header {
+  margin-bottom: 2rem;
+}
+
+.location-header h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--schedule-text);
+}
+
+.location-region {
+  margin: 0;
+  font-size: 1.25rem;
+  color: var(--schedule-text);
+}
+
+.location-description {
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.location-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: var(--callout-background);
+  border-radius: 8px;
+  border: 1px solid var(--light-theme-schedule-text);
+}
+
+.location-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: var(--light-theme-schedule-text);
+}
+
+.location-detail svg {
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+  color: var(--title);
+}
+
+.location-detail strong {
+  color: var(--light-theme-schedule-text);
+}
+
+.location-detail address {
+  font-style: normal;
+  margin: 0.25rem 0 0 0;
+  color: var(--light-theme-schedule-text);
+}
+
+.location-detail a {
+  color: var(--light-theme-title);
+  text-decoration: none;
+  font-style: italic;
+}
+
+.location-detail a:hover {
+  text-decoration: underline;
+}
+
+.location-map {
+  margin-top: 2rem;
+}
+
+.location-map h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--schedule-text);
+}
+
+.map-container {
+  height: 400px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+  width: 100%;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .location-page {
+    padding: 1rem 0.5rem;
+  }
+
+  .location-header h2 {
+    font-size: 2rem;
+  }
+
+  .map-container {
+    height: 300px;
+    min-height: 300px;
+  }
+}

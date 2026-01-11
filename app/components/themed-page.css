@@ -77,7 +77,7 @@
 .header-controls {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
 }
 
 .title {
@@ -122,6 +122,58 @@
   font-weight: 500;
   letter-spacing: .12rem;
   margin-left: 1rem;
+}
+
+/* Mode Toggle Styles */
+.mode-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.mode-toggle .toggle-track {
+  width: 4rem;
+  height: 2rem;
+  background-color: var(--theme-fall-orange);
+  border-radius: 1rem;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  border: 2px solid var(--theme-fall-orange);
+  display: flex;
+  align-items: center;
+  outline: none;
+}
+
+.mode-toggle .toggle-track:focus-visible {
+  outline: 2px solid var(--title);
+  outline-offset: 2px;
+}
+
+.mode-toggle .toggle-track.checked {
+  background-color: var(--title);
+  border-color: var(--title);
+}
+
+.mode-toggle .toggle-knob {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background-color: var(--theme-fall-black);
+  position: absolute;
+  left: 0.15rem;
+  transition: left 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--theme-fall-white);
+}
+
+.mode-toggle .toggle-track.checked .toggle-knob {
+  left: calc(100% - 1.65rem);
+  background-color: var(--theme-fall-orange);
+  color: white;
 }
 
 /* Mobile-friendly layout tweaks */

@@ -100,6 +100,7 @@ body {
   --subtitle: var(--light-theme-subtitle);
   --schedule-text: var(--light-theme-schedule-text);
   --text-primary: var(--light-theme-text-primary);
+  --callout-background: var(--theme-fall-white);
   background: #fff;
   margin: 0;
 }
@@ -123,6 +124,7 @@ body {
     --subtitle: var(--dark-theme-subtitle);
     --schedule-text: var(--dark-theme-schedule-text);
     --text-primary: var(--dark-theme-text-primary);
+    --callout-background: var(--dark-theme-schedule-text);
     background: #000;
   }
 }
@@ -138,6 +140,7 @@ body.light-mode {
   --subtitle: var(--light-theme-subtitle);
   --schedule-text: var(--light-theme-schedule-text);
   --text-primary: var(--light-theme-text-primary);
+  --callout-background: var(--theme-fall-white);
 
   background: #fff;
 }
@@ -152,6 +155,7 @@ body.dark-mode {
   --subtitle: var(--dark-theme-subtitle);
   --schedule-text: var(--dark-theme-schedule-text);
   --text-primary: var(--dark-theme-text-primary);
+  --callout-background: var(--dark-theme-schedule-text);
 
   background: #000;
 }

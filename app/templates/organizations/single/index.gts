@@ -12,6 +12,7 @@ import FaIcon from '#app/components/fa-icon.gts';
 import { faGlobe, faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram, faStrava, faMeetup } from '@fortawesome/free-brands-svg-icons';
 import { Tabs } from '#app/components/tabs.gts';
+import { LinkTo } from '@ember/routing';
 
 function or(...args: unknown[]): boolean {
   return args.some(Boolean);
@@ -338,7 +339,10 @@ export default class OrganizationSingleRoute extends Component<{
 
                             {{#if run.location}}
                               <div class="run-location">
-                                <strong>Location:</strong> {{run.location.name}}
+                                <strong>Location:</strong>
+                                <LinkTo @route="location" @model={{run.location.id}}>
+                                  {{run.location.name}}
+                                </LinkTo>
                               </div>
                             {{/if}}
 
