@@ -2673,7 +2673,7 @@
       "id": "2",
       "attributes": {
         "name": "Beer Bucket Runners",
-        "website": "https://www.strava.com/clubs/BeerBucketRun",
+        "website": null,
         "stravaId": "1058474",
         "stravaHandle": "BeerBucketRun",
         "meetupId": null,
@@ -4571,7 +4571,7 @@
       "id": "4",
       "attributes": {
         "name": "Berkeley Run Club",
-        "website": "https://www.meetup.com/runbrc/",
+        "website": null,
         "stravaId": "25365",
         "stravaHandle": null,
         "meetupId": "runbrc",
@@ -5502,7 +5502,7 @@
       "id": "3",
       "attributes": {
         "name": "Salmon Run Club",
-        "website": "https://www.strava.com/clubs/963747",
+        "website": null,
         "stravaId": "963747",
         "stravaHandle": null,
         "meetupId": null,

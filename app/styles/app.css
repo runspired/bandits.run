@@ -84,6 +84,10 @@ html {
   --dark-theme-text-primary: #e0e0e0;
 
   --transition-speed: 0.6s;
+
+  /* View Transitions */
+  --vt-duration: 300ms;
+  --vt-easing: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -595,6 +599,45 @@ div.logo-header {
   align-items: center;
 }
 
+/* Header Controls Container */
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Back Button Styles */
+.back-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5rem;
+  height: 5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 1rem;
+  color: var(--title);
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.back-button:hover {
+  transform: scale(1.1);
+  color: var(--subtitle);
+}
+
+.back-button:active {
+  transform: scale(0.95);
+}
+
+.back-button:focus {
+  outline: 2px solid var(--title);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 /* Font Awesome Icon Wrapper */
 .fa-icon-wrapper {
   display: inline-block;
@@ -648,7 +691,7 @@ div.logo-header {
 
 /* Animated X transformation */
 .hamburger-button.open .hamburger-line:nth-child(1) {
-  transform: translateY(16px) rotate(45deg);
+  transform: translateY(1rem) rotate(45deg);
 }
 
 .hamburger-button.open .hamburger-line:nth-child(2) {
@@ -657,7 +700,7 @@ div.logo-header {
 }
 
 .hamburger-button.open .hamburger-line:nth-child(3) {
-  transform: translateY(-16px) rotate(-45deg);
+  transform: translateY(-1rem) rotate(-45deg);
 }
 
 /* Menu Overlay - Full screen on mobile, dropdown on desktop */
@@ -1115,4 +1158,96 @@ body.dark-mode .strava-banner-preview-container {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+/* View Transitions API Styles */
+
+/* Enable view transitions for the root */
+::view-transition {
+  pointer-events: none;
+}
+
+/* Assign view-transition-name to .page */
+section.page div.content-area {
+  view-transition-name: page;
+}
+
+/* Default transition for the page section */
+::view-transition-old(page),
+::view-transition-new(page) {
+  animation-duration: var(--vt-duration);
+  animation-timing-function: var(--vt-easing);
+}
+
+/* Forward navigation: slide from right */
+::view-transition-old(page).forward {
+  animation-name: slide-out-to-left;
+}
+
+::view-transition-new(page).forward {
+  animation-name: slide-in-from-right;
+}
+
+/* Backward navigation: slide from left */
+::view-transition-old(page).backward {
+  animation-name: slide-out-to-right;
+}
+
+::view-transition-new(page).backward {
+  animation-name: slide-in-from-left;
+}
+
+/* Forward animations */
+@keyframes slide-out-to-left {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-30%);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in-from-right {
+  from {
+    transform: translateX(30%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Backward animations */
+@keyframes slide-out-to-right {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(30%);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in-from-left {
+  from {
+    transform: translateX(-30%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(page),
+  ::view-transition-new(page) {
+    animation-duration: 1ms !important;
+    animation-delay: 0s !important;
+  }
 }

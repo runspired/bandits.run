@@ -3,7 +3,7 @@ import type { Organization} from "../../interfaces/organization";
 export const data = {
   name: "Salmon Run Club",
   contacts: ["4"],
-  website: "https://www.strava.com/clubs/963747",
+  website: null,
   stravaId: "963747",
   stravaHandle: null,
   meetupId: null,

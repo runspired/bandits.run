@@ -6,10 +6,29 @@ import type { Organization } from '#app/data/organization.ts';
 import FaIcon from '#app/components/fa-icon.gts';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram, faStrava } from '@fortawesome/free-brands-svg-icons';
+import VtLink from '#app/components/vt-link.gts';
 
 const query = withReactiveResponse<Organization[]>({
   url: '/api/organization.json',
 });
+
+/**
+ * Extracts the hostname (domain and TLD) from a URL, removing www subdomain
+ */
+function getHostname(url: string): string {
+  try {
+    const urlObj = new URL(url);
+    let hostname = urlObj.hostname;
+    // Remove www. subdomain if present
+    if (hostname.startsWith('www.')) {
+      hostname = hostname.substring(4);
+    }
+    return hostname;
+  } catch {
+    // If URL parsing fails, return the original string
+    return url;
+  }
+}
 
 <template>
   {{pageTitle "Bandits | Community Organizations"}}
@@ -22,7 +41,7 @@ const query = withReactiveResponse<Organization[]>({
           <h3 class="section-title">Trail Running Organizations</h3>
           {{#each response.data as |org|}}
             <div class="day-schedule">
-              <h3>{{org.name}}</h3>
+              <h3><VtLink @route="organizations.single" @model={{org.id}}>{{org.name}}</VtLink></h3>
               <div class="day-events">
                 {{#if org.description}}
                   <div class="org-description">
@@ -34,7 +53,7 @@ const query = withReactiveResponse<Organization[]>({
                   {{#if org.website}}
                     <li class="org-detail">
                       <a href="{{org.website}}" target="_blank" rel="noopener noreferrer">
-                        <FaIcon @icon={{faGlobe}} /> {{org.website}}
+                        <FaIcon @icon={{faGlobe}} /> {{getHostname org.website}}
                       </a>
                     </li>
                   {{/if}}
@@ -42,6 +61,12 @@ const query = withReactiveResponse<Organization[]>({
                     <li class="org-detail">
                       <a href="https://www.strava.com/clubs/{{org.stravaHandle}}" target="_blank" rel="noopener noreferrer">
                         <FaIcon @icon={{faStrava}} /> @{{org.stravaHandle}}
+                      </a>
+                    </li>
+                  {{else if org.stravaId}}
+                    <li class="org-detail">
+                      <a href="https://www.strava.com/clubs/{{org.stravaId}}" target="_blank" rel="noopener noreferrer">
+                        <FaIcon @icon={{faStrava}} /> Strava
                       </a>
                     </li>
                   {{/if}}

@@ -316,7 +316,7 @@
       "id": "4",
       "attributes": {
         "name": "Berkeley Run Club",
-        "website": "https://www.meetup.com/runbrc/",
+        "website": null,
         "stravaId": "25365",
         "stravaHandle": null,
         "meetupId": "runbrc",

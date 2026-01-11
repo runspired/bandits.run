@@ -127,6 +127,7 @@ export default class FaIconExamples extends Component {
       <section>
         <h3>Styled Icons</h3>
         <div class="icon-grid">
+          {{!-- template-lint-disable no-inline-styles --}}
           <div style="font-size: 2rem; color: var(--title);">
             <FaIcon @icon={{this.faHeart}} />
           </div>

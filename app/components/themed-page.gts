@@ -4,7 +4,11 @@ import { on } from '@ember/modifier';
 import HamburgerMenu from './hamburger-menu.gts';
 import FaIcon from './fa-icon.gts';
 import { LinkTo } from '@ember/routing';
+import VtLink from './vt-link.gts';
 import { faHome, faUsers, faPalette } from '@fortawesome/free-solid-svg-icons';
+
+// Import BackButton as a value to use in template
+import BackButton from './back-button.gts';
 
 const ThemedPage: TOC<{
   Blocks: {
@@ -25,15 +29,20 @@ const ThemedPage: TOC<{
             >Bay Bandits</h1>
             <h2 class="subtitle">Trail Running Community</h2>
           </div>
-          <HamburgerMenu>
-            <LinkTo @route="index"><FaIcon @icon={{faHome}} /> Home</LinkTo>
-            <LinkTo @route="organizations.index"><FaIcon @icon={{faUsers}} />
-              Organizations</LinkTo>
-            <LinkTo @route="branding"><FaIcon @icon={{faPalette}} />
-              Branding</LinkTo>
-          </HamburgerMenu>
+          <div class="header-controls">
+            <BackButton />
+            <HamburgerMenu>
+              <VtLink @route="index"><FaIcon @icon={{faHome}} /> Home</VtLink>
+              <VtLink @route="organizations.index"><FaIcon @icon={{faUsers}} />
+                Organizations</VtLink>
+              <LinkTo @route="branding"><FaIcon @icon={{faPalette}} />
+                Branding</LinkTo>
+            </HamburgerMenu>
+          </div>
         </div>
+        <div class="content-area">
         {{yield}}
+        </div>
       </div>
 
       <svg

@@ -95,7 +95,7 @@
       "id": "2",
       "attributes": {
         "name": "Beer Bucket Runners",
-        "website": "https://www.strava.com/clubs/BeerBucketRun",
+        "website": null,
         "stravaId": "1058474",
         "stravaHandle": "BeerBucketRun",
         "meetupId": null,
