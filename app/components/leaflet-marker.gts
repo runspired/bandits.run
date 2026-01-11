@@ -4,6 +4,7 @@ import type * as L from 'leaflet';
 import { MapContext } from './leaflet-map.gts';
 import { getLeaflet } from './leaflet-boundary.gts';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function fixIconIfNecessary() {
   const L = getLeaflet();
   // Fix for default marker icons in bundled environments

@@ -15,6 +15,7 @@ import { cached, tracked } from '@glimmer/tracking';
 import { colorSchemeManager } from '#app/templates/application.gts';
 import './location.css';
 import LeafletBoundary from '#app/components/leaflet-boundary.gts';
+import { assert } from '@ember/debug';
 
 function getLocation(locationId: string) {
   return withReactiveResponse<Location>({
@@ -142,16 +143,16 @@ export default class LocationDisplay extends Component<{
                   <div class="map-container">
                     <LeafletBoundary>
                       <LeafletMap
-                        @lat={{location.latitude}}
-                        @lng={{location.longitude}}
+                        @lat={{excludeNull location.latitude}}
+                        @lng={{excludeNull location.longitude}}
                         @zoom={{12}}
                         @tileUrl={{this.tileUrl}}
                         as |map|
                       >
                         <LeafletMarker
                           @context={{map}}
-                          @lat={{location.latitude}}
-                          @lng={{location.longitude}}
+                          @lat={{excludeNull location.latitude}}
+                          @lng={{excludeNull location.longitude}}
                           @title={{location.name}}
                         />
                       </LeafletMap>
@@ -165,4 +166,9 @@ export default class LocationDisplay extends Component<{
       </Request>
     </ThemedPage>
   </template>
+}
+
+function excludeNull<T>(value: T | null): T {
+  assert('Value is not null', value !== null);
+  return value;
 }
