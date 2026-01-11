@@ -674,7 +674,7 @@ ul {
 .runs-list {
   display: grid;
   gap: 1.5rem;
-  padding: 1rem;
+  padding: 0 1rem;
 }
 
 .run-card {
@@ -873,6 +873,106 @@ body.dark-mode .org-compact-link {
 
 body.dark-mode .org-compact-link:hover {
   background: rgb(255 255 255 / 10%);
+}
+
+/* Organization Overview Styles */
+.org-overview {
+  max-width: 90vmax;
+  margin: 0 auto;
+  padding: 1rem 2.5rem;
+}
+
+.org-about {
+  margin-bottom: 2rem;
+  color: var(--text-primary);
+  line-height: 1.7;
+}
+
+.org-about p {
+  text-align: left;
+  max-width: none;
+  padding: 0;
+}
+
+.org-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.org-info-card {
+  background: rgb(0 0 0 / 5%);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.org-info-card h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--title);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid var(--title);
+  padding-bottom: 0.5rem;
+}
+
+.org-info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.org-info-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: rgb(0 0 0 / 3%);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  font-style: normal;
+}
+
+.org-info-link:hover {
+  background: rgb(0 0 0 / 8%);
+  transform: translateX(4px);
+  text-decoration: none;
+}
+
+.org-info-link span {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (prefers-color-scheme: dark) {
+  .org-info-card {
+    background: rgb(255 255 255 / 5%);
+  }
+
+  .org-info-link {
+    background: rgb(255 255 255 / 3%);
+  }
+
+  .org-info-link:hover {
+    background: rgb(255 255 255 / 8%);
+  }
+}
+
+body.dark-mode .org-info-card {
+  background: rgb(255 255 255 / 5%);
+}
+
+body.dark-mode .org-info-link {
+  background: rgb(255 255 255 / 3%);
+}
+
+body.dark-mode .org-info-link:hover {
+  background: rgb(255 255 255 / 8%);
 }
 
 /* Mobile responsive font-size adjustment */

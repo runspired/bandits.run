@@ -7,14 +7,14 @@ import ThemedPage from '#app/components/themed-page.gts';
 import { pageTitle } from 'ember-page-title';
 import type { TrailRun } from '#app/data/run.ts';
 import FaIcon from '#app/components/fa-icon.gts';
-import { faGlobe, faCalendarDays } from '@fortawesome/free-solid-svg-icons';
+import { faGlobe, faCalendarDays, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram, faStrava, faMeetup } from '@fortawesome/free-brands-svg-icons';
 import { Tabs } from '#app/components/tabs.gts';
 import { LinkTo } from '@ember/routing';
 import type { Future } from '@warp-drive/core/request';
 import type { ReactiveDataDocument } from '@warp-drive/core/reactive';
 import type { Organization } from '#app/data/organization.ts';
-import { get } from '@ember/helper';
+import { htmlSafe } from '@ember/template';
 import { getOrganizationRuns } from '#app/routes/organizations/single/index.ts';
 
 function or(...args: unknown[]): boolean {
@@ -210,89 +210,113 @@ export default class OrganizationSingleRoute extends Component<{
               <Tab @id="overview">
                 <:label>Overview</:label>
                 <:body>
-                  <div class="schedule">
-                    <div class="day-schedule">
-                      <h2>{{org.name}}</h2>
-                      <div class="day-events">
-                        {{#if org.description}}
-                          <div class="org-description">
-                            {{org.description}}
-                          </div>
-                        {{/if}}
-                        <ul class="org-details">
-                          {{#if org.website}}
-                            <li class="org-detail">
-                              <a
-                                href="{{org.website}}"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                <FaIcon @icon={{faGlobe}} />
-                                {{getHostname org.website}}
-                              </a>
-                            </li>
-                          {{/if}}
-                          {{#if org.stravaHandle}}
-                            <li class="org-detail">
-                              <a
-                                href="https://www.strava.com/clubs/{{org.stravaHandle}}"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                <FaIcon @icon={{faStrava}} />
-                                @{{org.stravaHandle}}
-                              </a>
-                            </li>
-                          {{else if org.stravaId}}
-                            <li class="org-detail">
-                              <a
-                                href="https://www.strava.com/clubs/{{org.stravaId}}"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                <FaIcon @icon={{faStrava}} />
-                                Strava
-                              </a>
-                            </li>
-                          {{/if}}
-                          {{#if org.instagramHandle}}
-                            <li class="org-detail">
-                              <a
-                                href="https://www.instagram.com/{{org.instagramHandle}}"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                <FaIcon @icon={{faInstagram}} />
-                                @{{org.instagramHandle}}
-                              </a>
-                            </li>
-                          {{/if}}
-                          {{#if org.email}}
-                            <li class="org-detail">
-                              <span class="detail-label">Email:</span>
-                              <a href="mailto:{{org.email}}">{{org.email}}</a>
-                            </li>
-                          {{/if}}
-                          {{#if org.phoneNumber}}
-                            <li class="org-detail">
-                              <span class="detail-label">Phone:</span>
-                              <a
-                                href="tel:{{org.phoneNumber}}"
-                              >{{org.phoneNumber}}</a>
-                            </li>
-                          {{/if}}
-                          {{#if org.meetupId}}
-                            <li class="org-detail">
-                              <span class="detail-label">Meetup:</span>
-                              <a
-                                href="https://www.meetup.com/{{org.meetupId}}"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >{{org.meetupId}}</a>
-                            </li>
-                          {{/if}}
-                        </ul>
+                  <div class="org-overview">
+                    {{#if org.descriptionHtml}}
+                      <div class="org-about markdown-content">
+                        {{htmlSafe org.descriptionHtml}}
                       </div>
+                    {{else if org.description}}
+                      <div class="org-about">
+                        <p>{{org.description}}</p>
+                      </div>
+                    {{/if}}
+
+                    <div class="org-info-grid">
+                      {{#if (or org.website org.email org.phoneNumber)}}
+                        <div class="org-info-card">
+                          <h3>Contact</h3>
+                          <ul class="org-info-list">
+                            {{#if org.website}}
+                              <li>
+                                <a
+                                  href="{{org.website}}"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  class="org-info-link"
+                                >
+                                  <FaIcon @icon={{faGlobe}} @fixedWidth={{true}} />
+                                  <span>{{getHostname org.website}}</span>
+                                </a>
+                              </li>
+                            {{/if}}
+                            {{#if org.email}}
+                              <li>
+                                <a href="mailto:{{org.email}}" class="org-info-link">
+                                  <FaIcon @icon={{faEnvelope}} @fixedWidth={{true}} />
+                                  <span>{{org.email}}</span>
+                                </a>
+                              </li>
+                            {{/if}}
+                            {{#if org.phoneNumber}}
+                              <li>
+                                <a href="tel:{{org.phoneNumber}}" class="org-info-link">
+                                  <FaIcon @icon={{faPhone}} @fixedWidth={{true}} />
+                                  <span>{{org.phoneNumber}}</span>
+                                </a>
+                              </li>
+                            {{/if}}
+                          </ul>
+                        </div>
+                      {{/if}}
+
+                      {{#if (or org.stravaHandle org.stravaId org.instagramHandle org.meetupId)}}
+                        <div class="org-info-card">
+                          <h3>Social</h3>
+                          <ul class="org-info-list">
+                            {{#if org.stravaHandle}}
+                              <li>
+                                <a
+                                  href="https://www.strava.com/clubs/{{org.stravaHandle}}"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  class="org-info-link"
+                                >
+                                  <FaIcon @icon={{faStrava}} @fixedWidth={{true}} />
+                                  <span>@{{org.stravaHandle}}</span>
+                                </a>
+                              </li>
+                            {{else if org.stravaId}}
+                              <li>
+                                <a
+                                  href="https://www.strava.com/clubs/{{org.stravaId}}"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  class="org-info-link"
+                                >
+                                  <FaIcon @icon={{faStrava}} @fixedWidth={{true}} />
+                                  <span>Strava</span>
+                                </a>
+                              </li>
+                            {{/if}}
+                            {{#if org.instagramHandle}}
+                              <li>
+                                <a
+                                  href="https://www.instagram.com/{{org.instagramHandle}}"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  class="org-info-link"
+                                >
+                                  <FaIcon @icon={{faInstagram}} @fixedWidth={{true}} />
+                                  <span>@{{org.instagramHandle}}</span>
+                                </a>
+                              </li>
+                            {{/if}}
+                            {{#if org.meetupId}}
+                              <li>
+                                <a
+                                  href="https://www.meetup.com/{{org.meetupId}}"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  class="org-info-link"
+                                >
+                                  <FaIcon @icon={{faMeetup}} @fixedWidth={{true}} />
+                                  <span>Meetup</span>
+                                </a>
+                              </li>
+                            {{/if}}
+                          </ul>
+                        </div>
+                      {{/if}}
                     </div>
                   </div>
                 </:body>
