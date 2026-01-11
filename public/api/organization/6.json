@@ -11,7 +11,7 @@
       "instagramHandle": null,
       "email": null,
       "phoneNumber": null,
-      "descriptionHtml": null
+      "descriptionHtml": "<p>Join us for trail and road runs in Marin County.</p>\n"
     },
     "relationships": {
       "runs": {

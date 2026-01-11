@@ -1,0 +1,1 @@
+Come out and meet other local runners for great camaraderie and motivation. Some of us jog, some of us run, some of us race, but we all have fun! The key is to show up and give it a try -- the sooner you come out and join us, the sooner you will be on the road to fitness, health, and meeting lifelong running friends!

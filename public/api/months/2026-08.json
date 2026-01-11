@@ -4620,7 +4620,7 @@
         "instagramHandle": "beer_bucket_run",
         "email": null,
         "phoneNumber": null,
-        "descriptionHtml": null
+        "descriptionHtml": "<p>The Beer Bucket Run (BBR) is a weekly trail run in the San Francisco Bay Area (East Bay, primarily).</p>\n<p>Our runs are always on trails and typically 12-14 miles. Runners of all ages and paces are 100 percent welcome and there is also always a shorter route. We recommend saving the route ahead of time.</p>\n<p>BBR is a great way to explore the amazing East Bay trails with a friendly group of runners. We meet every Sunday at 8-9 AM. The location changes each week, and we occasionally travel to other exotic locales (like Marin or the Sierra Foothills) when circumstances permit.</p>\n"
       },
       "relationships": {
         "runs": {
@@ -6382,7 +6382,7 @@
         "instagramHandle": null,
         "email": null,
         "phoneNumber": null,
-        "descriptionHtml": null
+        "descriptionHtml": "<p>Join us for trail and road runs in Marin County.</p>\n"
       },
       "relationships": {
         "runs": {
@@ -7263,7 +7263,7 @@
         "instagramHandle": null,
         "email": null,
         "phoneNumber": null,
-        "descriptionHtml": null
+        "descriptionHtml": "<p>Come out and meet other local runners for great camaraderie and motivation. Some of us jog, some of us run, some of us race, but we all have fun! The key is to show up and give it a try – the sooner you come out and join us, the sooner you will be on the road to fitness, health, and meeting lifelong running friends!</p>\n"
       },
       "relationships": {
         "runs": {
@@ -8126,7 +8126,7 @@
         "instagramHandle": "salmonrunclub",
         "email": null,
         "phoneNumber": null,
-        "descriptionHtml": null
+        "descriptionHtml": "<p>Salmon Run Club started in Summer 2021 as a followup to the Salomon Run Club and meets every Tuesday at 6:30pm at Skyline Gate Staging Area. We aim for 4-6 miles on the trails in Redwood, Sibley, and Joaquin Miller with new routes each week to see all the lovely trails in our backyard (within the limits of an evening trail run). Afterwards we hangout and eat snacks.</p>\n<p>There are usually a few pace groups but if you’re unfamiliar with the area we recommend you download the route beforehand and since it’s getting dark earlier please bring a headlamp!</p>\n<p>“We sometimes run up stream”</p>\n"
       },
       "relationships": {
         "runs": {
