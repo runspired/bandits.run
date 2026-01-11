@@ -1,4 +1,4 @@
-import { withDefaults } from "@warp-drive/legacy/model/migration-support";
+import { withDefaults } from "@warp-drive/core/reactive";
 import type { AsyncHasMany } from "@warp-drive/legacy/model";
 import type { User } from "./user";
 import type { Type } from "@warp-drive/core/types/symbols";
@@ -8,6 +8,7 @@ export interface Organization {
   id: string;
   $type: 'organization';
   name: string;
+  description: string | null;
   website: string | null;
   stravaId: string | null;
   stravaHandle: string | null;
@@ -25,6 +26,7 @@ export const OrganizationSchema = withDefaults({
   type: 'organization',
   fields: [
     { name: 'name', kind: 'field' },
+    { name: 'description', kind: 'field' },
     { name: 'website', kind: 'field' },
     { name: 'stravaId', kind: 'field' },
     { name: 'stravaHandle', kind: 'field' },

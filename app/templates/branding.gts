@@ -1,7 +1,7 @@
 import { pageTitle } from 'ember-page-title';
 import { on } from '@ember/modifier';
 import { modifier } from 'ember-modifier';
-import { initializeColorScheme, toggleColorScheme as baseToggleColorScheme } from './index.gts';
+import { toggleColorScheme as baseToggleColorScheme } from './application.gts';
 
 const SiteManifest = {
   "name": "The Bay Bandits",
@@ -2231,8 +2231,6 @@ function generateStravaBannerPreview() {
   {{pageTitle "Bandits | The Bay Area Trail Running Community"}}
 
   <section class="page">
-    {{(initializeColorScheme)}}
-
     <div class="landscape-container">
 
       <div class="sky branding">

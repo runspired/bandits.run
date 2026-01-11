@@ -21,15 +21,10 @@ const Store = useRecommendedStore({
     UserSchema,
     RunOptionObjectSchema,
     RecurrenceObjectSchema,
-    // @ts-expect-error we are using LegacyMode
     OrganizationSchema,
-    // @ts-expect-error we are using LegacyMode
     TrailRunSchema,
-    // @ts-expect-error we are using LegacyMode
     RealizedEventDateSchema,
-    // @ts-expect-error we are using LegacyMode
     MonthSchema,
-    // @ts-expect-error we are using LegacyMode
     WeekSchema
   ],
 });

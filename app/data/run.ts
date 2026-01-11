@@ -1,5 +1,5 @@
 import type { Type } from "@warp-drive/core/types/symbols";
-import { withDefaults } from "@warp-drive/legacy/model/migration-support";
+import { withDefaults } from "@warp-drive/core/reactive";
 import { objectSchema } from "@warp-drive/core/types/schema/fields";
 import type { Location } from "./location";
 import type { Organization } from "./organization";

@@ -1,6 +1,6 @@
 import type { Type } from "@warp-drive/core/types/symbols";
 import type { TrailRun } from "./run";
-import { withDefaults } from "@warp-drive/legacy/model/migration-support";
+import { withDefaults } from "@warp-drive/core/reactive";
 
 export interface RealizedEventDate {
   id: string;
