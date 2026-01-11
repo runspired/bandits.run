@@ -3,16 +3,19 @@ import { service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import type RouterService from '@ember/routing/router-service';
 import { Request } from '@warp-drive/ember';
-import { withReactiveResponse } from '@warp-drive/core/request';
 import ThemedPage from '#app/components/themed-page.gts';
 import { pageTitle } from 'ember-page-title';
-import type { Organization } from '#app/data/organization.ts';
 import type { TrailRun } from '#app/data/run.ts';
 import FaIcon from '#app/components/fa-icon.gts';
 import { faGlobe, faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram, faStrava, faMeetup } from '@fortawesome/free-brands-svg-icons';
 import { Tabs } from '#app/components/tabs.gts';
 import { LinkTo } from '@ember/routing';
+import type { Future } from '@warp-drive/core/request';
+import type { ReactiveDataDocument } from '@warp-drive/core/reactive';
+import type { Organization } from '#app/data/organization.ts';
+import { get } from '@ember/helper';
+import { getOrganizationRuns } from '#app/routes/organizations/single/index.ts';
 
 function or(...args: unknown[]): boolean {
   return args.some(Boolean);
@@ -51,7 +54,8 @@ function getHostname(url: string): string {
 export default class OrganizationSingleRoute extends Component<{
   Args: {
     model: {
-      organization: string;
+      organization: Future<ReactiveDataDocument<Organization>>;
+      organizationId: string;
     };
   };
 }> {
@@ -70,18 +74,6 @@ export default class OrganizationSingleRoute extends Component<{
     // Update the query param when tab changes
     this.router.transitionTo({ queryParams: { tab: tabId || null } });
   };
-
-  get query() {
-    return withReactiveResponse<Organization>({
-      url: `/api/organization/${this.args.model.organization}.json`,
-    });
-  }
-
-  get runsQuery() {
-    return withReactiveResponse<TrailRun[]>({
-      url: `/api/organization/${this.args.model.organization}/runs.json`,
-    });
-  }
 
   /**
    * Sort runs by next occurrence date, with runs without future occurrences at the end
@@ -202,15 +194,22 @@ export default class OrganizationSingleRoute extends Component<{
     {{pageTitle "Organization | Bandits"}}
 
     <ThemedPage>
-      <Tabs @activeId={{this.activeTab}} @onTabChange={{this.handleTabChange}} as |Tab|>
-        <Tab @id="overview">
-          <:label>Overview</:label>
-          <:body>
-            <Request @query={{this.query}}>
-              <:loading> <h2>Loading organization...</h2> </:loading>
-              <:content as |response|>
-                {{#let response.data as |org|}}
-                  {{pageTitle org.name " | Bandits"}}
+      <Request @request={{@model.organization}}>
+        <:loading> <h2>Loading organization...</h2> </:loading>              <:error as |error|>
+          <div class="error-box">
+            <h2>Whoops!</h2>
+            <p>We weren't able to load this organization!</p>
+            <p class="error-message">{{error.message}}</p>
+          </div>
+        </:error>
+        <:content as |response|>
+          {{#let response.data as |org|}}
+            {{pageTitle org.name " | Bandits"}}
+            <h2 class="page-title">{{org.name}}</h2>
+            <Tabs @activeId={{this.activeTab}} @onTabChange={{this.handleTabChange}} as |Tab|>
+              <Tab @id="overview">
+                <:label>Overview</:label>
+                <:body>
                   <div class="schedule">
                     <div class="day-schedule">
                       <h2>{{org.name}}</h2>
@@ -296,186 +295,179 @@ export default class OrganizationSingleRoute extends Component<{
                       </div>
                     </div>
                   </div>
-                {{/let}}
-              </:content>
-              <:error as |error|>
-                <div class="error-box">
-                  <h2>Whoops!</h2>
-                  <p>We weren't able to load this organization!</p>
-                  <p class="error-message">{{error.message}}</p>
-                </div>
-              </:error>
-            </Request>
-          </:body>
-        </Tab>
-        <Tab @id="runs">
-          <:label>Runs</:label>
-          <:body>
-            <Request @query={{this.runsQuery}}>
-              <:loading> <h2>Loading runs...</h2> </:loading>
-              <:content as |response|>
-                {{#let response.data as |runs|}}
-                  {{#if runs}}
-                    <div class="runs-list">
-                      {{#each (this.sortRunsByNextOccurrence runs) as |run|}}
-                        {{#let (this.getNextOccurrence run) as |nextDate|}}
-                          <div class="run-card">
-                            <h3 class="run-title">{{run.title}}</h3>
+                </:body>
+              </Tab>
+              <Tab @id="runs">
+                <:label>Runs</:label>
+                <:body>
+                  <Request @query={{getOrganizationRuns @model.organizationId}}>
+                    <:loading> <h2>Loading runs...</h2> </:loading>
+                    <:content as |response|>
+                      {{#let response.data as |runs|}}
+                        {{#if runs}}
+                          <div class="runs-list">
+                            {{#each (this.sortRunsByNextOccurrence runs) as |run|}}
+                              {{#let (this.getNextOccurrence run) as |nextDate|}}
+                                <div class="run-card">
+                                  <h3 class="run-title">{{run.title}}</h3>
 
-                            {{#if nextDate}}
-                              <div class="next-occurrence">
-                                <strong>Next Run:</strong>
-                                <span class="next-date">{{this.formatDate nextDate}}</span>
-                              </div>
-                            {{/if}}
+                                  {{#if nextDate}}
+                                    <div class="next-occurrence">
+                                      <strong>Next Run:</strong>
+                                      <span class="next-date">{{this.formatDate nextDate}}</span>
+                                    </div>
+                                  {{/if}}
 
-                            <div class="run-schedule">
-                              <span class="schedule-badge">{{this.getRecurrenceDescription run.recurrence}}</span>
-                            </div>
+                                  <div class="run-schedule">
+                                    <span class="schedule-badge">{{this.getRecurrenceDescription run.recurrence}}</span>
+                                  </div>
 
-                            {{#if run.description}}
-                              <p class="run-description">{{run.description}}</p>
-                            {{/if}}
+                                  {{#if run.description}}
+                                    <p class="run-description">{{run.description}}</p>
+                                  {{/if}}
 
-                            {{#if run.location}}
-                              <div class="run-location">
-                                <strong>Location:</strong>
-                                <LinkTo @route="location" @model={{run.location.id}}>
-                                  {{run.location.name}}
-                                </LinkTo>
-                              </div>
-                            {{/if}}
+                                  {{#if run.location}}
+                                    <div class="run-location">
+                                      <strong>Location:</strong>
+                                      <LinkTo @route="location" @model={{run.location.id}}>
+                                        {{run.location.name}}
+                                      </LinkTo>
+                                    </div>
+                                  {{/if}}
 
-                            {{#if (and (neq run.runs.length 1) (or run.eventLink run.stravaEventLink run.meetupEventLink))}}
-                              <div class="run-links">
-                                <strong>RSVP:</strong>
-                                {{#if run.eventLink}}
-                                <a
-                                  href="{{run.eventLink}}"
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  class="details-link"
-                                >
-                                  <FaIcon @icon={{faCalendarDays}} />
-                                  Event Details
-                                </a>
-                                {{/if}}
-                                {{#if run.stravaEventLink}}
-                                  <a
-                                    href="{{run.stravaEventLink}}"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="details-link"
-                                  >
-                                    <FaIcon @icon={{faStrava}} />
-                                    Strava Event
-                                  </a>
-                                {{/if}}
-                                {{#if run.meetupEventLink}}
-                                  <a
-                                    href="{{run.meetupEventLink}}"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="details-link"
-                                  >
-                                    <FaIcon @icon={{faMeetup}} />
-                                    Meetup Event
-                                  </a>
-                                {{/if}}
-                              </div>
-                            {{/if}}
-
-                            {{#if run.runs}}
-                              <div class="run-options">
-                                <h4>{{#if (eq run.runs.length 1)}}Run Details:{{else}}Run Options:{{/if}}</h4>
-                                <ul class="run-options-list">
-                                  {{#each run.runs as |option|}}
-                                    <li class="run-option">
-                                      {{#if option.name}}
-                                        <strong>{{option.name}}:</strong>
+                                  {{#if (and (neq run.runs.length 1) (or run.eventLink run.stravaEventLink run.meetupEventLink))}}
+                                    <div class="run-links">
+                                      <strong>RSVP:</strong>
+                                      {{#if run.eventLink}}
+                                      <a
+                                        href="{{run.eventLink}}"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="details-link"
+                                      >
+                                        <FaIcon @icon={{faCalendarDays}} />
+                                        Event Details
+                                      </a>
                                       {{/if}}
-                                      {{option.distance}} • {{option.vert}}
-                                      {{#if option.pace}}
-                                        • {{option.pace}} • {{this.getCategoryLabel option.category}}
+                                      {{#if run.stravaEventLink}}
+                                        <a
+                                          href="{{run.stravaEventLink}}"
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          class="details-link"
+                                        >
+                                          <FaIcon @icon={{faStrava}} />
+                                          Strava Event
+                                        </a>
                                       {{/if}}
-                                      <br />
-                                      <span class="run-times">
-                                        {{this.formatTime option.meetTime}}
-                                      </span>
-                                      {{#let
-                                        (if (eq run.runs.length 1) run.eventLink option.eventLink)
-                                        (if (eq run.runs.length 1) run.stravaEventLink option.stravaEventLink)
-                                        (if (eq run.runs.length 1) run.meetupEventLink option.meetupEventLink)
-                                        as |eventLink stravaEventLink meetupEventLink|
-                                      }}
-                                        {{#if (or eventLink stravaEventLink meetupEventLink)}}
-                                          <div class="run-option-links">
-                                            <strong>RSVP:</strong>
-                                            {{#if eventLink}}
-                                              <a
-                                                href="{{eventLink}}"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                title="Event Details"
-                                                class="rsvp-link"
-                                              >
-                                                <FaIcon @icon={{faCalendarDays}} />
-                                                Event
-                                              </a>
-                                            {{/if}}
-                                            {{#if stravaEventLink}}
-                                              <a
-                                                href="{{stravaEventLink}}"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                title="Strava Event"
-                                                class="rsvp-link"
-                                              >
-                                                <FaIcon @icon={{faStrava}} />
-                                                Strava
-                                              </a>
-                                            {{/if}}
-                                            {{#if meetupEventLink}}
-                                              <a
-                                                href="{{meetupEventLink}}"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                title="Meetup Event"
-                                                class="rsvp-link"
-                                              >
-                                                <FaIcon @icon={{faMeetup}} />
-                                                Meetup
-                                              </a>
-                                            {{/if}}
-                                          </div>
-                                        {{/if}}
-                                      {{/let}}
-                                    </li>
-                                  {{/each}}
-                                </ul>
-                              </div>
-                            {{/if}}
+                                      {{#if run.meetupEventLink}}
+                                        <a
+                                          href="{{run.meetupEventLink}}"
+                                          target="_blank"
+                                          rel="noopener noreferrer"
+                                          class="details-link"
+                                        >
+                                          <FaIcon @icon={{faMeetup}} />
+                                          Meetup Event
+                                        </a>
+                                      {{/if}}
+                                    </div>
+                                  {{/if}}
 
+                                  {{#if run.runs}}
+                                    <div class="run-options">
+                                      <h4>{{#if (eq run.runs.length 1)}}Run Details:{{else}}Run Options:{{/if}}</h4>
+                                      <ul class="run-options-list">
+                                        {{#each run.runs as |option|}}
+                                          <li class="run-option">
+                                            {{#if option.name}}
+                                              <strong>{{option.name}}:</strong>
+                                            {{/if}}
+                                            {{option.distance}} • {{option.vert}}
+                                            {{#if option.pace}}
+                                              • {{option.pace}} • {{this.getCategoryLabel option.category}}
+                                            {{/if}}
+                                            <br />
+                                            <span class="run-times">
+                                              {{this.formatTime option.meetTime}}
+                                            </span>
+                                            {{#let
+                                              (if (eq run.runs.length 1) run.eventLink option.eventLink)
+                                              (if (eq run.runs.length 1) run.stravaEventLink option.stravaEventLink)
+                                              (if (eq run.runs.length 1) run.meetupEventLink option.meetupEventLink)
+                                              as |eventLink stravaEventLink meetupEventLink|
+                                            }}
+                                              {{#if (or eventLink stravaEventLink meetupEventLink)}}
+                                                <div class="run-option-links">
+                                                  <strong>RSVP:</strong>
+                                                  {{#if eventLink}}
+                                                    <a
+                                                      href="{{eventLink}}"
+                                                      target="_blank"
+                                                      rel="noopener noreferrer"
+                                                      title="Event Details"
+                                                      class="rsvp-link"
+                                                    >
+                                                      <FaIcon @icon={{faCalendarDays}} />
+                                                      Event
+                                                    </a>
+                                                  {{/if}}
+                                                  {{#if stravaEventLink}}
+                                                    <a
+                                                      href="{{stravaEventLink}}"
+                                                      target="_blank"
+                                                      rel="noopener noreferrer"
+                                                      title="Strava Event"
+                                                      class="rsvp-link"
+                                                    >
+                                                      <FaIcon @icon={{faStrava}} />
+                                                      Strava
+                                                    </a>
+                                                  {{/if}}
+                                                  {{#if meetupEventLink}}
+                                                    <a
+                                                      href="{{meetupEventLink}}"
+                                                      target="_blank"
+                                                      rel="noopener noreferrer"
+                                                      title="Meetup Event"
+                                                      class="rsvp-link"
+                                                    >
+                                                      <FaIcon @icon={{faMeetup}} />
+                                                      Meetup
+                                                    </a>
+                                                  {{/if}}
+                                                </div>
+                                              {{/if}}
+                                            {{/let}}
+                                          </li>
+                                        {{/each}}
+                                      </ul>
+                                    </div>
+                                  {{/if}}
+
+                                </div>
+                              {{/let}}
+                            {{/each}}
                           </div>
-                        {{/let}}
-                      {{/each}}
-                    </div>
-                  {{else}}
-                    <p>No runs found for this organization.</p>
-                  {{/if}}
-                {{/let}}
-              </:content>
-              <:error as |error|>
-                <div class="error-box">
-                  <h2>Whoops!</h2>
-                  <p>We weren't able to load the runs!</p>
-                  <p class="error-message">{{error.message}}</p>
-                </div>
-              </:error>
-            </Request>
-          </:body>
-        </Tab>
-      </Tabs>
+                        {{else}}
+                          <p>No runs found for this organization.</p>
+                        {{/if}}
+                      {{/let}}
+                    </:content>
+                    <:error as |error|>
+                      <div class="error-box">
+                        <h2>Whoops!</h2>
+                        <p>We weren't able to load the runs!</p>
+                        <p class="error-message">{{error.message}}</p>
+                      </div>
+                    </:error>
+                  </Request>
+                </:body>
+              </Tab>
+            </Tabs>
+          {{/let}}
+        </:content>
+      </Request>
     </ThemedPage>
   </template>
 }

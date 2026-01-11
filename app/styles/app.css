@@ -807,6 +807,74 @@ body.dark-mode .run-option {
   background: rgb(255 255 255 / 3%);
 }
 
+/* Compact organization card styles */
+.org-card-compact {
+  padding: 1rem 1.5rem;
+}
+
+.org-compact-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+.org-compact-header .run-title {
+  margin: 0;
+  font-size: 1.2rem;
+  white-space: nowrap;
+}
+
+.org-compact-description {
+  flex: 1;
+  font-size: 0.9rem;
+  color: var(--schedule-text);
+  opacity: 0.85;
+  line-height: 1.4;
+}
+
+.org-compact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  align-items: center;
+}
+
+.org-compact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  padding: 0.25rem 0.5rem;
+  background: rgb(0 0 0 / 3%);
+  border-radius: 3px;
+  transition: background 0.2s ease;
+}
+
+.org-compact-link:hover {
+  background: rgb(0 0 0 / 8%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .org-compact-link {
+    background: rgb(255 255 255 / 5%);
+  }
+
+  .org-compact-link:hover {
+    background: rgb(255 255 255 / 10%);
+  }
+}
+
+body.dark-mode .org-compact-link {
+  background: rgb(255 255 255 / 5%);
+}
+
+body.dark-mode .org-compact-link:hover {
+  background: rgb(255 255 255 / 10%);
+}
+
 /* Mobile responsive font-size adjustment */
 @media (width <= 600px) {
   html {

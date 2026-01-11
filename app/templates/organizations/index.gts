@@ -37,64 +37,55 @@ function getHostname(url: string): string {
     <Request @query={{query}}>
       <:loading> <h2>Gathering the trail community...</h2> </:loading>
       <:content as |response|>
-        <div class="schedule">
+        <div class="runs-list">
           <h3 class="section-title">Trail Running Organizations</h3>
           {{#each response.data as |org|}}
-            <div class="day-schedule">
-              <h3><VtLink @route="organizations.single" @model={{org.id}}>{{org.name}}</VtLink></h3>
-              <div class="day-events">
+            <div class="run-card org-card-compact">
+              <div class="org-compact-header">
+                <h3 class="run-title"><VtLink @route="organizations.single" @model={{org.id}}>{{org.name}}</VtLink></h3>
                 {{#if org.description}}
-                  <div class="org-description">
+                  <span class="org-compact-description">
                     {{!-- template-lint-disable no-triple-curlies --}}
                     {{org.description}}
-                  </div>
+                  </span>
                 {{/if}}
-                <ul class="org-details">
-                  {{#if org.website}}
-                    <li class="org-detail">
-                      <a href="{{org.website}}" target="_blank" rel="noopener noreferrer">
-                        <FaIcon @icon={{faGlobe}} /> {{getHostname org.website}}
-                      </a>
-                    </li>
-                  {{/if}}
-                  {{#if org.stravaHandle}}
-                    <li class="org-detail">
-                      <a href="https://www.strava.com/clubs/{{org.stravaHandle}}" target="_blank" rel="noopener noreferrer">
-                        <FaIcon @icon={{faStrava}} /> @{{org.stravaHandle}}
-                      </a>
-                    </li>
-                  {{else if org.stravaId}}
-                    <li class="org-detail">
-                      <a href="https://www.strava.com/clubs/{{org.stravaId}}" target="_blank" rel="noopener noreferrer">
-                        <FaIcon @icon={{faStrava}} /> Strava
-                      </a>
-                    </li>
-                  {{/if}}
-                  {{#if org.instagramHandle}}
-                    <li class="org-detail">
-                      <a href="https://www.instagram.com/{{org.instagramHandle}}" target="_blank" rel="noopener noreferrer">
-                        <FaIcon @icon={{faInstagram}} /> @{{org.instagramHandle}}
-                      </a>
-                    </li>
-                  {{/if}}
-                  {{#if org.meetupId}}
-                    <li class="org-detail">
-                      <a href="https://www.meetup.com/{{org.meetupId}}" target="_blank" rel="noopener noreferrer"><FaIcon @icon={{faMeetup}} /> @{{org.meetupId}}</a>
-                    </li>
-                  {{/if}}
-                  {{#if org.email}}
-                    <li class="org-detail">
-                      <span class="detail-label">Email:</span>
-                      <a href="mailto:{{org.email}}">{{org.email}}</a>
-                    </li>
-                  {{/if}}
-                  {{#if org.phoneNumber}}
-                    <li class="org-detail">
-                      <span class="detail-label">Phone:</span>
-                      <a href="tel:{{org.phoneNumber}}">{{org.phoneNumber}}</a>
-                    </li>
-                  {{/if}}
-                </ul>
+              </div>
+
+              <div class="org-compact-links">
+                {{#if org.website}}
+                  <a href="{{org.website}}" target="_blank" rel="noopener noreferrer" class="org-compact-link">
+                    <FaIcon @icon={{faGlobe}} /> {{getHostname org.website}}
+                  </a>
+                {{/if}}
+                {{#if org.stravaHandle}}
+                  <a href="https://www.strava.com/clubs/{{org.stravaHandle}}" target="_blank" rel="noopener noreferrer" class="org-compact-link">
+                    <FaIcon @icon={{faStrava}} /> @{{org.stravaHandle}}
+                  </a>
+                {{else if org.stravaId}}
+                  <a href="https://www.strava.com/clubs/{{org.stravaId}}" target="_blank" rel="noopener noreferrer" class="org-compact-link">
+                    <FaIcon @icon={{faStrava}} /> Strava
+                  </a>
+                {{/if}}
+                {{#if org.instagramHandle}}
+                  <a href="https://www.instagram.com/{{org.instagramHandle}}" target="_blank" rel="noopener noreferrer" class="org-compact-link">
+                    <FaIcon @icon={{faInstagram}} /> @{{org.instagramHandle}}
+                  </a>
+                {{/if}}
+                {{#if org.meetupId}}
+                  <a href="https://www.meetup.com/{{org.meetupId}}" target="_blank" rel="noopener noreferrer" class="org-compact-link">
+                    <FaIcon @icon={{faMeetup}} /> @{{org.meetupId}}
+                  </a>
+                {{/if}}
+                {{#if org.email}}
+                  <a href="mailto:{{org.email}}" class="org-compact-link">
+                    Email: {{org.email}}
+                  </a>
+                {{/if}}
+                {{#if org.phoneNumber}}
+                  <a href="tel:{{org.phoneNumber}}" class="org-compact-link">
+                    Phone: {{org.phoneNumber}}
+                  </a>
+                {{/if}}
               </div>
             </div>
           {{/each}}
