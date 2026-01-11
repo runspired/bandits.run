@@ -1,7 +1,8 @@
 import Component from '@glimmer/component';
 import { modifier } from 'ember-modifier';
-import * as L from 'leaflet';
+import type * as L from 'leaflet';
 import { MapContext } from './leaflet-map.gts';
+import { getLeaflet } from './leaflet-boundary.gts';
 
 interface LeafletCircleSignature {
   Element: HTMLDivElement;
@@ -42,6 +43,7 @@ export default class LeafletCircleComponent extends Component<LeafletCircleSigna
       onClick,
     } = this.args;
 
+    const L = getLeaflet();
     const circle = L.circle([lat, lng], {
       radius,
       color,

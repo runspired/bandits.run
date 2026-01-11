@@ -1,7 +1,8 @@
 import Component from '@glimmer/component';
 import { modifier } from 'ember-modifier';
-import * as L from 'leaflet';
+import type * as L from 'leaflet';
 import { MapContext } from './leaflet-map.gts';
+import { getLeaflet } from './leaflet-boundary.gts';
 
 interface LeafletPopupSignature {
   Element: HTMLDivElement;
@@ -48,6 +49,7 @@ export default class LeafletPopupComponent extends Component<LeafletPopupSignatu
       offset,
     };
 
+    const L = getLeaflet();
     const popup = L.popup(popupOptions)
       .setLatLng([lat, lng])
       .setContent(content || element.innerHTML)
@@ -59,6 +61,7 @@ export default class LeafletPopupComponent extends Component<LeafletPopupSignatu
   });
 
   <template>
+    {{!-- template-lint-disable no-inline-styles --}}
     <div style="display: none;" {{this.setupPopup}}>
       {{yield}}
     </div>

@@ -1,7 +1,8 @@
 import Component from '@glimmer/component';
 import { modifier } from 'ember-modifier';
-import * as L from 'leaflet';
+import type * as L from 'leaflet';
 import { MapContext } from './leaflet-map.gts';
+import { getLeaflet } from './leaflet-boundary.gts';
 
 interface LeafletPolylineSignature {
   Element: HTMLDivElement;
@@ -36,6 +37,7 @@ export default class LeafletPolylineComponent extends Component<LeafletPolylineS
       onClick,
     } = this.args;
 
+    const L = getLeaflet();
     const polyline = L.polyline(points, {
       color,
       weight,

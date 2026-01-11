@@ -1,17 +1,21 @@
 import Component from '@glimmer/component';
 import { modifier } from 'ember-modifier';
-import * as L from 'leaflet';
+import type * as L from 'leaflet';
 import { MapContext } from './leaflet-map.gts';
+import { getLeaflet } from './leaflet-boundary.gts';
 
-// Fix for default marker icons in bundled environments
-// @ts-expect-error - Leaflet icon paths
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl:
+function fixIconIfNecessary() {
+  const L = getLeaflet();
+  // Fix for default marker icons in bundled environments
+  // @ts-expect-error - Leaflet icon paths
+  delete L.Icon.Default.prototype._getIconUrl;
+  L.Icon.Default.mergeOptions({
+    iconRetinaUrl:
     'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-});
+    iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+    shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+  });
+}
 
 interface LeafletMarkerSignature {
   Element: HTMLDivElement;
@@ -64,6 +68,7 @@ export default class LeafletMarkerComponent extends Component<LeafletMarkerSigna
         markerOptions.icon = icon;
       }
 
+      const L = getLeaflet();
       const marker = L.marker([lat, lng], markerOptions).addTo(map);
 
       // Event handlers

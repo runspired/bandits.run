@@ -14,6 +14,7 @@ import {
 import { cached, tracked } from '@glimmer/tracking';
 import { colorSchemeManager } from '#app/templates/application.gts';
 import './location.css';
+import LeafletBoundary from '#app/components/leaflet-boundary.gts';
 
 function getLocation(locationId: string) {
   return withReactiveResponse<Location>({
@@ -139,20 +140,22 @@ export default class LocationDisplay extends Component<{
                 <div class="location-map">
                   <h3>Map</h3>
                   <div class="map-container">
-                    <LeafletMap
-                      @lat={{location.latitude}}
-                      @lng={{location.longitude}}
-                      @zoom={{12}}
-                      @tileUrl={{this.tileUrl}}
-                      as |map|
-                    >
-                      <LeafletMarker
-                        @context={{map}}
+                    <LeafletBoundary>
+                      <LeafletMap
                         @lat={{location.latitude}}
                         @lng={{location.longitude}}
-                        @title={{location.name}}
-                      />
-                    </LeafletMap>
+                        @zoom={{12}}
+                        @tileUrl={{this.tileUrl}}
+                        as |map|
+                      >
+                        <LeafletMarker
+                          @context={{map}}
+                          @lat={{location.latitude}}
+                          @lng={{location.longitude}}
+                          @title={{location.name}}
+                        />
+                      </LeafletMap>
+                    </LeafletBoundary>
                   </div>
                 </div>
               {{/if}}
@@ -163,37 +166,3 @@ export default class LocationDisplay extends Component<{
     </ThemedPage>
   </template>
 }
-
-let initialized = false;
-function initializeLeafletGestures(
-  config: { duration: string; text: string } = { duration: '', text: '' }
-) {
-  if (initialized) return;
-  initialized = true;
-  const leaf = typeof window.L === 'undefined' ? {} : window.L;
-
-  const options = {
-    gestureHandling: true,
-    gestureHandlingOptions: null,
-  };
-
-  if (!isNaN(parseInt(config.duration))) {
-    // @ts-expect-error fuck it
-    options.gestureHandlingOptions = { duration: config.duration };
-  }
-
-  if (config.text) {
-    options.gestureHandlingOptions = Object.assign(
-      { text: config.text },
-      options.gestureHandlingOptions
-    );
-  }
-
-  // @ts-expect-error fuck it
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-  leaf.Map.mergeOptions(options);
-
-  // leaf.Map.addInitHook("addHandler", "gestureHandling", GestureHandling);
-}
-
-initializeLeafletGestures();

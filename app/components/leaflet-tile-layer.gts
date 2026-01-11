@@ -1,7 +1,7 @@
 import Component from '@glimmer/component';
 import { modifier } from 'ember-modifier';
-import * as L from 'leaflet';
 import { MapContext } from './leaflet-map.gts';
+import { getLeaflet } from './leaflet-boundary.gts';
 
 interface LeafletTileLayerSignature {
   Element: HTMLDivElement;
@@ -33,6 +33,7 @@ export default class LeafletTileLayerComponent extends Component<LeafletTileLaye
       opacity = 1.0,
     } = this.args;
 
+    const L = getLeaflet();
     const tileLayer = L.tileLayer(url, {
       attribution,
       maxZoom,

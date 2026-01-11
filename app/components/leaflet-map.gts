@@ -2,8 +2,8 @@ import Component from '@glimmer/component';
 import { cached, tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { modifier } from 'ember-modifier';
-import * as L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+import type * as L from 'leaflet';
+import { getLeaflet } from './leaflet-boundary.gts';
 
 interface LeafletMapSignature {
   Element: HTMLDivElement;
@@ -51,6 +51,7 @@ export default class LeafletMapComponent extends Component<LeafletMapSignature> 
       onZoomEnd,
       onClick,
     } = this.args;
+    const L = getLeaflet();
 
     // Initialize map
     const map = L.map(element, {
