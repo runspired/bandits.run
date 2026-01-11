@@ -21,6 +21,14 @@ function eq(a: unknown, b: unknown): boolean {
   return a === b;
 }
 
+function neq(a: unknown, b: unknown): boolean {
+  return a !== b;
+}
+
+function and(...args: unknown[]): boolean {
+  return args.every(Boolean);
+}
+
 /**
  * Extracts the hostname (domain and TLD) from a URL, removing www subdomain
  */
@@ -331,6 +339,45 @@ export default class OrganizationSingleRoute extends Component<{
                             {{#if run.location}}
                               <div class="run-location">
                                 <strong>Location:</strong> {{run.location.name}}
+                              </div>
+                            {{/if}}
+
+                            {{#if (and (neq run.runs.length 1) (or run.eventLink run.stravaEventLink run.meetupEventLink))}}
+                              <div class="run-links">
+                                <strong>RSVP:</strong>
+                                {{#if run.eventLink}}
+                                <a
+                                  href="{{run.eventLink}}"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  class="details-link"
+                                >
+                                  <FaIcon @icon={{faCalendarDays}} />
+                                  Event Details
+                                </a>
+                                {{/if}}
+                                {{#if run.stravaEventLink}}
+                                  <a
+                                    href="{{run.stravaEventLink}}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="details-link"
+                                  >
+                                    <FaIcon @icon={{faStrava}} />
+                                    Strava Event
+                                  </a>
+                                {{/if}}
+                                {{#if run.meetupEventLink}}
+                                  <a
+                                    href="{{run.meetupEventLink}}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="details-link"
+                                  >
+                                    <FaIcon @icon={{faMeetup}} />
+                                    Meetup Event
+                                  </a>
+                                {{/if}}
                               </div>
                             {{/if}}
 
