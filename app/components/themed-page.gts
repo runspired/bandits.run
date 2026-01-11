@@ -1,11 +1,11 @@
-import { toggleColorScheme } from '#app/templates/application.gts';
+import { colorSchemeManager } from '#app/templates/application.gts';
 import type { TOC } from '@ember/component/template-only';
-import { on } from '@ember/modifier';
 import HamburgerMenu from './hamburger-menu.gts';
 import FaIcon from './fa-icon.gts';
 import { LinkTo } from '@ember/routing';
 import VtLink from './vt-link.gts';
-import { faHome, faUsers, faPalette } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faUsers, faPalette, faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
+import { on } from '@ember/modifier';
 
 // Import BackButton as a value to use in template
 import BackButton from './back-button.gts';
@@ -21,12 +21,9 @@ const ThemedPage: TOC<{
       <div class="sky">
         <div class="logo-header">
           <div class="logo-header-text">
-            <h1
-              class="title"
-              role="button"
-              aria-roledescription="toggle color scheme"
-              {{on "click" toggleColorScheme}}
-            >Bay Bandits</h1>
+            <h1 class="title">
+              <LinkTo @route="index">Bay Bandits</LinkTo>
+            </h1>
             <h2 class="subtitle">Trail Running Community</h2>
           </div>
           <div class="header-controls">
@@ -37,6 +34,24 @@ const ThemedPage: TOC<{
                 Organizations</VtLink>
               <LinkTo @route="branding"><FaIcon @icon={{faPalette}} />
                 Branding</LinkTo>
+              <div class="mode-toggle">
+                <div
+                  class="toggle-track {{if colorSchemeManager.isDarkMode 'checked'}}"
+                  {{on "click" colorSchemeManager.toggleColorScheme}}
+                  role="switch"
+                  tabindex="0"
+                  aria-label="Toggle dark mode"
+                  aria-checked={{if colorSchemeManager.isDarkMode "true" "false"}}
+                >
+                  <span class="toggle-knob" aria-hidden="true">
+                    {{#if colorSchemeManager.isDarkMode}}
+                      <FaIcon @icon={{faMoon}} />
+                    {{else}}
+                      <FaIcon @icon={{faSun}} />
+                    {{/if}}
+                  </span>
+                </div>
+              </div>
             </HamburgerMenu>
           </div>
         </div>
