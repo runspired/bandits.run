@@ -1,0 +1,20 @@
+{
+  "data": {
+    "type": "location",
+    "id": "4",
+    "attributes": {
+      "name": "Proctor Staging Area",
+      "latitude": 37.721359,
+      "longitude": -122.076503,
+      "region": "Chabot Regional Park",
+      "address": {
+        "street": "Redwood Rd",
+        "city": "Castro Valley",
+        "state": "CA",
+        "zip": "94546"
+      },
+      "googleMapsLink": "https://maps.app.goo.gl/CG23pPPdahmftSAr6",
+      "descriptionHtml": null
+    }
+  }
+}

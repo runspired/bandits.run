@@ -1,0 +1,16 @@
+{
+  "data": {
+    "type": "user",
+    "id": "4",
+    "attributes": {
+      "firstName": "Tom",
+      "lastName": "Stitt",
+      "email": null,
+      "phoneNumber": null,
+      "hasWhatsApp": true,
+      "stravaId": "2175208",
+      "instagramHandle": "thomasstitt",
+      "descriptionHtml": null
+    }
+  }
+}

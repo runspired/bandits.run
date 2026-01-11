@@ -1,0 +1,16 @@
+{
+  "data": {
+    "type": "user",
+    "id": "9",
+    "attributes": {
+      "firstName": "Dan",
+      "lastName": "Pagano",
+      "email": null,
+      "phoneNumber": null,
+      "hasWhatsApp": true,
+      "stravaId": "309460",
+      "instagramHandle": "dans_wildlife",
+      "descriptionHtml": null
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "data": {
+    "type": "location",
+    "id": "5",
+    "attributes": {
+      "name": "Lafayette Community Park",
+      "latitude": 37.860661,
+      "longitude": -122.101127,
+      "region": "Las Trampas Regional Wilderness",
+      "address": {
+        "street": "480 St Marys Rd",
+        "city": "Lafayette",
+        "state": "CA",
+        "zip": "94549"
+      },
+      "googleMapsLink": "https://maps.app.goo.gl/U56EgVrPiqhLkqof6",
+      "descriptionHtml": null
+    }
+  }
+}

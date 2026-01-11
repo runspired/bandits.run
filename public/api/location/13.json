@@ -1,0 +1,20 @@
+{
+  "data": {
+    "type": "location",
+    "id": "13",
+    "attributes": {
+      "name": "Meadows Picnic Area",
+      "latitude": 37.903956,
+      "longitude": -122.260391,
+      "region": "Tilden Regional Park",
+      "address": {
+        "street": "Central Park Dr",
+        "city": "Kensington",
+        "state": "CA",
+        "zip": "94708"
+      },
+      "googleMapsLink": "https://maps.app.goo.gl/e1b51iEWXFDK3MdJ9",
+      "descriptionHtml": null
+    }
+  }
+}

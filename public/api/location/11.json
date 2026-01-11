@@ -1,0 +1,20 @@
+{
+  "data": {
+    "type": "location",
+    "id": "11",
+    "attributes": {
+      "name": "Tennessee Valley",
+      "latitude": 37.86059,
+      "longitude": -122.53594,
+      "region": "Marin Headlands",
+      "address": {
+        "street": "591 Tennessee Valley Rd",
+        "city": "Mill Valley",
+        "state": "CA",
+        "zip": "94941"
+      },
+      "googleMapsLink": "https://maps.app.goo.gl/EpLnDMXjFx68cteGA",
+      "descriptionHtml": null
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "data": {
+    "type": "location",
+    "id": "2",
+    "attributes": {
+      "name": "Serpentine Prairie",
+      "latitude": 37.80348,
+      "longitude": -122.176789,
+      "region": "Reinhardt Redwood Regional Park",
+      "address": {
+        "street": "11500 Skyline Blvd",
+        "city": "Oakland",
+        "state": "CA",
+        "zip": "94619"
+      },
+      "googleMapsLink": "https://maps.app.goo.gl/Fjh333R161WWKuGB6",
+      "descriptionHtml": null
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "data": {
+    "type": "user",
+    "id": "7",
+    "attributes": {
+      "firstName": "Patrick",
+      "lastName": "Rabuzzi",
+      "email": null,
+      "phoneNumber": null,
+      "hasWhatsApp": true,
+      "stravaId": "7278715",
+      "instagramHandle": null,
+      "descriptionHtml": null
+    }
+  }
+}

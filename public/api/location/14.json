@@ -1,0 +1,15 @@
+{
+  "data": {
+    "type": "location",
+    "id": "14",
+    "attributes": {
+      "name": "East Bay",
+      "latitude": null,
+      "longitude": null,
+      "region": "East Bay",
+      "address": null,
+      "googleMapsLink": null,
+      "descriptionHtml": null
+    }
+  }
+}

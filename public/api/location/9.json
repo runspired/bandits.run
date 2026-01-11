@@ -1,0 +1,20 @@
+{
+  "data": {
+    "type": "location",
+    "id": "9",
+    "attributes": {
+      "name": "Mitchell Canyon",
+      "latitude": 37.92049,
+      "longitude": -121.941554,
+      "region": "Mt. Diablo",
+      "address": {
+        "street": "96 Mitchell Canyon Rd",
+        "city": "Clayton",
+        "state": "CA",
+        "zip": "94517"
+      },
+      "googleMapsLink": "https://maps.app.goo.gl/qhbD6PBnsuS8JJJM9",
+      "descriptionHtml": null
+    }
+  }
+}

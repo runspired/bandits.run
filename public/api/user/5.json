@@ -1,0 +1,16 @@
+{
+  "data": {
+    "type": "user",
+    "id": "5",
+    "attributes": {
+      "firstName": "Josh",
+      "lastName": "Moser",
+      "email": null,
+      "phoneNumber": null,
+      "hasWhatsApp": true,
+      "stravaId": null,
+      "instagramHandle": null,
+      "descriptionHtml": null
+    }
+  }
+}

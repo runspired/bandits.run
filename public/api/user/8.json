@@ -1,0 +1,16 @@
+{
+  "data": {
+    "type": "user",
+    "id": "8",
+    "attributes": {
+      "firstName": "Jojo",
+      "lastName": "Roldan",
+      "email": null,
+      "phoneNumber": null,
+      "hasWhatsApp": true,
+      "stravaId": "2860482",
+      "instagramHandle": "from_here_we_go",
+      "descriptionHtml": null
+    }
+  }
+}

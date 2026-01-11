@@ -1,0 +1,20 @@
+{
+  "data": {
+    "type": "location",
+    "id": "3",
+    "attributes": {
+      "name": "Selby Trailhead",
+      "latitude": 37.904384,
+      "longitude": -122.267624,
+      "region": "Tilden Regional Park",
+      "address": {
+        "street": "551 Wildcat Canyon Rd",
+        "city": "Kensington",
+        "state": "CA",
+        "zip": "94708"
+      },
+      "googleMapsLink": "https://maps.app.goo.gl/7AoYphNCcQ3y6GYe7",
+      "descriptionHtml": null
+    }
+  }
+}

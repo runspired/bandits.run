@@ -1,0 +1,20 @@
+{
+  "data": {
+    "type": "location",
+    "id": "7",
+    "attributes": {
+      "name": "Lone Oak Trailhead",
+      "latitude": 37.905756,
+      "longitude": -122.261288,
+      "region": "Tilden Regional Park",
+      "address": {
+        "street": "199 Loop Rd",
+        "city": "Kensington",
+        "state": "CA",
+        "zip": "94708"
+      },
+      "googleMapsLink": "https://maps.app.goo.gl/AfMQriKJ9ie27XS96",
+      "descriptionHtml": null
+    }
+  }
+}

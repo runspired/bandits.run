@@ -373,6 +373,21 @@ export async function compile(): Promise<AggregateData> {
     'contacts',
   ]);
 
+  // write each user and location as individual json files
+  await mkdir(join(publicApiDir, 'user'), { recursive: true });
+  console.log(`\n📂 Writing ${resources.users.size} user payloads...\n`)
+  for (const [userId, userData] of resources.users) {
+    const userFilePath = join(publicApiDir, 'user', `${userId}.json`);
+    await writeJsonApiDocument(userFilePath, userData, resources, []);
+  }
+  await mkdir(join(publicApiDir, 'location'), { recursive: true });
+  console.log(`\n📂 Writing ${resources.locations.size} location payloads...\n`);
+  for (const [locationId, locationData] of resources.locations) {
+    const locationFilePath = join(publicApiDir, 'location', `${locationId}.json`);
+    await writeJsonApiDocument(locationFilePath, locationData, resources, []);
+  }
+
+
   // construct payloads for /api/organization/[id].json
   await mkdir(join(publicApiDir, 'organization'), { recursive: true });
   console.log(`\n📂 Writing ${resources.organizations.size} organization payloads...\n`);

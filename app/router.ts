@@ -18,4 +18,7 @@ Router.map(function () {
       });
     });
   });
+  this.route('location', { path: '/location/:location_id' });
+  this.route('contact', { path: '/contact/:runner_id' });
+  this.route('not-found', { path: '/*path' });
 });

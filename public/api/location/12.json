@@ -1,0 +1,20 @@
+{
+  "data": {
+    "type": "location",
+    "id": "12",
+    "attributes": {
+      "name": "Bear Creek Staging (EPRPD)",
+      "latitude": 37.922564,
+      "longitude": -122.164586,
+      "region": "Briones Reservoir",
+      "address": {
+        "street": "1929 Bear Creek Rd",
+        "city": "Lafayette",
+        "state": "CA",
+        "zip": "94549"
+      },
+      "googleMapsLink": "https://maps.app.goo.gl/UFWYKKvdpJEKzFfj6",
+      "descriptionHtml": null
+    }
+  }
+}

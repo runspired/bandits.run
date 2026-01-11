@@ -1,0 +1,15 @@
+{
+  "data": {
+    "type": "location",
+    "id": "16",
+    "attributes": {
+      "name": "Bay Area",
+      "latitude": null,
+      "longitude": null,
+      "region": "Bay Area",
+      "address": null,
+      "googleMapsLink": null,
+      "descriptionHtml": null
+    }
+  }
+}

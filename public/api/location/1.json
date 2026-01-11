@@ -1,0 +1,20 @@
+{
+  "data": {
+    "type": "location",
+    "id": "1",
+    "attributes": {
+      "name": "Skyline Gate",
+      "latitude": 37.831606,
+      "longitude": -122.185388,
+      "region": "Reinhardt Redwood Regional Park",
+      "address": {
+        "street": "8490 Skyline Blvd",
+        "city": "Oakland",
+        "state": "CA",
+        "zip": "94611"
+      },
+      "googleMapsLink": "https://maps.app.goo.gl/YSR9bX1i2iNTYxW18",
+      "descriptionHtml": null
+    }
+  }
+}

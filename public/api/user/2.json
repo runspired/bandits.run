@@ -1,0 +1,16 @@
+{
+  "data": {
+    "type": "user",
+    "id": "2",
+    "attributes": {
+      "firstName": "Karen",
+      "lastName": "Barnes",
+      "email": null,
+      "phoneNumber": null,
+      "hasWhatsApp": true,
+      "stravaId": "97687403",
+      "instagramHandle": "traillove_kb",
+      "descriptionHtml": null
+    }
+  }
+}

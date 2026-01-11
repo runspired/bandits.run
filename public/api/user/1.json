@@ -1,0 +1,16 @@
+{
+  "data": {
+    "type": "user",
+    "id": "1",
+    "attributes": {
+      "firstName": "Chris",
+      "lastName": "Thoburn",
+      "email": "runspired@gmail.com",
+      "phoneNumber": "17138983236",
+      "hasWhatsApp": true,
+      "stravaId": "runspired",
+      "instagramHandle": "runspired",
+      "descriptionHtml": null
+    }
+  }
+}
