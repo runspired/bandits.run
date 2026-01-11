@@ -415,7 +415,7 @@ export default class OrganizationRunRoute extends Component<{
                     {{/if}}
                   </div>
 
-                  {{! Description }}
+                  {{!-- {{! Description }}
                   {{#if run.descriptionHtml}}
                     <div class="run-description-section">
                       <h3>About This Run</h3>
@@ -428,7 +428,7 @@ export default class OrganizationRunRoute extends Component<{
                       <h3>About This Run</h3>
                       <p class="run-description-text">{{run.description}}</p>
                     </div>
-                  {{/if}}
+                  {{/if}} --}}
 
                   {{! Map }}
                   {{#if
