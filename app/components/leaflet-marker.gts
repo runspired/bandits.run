@@ -4,8 +4,12 @@ import type * as L from 'leaflet';
 import { MapContext } from './leaflet-map.gts';
 import { getLeaflet } from './leaflet-boundary.gts';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+let fixed = false;
 function fixIconIfNecessary() {
+  if (fixed) {
+    return;
+  }
+  fixed = true;
   const L = getLeaflet();
   // Fix for default marker icons in bundled environments
   // @ts-expect-error - Leaflet icon paths
@@ -40,6 +44,7 @@ interface LeafletMarkerSignature {
 export default class LeafletMarkerComponent extends Component<LeafletMarkerSignature> {
   setupMarker = modifier(
     (_element: HTMLElement, [context]: [{ map: L.Map; context: object }]) => {
+      fixIconIfNecessary();
       const map = MapContext.get(context.context);
       if (!map) {
         console.error('LeafletMarker: No map found in context');
