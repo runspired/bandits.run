@@ -32,7 +32,9 @@
       ],
       "description": null,
       "descriptionHtml": null,
-      "eventLink": "https://www.sfrunco.com/about-us/weeklyruns"
+      "eventLink": "https://www.sfrunco.com/about-us/weeklyruns",
+      "stravaEventLink": null,
+      "meetupEventLink": null
     },
     "relationships": {
       "location": {
@@ -65,10 +67,6 @@
       },
       "occurrences": {
         "data": [
-          {
-            "type": "realized-event-date",
-            "id": "5-headlands-saturday-2026-01-10"
-          },
           {
             "type": "realized-event-date",
             "id": "5-headlands-saturday-2026-01-17"
@@ -276,6 +274,10 @@
           {
             "type": "realized-event-date",
             "id": "5-headlands-saturday-2027-01-09"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-headlands-saturday-2027-01-16"
           }
         ]
       }
@@ -346,16 +348,6 @@
         "instagramHandle": "from_here_we_go",
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-01-10",
-      "attributes": {
-        "date": "2026-01-10",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 3
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -874,6 +866,16 @@
         "date": "2027-01-09",
         "weekNumberMonday": 2,
         "weekNumberSunday": 3
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-headlands-saturday-2027-01-16",
+      "attributes": {
+        "date": "2027-01-16",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 4
       },
       "relationships": {}
     }

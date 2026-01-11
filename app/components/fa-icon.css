@@ -1,0 +1,16 @@
+/* Font Awesome Icon Wrapper */
+.fa-icon-wrapper {
+  display: inline-block;
+  line-height: 1;
+}
+
+.fa-icon-wrapper svg {
+  display: inline-block;
+  height: 1em;
+  vertical-align: -0.125em;
+}
+
+.fa-icon-wrapper.fa-fw {
+  text-align: center;
+  width: 1.25em;
+}

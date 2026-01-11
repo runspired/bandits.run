@@ -62,7 +62,9 @@
       ],
       "description": null,
       "descriptionHtml": null,
-      "eventLink": null
+      "eventLink": null,
+      "stravaEventLink": "https://www.strava.com/clubs/504077/group_events/1983259",
+      "meetupEventLink": null
     },
     "relationships": {
       "location": {
@@ -99,10 +101,6 @@
       },
       "occurrences": {
         "data": [
-          {
-            "type": "realized-event-date",
-            "id": "1-the-saturday-tilden-2026-01-10"
-          },
           {
             "type": "realized-event-date",
             "id": "1-the-saturday-tilden-2026-02-14"
@@ -234,16 +232,6 @@
         "instagramHandle": null,
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-the-saturday-tilden-2026-01-10",
-      "attributes": {
-        "date": "2026-01-10",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 3
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",

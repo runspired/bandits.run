@@ -62,7 +62,9 @@
       ],
       "description": null,
       "descriptionHtml": null,
-      "eventLink": null
+      "eventLink": null,
+      "stravaEventLink": "https://www.strava.com/clubs/504077/group_events/1983259",
+      "meetupEventLink": null
     },
     "relationships": {
       "location": {
@@ -146,6 +148,10 @@
           {
             "type": "realized-event-date",
             "id": "1-the-saturday-chabot-2026-12-19"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-the-saturday-chabot-2027-01-16"
           }
         ]
       }
@@ -348,6 +354,16 @@
         "date": "2026-12-19",
         "weekNumberMonday": 51,
         "weekNumberSunday": 52
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-the-saturday-chabot-2027-01-16",
+      "attributes": {
+        "date": "2027-01-16",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 4
       },
       "relationships": {}
     }

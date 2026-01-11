@@ -6,10 +6,12 @@ import { RecurrenceObjectSchema, RunOptionObjectSchema, TrailRunSchema } from '#
 import { ScheduleDaySchema } from '#app/data/schedule.ts';
 import { UserSchema } from '#app/data/user.ts';
 import { WeekSchema } from '#app/data/week.ts';
-import { useRecommendedStore } from '@warp-drive/core';
+import { useLegacyStore } from '@warp-drive/legacy';
 import { JSONAPICache } from '@warp-drive/json-api';
 
-const Store = useRecommendedStore({
+const Store = useLegacyStore({
+  linksMode: true,
+  legacyRequests: false,
   cache: JSONAPICache,
   handlers: [
     // -- your handlers here

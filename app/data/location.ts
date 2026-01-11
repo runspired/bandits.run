@@ -18,6 +18,7 @@ export interface Location {
   region: string | null;
   address: Address | null;
   googleMapsLink: string | null;
+  descriptionHtml: string | null;
   [Type]: 'location';
 }
 
@@ -30,6 +31,7 @@ export const LocationSchema = withDefaults({
     { name: 'region', kind: 'field' },
     { name: 'address', kind: 'schema-object', type: 'address' },
     { name: 'googleMapsLink', kind: 'field' },
+    { name: 'descriptionHtml', kind: 'field' },
   ]
 });
 

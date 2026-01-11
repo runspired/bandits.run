@@ -63,7 +63,9 @@
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": null
+        "eventLink": null,
+        "stravaEventLink": null,
+        "meetupEventLink": null
       },
       "relationships": {
         "location": {
@@ -96,10 +98,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "2-beer-bucket-2026-01-04"
-            },
             {
               "type": "realized-event-date",
               "id": "2-beer-bucket-2026-01-11"
@@ -307,6 +305,10 @@
             {
               "type": "realized-event-date",
               "id": "2-beer-bucket-2027-01-03"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2027-01-10"
             }
           ]
         }
@@ -345,7 +347,9 @@
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": null
+        "eventLink": null,
+        "stravaEventLink": null,
+        "meetupEventLink": null
       },
       "relationships": {
         "location": {
@@ -419,7 +423,9 @@
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": null
+        "eventLink": null,
+        "stravaEventLink": null,
+        "meetupEventLink": null
       },
       "relationships": {
         "location": {
@@ -521,16 +527,6 @@
         "instagramHandle": "traillove_kb",
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "2-beer-bucket-2026-01-04",
-      "attributes": {
-        "date": "2026-01-04",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -1049,6 +1045,16 @@
         "date": "2027-01-03",
         "weekNumberMonday": 2,
         "weekNumberSunday": 2
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2027-01-10",
+      "attributes": {
+        "date": "2027-01-10",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
       },
       "relationships": {}
     },

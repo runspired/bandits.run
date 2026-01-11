@@ -1,10 +1,10 @@
 import type { Type } from "@warp-drive/core/types/symbols";
-import { withDefaults } from "@warp-drive/core/reactive";
 import { objectSchema } from "@warp-drive/core/types/schema/fields";
 import type { Location } from "./location";
 import type { Organization } from "./organization";
 import type { User } from "./user";
 import type { RealizedEventDate } from "./realized-event-date";
+import { withLegacy } from "./-utils";
 
 export interface TrailRun {
   id: string;
@@ -13,6 +13,8 @@ export interface TrailRun {
   description: string | null;
   recurrence: Recurrence;
   eventLink: string | null;
+  stravaEventLink: string | null;
+  meetupEventLink: string | null;
   runs: RunOption[];
   descriptionHtml: string | null;
   location: Location;
@@ -23,20 +25,23 @@ export interface TrailRun {
   [Type]: 'trail-run';
 }
 
-export const TrailRunSchema = withDefaults({
+export const TrailRunSchema = withLegacy({
   type: 'trail-run',
   fields: [
     { name: 'title', kind: 'field' },
     { name: 'description', kind: 'field' },
+    { name: 'descriptionHtml', kind: 'field' },
     { name: 'recurrence', kind: 'schema-object', type: 'recurrence' },
     { name: 'eventLink', kind: 'field' },
+    { name: 'stravaEventLink', kind: 'field' },
+    { name: 'meetupEventLink', kind: 'field' },
     { name: 'runs', kind: 'schema-array', type: 'run-option' },
     { name: 'descriptionHtml', kind: 'field' },
-    { name: 'location', kind: 'belongsTo', type: 'location', options: { linksMode: true, async: false, inverse: null } },
-    { name: 'hosts', kind: 'hasMany', type: 'organization', options: { linksMode: true, async: false, inverse: null} },
-    { name: 'organizers', kind: 'hasMany', type: 'user', options: { linksMode: true, async: false, inverse: null } },
-    { name: 'owner', kind: 'belongsTo', type: 'organization', options: { linksMode: true, async: false, inverse: 'runs' } },
-    { name: 'occurrences', kind: 'hasMany', type: 'realized-event-date', options: { linksMode: true, async: false, inverse: 'event' } },
+    { name: 'location', kind: 'belongsTo', type: 'location', options: { async: false, inverse: null } },
+    { name: 'hosts', kind: 'hasMany', type: 'organization', options: { async: false, inverse: null} },
+    { name: 'organizers', kind: 'hasMany', type: 'user', options: { async: false, inverse: null } },
+    { name: 'owner', kind: 'belongsTo', type: 'organization', options: { async: false, inverse: 'runs' } },
+    { name: 'occurrences', kind: 'hasMany', type: 'realized-event-date', options: { async: false, inverse: 'event' } },
   ]
 });
 
@@ -162,6 +167,14 @@ export interface RunOption {
    */
   eventLink: string | null;
   /**
+   * Link to the Strava event for this run option (if any)
+   */
+  stravaEventLink: string | null;
+  /**
+   * Link to the Meetup event for this run option (if any)
+   */
+  meetupEventLink: string | null;
+  /**
    * Link to the route for this run option (if any)
    */
   stravaRouteLink: string | null;
@@ -184,6 +197,8 @@ export const RunOptionObjectSchema = objectSchema({
     { name: 'meetTime', kind: 'field' },
     { name: 'startTime', kind: 'field' },
     { name: 'eventLink', kind: 'field' },
+    { name: 'stravaEventLink', kind: 'field' },
+    { name: 'meetupEventLink', kind: 'field' },
     { name: 'stravaRouteLink', kind: 'field' },
     { name: 'gpxLink', kind: 'field' },
   ]

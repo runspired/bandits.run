@@ -1,0 +1,132 @@
+/* Layout Logic */
+.landscape-container {
+  position: relative;
+  width: 100%;
+  min-height: 100dvh;
+  background-color: var(--bg-sky);
+  overflow: hidden;
+  transition: background-color var(--transition-speed) ease;
+}
+
+/* The Rolling Hills */
+.hill-svg {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40vh; /* Adjust height based on viewport */
+  transition: fill var(--transition-speed) ease;
+}
+
+.back-hill {
+  pointer-events: none;
+  fill: var(--color-hill-back);
+  z-index: 1;
+  bottom: 5vh; /* Slightly offset for depth */
+}
+
+.front-hill {
+  pointer-events: none;
+  fill: var(--color-hill-front);
+  z-index: 2;
+}
+
+/* Redwoods (Using mask to allow CSS color control) */
+.tree {
+  pointer-events: none;
+  position: absolute;
+  bottom: 0;
+  width: 20vw;
+  height: 60vh;
+  background-color: var(--tree-color);
+  mask: url('/redwood.svg') no-repeat bottom center / contain;
+  z-index: 3;
+  transition: background-color var(--transition-speed) ease;
+}
+
+.tree-left-0 { left: 5vw; transform: scale(1); }
+
+.tree-left-1 { left: 0; }
+
+.tree-left-2 { left: 15vw; transform: scale(0.9); }
+
+.tree-left-3 { left: 30vw; transform: scale(0.8); }
+
+.tree-right-4 { right: 0; transform: scaleX(-1); }
+
+.tree-right-2 { right: 15vw; transform: scaleX(-1) scale(0.9); }
+
+.tree-right-3 { right: 30vw; transform: scaleX(-1) scale(0.8); }
+
+.tree-right-0 { bottom: 10vh; right: 25vw; transform: scale(.8); background-color: var(--alt-tree-color); }
+
+.tree-right-1 { bottom: 10vh; right: 17vw; transform: scale(.8); background-color: var(--alt-tree-color); }
+
+.sky {
+  padding-bottom: 30vmax;
+}
+
+.logo-header {
+  max-width: 90vmax;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Header Controls Container */
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-style: italic;
+  text-transform: uppercase;
+  font-weight: 800;
+  text-align: left;
+  color: var(--title);
+  padding-bottom: .5rem;
+  width: fit-content;
+  margin: 1rem 0 1rem 1rem;
+  border-bottom: .15rem solid var(--title);
+}
+
+.title .link {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.title .link:hover {
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+.title::before {
+  content: '';
+  display: block;
+  float: left;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0.5rem;
+  background-color: var(--title);
+  mask: url('/logo-orange-chevron.svg') no-repeat bottom left / contain;
+}
+
+.subtitle {
+  text-align: left;
+  color: var(--subtitle);
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: .12rem;
+  margin-left: 1rem;
+}
+
+/* Mobile-friendly layout tweaks */
+@media (width <= 768px) {
+  .sky {
+    padding-bottom: 18vmax;
+  }
+}

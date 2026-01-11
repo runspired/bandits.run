@@ -6,6 +6,7 @@ import { LinkTo } from '@ember/routing';
 import VtLink from './vt-link.gts';
 import { faHome, faUsers, faPalette, faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 import { on } from '@ember/modifier';
+import { scopedClass } from 'ember-scoped-css';
 
 // Import BackButton as a value to use in template
 import BackButton from './back-button.gts';
@@ -22,7 +23,7 @@ const ThemedPage: TOC<{
         <div class="logo-header">
           <div class="logo-header-text">
             <h1 class="title">
-              <LinkTo @route="index">Bay Bandits</LinkTo>
+              <LinkTo @route="index" class={{scopedClass "link"}}>Bay Bandits</LinkTo>
             </h1>
             <h2 class="subtitle">Trail Running Community</h2>
           </div>
@@ -35,6 +36,7 @@ const ThemedPage: TOC<{
               <LinkTo @route="branding"><FaIcon @icon={{faPalette}} />
                 Branding</LinkTo>
               <div class="mode-toggle">
+                {{!-- template-lint-disable require-presentational-children --}}
                 <div
                   class="toggle-track {{if colorSchemeManager.isDarkMode 'checked'}}"
                   {{on "click" colorSchemeManager.toggleColorScheme}}

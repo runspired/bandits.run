@@ -32,7 +32,9 @@
       ],
       "description": null,
       "descriptionHtml": null,
-      "eventLink": null
+      "eventLink": null,
+      "stravaEventLink": "https://www.strava.com/clubs/963747/group_events/3415801823546428632",
+      "meetupEventLink": null
     },
     "relationships": {
       "location": {
@@ -65,10 +67,6 @@
       },
       "occurrences": {
         "data": [
-          {
-            "type": "realized-event-date",
-            "id": "3-tues-run-club-2026-01-06"
-          },
           {
             "type": "realized-event-date",
             "id": "3-tues-run-club-2026-01-13"
@@ -276,6 +274,10 @@
           {
             "type": "realized-event-date",
             "id": "3-tues-run-club-2027-01-05"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "3-tues-run-club-2027-01-12"
           }
         ]
       }
@@ -346,16 +348,6 @@
         "instagramHandle": "thomasstitt",
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "3-tues-run-club-2026-01-06",
-      "attributes": {
-        "date": "2026-01-06",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -874,6 +866,16 @@
         "date": "2027-01-05",
         "weekNumberMonday": 2,
         "weekNumberSunday": 2
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "3-tues-run-club-2027-01-12",
+      "attributes": {
+        "date": "2027-01-12",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
       },
       "relationships": {}
     }

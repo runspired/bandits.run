@@ -1034,7 +1034,9 @@
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": null
+        "eventLink": null,
+        "stravaEventLink": "https://www.strava.com/clubs/504077/group_events/1528207",
+        "meetupEventLink": null
       },
       "relationships": {
         "location": {
@@ -1071,10 +1073,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "1-runrise-2026-01-08"
-            },
             {
               "type": "realized-event-date",
               "id": "1-runrise-2026-01-15"
@@ -1282,6 +1280,10 @@
             {
               "type": "realized-event-date",
               "id": "1-runrise-2027-01-07"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-runrise-2027-01-14"
             }
           ]
         }
@@ -1320,7 +1322,9 @@
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": "https://www.instagram.com/trailthursday/"
+        "eventLink": "https://www.instagram.com/trailthursday/",
+        "stravaEventLink": null,
+        "meetupEventLink": null
       },
       "relationships": {
         "location": {
@@ -1353,10 +1357,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "5-ninja-thursday-2026-01-08"
-            },
             {
               "type": "realized-event-date",
               "id": "5-ninja-thursday-2026-01-15"
@@ -1564,6 +1564,10 @@
             {
               "type": "realized-event-date",
               "id": "5-ninja-thursday-2027-01-07"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "5-ninja-thursday-2027-01-14"
             }
           ]
         }
@@ -1602,7 +1606,9 @@
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": null
+        "eventLink": null,
+        "stravaEventLink": "https://www.strava.com/clubs/191891/group_events/512762",
+        "meetupEventLink": "https://www.meetup.com/marin-running-club/events/312592534/"
       },
       "relationships": {
         "location": {
@@ -1635,10 +1641,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "6-thursday-night-2026-01-08"
-            },
             {
               "type": "realized-event-date",
               "id": "6-thursday-night-2026-01-15"
@@ -1846,6 +1848,10 @@
             {
               "type": "realized-event-date",
               "id": "6-thursday-night-2027-01-07"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2027-01-14"
             }
           ]
         }
@@ -1884,7 +1890,9 @@
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": "https://www.sfrunco.com/about-us/weeklyruns"
+        "eventLink": "https://www.sfrunco.com/about-us/weeklyruns",
+        "stravaEventLink": null,
+        "meetupEventLink": null
       },
       "relationships": {
         "location": {
@@ -1917,10 +1925,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-01-10"
-            },
             {
               "type": "realized-event-date",
               "id": "5-headlands-saturday-2026-01-17"
@@ -2128,6 +2132,10 @@
             {
               "type": "realized-event-date",
               "id": "5-headlands-saturday-2027-01-09"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "5-headlands-saturday-2027-01-16"
             }
           ]
         }
@@ -2196,7 +2204,9 @@
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": null
+        "eventLink": null,
+        "stravaEventLink": "https://www.strava.com/clubs/504077/group_events/1983259",
+        "meetupEventLink": null
       },
       "relationships": {
         "location": {
@@ -2348,7 +2358,9 @@
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": null
+        "eventLink": null,
+        "stravaEventLink": null,
+        "meetupEventLink": null
       },
       "relationships": {
         "location": {
@@ -2381,10 +2393,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "2-beer-bucket-2026-01-04"
-            },
             {
               "type": "realized-event-date",
               "id": "2-beer-bucket-2026-01-11"
@@ -2592,6 +2600,10 @@
             {
               "type": "realized-event-date",
               "id": "2-beer-bucket-2027-01-03"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2027-01-10"
             }
           ]
         }
@@ -2660,7 +2672,9 @@
         ],
         "description": null,
         "descriptionHtml": "<h1 id=\"runday---monday-trail-run\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#runday---monday-trail-run\">#</a> RUNDAY - Monday Trail Run</h1>\n<p>RUNDAY is our signature <strong>Monday evening trail run</strong> at Redwood Regional Park, designed to kick off your week with energy and community.</p>\n<h2 id=\"about-this-run\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#about-this-run\">#</a> About This Run</h2>\n<p>Every Monday, rain or shine, we gather at Skyline Gate for an evening of trail running through the beautiful redwoods. This run has been a Bay Bandits tradition since the beginning!</p>\n<h3 id=\"what-makes-runday-special\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#what-makes-runday-special\">#</a> What Makes RUNDAY Special</h3>\n<ul>\n<li><strong>Three pace options</strong> to fit everyone’s goals</li>\n<li><strong>Consistent schedule</strong> - same time, same place every week</li>\n<li><strong>Beautiful location</strong> in the heart of the East Bay hills</li>\n<li><strong>Post-run community</strong> time to connect with fellow runners</li>\n</ul>\n<h2 id=\"run-options\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#run-options\">#</a> Run Options</h2>\n<p>We offer three distinct groups:</p>\n<h3 id=\"%F0%9F%8F%83-longer-run-(7-9-miles)\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#%F0%9F%8F%83-longer-run-(7-9-miles)\">#</a> 🏃 Longer Run (7-9 miles)</h3>\n<p>The perfect mid-week training run. We head out early and cover more ground at a moderate effort. Great for marathon and ultra training!</p>\n<ul>\n<li><strong>Distance</strong>: 7-9 miles</li>\n<li><strong>Elevation</strong>: 1200-2000 ft</li>\n<li><strong>Pace</strong>: Easy to Moderate</li>\n<li><strong>Start</strong>: 6:00 PM sharp</li>\n</ul>\n<h3 id=\"%F0%9F%91%A5-social-run-(3-5-miles)\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#%F0%9F%91%A5-social-run-(3-5-miles)\">#</a> 👥 Social Run (3-5 miles)</h3>\n<p>Our most popular option! A relaxed, conversational pace where making friends is just as important as the miles.</p>\n<ul>\n<li><strong>Distance</strong>: 3-5 miles</li>\n<li><strong>Elevation</strong>: 600-1000 ft</li>\n<li><strong>Pace</strong>: Very Easy (talking pace)</li>\n<li><strong>Start</strong>: 6:15 PM</li>\n</ul>\n<h3 id=\"%F0%9F%92%AA-shorter-run-(6-8-miles)\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#%F0%9F%92%AA-shorter-run-(6-8-miles)\">#</a> 💪 Shorter Run (6-8 miles)</h3>\n<p>A solid workout without the extended time commitment. Good effort with regular regroups.</p>\n<ul>\n<li><strong>Distance</strong>: 6-8 miles</li>\n<li><strong>Elevation</strong>: 1000-1600 ft</li>\n<li><strong>Pace</strong>: Easy to Moderate</li>\n<li><strong>Start</strong>: 6:15 PM</li>\n</ul>\n<h2 id=\"location-%26-parking\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#location-%26-parking\">#</a> Location &amp; Parking</h2>\n<p><strong>Meeting Point</strong>: Skyline Gate Staging Area\n<strong>Address</strong>: 8490 Skyline Blvd, Oakland, CA 94611</p>\n<div class=\"custom-block warning\"><p class=\"custom-block-title\">Parking</p>\n<p>Parking fills up fast! Arrive 15 minutes early to find a spot and meet your group leaders.</p>\n</div>\n<p><strong>Parking Tips:</strong></p>\n<ul>\n<li>Free parking available in the main lot</li>\n<li>Additional street parking on Skyline Blvd</li>\n<li>Carpooling encouraged!</li>\n</ul>\n<h2 id=\"what-to-bring\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#what-to-bring\">#</a> What to Bring</h2>\n<p>Essential gear for RUNDAY:</p>\n<table>\n<thead>\n<tr>\n<th>Item</th>\n<th>Why You Need It</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>Headlamp</td>\n<td>Gets dark fast, especially in fall/winter</td>\n</tr>\n<tr>\n<td>Water</td>\n<td>No water fountains on trail</td>\n</tr>\n<tr>\n<td>Trail shoes</td>\n<td>Better grip on technical terrain</td>\n</tr>\n<tr>\n<td>Layers</td>\n<td>Temperature drops after sunset</td>\n</tr>\n</tbody>\n</table>\n<div class=\"custom-block tip\"><p class=\"custom-block-title\">First Timer?</p>\n<p>Email us or message on Strava before coming. We’ll make sure someone greets you and helps you find the right pace group!</p>\n</div>\n<h2 id=\"trail-conditions\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#trail-conditions\">#</a> Trail Conditions</h2>\n<p>The trails at Redwood are generally well-maintained but can vary by season:</p>\n<ul>\n<li><strong>Summer (Jun-Sep)</strong>: Dry and dusty, watch for poison oak</li>\n<li><strong>Fall (Oct-Nov)</strong>: Perfect conditions!</li>\n<li><strong>Winter (Dec-Mar)</strong>: Muddy after rain, bring trail shoes with good grip</li>\n<li><strong>Spring (Apr-May)</strong>: Beautiful wildflowers, some muddy sections</li>\n</ul>\n<h2 id=\"connect-on-strava\" tabindex=\"-1\"><a class=\"header-anchor\" href=\"#connect-on-strava\">#</a> Connect on Strava</h2>\n<p>Each run option has its own Strava group event. Join them to:</p>\n<ul>\n<li>See the planned route</li>\n<li>Track your stats</li>\n<li>Connect with other participants</li>\n<li>View post-run photos</li>\n</ul>\n<p><a href=\"https://www.strava.com/clubs/504077/group_events\">View all RUNDAY events on Strava →</a></p>\n<hr>\n<blockquote>\n<p>“RUNDAY is the highlight of my week. Amazing trails, great people, and the perfect way to start the week!” - Regular Bandit</p>\n</blockquote>\n",
-        "eventLink": null
+        "eventLink": null,
+        "stravaEventLink": null,
+        "meetupEventLink": null
       },
       "relationships": {
         "location": {
@@ -2693,10 +2707,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "1-runday-2026-01-05"
-            },
             {
               "type": "realized-event-date",
               "id": "1-runday-2026-01-12"
@@ -2904,6 +2914,10 @@
             {
               "type": "realized-event-date",
               "id": "1-runday-2027-01-04"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-runday-2027-01-11"
             }
           ]
         }
@@ -2957,7 +2971,9 @@
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": null
+        "eventLink": null,
+        "stravaEventLink": null,
+        "meetupEventLink": null
       },
       "relationships": {
         "location": {
@@ -2990,10 +3006,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "6-tuesday-night-2026-01-06"
-            },
             {
               "type": "realized-event-date",
               "id": "6-tuesday-night-2026-01-13"
@@ -3201,6 +3213,10 @@
             {
               "type": "realized-event-date",
               "id": "6-tuesday-night-2027-01-05"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2027-01-12"
             }
           ]
         }
@@ -3254,7 +3270,9 @@
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": null
+        "eventLink": null,
+        "stravaEventLink": null,
+        "meetupEventLink": null
       },
       "relationships": {
         "location": {
@@ -3287,10 +3305,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "4-tilden-tues-2026-01-06"
-            },
             {
               "type": "realized-event-date",
               "id": "4-tilden-tues-2026-01-13"
@@ -3498,6 +3512,10 @@
             {
               "type": "realized-event-date",
               "id": "4-tilden-tues-2027-01-05"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "4-tilden-tues-2027-01-12"
             }
           ]
         }
@@ -3536,7 +3554,9 @@
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": null
+        "eventLink": null,
+        "stravaEventLink": "https://www.strava.com/clubs/963747/group_events/3415801823546428632",
+        "meetupEventLink": null
       },
       "relationships": {
         "location": {
@@ -3569,10 +3589,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "3-tues-run-club-2026-01-06"
-            },
             {
               "type": "realized-event-date",
               "id": "3-tues-run-club-2026-01-13"
@@ -3780,6 +3796,10 @@
             {
               "type": "realized-event-date",
               "id": "3-tues-run-club-2027-01-05"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "3-tues-run-club-2027-01-12"
             }
           ]
         }
@@ -3848,7 +3868,9 @@
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": "https://www.sfrunco.com/about-us/weeklyruns"
+        "eventLink": "https://www.sfrunco.com/about-us/weeklyruns",
+        "stravaEventLink": null,
+        "meetupEventLink": null
       },
       "relationships": {
         "location": {
@@ -3881,10 +3903,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "5-tam-wednesday-2026-01-07"
-            },
             {
               "type": "realized-event-date",
               "id": "5-tam-wednesday-2026-01-14"
@@ -4092,6 +4110,10 @@
             {
               "type": "realized-event-date",
               "id": "5-tam-wednesday-2027-01-06"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "5-tam-wednesday-2027-01-13"
             }
           ]
         }
@@ -4160,7 +4182,9 @@
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": null
+        "eventLink": null,
+        "stravaEventLink": "https://www.strava.com/clubs/504077/group_events/1983259",
+        "meetupEventLink": null
       },
       "relationships": {
         "location": {
@@ -4197,10 +4221,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "1-the-saturday-tilden-2026-01-10"
-            },
             {
               "type": "realized-event-date",
               "id": "1-the-saturday-tilden-2026-02-14"
@@ -4316,7 +4336,9 @@
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": null
+        "eventLink": null,
+        "stravaEventLink": "https://www.strava.com/clubs/504077/group_events/1983259",
+        "meetupEventLink": null
       },
       "relationships": {
         "location": {
@@ -4400,6 +4422,10 @@
             {
               "type": "realized-event-date",
               "id": "1-the-saturday-chabot-2026-12-19"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-the-saturday-chabot-2027-01-16"
             }
           ]
         }
@@ -4468,7 +4494,9 @@
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": null
+        "eventLink": null,
+        "stravaEventLink": "https://www.strava.com/clubs/504077/group_events/1983259",
+        "meetupEventLink": null
       },
       "relationships": {
         "location": {
@@ -4634,23 +4662,6 @@
         "stravaId": null,
         "instagramHandle": null,
         "descriptionHtml": null
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-runrise-2026-01-08",
-      "attributes": {
-        "date": "2026-01-08",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "1-runrise"
-          }
-        }
       }
     },
     {
@@ -5453,6 +5464,23 @@
       }
     },
     {
+      "type": "realized-event-date",
+      "id": "1-runrise-2027-01-14",
+      "attributes": {
+        "date": "2027-01-14",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "1-runrise"
+          }
+        }
+      }
+    },
+    {
       "type": "location",
       "id": "15",
       "attributes": {
@@ -5515,23 +5543,6 @@
         "stravaId": "2860482",
         "instagramHandle": "from_here_we_go",
         "descriptionHtml": null
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "5-ninja-thursday-2026-01-08",
-      "attributes": {
-        "date": "2026-01-08",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "5-ninja-thursday"
-          }
-        }
       }
     },
     {
@@ -6334,6 +6345,23 @@
       }
     },
     {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2027-01-14",
+      "attributes": {
+        "date": "2027-01-14",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "5-ninja-thursday"
+          }
+        }
+      }
+    },
+    {
       "type": "location",
       "id": "11",
       "attributes": {
@@ -6396,23 +6424,6 @@
         "stravaId": "309460",
         "instagramHandle": "dans_wildlife",
         "descriptionHtml": null
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "6-thursday-night-2026-01-08",
-      "attributes": {
-        "date": "2026-01-08",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "6-thursday-night"
-          }
-        }
       }
     },
     {
@@ -7215,6 +7226,23 @@
       }
     },
     {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2027-01-14",
+      "attributes": {
+        "date": "2027-01-14",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
       "type": "location",
       "id": "10",
       "attributes": {
@@ -7230,23 +7258,6 @@
         },
         "googleMapsLink": "https://maps.app.goo.gl/KzkAdvxe19owTXTc9",
         "descriptionHtml": null
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-01-10",
-      "attributes": {
-        "date": "2026-01-10",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 3
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "5-headlands-saturday"
-          }
-        }
       }
     },
     {
@@ -8066,6 +8077,23 @@
       }
     },
     {
+      "type": "realized-event-date",
+      "id": "5-headlands-saturday-2027-01-16",
+      "attributes": {
+        "date": "2027-01-16",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 4
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "5-headlands-saturday"
+          }
+        }
+      }
+    },
+    {
       "type": "location",
       "id": "5",
       "attributes": {
@@ -8356,23 +8384,6 @@
         "stravaId": "97687403",
         "instagramHandle": "traillove_kb",
         "descriptionHtml": null
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "2-beer-bucket-2026-01-04",
-      "attributes": {
-        "date": "2026-01-04",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "2-beer-bucket"
-          }
-        }
       }
     },
     {
@@ -9192,6 +9203,23 @@
       }
     },
     {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2027-01-10",
+      "attributes": {
+        "date": "2027-01-10",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
       "type": "location",
       "id": "1",
       "attributes": {
@@ -9207,23 +9235,6 @@
         },
         "googleMapsLink": "https://maps.app.goo.gl/YSR9bX1i2iNTYxW18",
         "descriptionHtml": null
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-runday-2026-01-05",
-      "attributes": {
-        "date": "2026-01-05",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "1-runday"
-          }
-        }
       }
     },
     {
@@ -10044,17 +10055,17 @@
     },
     {
       "type": "realized-event-date",
-      "id": "6-tuesday-night-2026-01-06",
+      "id": "1-runday-2027-01-11",
       "attributes": {
-        "date": "2026-01-06",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
+        "date": "2027-01-11",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
       },
       "relationships": {
         "event": {
           "data": {
             "type": "trail-run",
-            "id": "6-tuesday-night"
+            "id": "1-runday"
           }
         }
       }
@@ -10876,6 +10887,23 @@
       }
     },
     {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2027-01-12",
+      "attributes": {
+        "date": "2027-01-12",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
       "type": "location",
       "id": "7",
       "attributes": {
@@ -10938,23 +10966,6 @@
         "stravaId": "12268454",
         "instagramHandle": "nedword",
         "descriptionHtml": null
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "4-tilden-tues-2026-01-06",
-      "attributes": {
-        "date": "2026-01-06",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "4-tilden-tues"
-          }
-        }
       }
     },
     {
@@ -11774,6 +11785,23 @@
       }
     },
     {
+      "type": "realized-event-date",
+      "id": "4-tilden-tues-2027-01-12",
+      "attributes": {
+        "date": "2027-01-12",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "4-tilden-tues"
+          }
+        }
+      }
+    },
+    {
       "type": "organization",
       "id": "3",
       "attributes": {
@@ -11818,23 +11846,6 @@
         "stravaId": "2175208",
         "instagramHandle": "thomasstitt",
         "descriptionHtml": null
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "3-tues-run-club-2026-01-06",
-      "attributes": {
-        "date": "2026-01-06",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "3-tues-run-club"
-          }
-        }
       }
     },
     {
@@ -12654,6 +12665,23 @@
       }
     },
     {
+      "type": "realized-event-date",
+      "id": "3-tues-run-club-2027-01-12",
+      "attributes": {
+        "date": "2027-01-12",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "3-tues-run-club"
+          }
+        }
+      }
+    },
+    {
       "type": "location",
       "id": "8",
       "attributes": {
@@ -12669,23 +12697,6 @@
         },
         "googleMapsLink": "https://maps.app.goo.gl/pSSi6SuSsHTo965t7",
         "descriptionHtml": null
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "5-tam-wednesday-2026-01-07",
-      "attributes": {
-        "date": "2026-01-07",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "5-tam-wednesday"
-          }
-        }
       }
     },
     {
@@ -13505,6 +13516,23 @@
       }
     },
     {
+      "type": "realized-event-date",
+      "id": "5-tam-wednesday-2027-01-13",
+      "attributes": {
+        "date": "2027-01-13",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "5-tam-wednesday"
+          }
+        }
+      }
+    },
+    {
       "type": "location",
       "id": "3",
       "attributes": {
@@ -13520,23 +13548,6 @@
         },
         "googleMapsLink": "https://maps.app.goo.gl/7AoYphNCcQ3y6GYe7",
         "descriptionHtml": null
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-the-saturday-tilden-2026-01-10",
-      "attributes": {
-        "date": "2026-01-10",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 3
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "1-the-saturday-tilden"
-          }
-        }
       }
     },
     {
@@ -13921,6 +13932,23 @@
         "date": "2026-12-19",
         "weekNumberMonday": 51,
         "weekNumberSunday": 52
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "1-the-saturday-chabot"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-the-saturday-chabot-2027-01-16",
+      "attributes": {
+        "date": "2027-01-16",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 4
       },
       "relationships": {
         "event": {

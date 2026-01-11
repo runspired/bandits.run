@@ -32,7 +32,9 @@
       ],
       "description": null,
       "descriptionHtml": null,
-      "eventLink": null
+      "eventLink": null,
+      "stravaEventLink": null,
+      "meetupEventLink": null
     },
     "relationships": {
       "location": {

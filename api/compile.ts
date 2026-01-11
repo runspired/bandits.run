@@ -521,6 +521,8 @@ function transformRun(
       description: run.description || null,
       descriptionHtml: run.descriptionHtml || null,
       eventLink: run.eventLink || null,
+      stravaEventLink: run.stravaEventLink || null,
+      meetupEventLink: run.meetupEventLink || null,
     },
     relationships: {
       location: {
@@ -684,7 +686,7 @@ async function generateWeekPayloads(outputDir: string, resources: ProcessedResou
   const mondayWeekMap = new Map<string, JSONAPIRealizedEventDate[]>();
 
   // 371 days / 7 days per week = 53 weeks + buffer = 54 weeks
-  for (let i = 0; i < 371; i++) {
+  for (let i = 0; i < 378; i++) {
     const elapsedTime = i * 24 * 60 * 60 * 1000;
     const sundayDate = new Date(firstSunday.getTime() + elapsedTime);
     const mondayDate = new Date(firstMonday.getTime() + elapsedTime);

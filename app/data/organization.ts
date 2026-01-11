@@ -1,8 +1,8 @@
-import { withDefaults } from "@warp-drive/core/reactive";
 import type { AsyncHasMany } from "@warp-drive/legacy/model";
 import type { User } from "./user";
 import type { Type } from "@warp-drive/core/types/symbols";
 import type { TrailRun } from "./run";
+import { withLegacy } from "./-utils";
 
 export interface Organization {
   id: string;
@@ -22,7 +22,7 @@ export interface Organization {
   [Type]: 'organization';
 }
 
-export const OrganizationSchema = withDefaults({
+export const OrganizationSchema = withLegacy({
   type: 'organization',
   fields: [
     { name: 'name', kind: 'field' },
@@ -38,12 +38,12 @@ export const OrganizationSchema = withDefaults({
     { name: 'runs',
       kind: 'hasMany',
       type: 'trail-run',
-      options: { linksMode: true, async: false, inverse: 'owner'  }
+      options: { async: false, inverse: 'owner'  }
     },
     { name: 'contacts',
       kind: 'hasMany',
       type: 'user',
-      options: { linksMode: true, async: false, inverse: null  }
+      options: { async: false, inverse: null  }
     },
   ]
 });

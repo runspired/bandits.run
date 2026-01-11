@@ -2,6 +2,7 @@ import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { setConfig } from '@warp-drive/core/build-config';
 import { buildMacros } from '@embroider/macros/babel';
+import { scopedCSS } from 'ember-scoped-css/babel';
 
 const macros = buildMacros({
   configure: (config) => {
@@ -22,11 +23,12 @@ export default {
         allowDeclareFields: true,
       },
     ],
+    scopedCSS(),
     [
       'babel-plugin-ember-template-compilation',
       {
         compilerPath: 'ember-source/dist/ember-template-compiler.js',
-        transforms: [...macros.templateMacros],
+        transforms: [...macros.templateMacros, scopedCSS.template({})],
       },
     ],
     [

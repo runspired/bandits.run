@@ -62,7 +62,9 @@
       ],
       "description": null,
       "descriptionHtml": null,
-      "eventLink": null
+      "eventLink": null,
+      "stravaEventLink": "https://www.strava.com/clubs/504077/group_events/1983259",
+      "meetupEventLink": null
     },
     "relationships": {
       "location": {

@@ -33,7 +33,9 @@
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": null
+        "eventLink": null,
+        "stravaEventLink": "https://www.strava.com/clubs/191891/group_events/512762",
+        "meetupEventLink": "https://www.meetup.com/marin-running-club/events/312592534/"
       },
       "relationships": {
         "location": {
@@ -66,10 +68,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "6-thursday-night-2026-01-08"
-            },
             {
               "type": "realized-event-date",
               "id": "6-thursday-night-2026-01-15"
@@ -277,6 +275,10 @@
             {
               "type": "realized-event-date",
               "id": "6-thursday-night-2027-01-07"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2027-01-14"
             }
           ]
         }
@@ -330,7 +332,9 @@
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": null
+        "eventLink": null,
+        "stravaEventLink": null,
+        "meetupEventLink": null
       },
       "relationships": {
         "location": {
@@ -363,10 +367,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "6-tuesday-night-2026-01-06"
-            },
             {
               "type": "realized-event-date",
               "id": "6-tuesday-night-2026-01-13"
@@ -574,6 +574,10 @@
             {
               "type": "realized-event-date",
               "id": "6-tuesday-night-2027-01-05"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2027-01-12"
             }
           ]
         }
@@ -645,16 +649,6 @@
         "instagramHandle": "dans_wildlife",
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "6-thursday-night-2026-01-08",
-      "attributes": {
-        "date": "2026-01-08",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -1178,11 +1172,11 @@
     },
     {
       "type": "realized-event-date",
-      "id": "6-tuesday-night-2026-01-06",
+      "id": "6-thursday-night-2027-01-14",
       "attributes": {
-        "date": "2026-01-06",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
+        "date": "2027-01-14",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
       },
       "relationships": {}
     },
@@ -1703,6 +1697,16 @@
         "date": "2027-01-05",
         "weekNumberMonday": 2,
         "weekNumberSunday": 2
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2027-01-12",
+      "attributes": {
+        "date": "2027-01-12",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
       },
       "relationships": {}
     }

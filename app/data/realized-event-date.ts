@@ -1,6 +1,7 @@
 import type { Type } from "@warp-drive/core/types/symbols";
 import type { TrailRun } from "./run";
 import { withDefaults } from "@warp-drive/core/reactive";
+import { withLegacy } from "./-utils";
 
 export interface RealizedEventDate {
   id: string;
@@ -12,12 +13,12 @@ export interface RealizedEventDate {
   [Type]: 'realized-event-date';
 }
 
-export const RealizedEventDateSchema = withDefaults({
+export const RealizedEventDateSchema = withLegacy({
   type: 'realized-event-date',
   fields: [
     { name: 'date', kind: 'field' },
     { name: 'weekNumberMonday', kind: 'field' },
     { name: 'weekNumberSunday', kind: 'field' },
-    { name: 'event', kind: 'belongsTo', type: 'trail-run', options: { linksMode: true, async: false, inverse: 'occurrences' } },
+    { name: 'event', kind: 'belongsTo', type: 'trail-run', options: { async: false, inverse: 'occurrences' } },
   ]
 })

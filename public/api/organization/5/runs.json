@@ -33,7 +33,9 @@
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": "https://www.sfrunco.com/about-us/weeklyruns"
+        "eventLink": "https://www.sfrunco.com/about-us/weeklyruns",
+        "stravaEventLink": null,
+        "meetupEventLink": null
       },
       "relationships": {
         "location": {
@@ -66,10 +68,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-01-10"
-            },
             {
               "type": "realized-event-date",
               "id": "5-headlands-saturday-2026-01-17"
@@ -277,6 +275,10 @@
             {
               "type": "realized-event-date",
               "id": "5-headlands-saturday-2027-01-09"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "5-headlands-saturday-2027-01-16"
             }
           ]
         }
@@ -315,7 +317,9 @@
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": "https://www.instagram.com/trailthursday/"
+        "eventLink": "https://www.instagram.com/trailthursday/",
+        "stravaEventLink": null,
+        "meetupEventLink": null
       },
       "relationships": {
         "location": {
@@ -348,10 +352,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "5-ninja-thursday-2026-01-08"
-            },
             {
               "type": "realized-event-date",
               "id": "5-ninja-thursday-2026-01-15"
@@ -559,6 +559,10 @@
             {
               "type": "realized-event-date",
               "id": "5-ninja-thursday-2027-01-07"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "5-ninja-thursday-2027-01-14"
             }
           ]
         }
@@ -627,7 +631,9 @@
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": "https://www.sfrunco.com/about-us/weeklyruns"
+        "eventLink": "https://www.sfrunco.com/about-us/weeklyruns",
+        "stravaEventLink": null,
+        "meetupEventLink": null
       },
       "relationships": {
         "location": {
@@ -660,10 +666,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "5-tam-wednesday-2026-01-07"
-            },
             {
               "type": "realized-event-date",
               "id": "5-tam-wednesday-2026-01-14"
@@ -871,6 +873,10 @@
             {
               "type": "realized-event-date",
               "id": "5-tam-wednesday-2027-01-06"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "5-tam-wednesday-2027-01-13"
             }
           ]
         }
@@ -942,16 +948,6 @@
         "instagramHandle": "from_here_we_go",
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-01-10",
-      "attributes": {
-        "date": "2026-01-10",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 3
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -1474,6 +1470,16 @@
       "relationships": {}
     },
     {
+      "type": "realized-event-date",
+      "id": "5-headlands-saturday-2027-01-16",
+      "attributes": {
+        "date": "2027-01-16",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 4
+      },
+      "relationships": {}
+    },
+    {
       "type": "location",
       "id": "15",
       "attributes": {
@@ -1490,16 +1496,6 @@
         "googleMapsLink": "https://maps.app.goo.gl/gYdG5fCJjsbJ4SY56",
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "5-ninja-thursday-2026-01-08",
-      "attributes": {
-        "date": "2026-01-08",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -2022,6 +2018,16 @@
       "relationships": {}
     },
     {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2027-01-14",
+      "attributes": {
+        "date": "2027-01-14",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
+      },
+      "relationships": {}
+    },
+    {
       "type": "location",
       "id": "8",
       "attributes": {
@@ -2038,16 +2044,6 @@
         "googleMapsLink": "https://maps.app.goo.gl/pSSi6SuSsHTo965t7",
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "5-tam-wednesday-2026-01-07",
-      "attributes": {
-        "date": "2026-01-07",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -2566,6 +2562,16 @@
         "date": "2027-01-06",
         "weekNumberMonday": 2,
         "weekNumberSunday": 2
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-tam-wednesday-2027-01-13",
+      "attributes": {
+        "date": "2027-01-13",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
       },
       "relationships": {}
     }

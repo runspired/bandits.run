@@ -1,6 +1,7 @@
 import type { Type } from "@warp-drive/core/types/symbols";
 import type { RealizedEventDate } from "./realized-event-date";
-import { withDefaults } from "@warp-drive/core/reactive";
+
+import { withLegacy } from "./-utils";
 
 export interface Week {
   id: string;
@@ -14,7 +15,7 @@ export interface Week {
   [Type]: 'week';
 }
 
-export const WeekSchema = withDefaults({
+export const WeekSchema = withLegacy({
   type: 'week',
   fields: [
     { name: 'year', kind: 'field' },
@@ -22,6 +23,6 @@ export const WeekSchema = withDefaults({
     { name: 'startDay', kind: 'field' },
     { name: 'startDate', kind: 'field' },
     { name: 'endDate', kind: 'field' },
-    { name: 'events', kind: 'hasMany', type: 'realized-event-date', options: { linksMode: true, async: false, inverse: null } },
+    { name: 'events', kind: 'hasMany', type: 'realized-event-date', options: { async: false, inverse: null } },
   ]
 });

@@ -92,7 +92,9 @@
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": "https://www.sfrunco.com/about-us/weeklyruns"
+        "eventLink": "https://www.sfrunco.com/about-us/weeklyruns",
+        "stravaEventLink": null,
+        "meetupEventLink": null
       },
       "relationships": {
         "location": {
@@ -125,10 +127,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-01-10"
-            },
             {
               "type": "realized-event-date",
               "id": "5-headlands-saturday-2026-01-17"
@@ -336,6 +334,10 @@
             {
               "type": "realized-event-date",
               "id": "5-headlands-saturday-2027-01-09"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "5-headlands-saturday-2027-01-16"
             }
           ]
         }
@@ -404,7 +406,9 @@
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": null
+        "eventLink": null,
+        "stravaEventLink": "https://www.strava.com/clubs/504077/group_events/1983259",
+        "meetupEventLink": null
       },
       "relationships": {
         "location": {
@@ -556,23 +560,6 @@
         "stravaId": "2860482",
         "instagramHandle": "from_here_we_go",
         "descriptionHtml": null
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-01-10",
-      "attributes": {
-        "date": "2026-01-10",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 3
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "5-headlands-saturday"
-          }
-        }
       }
     },
     {
@@ -1432,6 +1419,23 @@
         "date": "2027-01-09",
         "weekNumberMonday": 2,
         "weekNumberSunday": 3
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "5-headlands-saturday"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-headlands-saturday-2027-01-16",
+      "attributes": {
+        "date": "2027-01-16",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 4
       },
       "relationships": {
         "event": {
