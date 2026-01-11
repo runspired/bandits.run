@@ -4305,10 +4305,10 @@
       "type": "organization",
       "id": "6",
       "attributes": {
-        "name": "Marin Run Club",
+        "name": "Marin Running Club",
         "website": "https://marinrunningclub.com",
         "stravaId": "191891",
-        "stravaHandle": "marin-run-club",
+        "stravaHandle": "m-r-c",
         "meetupId": "marin-running-club",
         "instagramHandle": null,
         "email": null,
