@@ -5,6 +5,8 @@ export const data = {
   "hosts": ['2'],
   "organizers": ['2'],
   "eventLink": "",
+  "stravaEventLink": null,
+  "meetupEventLink": null,
   "runs": [
     {
       "name": "",
@@ -16,6 +18,8 @@ export const data = {
       "meetTime": "09:00",
       "startTime": "09:15",
       "eventLink": null,
+      "stravaEventLink": null,
+      "meetupEventLink": null,
       "stravaRouteLink": null,
       "gpxLink": null
     }

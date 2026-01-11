@@ -24,6 +24,8 @@
           "meetTime": "08:30",
           "startTime": "08:35",
           "eventLink": null,
+          "stravaEventLink": null,
+          "meetupEventLink": null,
           "stravaRouteLink": null,
           "gpxLink": null
         },
@@ -37,6 +39,8 @@
           "meetTime": "08:30",
           "startTime": "08:35",
           "eventLink": null,
+          "stravaEventLink": null,
+          "meetupEventLink": null,
           "stravaRouteLink": null,
           "gpxLink": null
         },
@@ -50,6 +54,8 @@
           "meetTime": "08:30",
           "startTime": "08:35",
           "eventLink": null,
+          "stravaEventLink": null,
+          "meetupEventLink": null,
           "stravaRouteLink": null,
           "gpxLink": null
         }

@@ -16,6 +16,8 @@ export const data = {
   hosts: ['4'],
   organizers: ['3'],
   eventLink: null,
+  "stravaEventLink": null,
+  "meetupEventLink": null,
   runs: [
     {
       name: "Beginner's Run",
@@ -26,7 +28,9 @@ export const data = {
       category: "no-drop",
       meetTime: "17:55",
       startTime: "18:00",
-      eventLink: "https://www.meetup.com/runbrc/events/312483060/",
+      eventLink: null,
+      "stravaEventLink": null,
+      "meetupEventLink": "https://www.meetup.com/runbrc/events/312483060/",
       stravaRouteLink: null,
       gpxLink: null
     },
@@ -39,7 +43,9 @@ export const data = {
       category: "no-drop",
       meetTime: "18:25",
       startTime: "18:35",
-      eventLink: "https://www.meetup.com/runbrc/events/312482933/",
+      eventLink: null,
+      "stravaEventLink": null,
+      "meetupEventLink": "https://www.meetup.com/runbrc/events/312482933/",
       stravaRouteLink: null,
       gpxLink: null
     }

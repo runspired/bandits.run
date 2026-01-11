@@ -4,7 +4,9 @@ export const data = {
   "title": "5th Saturday | Dealer's Choice",
   "hosts": ['1'],
   "organizers": ['1', '7'],
-  "eventLink": "",
+  "eventLink": null,
+  "meetupEventLink": null,
+  "stravaEventLink": null,
   "runs": [
     {
       "name": "8ish",
@@ -16,6 +18,8 @@ export const data = {
       "meetTime": "08:15",
       "startTime": "08:30",
       "eventLink": null,
+      "stravaEventLink": null,
+      "meetupEventLink": null,
       "stravaRouteLink": null,
       "gpxLink": null
     },
@@ -29,6 +33,8 @@ export const data = {
       "meetTime": "08:15",
       "startTime": "08:30",
       "eventLink": null,
+      "stravaEventLink": null,
+      "meetupEventLink": null,
       "stravaRouteLink": null,
       "gpxLink": null
     },
@@ -42,6 +48,8 @@ export const data = {
       "meetTime": "08:15",
       "startTime": "08:30",
       "eventLink": null,
+      "stravaEventLink": null,
+      "meetupEventLink": null,
       "stravaRouteLink": null,
       "gpxLink": null
     }

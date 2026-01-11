@@ -5,6 +5,8 @@ export const data = {
   "hosts": ['5'],
   "organizers": ['8'],
   "eventLink": "https://www.instagram.com/trailthursday/",
+  "stravaEventLink": null,
+  "meetupEventLink": null,
  "runs": [
     {
       "name": "Ninja Lite",
@@ -16,6 +18,8 @@ export const data = {
       "meetTime": "05:55",
       "startTime": "06:00",
       "eventLink": null,
+      "stravaEventLink": null,
+      "meetupEventLink": null,
       "stravaRouteLink": null,
       "gpxLink": null
     },

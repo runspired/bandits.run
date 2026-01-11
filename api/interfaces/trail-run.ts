@@ -35,6 +35,20 @@ export interface TrailRun {
    * eventLink field on the RunOption interface if each run option has its own event link.
    */
   eventLink: string | null;
+  /**
+   * Link to the Strava event page for the entire Trail Run Event (if any).
+   *
+   * Use this if the entire event shares a single link, use the
+   * stravaEventLink field on the RunOption interface if each run option has its own link.
+   */
+  stravaEventLink: string | null;
+  /**
+   * Link to the Meetup event page for the entire Trail Run Event (if any).
+   *
+   * Use this if the entire event shares a single link, use the
+   * meetupEventLink field on the RunOption interface if each run option has its own link.
+   */
+  meetupEventLink: string | null;
 }
 
 export interface JSONAPITrailRun {
@@ -45,6 +59,8 @@ export interface JSONAPITrailRun {
     description: string | null;
     recurrence: Recurrence;
     eventLink: string | null;
+    stravaEventLink: string | null;
+    meetupEventLink: string | null;
     runs: RunOption[];
     descriptionHtml: string | null;
   };
@@ -174,6 +190,20 @@ export interface RunOption {
    * eventLink field on the TrailRun interface if the entire event shares a single link.
    */
   eventLink: string | null;
+  /**
+   * Link to the Strava event page for this run option (if any)
+   *
+   * Use this if each run option has its own link, use the
+   * ield on the TrailRun interface if the entire event shares a single link.
+   */
+  stravaEventLink: string | null;
+  /**
+   * Link to the Meetup event page for this run option (if any)
+   *
+   * Use this if each run option has its own link, use the
+   * ield on the TrailRun interface if the entire event shares a single link.
+   */
+  meetupEventLink: string | null;
   /**
    * Link to the route for this run option (if any)
    */

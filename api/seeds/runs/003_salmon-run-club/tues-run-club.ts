@@ -15,7 +15,9 @@ export const data = {
   },
   hosts: ['3'],
   organizers: ['4'],
-  eventLink: "https://www.strava.com/clubs/963747/group_events/3415801823546428632",
+  eventLink: null,
+  stravaEventLink: "https://www.strava.com/clubs/963747/group_events/3415801823546428632",
+  meetupEventLink: null,
   runs: [
     {
       name: "",
@@ -27,6 +29,8 @@ export const data = {
       meetTime: "18:30",
       startTime: "18:35",
       eventLink: null,
+      stravaEventLink: null,
+      meetupEventLink: null,
       stravaRouteLink: null,
       gpxLink: null
     }

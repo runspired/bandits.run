@@ -5,6 +5,8 @@ export const data = {
   "hosts": ['5'],
   "organizers": ['8'],
   "eventLink": "https://www.sfrunco.com/about-us/weeklyruns",
+  "stravaEventLink": null,
+  "meetupEventLink": null,
  "runs": [
     {
       "name": "Sexy Pace (~60min summit)",
@@ -17,6 +19,8 @@ export const data = {
       "startTime": "05:50",
       "eventLink": null,
       "stravaRouteLink": null,
+      "stravaEventLink": null,
+      "meetupEventLink": null,
       "gpxLink": null
     },
     {
@@ -30,6 +34,8 @@ export const data = {
       "startTime": "06:00",
       "eventLink": null,
       "stravaRouteLink": null,
+      "stravaEventLink": null,
+      "meetupEventLink": null,
       "gpxLink": null
     },
     {
@@ -42,6 +48,8 @@ export const data = {
       "meetTime": "06:05",
       "startTime": "06:10",
       "eventLink": null,
+      "stravaEventLink": null,
+      "meetupEventLink": null,
       "stravaRouteLink": null,
       "gpxLink": null
     }

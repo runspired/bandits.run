@@ -18,6 +18,10 @@
           },
           {
             "type": "realized-event-date",
+            "id": "6-tuesday-night-2026-10-06"
+          },
+          {
+            "type": "realized-event-date",
             "id": "4-tilden-tues-2026-10-06"
           },
           {
@@ -35,6 +39,10 @@
           {
             "type": "realized-event-date",
             "id": "5-ninja-thursday-2026-10-08"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "6-thursday-night-2026-10-08"
           },
           {
             "type": "realized-event-date",
@@ -66,6 +74,23 @@
           "data": {
             "type": "trail-run",
             "id": "1-runday"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-10-06",
+      "attributes": {
+        "date": "2026-10-06",
+        "weekNumberMonday": 41,
+        "weekNumberSunday": 41
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
           }
         }
       }
@@ -157,6 +182,23 @@
     },
     {
       "type": "realized-event-date",
+      "id": "6-thursday-night-2026-10-08",
+      "attributes": {
+        "date": "2026-10-08",
+        "weekNumberMonday": 41,
+        "weekNumberSunday": 41
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
       "id": "5-headlands-saturday-2026-10-10",
       "attributes": {
         "date": "2026-10-10",
@@ -230,7 +272,9 @@
             "category": "no-drop",
             "meetTime": "18",
             "startTime": "18:15",
-            "eventLink": "https://www.strava.com/clubs/504077/group_events/1513300",
+            "eventLink": null,
+            "stravaEventLink": "https://www.strava.com/clubs/504077/group_events/1513300",
+            "meetupEventLink": null,
             "stravaRouteLink": null,
             "gpxLink": null
           },
@@ -243,7 +287,9 @@
             "category": "no-drop",
             "meetTime": "18:15",
             "startTime": "18:30",
-            "eventLink": "https://www.strava.com/clubs/504077/group_events/1449709",
+            "eventLink": null,
+            "stravaEventLink": "https://www.strava.com/clubs/504077/group_events/1449709",
+            "meetupEventLink": null,
             "stravaRouteLink": null,
             "gpxLink": null
           },
@@ -256,7 +302,9 @@
             "category": "no-drop",
             "meetTime": "18:15",
             "startTime": "18:30",
-            "eventLink": "https://www.strava.com/clubs/504077/group_events/1449710",
+            "eventLink": null,
+            "stravaEventLink": "https://www.strava.com/clubs/504077/group_events/1449710",
+            "meetupEventLink": null,
             "stravaRouteLink": null,
             "gpxLink": null
           }
@@ -514,6 +562,303 @@
     },
     {
       "type": "trail-run",
+      "id": "6-tuesday-night",
+      "attributes": {
+        "title": "Tuesday Night Trails",
+        "recurrence": {
+          "day": 2,
+          "frequency": "weekly",
+          "interval": 1,
+          "weekNumber": null,
+          "monthNumber": null,
+          "date": null,
+          "holiday": null
+        },
+        "runs": [
+          {
+            "name": "Bunny Run (Beginners)",
+            "leaders": [],
+            "distance": "3.5 Mi",
+            "vert": "260ft",
+            "pace": "Easy",
+            "category": "no-drop",
+            "meetTime": "17:00",
+            "startTime": "17:05",
+            "eventLink": null,
+            "stravaEventLink": null,
+            "meetupEventLink": "https://www.meetup.com/marin-running-club/events/312490098/",
+            "stravaRouteLink": null,
+            "gpxLink": null
+          },
+          {
+            "name": "Intermmediate Run",
+            "leaders": [],
+            "distance": "7-8 Mi",
+            "vert": "1400-2000ft",
+            "pace": "Easy",
+            "category": "no-drop",
+            "meetTime": "18:00",
+            "startTime": "18:05",
+            "eventLink": null,
+            "stravaEventLink": null,
+            "meetupEventLink": "https://www.meetup.com/marin-running-club/events/312569433/",
+            "stravaRouteLink": null,
+            "gpxLink": null
+          }
+        ],
+        "description": null,
+        "descriptionHtml": null,
+        "eventLink": null
+      },
+      "relationships": {
+        "location": {
+          "data": {
+            "type": "location",
+            "id": "11"
+          }
+        },
+        "hosts": {
+          "data": [
+            {
+              "type": "organization",
+              "id": "6"
+            }
+          ]
+        },
+        "organizers": {
+          "data": [
+            {
+              "type": "user",
+              "id": "9"
+            }
+          ]
+        },
+        "owner": {
+          "data": {
+            "type": "organization",
+            "id": "6"
+          }
+        },
+        "occurrences": {
+          "data": [
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-01-06"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-01-13"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-01-20"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-01-27"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-02-03"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-02-10"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-02-17"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-02-24"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-03-03"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-03-10"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-03-17"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-03-24"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-03-31"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-04-07"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-04-14"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-04-21"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-04-28"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-05-05"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-05-12"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-05-19"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-05-26"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-06-02"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-06-09"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-06-16"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-06-23"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-06-30"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-07-07"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-07-14"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-07-21"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-07-28"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-08-04"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-08-11"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-08-18"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-08-25"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-09-01"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-09-08"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-09-15"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-09-22"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-09-29"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-10-06"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-10-13"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-10-20"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-10-27"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-11-03"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-11-10"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-11-17"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-11-24"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-12-01"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-12-08"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-12-15"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-12-22"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2026-12-29"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2027-01-05"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "trail-run",
       "id": "4-tilden-tues",
       "attributes": {
         "title": "Tilden Tuesday",
@@ -536,7 +881,9 @@
             "category": "no-drop",
             "meetTime": "17:55",
             "startTime": "18:00",
-            "eventLink": "https://www.meetup.com/runbrc/events/312483060/",
+            "eventLink": null,
+            "stravaEventLink": null,
+            "meetupEventLink": "https://www.meetup.com/runbrc/events/312483060/",
             "stravaRouteLink": null,
             "gpxLink": null
           },
@@ -549,7 +896,9 @@
             "category": "no-drop",
             "meetTime": "18:25",
             "startTime": "18:35",
-            "eventLink": "https://www.meetup.com/runbrc/events/312482933/",
+            "eventLink": null,
+            "stravaEventLink": null,
+            "meetupEventLink": "https://www.meetup.com/runbrc/events/312482933/",
             "stravaRouteLink": null,
             "gpxLink": null
           }
@@ -830,13 +1179,15 @@
             "meetTime": "18:30",
             "startTime": "18:35",
             "eventLink": null,
+            "stravaEventLink": null,
+            "meetupEventLink": null,
             "stravaRouteLink": null,
             "gpxLink": null
           }
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": "https://www.strava.com/clubs/963747/group_events/3415801823546428632"
+        "eventLink": null
       },
       "relationships": {
         "location": {
@@ -1111,6 +1462,8 @@
             "startTime": "05:50",
             "eventLink": null,
             "stravaRouteLink": null,
+            "stravaEventLink": null,
+            "meetupEventLink": null,
             "gpxLink": null
           },
           {
@@ -1124,6 +1477,8 @@
             "startTime": "06:00",
             "eventLink": null,
             "stravaRouteLink": null,
+            "stravaEventLink": null,
+            "meetupEventLink": null,
             "gpxLink": null
           },
           {
@@ -1136,6 +1491,8 @@
             "meetTime": "06:05",
             "startTime": "06:10",
             "eventLink": null,
+            "stravaEventLink": null,
+            "meetupEventLink": null,
             "stravaRouteLink": null,
             "gpxLink": null
           }
@@ -1416,13 +1773,15 @@
             "meetTime": "05:55",
             "startTime": "06:00",
             "eventLink": null,
+            "stravaEventLink": null,
+            "meetupEventLink": null,
             "stravaRouteLink": null,
             "gpxLink": null
           }
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": "https://www.strava.com/clubs/504077/group_events/1528207"
+        "eventLink": null
       },
       "relationships": {
         "location": {
@@ -1700,6 +2059,8 @@
             "meetTime": "05:55",
             "startTime": "06:00",
             "eventLink": null,
+            "stravaEventLink": null,
+            "meetupEventLink": null,
             "stravaRouteLink": null,
             "gpxLink": null
           }
@@ -1957,6 +2318,288 @@
     },
     {
       "type": "trail-run",
+      "id": "6-thursday-night",
+      "attributes": {
+        "title": "Thursday Night Trails",
+        "recurrence": {
+          "day": 4,
+          "frequency": "weekly",
+          "interval": 1,
+          "weekNumber": null,
+          "monthNumber": null,
+          "date": null,
+          "holiday": null
+        },
+        "runs": [
+          {
+            "name": "",
+            "leaders": [],
+            "distance": "5-6 Mi",
+            "vert": "800-1200ft",
+            "pace": "Easy",
+            "category": "no-drop",
+            "meetTime": "17:00",
+            "startTime": "17:05",
+            "eventLink": null,
+            "stravaEventLink": null,
+            "meetupEventLink": null,
+            "stravaRouteLink": null,
+            "gpxLink": null
+          }
+        ],
+        "description": null,
+        "descriptionHtml": null,
+        "eventLink": null
+      },
+      "relationships": {
+        "location": {
+          "data": {
+            "type": "location",
+            "id": "11"
+          }
+        },
+        "hosts": {
+          "data": [
+            {
+              "type": "organization",
+              "id": "6"
+            }
+          ]
+        },
+        "organizers": {
+          "data": [
+            {
+              "type": "user",
+              "id": "9"
+            }
+          ]
+        },
+        "owner": {
+          "data": {
+            "type": "organization",
+            "id": "6"
+          }
+        },
+        "occurrences": {
+          "data": [
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-01-08"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-01-15"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-01-22"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-01-29"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-02-05"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-02-12"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-02-19"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-02-26"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-03-05"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-03-12"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-03-19"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-03-26"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-04-02"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-04-09"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-04-16"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-04-23"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-04-30"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-05-07"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-05-14"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-05-21"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-05-28"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-06-04"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-06-11"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-06-18"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-06-25"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-07-02"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-07-09"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-07-16"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-07-23"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-07-30"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-08-06"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-08-13"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-08-20"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-08-27"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-09-03"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-09-10"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-09-17"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-09-24"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-10-01"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-10-08"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-10-15"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-10-22"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-10-29"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-11-05"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-11-12"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-11-19"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-11-26"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-12-03"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-12-10"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-12-17"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-12-24"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2026-12-31"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2027-01-07"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "trail-run",
       "id": "5-headlands-saturday",
       "attributes": {
         "title": "SFRC Headlands Saturday",
@@ -1981,6 +2624,8 @@
             "startTime": "08:00",
             "eventLink": null,
             "stravaRouteLink": null,
+            "stravaEventLink": null,
+            "meetupEventLink": null,
             "gpxLink": null
           }
         ],
@@ -2260,6 +2905,8 @@
             "meetTime": "08:15",
             "startTime": "08:30",
             "eventLink": null,
+            "stravaEventLink": null,
+            "meetupEventLink": null,
             "stravaRouteLink": null,
             "gpxLink": null
           },
@@ -2273,6 +2920,8 @@
             "meetTime": "08:15",
             "startTime": "08:30",
             "eventLink": null,
+            "stravaEventLink": null,
+            "meetupEventLink": null,
             "stravaRouteLink": null,
             "gpxLink": null
           },
@@ -2286,13 +2935,15 @@
             "meetTime": "08:15",
             "startTime": "08:30",
             "eventLink": null,
+            "stravaEventLink": null,
+            "meetupEventLink": null,
             "stravaRouteLink": null,
             "gpxLink": null
           }
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": "https://www.strava.com/clubs/504077/group_events/1983259"
+        "eventLink": null
       },
       "relationships": {
         "location": {
@@ -2410,6 +3061,8 @@
             "meetTime": "08:30",
             "startTime": "08:35",
             "eventLink": null,
+            "stravaEventLink": null,
+            "meetupEventLink": null,
             "stravaRouteLink": null,
             "gpxLink": null
           },
@@ -2423,6 +3076,8 @@
             "meetTime": "08:30",
             "startTime": "08:35",
             "eventLink": null,
+            "stravaEventLink": null,
+            "meetupEventLink": null,
             "stravaRouteLink": null,
             "gpxLink": null
           },
@@ -2436,6 +3091,8 @@
             "meetTime": "08:30",
             "startTime": "08:35",
             "eventLink": null,
+            "stravaEventLink": null,
+            "meetupEventLink": null,
             "stravaRouteLink": null,
             "gpxLink": null
           }
@@ -3642,6 +4299,955 @@
     },
     {
       "type": "location",
+      "id": "11",
+      "attributes": {
+        "name": "Tennessee Valley",
+        "latitude": 37.86059,
+        "longitude": -122.53594,
+        "region": "Marin Headlands",
+        "address": {
+          "street": "591 Tennessee Valley Rd",
+          "city": "Mill Valley",
+          "state": "CA",
+          "zip": "94941"
+        },
+        "googleMapsLink": "https://maps.app.goo.gl/EpLnDMXjFx68cteGA",
+        "descriptionHtml": null
+      }
+    },
+    {
+      "type": "organization",
+      "id": "6",
+      "attributes": {
+        "name": "Marin Run Club",
+        "website": "https://marinrunningclub.com",
+        "stravaId": "191891",
+        "stravaHandle": "marin-run-club",
+        "meetupId": "marin-running-club",
+        "instagramHandle": null,
+        "email": null,
+        "phoneNumber": null,
+        "descriptionHtml": null
+      },
+      "relationships": {
+        "runs": {
+          "links": {
+            "related": "/api/organization/6/runs.json"
+          },
+          "meta": {
+            "count": 2
+          }
+        },
+        "contacts": {
+          "data": [
+            {
+              "type": "user",
+              "id": "9"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "user",
+      "id": "9",
+      "attributes": {
+        "firstName": "Dan",
+        "lastName": "Pagano",
+        "email": null,
+        "phoneNumber": null,
+        "hasWhatsApp": true,
+        "stravaId": "309460",
+        "instagramHandle": "dans_wildlife",
+        "descriptionHtml": null
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-01-06",
+      "attributes": {
+        "date": "2026-01-06",
+        "weekNumberMonday": 2,
+        "weekNumberSunday": 2
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-01-13",
+      "attributes": {
+        "date": "2026-01-13",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-01-20",
+      "attributes": {
+        "date": "2026-01-20",
+        "weekNumberMonday": 4,
+        "weekNumberSunday": 4
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-01-27",
+      "attributes": {
+        "date": "2026-01-27",
+        "weekNumberMonday": 5,
+        "weekNumberSunday": 5
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-02-03",
+      "attributes": {
+        "date": "2026-02-03",
+        "weekNumberMonday": 6,
+        "weekNumberSunday": 6
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-02-10",
+      "attributes": {
+        "date": "2026-02-10",
+        "weekNumberMonday": 7,
+        "weekNumberSunday": 7
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-02-17",
+      "attributes": {
+        "date": "2026-02-17",
+        "weekNumberMonday": 8,
+        "weekNumberSunday": 8
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-02-24",
+      "attributes": {
+        "date": "2026-02-24",
+        "weekNumberMonday": 9,
+        "weekNumberSunday": 9
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-03-03",
+      "attributes": {
+        "date": "2026-03-03",
+        "weekNumberMonday": 10,
+        "weekNumberSunday": 10
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-03-10",
+      "attributes": {
+        "date": "2026-03-10",
+        "weekNumberMonday": 11,
+        "weekNumberSunday": 11
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-03-17",
+      "attributes": {
+        "date": "2026-03-17",
+        "weekNumberMonday": 12,
+        "weekNumberSunday": 12
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-03-24",
+      "attributes": {
+        "date": "2026-03-24",
+        "weekNumberMonday": 13,
+        "weekNumberSunday": 13
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-03-31",
+      "attributes": {
+        "date": "2026-03-31",
+        "weekNumberMonday": 14,
+        "weekNumberSunday": 14
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-04-07",
+      "attributes": {
+        "date": "2026-04-07",
+        "weekNumberMonday": 15,
+        "weekNumberSunday": 15
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-04-14",
+      "attributes": {
+        "date": "2026-04-14",
+        "weekNumberMonday": 16,
+        "weekNumberSunday": 16
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-04-21",
+      "attributes": {
+        "date": "2026-04-21",
+        "weekNumberMonday": 17,
+        "weekNumberSunday": 17
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-04-28",
+      "attributes": {
+        "date": "2026-04-28",
+        "weekNumberMonday": 18,
+        "weekNumberSunday": 18
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-05-05",
+      "attributes": {
+        "date": "2026-05-05",
+        "weekNumberMonday": 19,
+        "weekNumberSunday": 19
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-05-12",
+      "attributes": {
+        "date": "2026-05-12",
+        "weekNumberMonday": 20,
+        "weekNumberSunday": 20
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-05-19",
+      "attributes": {
+        "date": "2026-05-19",
+        "weekNumberMonday": 21,
+        "weekNumberSunday": 21
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-05-26",
+      "attributes": {
+        "date": "2026-05-26",
+        "weekNumberMonday": 22,
+        "weekNumberSunday": 22
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-06-02",
+      "attributes": {
+        "date": "2026-06-02",
+        "weekNumberMonday": 23,
+        "weekNumberSunday": 23
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-06-09",
+      "attributes": {
+        "date": "2026-06-09",
+        "weekNumberMonday": 24,
+        "weekNumberSunday": 24
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-06-16",
+      "attributes": {
+        "date": "2026-06-16",
+        "weekNumberMonday": 25,
+        "weekNumberSunday": 25
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-06-23",
+      "attributes": {
+        "date": "2026-06-23",
+        "weekNumberMonday": 26,
+        "weekNumberSunday": 26
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-06-30",
+      "attributes": {
+        "date": "2026-06-30",
+        "weekNumberMonday": 27,
+        "weekNumberSunday": 27
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-07-07",
+      "attributes": {
+        "date": "2026-07-07",
+        "weekNumberMonday": 28,
+        "weekNumberSunday": 28
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-07-14",
+      "attributes": {
+        "date": "2026-07-14",
+        "weekNumberMonday": 29,
+        "weekNumberSunday": 29
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-07-21",
+      "attributes": {
+        "date": "2026-07-21",
+        "weekNumberMonday": 30,
+        "weekNumberSunday": 30
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-07-28",
+      "attributes": {
+        "date": "2026-07-28",
+        "weekNumberMonday": 31,
+        "weekNumberSunday": 31
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-08-04",
+      "attributes": {
+        "date": "2026-08-04",
+        "weekNumberMonday": 32,
+        "weekNumberSunday": 32
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-08-11",
+      "attributes": {
+        "date": "2026-08-11",
+        "weekNumberMonday": 33,
+        "weekNumberSunday": 33
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-08-18",
+      "attributes": {
+        "date": "2026-08-18",
+        "weekNumberMonday": 34,
+        "weekNumberSunday": 34
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-08-25",
+      "attributes": {
+        "date": "2026-08-25",
+        "weekNumberMonday": 35,
+        "weekNumberSunday": 35
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-09-01",
+      "attributes": {
+        "date": "2026-09-01",
+        "weekNumberMonday": 36,
+        "weekNumberSunday": 36
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-09-08",
+      "attributes": {
+        "date": "2026-09-08",
+        "weekNumberMonday": 37,
+        "weekNumberSunday": 37
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-09-15",
+      "attributes": {
+        "date": "2026-09-15",
+        "weekNumberMonday": 38,
+        "weekNumberSunday": 38
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-09-22",
+      "attributes": {
+        "date": "2026-09-22",
+        "weekNumberMonday": 39,
+        "weekNumberSunday": 39
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-09-29",
+      "attributes": {
+        "date": "2026-09-29",
+        "weekNumberMonday": 40,
+        "weekNumberSunday": 40
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-10-13",
+      "attributes": {
+        "date": "2026-10-13",
+        "weekNumberMonday": 42,
+        "weekNumberSunday": 42
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-10-20",
+      "attributes": {
+        "date": "2026-10-20",
+        "weekNumberMonday": 43,
+        "weekNumberSunday": 43
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-10-27",
+      "attributes": {
+        "date": "2026-10-27",
+        "weekNumberMonday": 44,
+        "weekNumberSunday": 44
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-11-03",
+      "attributes": {
+        "date": "2026-11-03",
+        "weekNumberMonday": 45,
+        "weekNumberSunday": 45
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-11-10",
+      "attributes": {
+        "date": "2026-11-10",
+        "weekNumberMonday": 46,
+        "weekNumberSunday": 46
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-11-17",
+      "attributes": {
+        "date": "2026-11-17",
+        "weekNumberMonday": 47,
+        "weekNumberSunday": 47
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-11-24",
+      "attributes": {
+        "date": "2026-11-24",
+        "weekNumberMonday": 48,
+        "weekNumberSunday": 48
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-12-01",
+      "attributes": {
+        "date": "2026-12-01",
+        "weekNumberMonday": 49,
+        "weekNumberSunday": 49
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-12-08",
+      "attributes": {
+        "date": "2026-12-08",
+        "weekNumberMonday": 50,
+        "weekNumberSunday": 50
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-12-15",
+      "attributes": {
+        "date": "2026-12-15",
+        "weekNumberMonday": 51,
+        "weekNumberSunday": 51
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-12-22",
+      "attributes": {
+        "date": "2026-12-22",
+        "weekNumberMonday": 52,
+        "weekNumberSunday": 52
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2026-12-29",
+      "attributes": {
+        "date": "2026-12-29",
+        "weekNumberMonday": 53,
+        "weekNumberSunday": 53
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2027-01-05",
+      "attributes": {
+        "date": "2027-01-05",
+        "weekNumberMonday": 2,
+        "weekNumberSunday": 2
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "location",
       "id": "7",
       "attributes": {
         "name": "Lone Oak Trailhead",
@@ -4596,7 +6202,7 @@
         "name": "Salmon Run Club",
         "website": null,
         "stravaId": "963747",
-        "stravaHandle": null,
+        "stravaHandle": "salmon-run-club",
         "meetupId": null,
         "instagramHandle": "salmonrunclub",
         "email": null,
@@ -8297,6 +9903,890 @@
           "data": {
             "type": "trail-run",
             "id": "5-ninja-thursday"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-01-08",
+      "attributes": {
+        "date": "2026-01-08",
+        "weekNumberMonday": 2,
+        "weekNumberSunday": 2
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-01-15",
+      "attributes": {
+        "date": "2026-01-15",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-01-22",
+      "attributes": {
+        "date": "2026-01-22",
+        "weekNumberMonday": 4,
+        "weekNumberSunday": 4
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-01-29",
+      "attributes": {
+        "date": "2026-01-29",
+        "weekNumberMonday": 5,
+        "weekNumberSunday": 5
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-02-05",
+      "attributes": {
+        "date": "2026-02-05",
+        "weekNumberMonday": 6,
+        "weekNumberSunday": 6
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-02-12",
+      "attributes": {
+        "date": "2026-02-12",
+        "weekNumberMonday": 7,
+        "weekNumberSunday": 7
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-02-19",
+      "attributes": {
+        "date": "2026-02-19",
+        "weekNumberMonday": 8,
+        "weekNumberSunday": 8
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-02-26",
+      "attributes": {
+        "date": "2026-02-26",
+        "weekNumberMonday": 9,
+        "weekNumberSunday": 9
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-03-05",
+      "attributes": {
+        "date": "2026-03-05",
+        "weekNumberMonday": 10,
+        "weekNumberSunday": 10
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-03-12",
+      "attributes": {
+        "date": "2026-03-12",
+        "weekNumberMonday": 11,
+        "weekNumberSunday": 11
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-03-19",
+      "attributes": {
+        "date": "2026-03-19",
+        "weekNumberMonday": 12,
+        "weekNumberSunday": 12
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-03-26",
+      "attributes": {
+        "date": "2026-03-26",
+        "weekNumberMonday": 13,
+        "weekNumberSunday": 13
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-04-02",
+      "attributes": {
+        "date": "2026-04-02",
+        "weekNumberMonday": 14,
+        "weekNumberSunday": 14
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-04-09",
+      "attributes": {
+        "date": "2026-04-09",
+        "weekNumberMonday": 15,
+        "weekNumberSunday": 15
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-04-16",
+      "attributes": {
+        "date": "2026-04-16",
+        "weekNumberMonday": 16,
+        "weekNumberSunday": 16
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-04-23",
+      "attributes": {
+        "date": "2026-04-23",
+        "weekNumberMonday": 17,
+        "weekNumberSunday": 17
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-04-30",
+      "attributes": {
+        "date": "2026-04-30",
+        "weekNumberMonday": 18,
+        "weekNumberSunday": 18
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-05-07",
+      "attributes": {
+        "date": "2026-05-07",
+        "weekNumberMonday": 19,
+        "weekNumberSunday": 19
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-05-14",
+      "attributes": {
+        "date": "2026-05-14",
+        "weekNumberMonday": 20,
+        "weekNumberSunday": 20
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-05-21",
+      "attributes": {
+        "date": "2026-05-21",
+        "weekNumberMonday": 21,
+        "weekNumberSunday": 21
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-05-28",
+      "attributes": {
+        "date": "2026-05-28",
+        "weekNumberMonday": 22,
+        "weekNumberSunday": 22
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-06-04",
+      "attributes": {
+        "date": "2026-06-04",
+        "weekNumberMonday": 23,
+        "weekNumberSunday": 23
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-06-11",
+      "attributes": {
+        "date": "2026-06-11",
+        "weekNumberMonday": 24,
+        "weekNumberSunday": 24
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-06-18",
+      "attributes": {
+        "date": "2026-06-18",
+        "weekNumberMonday": 25,
+        "weekNumberSunday": 25
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-06-25",
+      "attributes": {
+        "date": "2026-06-25",
+        "weekNumberMonday": 26,
+        "weekNumberSunday": 26
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-07-02",
+      "attributes": {
+        "date": "2026-07-02",
+        "weekNumberMonday": 27,
+        "weekNumberSunday": 27
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-07-09",
+      "attributes": {
+        "date": "2026-07-09",
+        "weekNumberMonday": 28,
+        "weekNumberSunday": 28
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-07-16",
+      "attributes": {
+        "date": "2026-07-16",
+        "weekNumberMonday": 29,
+        "weekNumberSunday": 29
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-07-23",
+      "attributes": {
+        "date": "2026-07-23",
+        "weekNumberMonday": 30,
+        "weekNumberSunday": 30
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-07-30",
+      "attributes": {
+        "date": "2026-07-30",
+        "weekNumberMonday": 31,
+        "weekNumberSunday": 31
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-08-06",
+      "attributes": {
+        "date": "2026-08-06",
+        "weekNumberMonday": 32,
+        "weekNumberSunday": 32
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-08-13",
+      "attributes": {
+        "date": "2026-08-13",
+        "weekNumberMonday": 33,
+        "weekNumberSunday": 33
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-08-20",
+      "attributes": {
+        "date": "2026-08-20",
+        "weekNumberMonday": 34,
+        "weekNumberSunday": 34
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-08-27",
+      "attributes": {
+        "date": "2026-08-27",
+        "weekNumberMonday": 35,
+        "weekNumberSunday": 35
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-09-03",
+      "attributes": {
+        "date": "2026-09-03",
+        "weekNumberMonday": 36,
+        "weekNumberSunday": 36
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-09-10",
+      "attributes": {
+        "date": "2026-09-10",
+        "weekNumberMonday": 37,
+        "weekNumberSunday": 37
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-09-17",
+      "attributes": {
+        "date": "2026-09-17",
+        "weekNumberMonday": 38,
+        "weekNumberSunday": 38
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-09-24",
+      "attributes": {
+        "date": "2026-09-24",
+        "weekNumberMonday": 39,
+        "weekNumberSunday": 39
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-10-01",
+      "attributes": {
+        "date": "2026-10-01",
+        "weekNumberMonday": 40,
+        "weekNumberSunday": 40
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-10-15",
+      "attributes": {
+        "date": "2026-10-15",
+        "weekNumberMonday": 42,
+        "weekNumberSunday": 42
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-10-22",
+      "attributes": {
+        "date": "2026-10-22",
+        "weekNumberMonday": 43,
+        "weekNumberSunday": 43
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-10-29",
+      "attributes": {
+        "date": "2026-10-29",
+        "weekNumberMonday": 44,
+        "weekNumberSunday": 44
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-11-05",
+      "attributes": {
+        "date": "2026-11-05",
+        "weekNumberMonday": 45,
+        "weekNumberSunday": 45
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-11-12",
+      "attributes": {
+        "date": "2026-11-12",
+        "weekNumberMonday": 46,
+        "weekNumberSunday": 46
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-11-19",
+      "attributes": {
+        "date": "2026-11-19",
+        "weekNumberMonday": 47,
+        "weekNumberSunday": 47
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-11-26",
+      "attributes": {
+        "date": "2026-11-26",
+        "weekNumberMonday": 48,
+        "weekNumberSunday": 48
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-12-03",
+      "attributes": {
+        "date": "2026-12-03",
+        "weekNumberMonday": 49,
+        "weekNumberSunday": 49
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-12-10",
+      "attributes": {
+        "date": "2026-12-10",
+        "weekNumberMonday": 50,
+        "weekNumberSunday": 50
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-12-17",
+      "attributes": {
+        "date": "2026-12-17",
+        "weekNumberMonday": 51,
+        "weekNumberSunday": 51
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-12-24",
+      "attributes": {
+        "date": "2026-12-24",
+        "weekNumberMonday": 52,
+        "weekNumberSunday": 52
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2026-12-31",
+      "attributes": {
+        "date": "2026-12-31",
+        "weekNumberMonday": 53,
+        "weekNumberSunday": 53
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2027-01-07",
+      "attributes": {
+        "date": "2027-01-07",
+        "weekNumberMonday": 2,
+        "weekNumberSunday": 2
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
           }
         }
       }

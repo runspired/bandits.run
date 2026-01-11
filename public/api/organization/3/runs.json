@@ -25,13 +25,15 @@
             "meetTime": "18:30",
             "startTime": "18:35",
             "eventLink": null,
+            "stravaEventLink": null,
+            "meetupEventLink": null,
             "stravaRouteLink": null,
             "gpxLink": null
           }
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": "https://www.strava.com/clubs/963747/group_events/3415801823546428632"
+        "eventLink": null
       },
       "relationships": {
         "location": {
@@ -307,7 +309,7 @@
         "name": "Salmon Run Club",
         "website": null,
         "stravaId": "963747",
-        "stravaHandle": null,
+        "stravaHandle": "salmon-run-club",
         "meetupId": null,
         "instagramHandle": "salmonrunclub",
         "email": null,

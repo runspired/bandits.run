@@ -1,0 +1,51 @@
+{
+  "data": {
+    "type": "organization",
+    "id": "6",
+    "attributes": {
+      "name": "Marin Run Club",
+      "website": "https://marinrunningclub.com",
+      "stravaId": "191891",
+      "stravaHandle": "marin-run-club",
+      "meetupId": "marin-running-club",
+      "instagramHandle": null,
+      "email": null,
+      "phoneNumber": null,
+      "descriptionHtml": null
+    },
+    "relationships": {
+      "runs": {
+        "links": {
+          "related": "/api/organization/6/runs.json"
+        },
+        "meta": {
+          "count": 2
+        }
+      },
+      "contacts": {
+        "data": [
+          {
+            "type": "user",
+            "id": "9"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "type": "user",
+      "id": "9",
+      "attributes": {
+        "firstName": "Dan",
+        "lastName": "Pagano",
+        "email": null,
+        "phoneNumber": null,
+        "hasWhatsApp": true,
+        "stravaId": "309460",
+        "instagramHandle": "dans_wildlife",
+        "descriptionHtml": null
+      }
+    }
+  ]
+}

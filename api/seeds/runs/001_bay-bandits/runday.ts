@@ -16,6 +16,8 @@ export const data = {
   hosts: ['1'],
   organizers: ['1'],
   eventLink: null,
+  "stravaEventLink": null,
+  "meetupEventLink": null,
   runs: [
     {
       name: "Longer",
@@ -26,7 +28,9 @@ export const data = {
       category: "no-drop",
       meetTime: "18",
       startTime: "18:15",
-      eventLink: "https://www.strava.com/clubs/504077/group_events/1513300",
+      eventLink: null,
+      "stravaEventLink": "https://www.strava.com/clubs/504077/group_events/1513300",
+      "meetupEventLink": null,
       stravaRouteLink: null,
       gpxLink: null
     },
@@ -39,7 +43,9 @@ export const data = {
       category: "no-drop",
       meetTime: "18:15",
       startTime: "18:30",
-      eventLink: "https://www.strava.com/clubs/504077/group_events/1449709",
+      eventLink: null,
+      "stravaEventLink": "https://www.strava.com/clubs/504077/group_events/1449709",
+      "meetupEventLink": null,
       stravaRouteLink: null,
       gpxLink: null
     },
@@ -52,7 +58,9 @@ export const data = {
       category: "no-drop",
       meetTime: "18:15",
       startTime: "18:30",
-      eventLink: "https://www.strava.com/clubs/504077/group_events/1449710",
+      eventLink: null,
+      "stravaEventLink": "https://www.strava.com/clubs/504077/group_events/1449710",
+      "meetupEventLink": null,
       stravaRouteLink: null,
       gpxLink: null
     }

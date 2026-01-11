@@ -5,7 +5,7 @@ export const data = {
   contacts: ["4"],
   website: null,
   stravaId: "963747",
-  stravaHandle: null,
+  stravaHandle: "salmon-run-club",
   meetupId: null,
   instagramHandle: "salmonrunclub",
   email: null,

@@ -25,6 +25,8 @@
           "startTime": "08:00",
           "eventLink": null,
           "stravaRouteLink": null,
+          "stravaEventLink": null,
+          "meetupEventLink": null,
           "gpxLink": null
         }
       ],

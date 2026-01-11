@@ -85,6 +85,8 @@
             "startTime": "08:00",
             "eventLink": null,
             "stravaRouteLink": null,
+            "stravaEventLink": null,
+            "meetupEventLink": null,
             "gpxLink": null
           }
         ],
@@ -364,6 +366,8 @@
             "meetTime": "08:15",
             "startTime": "08:30",
             "eventLink": null,
+            "stravaEventLink": null,
+            "meetupEventLink": null,
             "stravaRouteLink": null,
             "gpxLink": null
           },
@@ -377,6 +381,8 @@
             "meetTime": "08:15",
             "startTime": "08:30",
             "eventLink": null,
+            "stravaEventLink": null,
+            "meetupEventLink": null,
             "stravaRouteLink": null,
             "gpxLink": null
           },
@@ -390,13 +396,15 @@
             "meetTime": "08:15",
             "startTime": "08:30",
             "eventLink": null,
+            "stravaEventLink": null,
+            "meetupEventLink": null,
             "stravaRouteLink": null,
             "gpxLink": null
           }
         ],
         "description": null,
         "descriptionHtml": null,
-        "eventLink": "https://www.strava.com/clubs/504077/group_events/1983259"
+        "eventLink": null
       },
       "relationships": {
         "location": {

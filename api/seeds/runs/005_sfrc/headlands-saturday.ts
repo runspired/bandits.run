@@ -5,6 +5,8 @@ export const data = {
   "hosts": ['5'],
   "organizers": ['8'],
   "eventLink": "https://www.sfrunco.com/about-us/weeklyruns",
+  "stravaEventLink": null,
+  "meetupEventLink": null,
   "runs": [
     {
       "name": "",
@@ -17,6 +19,8 @@ export const data = {
       "startTime": "08:00",
       "eventLink": null,
       "stravaRouteLink": null,
+      "stravaEventLink": null,
+      "meetupEventLink": null,
       "gpxLink": null
     }
   ],
