@@ -5,7 +5,7 @@ import { pageTitle } from 'ember-page-title';
 import type { Organization } from '#app/data/organization.ts';
 import FaIcon from '#app/components/fa-icon.gts';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
-import { faInstagram, faStrava } from '@fortawesome/free-brands-svg-icons';
+import { faInstagram, faMeetup, faStrava } from '@fortawesome/free-brands-svg-icons';
 import VtLink from '#app/components/vt-link.gts';
 
 const query = withReactiveResponse<Organization[]>({
@@ -77,6 +77,11 @@ function getHostname(url: string): string {
                       </a>
                     </li>
                   {{/if}}
+                  {{#if org.meetupId}}
+                    <li class="org-detail">
+                      <a href="https://www.meetup.com/{{org.meetupId}}" target="_blank" rel="noopener noreferrer"><FaIcon @icon={{faMeetup}} /> @{{org.meetupId}}</a>
+                    </li>
+                  {{/if}}
                   {{#if org.email}}
                     <li class="org-detail">
                       <span class="detail-label">Email:</span>
@@ -87,12 +92,6 @@ function getHostname(url: string): string {
                     <li class="org-detail">
                       <span class="detail-label">Phone:</span>
                       <a href="tel:{{org.phoneNumber}}">{{org.phoneNumber}}</a>
-                    </li>
-                  {{/if}}
-                  {{#if org.meetupId}}
-                    <li class="org-detail">
-                      <span class="detail-label">Meetup:</span>
-                      <a href="https://www.meetup.com/{{org.meetupId}}" target="_blank" rel="noopener noreferrer">{{org.meetupId}}</a>
                     </li>
                   {{/if}}
                 </ul>
