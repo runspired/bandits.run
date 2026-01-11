@@ -11,6 +11,7 @@ import { faGlobe, faCalendarDays, faEnvelope, faPhone } from '@fortawesome/free-
 import { faInstagram, faStrava, faMeetup } from '@fortawesome/free-brands-svg-icons';
 import { Tabs } from '#app/components/tabs.gts';
 import { LinkTo } from '@ember/routing';
+import { array } from '@ember/helper';
 import type { Future } from '@warp-drive/core/request';
 import type { ReactiveDataDocument } from '@warp-drive/core/reactive';
 import type { Organization } from '#app/data/organization.ts';
@@ -336,7 +337,11 @@ export default class OrganizationSingleRoute extends Component<{
                               {{#each (this.sortRunsByNextOccurrence runs) as |run|}}
                                 {{#let (this.getNextOccurrence run) as |nextDate|}}
                                   <div class="run-card">
-                                    <h3 class="run-title">{{run.title}}</h3>
+                                    <h3 class="run-title">
+                                      <LinkTo @route="organizations.single.run" @models={{array @model.organizationId run.id}}>
+                                        {{run.title}}
+                                      </LinkTo>
+                                    </h3>
 
                                     {{#if nextDate}}
                                       <div class="next-occurrence">
