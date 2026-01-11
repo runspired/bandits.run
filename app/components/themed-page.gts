@@ -13,6 +13,7 @@ import BackButton from './back-button.gts';
 
 const ThemedPage: TOC<{
   Blocks: {
+    header: [];
     default: [];
   };
 }> = <template>
@@ -20,15 +21,19 @@ const ThemedPage: TOC<{
     <div class="landscape-container">
 
       <div class="sky">
-        <div class="logo-header">
+        <div class="logo-header {{if (has-block "header") "page-title"}}">
           <div class="logo-header-text">
-            <h1 class="title">
-              <LinkTo @route="index" class={{scopedClass "link"}}>Bay Bandits</LinkTo>
-            </h1>
-            <h2 class="subtitle">Trail Running Community</h2>
+            {{#if (has-block "header")}}
+              <h1 class="title">
+                <LinkTo @route="index" class={{scopedClass "link"}}>{{yield to="header"}}</LinkTo>
+              </h1>
+            {{else}}
+              <h1 class="title">
+                <LinkTo @route="index" class={{scopedClass "link"}}>Bay Bandits</LinkTo>
+              </h1>
+            {{/if}}
           </div>
           <div class="header-controls">
-            <BackButton />
             <div class="mode-toggle">
               {{!-- template-lint-disable require-presentational-children --}}
               <div

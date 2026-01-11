@@ -8,13 +8,13 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 5rem;
-  height: 5rem;
+  width: 2.25rem;
+  height: 2.25rem;
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 1rem;
-  margin-right: 1rem;
+  padding: 0rem;
+  margin-right: 0.75rem;
   position: relative;
   z-index: 1001;
 }
@@ -34,7 +34,7 @@
 
 /* Animated X transformation */
 .hamburger-button.open .hamburger-line:global(:nth-child(1)) {
-  transform: translateY(1rem) rotate(45deg);
+  transform: translateY(0.75rem) rotate(45deg);
 }
 
 .hamburger-button.open .hamburger-line:global(:nth-child(2)) {
@@ -43,7 +43,7 @@
 }
 
 .hamburger-button.open .hamburger-line:global(:nth-child(3)) {
-  transform: translateY(-1rem) rotate(-45deg);
+  transform: translateY(-0.75rem) rotate(-45deg);
 }
 
 /* Menu Overlay - Full screen on mobile, dropdown on desktop */
@@ -174,5 +174,18 @@
   .menu-links :global(a) {
     font-size: 1.5rem;
     padding: 1.5rem;
+  }
+
+  .hamburger-button {
+    width: 1.575rem;
+    height: 1.575rem;
+  }
+
+  .hamburger-button.open .hamburger-line:global(:nth-child(1)) {
+    transform: translateY(0.525rem) rotate(45deg);
+  }
+
+  .hamburger-button.open .hamburger-line:global(:nth-child(3)) {
+    transform: translateY(-0.525rem) rotate(-45deg);
   }
 }
