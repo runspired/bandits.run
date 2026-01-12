@@ -29,7 +29,7 @@ const RunOccurrence: TemplateOnlyComponent<RunOccurrenceSignature> = <template>
           <div class="badge-wrapper">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
+              role="img"
               viewBox="0 0 500 500"
               class="nps-svg"
             >
