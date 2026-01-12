@@ -2,7 +2,7 @@ import { AddressObjectSchema, LocationSchema } from '#app/data/location.ts';
 import { MonthSchema } from '#app/data/month.ts';
 import { OrganizationSchema } from '#app/data/organization.ts';
 import { RealizedEventDateSchema } from '#app/data/realized-event-date.ts';
-import { RecurrenceObjectSchema, RunOptionObjectSchema, TrailRunSchema } from '#app/data/run.ts';
+import { getNextOccurrence, RecurrenceObjectSchema, RunOptionObjectSchema, TrailRunSchema } from '#app/data/run.ts';
 import { ScheduleDaySchema } from '#app/data/schedule.ts';
 import { UserSchema } from '#app/data/user.ts';
 import { WeekSchema } from '#app/data/week.ts';
@@ -29,6 +29,9 @@ const Store = useLegacyStore({
     MonthSchema,
     WeekSchema
   ],
+  derivations: [
+    getNextOccurrence
+  ]
 });
 
 type Store = InstanceType<typeof Store>;

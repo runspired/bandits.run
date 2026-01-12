@@ -1,6 +1,6 @@
 import Component from '@glimmer/component';
 import { service } from '@ember/service';
-import { cached, tracked } from '@glimmer/tracking';
+import { cached } from '@glimmer/tracking';
 import type RouterService from '@ember/routing/router-service';
 import { Request } from '@warp-drive/ember';
 import ThemedPage from '#app/components/themed-page.gts';
@@ -16,51 +16,11 @@ import { faStrava, faMeetup } from '@fortawesome/free-brands-svg-icons';
 import { LinkTo } from '@ember/routing';
 import type { Future } from '@warp-drive/core/request';
 import type { ReactiveDataDocument } from '@warp-drive/core/reactive';
-import { htmlSafe } from '@ember/template';
 import LeafletMap from '#components/leaflet-map.gts';
 import LeafletMarker from '#components/leaflet-marker.gts';
 import LeafletBoundary from '#app/components/leaflet-boundary.gts';
 import { colorSchemeManager } from '#app/templates/application.gts';
-import { assert } from '@ember/debug';
-
-function or(...args: unknown[]): boolean {
-  return args.some(Boolean);
-}
-
-function eq(a: unknown, b: unknown): boolean {
-  return a === b;
-}
-
-function neq(a: unknown, b: unknown): boolean {
-  return a !== b;
-}
-
-function and(...args: unknown[]): boolean {
-  return args.every(Boolean);
-}
-
-/**
- * Extracts the hostname (domain and TLD) from a URL, removing www subdomain
- */
-function getHostname(url: string): string {
-  try {
-    const urlObj = new URL(url);
-    let hostname = urlObj.hostname;
-    // Remove www. subdomain if present
-    if (hostname.startsWith('www.')) {
-      hostname = hostname.substring(4);
-    }
-    return hostname;
-  } catch {
-    // If URL parsing fails, return the original string
-    return url;
-  }
-}
-
-function excludeNull<T>(value: T | null): T {
-  assert('Value is not null', value !== null);
-  return value;
-}
+import { and, neq, or, eq, excludeNull } from '#app/utils/helpers.ts';
 
 export default class OrganizationRunRoute extends Component<{
   Args: {

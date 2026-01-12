@@ -8,9 +8,6 @@ import { faHome, faUsers, faPalette, faSun, faMoon } from '@fortawesome/free-sol
 import { on } from '@ember/modifier';
 import { scopedClass } from 'ember-scoped-css';
 
-// Import BackButton as a value to use in template
-import BackButton from './back-button.gts';
-
 const ThemedPage: TOC<{
   Blocks: {
     header: [];

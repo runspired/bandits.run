@@ -3,38 +3,13 @@ import { Request } from '@warp-drive/ember';
 import { withReactiveResponse } from '@warp-drive/core/request';
 import type { ScheduleDay } from '#app/data/schedule.ts';
 import ThemedPage from '#app/components/themed-page.gts';
+import { getFirstDayOfWeek, formatDay, formatRunTime } from '#app/utils/helpers.ts';
 
 const query = withReactiveResponse<ScheduleDay[]>({
   url: '/api/schedule.json',
   method: 'GET',
 } as const);
 
-/**
- * Formats a meet time (HH:MM) into a locale-specific time string
- */
-function formatRunTime(meetTime: string) {
-  const date = new Date(`1970-01-01T${meetTime}:00`);
-  return date.toLocaleTimeString(undefined, {
-    hour: 'numeric',
-    minute: meetTime.includes(':') ? '2-digit' : undefined,
-  });
-}
-
-/**
- * Formats a day number (0-6) into a weekday name
- * in appropriate locale.
- */
-function formatDay(day: 0 | 1 | 2 | 3 | 4 | 5 | 6) {
-  const date = new Date();
-  // Set to the desired day of the week
-  date.setDate(date.getDate() + ((day + 7 - date.getDay()) % 7));
-  return date.toLocaleDateString(undefined, { weekday: 'long' });
-}
-
-function getFirstDayOfWeek(): number {
-  const pref = globalThis.localStorage.getItem('preferred-first-day-of-week');
-  return pref ? parseInt(pref, 10) : 1;
-}
 
 function sortDaysByFirstDayOfWeek(days: ScheduleDay[]): ScheduleDay[] {
   const firstDayOfWeek = getFirstDayOfWeek();

@@ -1263,7 +1263,6 @@ function downloadAssetsAsZip() {
   // Helper to generate adaptive SVG with prefers-color-scheme
   const generateAdaptiveSVG = async (
     isBanner: boolean,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _chevronOnly: boolean = false,
     invertColors: boolean = false
   ): Promise<SVGElement> => {

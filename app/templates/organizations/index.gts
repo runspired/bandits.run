@@ -7,28 +7,11 @@ import FaIcon from '#app/components/fa-icon.gts';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram, faMeetup, faStrava } from '@fortawesome/free-brands-svg-icons';
 import VtLink from '#app/components/vt-link.gts';
+import { getHostname } from '#app/utils/helpers.ts';
 
 const query = withReactiveResponse<Organization[]>({
   url: '/api/organization.json',
 });
-
-/**
- * Extracts the hostname (domain and TLD) from a URL, removing www subdomain
- */
-function getHostname(url: string): string {
-  try {
-    const urlObj = new URL(url);
-    let hostname = urlObj.hostname;
-    // Remove www. subdomain if present
-    if (hostname.startsWith('www.')) {
-      hostname = hostname.substring(4);
-    }
-    return hostname;
-  } catch {
-    // If URL parsing fails, return the original string
-    return url;
-  }
-}
 
 <template>
   {{pageTitle "Bandits | Community Organizations"}}

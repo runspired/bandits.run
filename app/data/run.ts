@@ -1,4 +1,4 @@
-import type { Type } from "@warp-drive/core/types/symbols";
+import { Type } from "@warp-drive/core/types/symbols";
 import { objectSchema } from "@warp-drive/core/types/schema/fields";
 import type { Location } from "./location";
 import type { Organization } from "./organization";
@@ -22,6 +22,7 @@ export interface TrailRun {
   organizers: User[];
   owner: Organization;
   occurrences: RealizedEventDate[];
+  nextOccurrence: string | null;
   [Type]: 'trail-run';
 }
 
@@ -42,6 +43,7 @@ export const TrailRunSchema = withLegacy({
     { name: 'organizers', kind: 'hasMany', type: 'user', options: { async: false, inverse: null } },
     { name: 'owner', kind: 'belongsTo', type: 'organization', options: { async: false, inverse: 'runs' } },
     { name: 'occurrences', kind: 'hasMany', type: 'realized-event-date', options: { async: false, inverse: 'event' } },
+    { name: 'nextOccurrence', kind: 'derived', type: 'next-occurrence-finder' },
   ]
 });
 
@@ -203,3 +205,32 @@ export const RunOptionObjectSchema = objectSchema({
     { name: 'gpxLink', kind: 'field' },
   ]
 });
+
+
+/**
+ * Get the next occurrence date for a run
+ */
+function getNextOccurrence(record: unknown): string | null {
+  const run = record as TrailRun;
+  if (!run.occurrences || run.occurrences.length === 0) {
+    return null;
+  }
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const futureOccurrences = run.occurrences
+    .map((occ) => {
+      // Parse date as local timezone
+      const [year, month, day] = occ.date.split('-').map(Number);
+      return new Date(year ?? 2000, (month ?? 1) - 1, day ?? 1);
+    })
+    .filter((date) => date >= today)
+    .sort((a, b) => a.getTime() - b.getTime());
+
+  const nextDate = futureOccurrences.length > 0 ? futureOccurrences[0]?.toISOString().split('T')[0] : null;
+  return nextDate ?? null;
+}
+getNextOccurrence[Type] = 'next-occurrence-finder';
+
+export { getNextOccurrence };

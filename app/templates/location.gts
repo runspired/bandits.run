@@ -16,6 +16,7 @@ import { colorSchemeManager } from '#app/templates/application.gts';
 import './location.css';
 import LeafletBoundary from '#app/components/leaflet-boundary.gts';
 import { assert } from '@ember/debug';
+import { and } from '#app/utils/helpers.ts';
 
 function getLocation(locationId: string) {
   return withReactiveResponse<Location>({
@@ -24,9 +25,6 @@ function getLocation(locationId: string) {
   } as const);
 }
 
-function and(...args: unknown[]): boolean {
-  return args.every(Boolean);
-}
 const TOKEN = '';
 
 export default class LocationDisplay extends Component<{
