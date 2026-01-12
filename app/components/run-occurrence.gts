@@ -33,7 +33,7 @@ const RunOccurrence: TemplateOnlyComponent<RunOccurrenceSignature> = <template>
               viewBox="0 0 500 500"
               class="nps-svg"
             >
-              <use href="/nps.svg" xlink:href="/nps.svg"></use>
+              <use href="/nps.svg#nps-badge" xlink:href="/nps.svg#nps-badge"></use>
             </svg>
             <div class="date-overlay">
               <div class="date-month">

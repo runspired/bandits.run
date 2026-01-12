@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
-  <g transform="matrix(1, 0, 0, 1, -3.740479, 9.2705)">
+  <defs>
+    <symbol id="nps-badge" viewBox="0 0 500 500">
+      <g transform="matrix(1, 0, 0, 1, -3.740479, 9.2705)">
     <!-- main background and sign -->
     <path
       style="stroke: var(--nps-badge-secondary, #000); stroke-width: 3px; fill: var(--nps-badge-primary, #fff);"
@@ -26,5 +28,7 @@
         style="fill: var(--nps-badge-primary, #fff);"
       />
     </g>
-  </g>
+      </symbol>
+  </defs>
+  <use href="#nps-badge" />
 </svg>
