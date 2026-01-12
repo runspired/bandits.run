@@ -29,10 +29,11 @@ const RunOccurrence: TemplateOnlyComponent<RunOccurrenceSignature> = <template>
           <div class="badge-wrapper">
             <svg
               xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
               viewBox="0 0 500 500"
               class="nps-svg"
             >
-              <use href="/nps.svg"></use>
+              <use href="/nps.svg" xlink:href="/nps.svg"></use>
             </svg>
             <div class="date-overlay">
               <div class="date-month">
