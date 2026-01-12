@@ -239,7 +239,7 @@
       "attributes": {
         "date": "2026-01-24",
         "weekNumberMonday": 4,
-        "weekNumberSunday": 5
+        "weekNumberSunday": 4
       },
       "relationships": {}
     },
@@ -249,7 +249,7 @@
       "attributes": {
         "date": "2026-02-28",
         "weekNumberMonday": 9,
-        "weekNumberSunday": 10
+        "weekNumberSunday": 9
       },
       "relationships": {}
     },
@@ -339,7 +339,7 @@
       "attributes": {
         "date": "2026-11-28",
         "weekNumberMonday": 48,
-        "weekNumberSunday": 49
+        "weekNumberSunday": 48
       },
       "relationships": {}
     },
@@ -349,7 +349,7 @@
       "attributes": {
         "date": "2026-12-26",
         "weekNumberMonday": 52,
-        "weekNumberSunday": 53
+        "weekNumberSunday": 52
       },
       "relationships": {}
     }

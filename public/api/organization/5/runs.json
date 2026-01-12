@@ -70,6 +70,10 @@
           "data": [
             {
               "type": "realized-event-date",
+              "id": "5-headlands-saturday-2026-01-10"
+            },
+            {
+              "type": "realized-event-date",
               "id": "5-headlands-saturday-2026-01-17"
             },
             {
@@ -275,10 +279,6 @@
             {
               "type": "realized-event-date",
               "id": "5-headlands-saturday-2027-01-09"
-            },
-            {
-              "type": "realized-event-date",
-              "id": "5-headlands-saturday-2027-01-16"
             }
           ]
         }
@@ -352,6 +352,10 @@
         },
         "occurrences": {
           "data": [
+            {
+              "type": "realized-event-date",
+              "id": "5-ninja-thursday-2026-01-08"
+            },
             {
               "type": "realized-event-date",
               "id": "5-ninja-thursday-2026-01-15"
@@ -559,10 +563,6 @@
             {
               "type": "realized-event-date",
               "id": "5-ninja-thursday-2027-01-07"
-            },
-            {
-              "type": "realized-event-date",
-              "id": "5-ninja-thursday-2027-01-14"
             }
           ]
         }
@@ -666,6 +666,10 @@
         },
         "occurrences": {
           "data": [
+            {
+              "type": "realized-event-date",
+              "id": "5-tam-wednesday-2026-01-07"
+            },
             {
               "type": "realized-event-date",
               "id": "5-tam-wednesday-2026-01-14"
@@ -873,10 +877,6 @@
             {
               "type": "realized-event-date",
               "id": "5-tam-wednesday-2027-01-06"
-            },
-            {
-              "type": "realized-event-date",
-              "id": "5-tam-wednesday-2027-01-13"
             }
           ]
         }
@@ -951,11 +951,21 @@
     },
     {
       "type": "realized-event-date",
+      "id": "5-headlands-saturday-2026-01-10",
+      "attributes": {
+        "date": "2026-01-10",
+        "weekNumberMonday": 2,
+        "weekNumberSunday": 2
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
       "id": "5-headlands-saturday-2026-01-17",
       "attributes": {
         "date": "2026-01-17",
         "weekNumberMonday": 3,
-        "weekNumberSunday": 4
+        "weekNumberSunday": 3
       },
       "relationships": {}
     },
@@ -965,7 +975,7 @@
       "attributes": {
         "date": "2026-01-24",
         "weekNumberMonday": 4,
-        "weekNumberSunday": 5
+        "weekNumberSunday": 4
       },
       "relationships": {}
     },
@@ -975,7 +985,7 @@
       "attributes": {
         "date": "2026-01-31",
         "weekNumberMonday": 5,
-        "weekNumberSunday": 6
+        "weekNumberSunday": 5
       },
       "relationships": {}
     },
@@ -985,7 +995,7 @@
       "attributes": {
         "date": "2026-02-07",
         "weekNumberMonday": 6,
-        "weekNumberSunday": 7
+        "weekNumberSunday": 6
       },
       "relationships": {}
     },
@@ -995,7 +1005,7 @@
       "attributes": {
         "date": "2026-02-14",
         "weekNumberMonday": 7,
-        "weekNumberSunday": 8
+        "weekNumberSunday": 7
       },
       "relationships": {}
     },
@@ -1005,7 +1015,7 @@
       "attributes": {
         "date": "2026-02-21",
         "weekNumberMonday": 8,
-        "weekNumberSunday": 9
+        "weekNumberSunday": 8
       },
       "relationships": {}
     },
@@ -1015,7 +1025,7 @@
       "attributes": {
         "date": "2026-02-28",
         "weekNumberMonday": 9,
-        "weekNumberSunday": 10
+        "weekNumberSunday": 9
       },
       "relationships": {}
     },
@@ -1025,7 +1035,7 @@
       "attributes": {
         "date": "2026-03-07",
         "weekNumberMonday": 10,
-        "weekNumberSunday": 11
+        "weekNumberSunday": 10
       },
       "relationships": {}
     },
@@ -1375,7 +1385,7 @@
       "attributes": {
         "date": "2026-11-07",
         "weekNumberMonday": 45,
-        "weekNumberSunday": 46
+        "weekNumberSunday": 45
       },
       "relationships": {}
     },
@@ -1385,7 +1395,7 @@
       "attributes": {
         "date": "2026-11-14",
         "weekNumberMonday": 46,
-        "weekNumberSunday": 47
+        "weekNumberSunday": 46
       },
       "relationships": {}
     },
@@ -1395,7 +1405,7 @@
       "attributes": {
         "date": "2026-11-21",
         "weekNumberMonday": 47,
-        "weekNumberSunday": 48
+        "weekNumberSunday": 47
       },
       "relationships": {}
     },
@@ -1405,7 +1415,7 @@
       "attributes": {
         "date": "2026-11-28",
         "weekNumberMonday": 48,
-        "weekNumberSunday": 49
+        "weekNumberSunday": 48
       },
       "relationships": {}
     },
@@ -1415,7 +1425,7 @@
       "attributes": {
         "date": "2026-12-05",
         "weekNumberMonday": 49,
-        "weekNumberSunday": 50
+        "weekNumberSunday": 49
       },
       "relationships": {}
     },
@@ -1425,7 +1435,7 @@
       "attributes": {
         "date": "2026-12-12",
         "weekNumberMonday": 50,
-        "weekNumberSunday": 51
+        "weekNumberSunday": 50
       },
       "relationships": {}
     },
@@ -1435,7 +1445,7 @@
       "attributes": {
         "date": "2026-12-19",
         "weekNumberMonday": 51,
-        "weekNumberSunday": 52
+        "weekNumberSunday": 51
       },
       "relationships": {}
     },
@@ -1445,7 +1455,7 @@
       "attributes": {
         "date": "2026-12-26",
         "weekNumberMonday": 52,
-        "weekNumberSunday": 53
+        "weekNumberSunday": 52
       },
       "relationships": {}
     },
@@ -1455,7 +1465,7 @@
       "attributes": {
         "date": "2027-01-02",
         "weekNumberMonday": 1,
-        "weekNumberSunday": 2
+        "weekNumberSunday": 1
       },
       "relationships": {}
     },
@@ -1465,17 +1475,7 @@
       "attributes": {
         "date": "2027-01-09",
         "weekNumberMonday": 2,
-        "weekNumberSunday": 3
-      },
-      "relationships": {}
-    },
-    {
-      "type": "realized-event-date",
-      "id": "5-headlands-saturday-2027-01-16",
-      "attributes": {
-        "date": "2027-01-16",
-        "weekNumberMonday": 3,
-        "weekNumberSunday": 4
+        "weekNumberSunday": 2
       },
       "relationships": {}
     },
@@ -1496,6 +1496,16 @@
         "googleMapsLink": "https://maps.app.goo.gl/gYdG5fCJjsbJ4SY56",
         "descriptionHtml": null
       }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2026-01-08",
+      "attributes": {
+        "date": "2026-01-08",
+        "weekNumberMonday": 2,
+        "weekNumberSunday": 2
+      },
+      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -2018,16 +2028,6 @@
       "relationships": {}
     },
     {
-      "type": "realized-event-date",
-      "id": "5-ninja-thursday-2027-01-14",
-      "attributes": {
-        "date": "2027-01-14",
-        "weekNumberMonday": 3,
-        "weekNumberSunday": 3
-      },
-      "relationships": {}
-    },
-    {
       "type": "location",
       "id": "8",
       "attributes": {
@@ -2044,6 +2044,16 @@
         "googleMapsLink": "https://maps.app.goo.gl/pSSi6SuSsHTo965t7",
         "descriptionHtml": null
       }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-tam-wednesday-2026-01-07",
+      "attributes": {
+        "date": "2026-01-07",
+        "weekNumberMonday": 2,
+        "weekNumberSunday": 2
+      },
+      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -2562,16 +2572,6 @@
         "date": "2027-01-06",
         "weekNumberMonday": 2,
         "weekNumberSunday": 2
-      },
-      "relationships": {}
-    },
-    {
-      "type": "realized-event-date",
-      "id": "5-tam-wednesday-2027-01-13",
-      "attributes": {
-        "date": "2027-01-13",
-        "weekNumberMonday": 3,
-        "weekNumberSunday": 3
       },
       "relationships": {}
     }

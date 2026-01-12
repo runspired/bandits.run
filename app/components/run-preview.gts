@@ -1,6 +1,7 @@
 import { LinkTo } from '@ember/routing';
 import { array } from '@ember/helper';
 import FaIcon from '#app/components/fa-icon.gts';
+import RunOccurrence from '#app/components/run-occurrence.gts';
 import { faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 import { faStrava, faMeetup } from '@fortawesome/free-brands-svg-icons';
 import type { TrailRun } from '#app/data/run.ts';
@@ -8,45 +9,56 @@ import {
   eq,
   neq,
   and,
+  not,
   or,
-  formatFriendlyDate,
   getRecurrenceDescription,
   formatTime,
   getCategoryLabel,
+  isPastDate,
+  isToday,
 } from '#app/utils/helpers.ts';
 
 interface RunPreviewSignature {
   Args: {
     run: TrailRun;
     organizationId: string;
+    occurrence?: string;
+    hideOccurrence?: boolean;
   };
 }
 
 const RunPreview: TemplateOnlyComponent<RunPreviewSignature> = <template>
-  <div class="run-card">
-    <h3 class="run-title">
-      <LinkTo
-        @route="organizations.single.run"
-        @models={{array @organizationId @run.id}}
-      >
-        {{@run.title}}
-      </LinkTo>
-    </h3>
+  {{#let (if @occurrence @occurrence @run.nextOccurrence) as |displayDate|}}
+    <div
+      class="run-card {{if (and displayDate (isPastDate displayDate)) 'past-occurrence'}}"
+    >
+      <div class="run-header">
+        <div class="run-header-content">
+          <h3 class="run-title">
+            <LinkTo
+              @route="organizations.single.run"
+              @models={{array @organizationId @run.id}}
+            >
+              {{@run.title}}
+            </LinkTo>
+          </h3>
 
-    {{#if @run.nextOccurrence}}
-      <div class="next-occurrence">
-        <strong>Next Run:</strong>
-        <span class="next-date">{{formatFriendlyDate
-            @run.nextOccurrence
-          }}</span>
+          <div class="run-schedule">
+            <span class="schedule-badge">{{getRecurrenceDescription
+                @run.recurrence
+              }}</span>
+            {{#if (isToday displayDate)}}
+              <span class="today-badge">Today</span>
+            {{/if}}
+          </div>
+        </div>
+
+        {{#unless @hideOccurrence}}
+          <div class="run-header-occurrence">
+            <RunOccurrence @date={{displayDate}} />
+          </div>
+        {{/unless}}
       </div>
-    {{/if}}
-
-    <div class="run-schedule">
-      <span class="schedule-badge">{{getRecurrenceDescription
-          @run.recurrence
-        }}</span>
-    </div>
 
     {{#if @run.description}}
       <p class="run-description">{{@run.description}}</p>
@@ -124,9 +136,6 @@ const RunPreview: TemplateOnlyComponent<RunPreviewSignature> = <template>
                 {{getCategoryLabel option.category}}
               {{/if}}
               <br />
-              <span class="run-times">
-                {{formatTime option.meetTime}}
-              </span>
               {{#let
                 (if (eq @run.runs.length 1) @run.eventLink option.eventLink)
                 (if
@@ -141,47 +150,50 @@ const RunPreview: TemplateOnlyComponent<RunPreviewSignature> = <template>
                 )
                 as |eventLink stravaEventLink meetupEventLink|
               }}
-                {{#if (or eventLink stravaEventLink meetupEventLink)}}
-                  <div class="run-option-links">
-                    <strong>RSVP:</strong>
-                    {{#if eventLink}}
-                      <a
-                        href="{{eventLink}}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title="Event Details"
-                        class="rsvp-link"
-                      >
-                        <FaIcon @icon={{faCalendarDays}} />
-                        Event
-                      </a>
-                    {{/if}}
-                    {{#if stravaEventLink}}
-                      <a
-                        href="{{stravaEventLink}}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title="Strava Event"
-                        class="rsvp-link"
-                      >
-                        <FaIcon @icon={{faStrava}} />
-                        Strava
-                      </a>
-                    {{/if}}
-                    {{#if meetupEventLink}}
-                      <a
-                        href="{{meetupEventLink}}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title="Meetup Event"
-                        class="rsvp-link"
-                      >
-                        <FaIcon @icon={{faMeetup}} />
-                        Meetup
-                      </a>
-                    {{/if}}
-                  </div>
-                {{/if}}
+                <span class="run-times">
+                  {{formatTime option.meetTime}}
+                  {{#if (or eventLink stravaEventLink meetupEventLink)}}
+                    <span class="run-option-links">
+                      • <strong>RSVP:</strong>
+                      {{#if eventLink}}
+                        <a
+                          href="{{eventLink}}"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title="Event Details"
+                          class="rsvp-link"
+                        >
+                          <FaIcon @icon={{faCalendarDays}} />
+                          Event
+                        </a>
+                      {{/if}}
+                      {{#if stravaEventLink}}
+                        <a
+                          href="{{stravaEventLink}}"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title="Strava Event"
+                          class="rsvp-link"
+                        >
+                          <FaIcon @icon={{faStrava}} />
+                          Strava
+                        </a>
+                      {{/if}}
+                      {{#if meetupEventLink}}
+                        <a
+                          href="{{meetupEventLink}}"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title="Meetup Event"
+                          class="rsvp-link"
+                        >
+                          <FaIcon @icon={{faMeetup}} />
+                          Meetup
+                        </a>
+                      {{/if}}
+                    </span>
+                  {{/if}}
+                </span>
               {{/let}}
             </li>
           {{/each}}
@@ -189,7 +201,8 @@ const RunPreview: TemplateOnlyComponent<RunPreviewSignature> = <template>
       </div>
     {{/if}}
 
-  </div>
+    </div>
+  {{/let}}
 </template>;
 
 export default RunPreview;

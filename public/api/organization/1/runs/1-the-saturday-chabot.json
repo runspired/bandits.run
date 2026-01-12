@@ -148,10 +148,6 @@
           {
             "type": "realized-event-date",
             "id": "1-the-saturday-chabot-2026-12-19"
-          },
-          {
-            "type": "realized-event-date",
-            "id": "1-the-saturday-chabot-2027-01-16"
           }
         ]
       }
@@ -243,7 +239,7 @@
       "attributes": {
         "date": "2026-01-17",
         "weekNumberMonday": 3,
-        "weekNumberSunday": 4
+        "weekNumberSunday": 3
       },
       "relationships": {}
     },
@@ -253,7 +249,7 @@
       "attributes": {
         "date": "2026-02-21",
         "weekNumberMonday": 8,
-        "weekNumberSunday": 9
+        "weekNumberSunday": 8
       },
       "relationships": {}
     },
@@ -343,7 +339,7 @@
       "attributes": {
         "date": "2026-11-21",
         "weekNumberMonday": 47,
-        "weekNumberSunday": 48
+        "weekNumberSunday": 47
       },
       "relationships": {}
     },
@@ -353,17 +349,7 @@
       "attributes": {
         "date": "2026-12-19",
         "weekNumberMonday": 51,
-        "weekNumberSunday": 52
-      },
-      "relationships": {}
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-the-saturday-chabot-2027-01-16",
-      "attributes": {
-        "date": "2027-01-16",
-        "weekNumberMonday": 3,
-        "weekNumberSunday": 4
+        "weekNumberSunday": 51
       },
       "relationships": {}
     }

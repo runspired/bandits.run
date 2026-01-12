@@ -2,14 +2,30 @@ import { pageTitle } from 'ember-page-title';
 import { Request } from '@warp-drive/ember';
 import { withReactiveResponse } from '@warp-drive/core/request';
 import type { ScheduleDay } from '#app/data/schedule.ts';
+import type { Week } from '#app/data/week.ts';
+import type { RealizedEventDate } from '#app/data/realized-event-date.ts';
 import ThemedPage from '#app/components/themed-page.gts';
 import { Tabs } from '#app/components/tabs.gts';
-import { getFirstDayOfWeek, formatDay, formatRunTime } from '#app/utils/helpers.ts';
+import { getFirstDayOfWeek, formatDay, formatRunTime, getCurrentWeekIdMonday, getNextWeekIdMonday, getDayOfWeek, isThursdayOrLater, isToday, isPastDate } from '#app/utils/helpers.ts';
+import RunPreview from '#app/components/run-preview.gts';
+import RunOccurrence from '#app/components/run-occurrence.gts';
 
-const query = withReactiveResponse<ScheduleDay[]>({
+const scheduleQuery = withReactiveResponse<ScheduleDay[]>({
   url: '/api/schedule.json',
   method: 'GET',
 } as const);
+
+const thisWeekQuery = withReactiveResponse<Week>({
+  url: `/api/weeks/${getCurrentWeekIdMonday()}.json`,
+  method: 'GET',
+} as const);
+
+const nextWeekQuery = withReactiveResponse<Week>({
+  url: `/api/weeks/${getNextWeekIdMonday()}.json`,
+  method: 'GET',
+} as const);
+
+const showNextWeek = isThursdayOrLater();
 
 
 function sortDaysByFirstDayOfWeek(days: ScheduleDay[]): ScheduleDay[] {
@@ -26,46 +42,66 @@ function sortDaysByFirstDayOfWeek(days: ScheduleDay[]): ScheduleDay[] {
   return days;
 }
 
+interface DayGroup {
+  date: string;
+  dayOfWeek: string;
+  events: RealizedEventDate[];
+}
+
+function groupEventsByDay(events: RealizedEventDate[]): DayGroup[] {
+  const grouped = new Map<string, RealizedEventDate[]>();
+
+  for (const event of events) {
+    const date = event.date;
+    if (!grouped.has(date)) {
+      grouped.set(date, []);
+    }
+    grouped.get(date)!.push(event);
+  }
+
+  const sortedDates = Array.from(grouped.keys()).sort();
+
+  return sortedDates.map(date => ({
+    date,
+    dayOfWeek: getDayOfWeek(date),
+    events: grouped.get(date)!,
+  }));
+}
+
+function filterFutureDays(dayGroups: DayGroup[]): DayGroup[] {
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  yesterday.setHours(0, 0, 0, 0);
+
+  return dayGroups.filter(dayGroup => {
+    const [year, month, day] = dayGroup.date.split('-').map(Number);
+    const date = new Date(year ?? 2000, (month ?? 1) - 1, day ?? 1);
+    return date >= yesterday;
+  });
+}
+
 <template>
   {{pageTitle "Bandits | The Bay Area Trail Running Community"}}
 
   <ThemedPage>
     <Tabs as |Tab|>
       <Tab>
-        <:label>Schedule</:label>
+        <:label>This Week</:label>
         <:body>
-          <Request @query={{query}}>
+          <Request @query={{thisWeekQuery}}>
             <:loading> <h2>Peeking through the trees...</h2> </:loading>
-            <:content as |days|>
+            <:content as |week|>
               <div class="schedule">
-                <h3 class="section-title">Find Your Trail Friends</h3>
-                {{#each (sortDaysByFirstDayOfWeek days.data) as |day|}}
-                  <div class="day-schedule">
-                    <h3>{{formatDay day.day}}</h3>
-                    {{#if day.events.length}}
-                      <ul class="day-events">
-                        {{#each day.events as |event|}}
-                          <li class="day-event">
-                            <span class="event-title">{{event.title}}</span>
-                            <span class="event-location">@
-                              <a
-                                href="{{event.location.link}}"
-                              >{{event.location.name}}</a></span>
-                            <span class="event-hosts">with
-                              {{#each event.hosts as |host|}}<span
-                                  class="host"
-                                >{{host.name}}</span>{{/each}}</span>
-                            {{#each event.runs as |run|}}
-                              <div class="event-run">
-                                <span class="event-run-time">{{formatRunTime
-                                    run.meetTime
-                                  }}</span>
-                                <span class="event-run-name">{{run.name}}</span>
-                              </div>
-                            {{/each}}
-                          </li>
+                <h3 class="section-title">Runs This Week</h3>
+                {{#each (if showNextWeek (filterFutureDays (groupEventsByDay week.data.events)) (groupEventsByDay week.data.events)) as |dayGroup|}}
+                  <div class="day-schedule {{if (isToday dayGroup.date) 'today'}}">
+                    <RunOccurrence @date={{dayGroup.date}} @label={{dayGroup.dayOfWeek}} />
+                    {{#if dayGroup.events.length}}
+                      <div class="day-events">
+                        {{#each dayGroup.events as |occurrence|}}
+                          <RunPreview @hideOccurrence={{true}} @occurrence={{occurrence.date}} @run={{occurrence.event}} @organizationId={{occurrence.event.owner.id}} />
                         {{/each}}
-                      </ul>
+                      </div>
                     {{else}}
                       <div class="day-events">
                         <p>No scheduled events.</p>
@@ -74,10 +110,41 @@ function sortDaysByFirstDayOfWeek(days: ScheduleDay[]): ScheduleDay[] {
                   </div>
                 {{/each}}
               </div>
+              {{#if showNextWeek}}
+                <Request @query={{nextWeekQuery}}>
+                  <:loading> <h2>Loading next week...</h2> </:loading>
+                  <:content as |nextWeek|>
+                    <div class="schedule">
+                      <h3 class="section-title">Runs Next Week</h3>
+                      {{#each (groupEventsByDay nextWeek.data.events) as |dayGroup|}}
+                        <div class="day-schedule {{if (isToday dayGroup.date) 'today'}}">
+                          <RunOccurrence @date={{dayGroup.date}} @label={{dayGroup.dayOfWeek}} />
+                          {{#if dayGroup.events.length}}
+                            <div class="day-events">
+                              {{#each dayGroup.events as |occurrence|}}
+                                <RunPreview @hideOccurrence={{true}} @occurrence={{occurrence.date}} @run={{occurrence.event}} @organizationId={{occurrence.event.owner.id}} />
+                              {{/each}}
+                            </div>
+                          {{else}}
+                            <div class="day-events">
+                              <p>No scheduled events.</p>
+                            </div>
+                          {{/if}}
+                        </div>
+                      {{/each}}
+                    </div>
+                  </:content>
+                  <:error as |error|>
+                    <div class="error-box"><h2>Whoops!</h2><p>We weren't able to load
+                      next week's trail runs!</p><p
+                      class="error-message"
+                    >{{error.message}} </p></div></:error>
+                </Request>
+              {{/if}}
             </:content>
             <:error as |error|>
               <div class="error-box"><h2>Whoops!</h2><p>We weren't able to load
-                  all the exciting trail runs happening near you!</p><p
+                  this week's trail runs!</p><p
                   class="error-message"
                 >{{error.message}} </p></div></:error>
           </Request>

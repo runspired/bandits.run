@@ -19,6 +19,10 @@
           {
             "type": "realized-event-date",
             "id": "1-the-saturday-trampas-2027-01-02"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "2-beer-bucket-2027-01-03"
           }
         ]
       }
@@ -31,7 +35,7 @@
       "attributes": {
         "date": "2027-01-02",
         "weekNumberMonday": 1,
-        "weekNumberSunday": 2
+        "weekNumberSunday": 1
       },
       "relationships": {
         "event": {
@@ -48,13 +52,30 @@
       "attributes": {
         "date": "2027-01-02",
         "weekNumberMonday": 1,
-        "weekNumberSunday": 2
+        "weekNumberSunday": 1
       },
       "relationships": {
         "event": {
           "data": {
             "type": "trail-run",
             "id": "1-the-saturday-trampas"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2027-01-03",
+      "attributes": {
+        "date": "2027-01-03",
+        "weekNumberMonday": 1,
+        "weekNumberSunday": 2
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
           }
         }
       }
@@ -127,6 +148,10 @@
         },
         "occurrences": {
           "data": [
+            {
+              "type": "realized-event-date",
+              "id": "5-headlands-saturday-2026-01-10"
+            },
             {
               "type": "realized-event-date",
               "id": "5-headlands-saturday-2026-01-17"
@@ -334,10 +359,6 @@
             {
               "type": "realized-event-date",
               "id": "5-headlands-saturday-2027-01-09"
-            },
-            {
-              "type": "realized-event-date",
-              "id": "5-headlands-saturday-2027-01-16"
             }
           ]
         }
@@ -498,6 +519,320 @@
       }
     },
     {
+      "type": "trail-run",
+      "id": "2-beer-bucket",
+      "attributes": {
+        "title": "Beer Bucket",
+        "recurrence": {
+          "day": 0,
+          "frequency": "weekly",
+          "interval": 1,
+          "weekNumber": null,
+          "monthNumber": null,
+          "date": null,
+          "holiday": null
+        },
+        "runs": [
+          {
+            "name": "8ish",
+            "leaders": [],
+            "distance": "~8 Mi",
+            "vert": "1200-2000ft",
+            "pace": "Easy",
+            "category": "at-your-own-pace",
+            "meetTime": "08:30",
+            "startTime": "08:35",
+            "eventLink": null,
+            "stravaEventLink": null,
+            "meetupEventLink": null,
+            "stravaRouteLink": null,
+            "gpxLink": null
+          },
+          {
+            "name": "11ish",
+            "leaders": [],
+            "distance": "~11 Mi",
+            "vert": "1800-3000ft",
+            "pace": "Easy",
+            "category": "at-your-own-pace",
+            "meetTime": "08:30",
+            "startTime": "08:35",
+            "eventLink": null,
+            "stravaEventLink": null,
+            "meetupEventLink": null,
+            "stravaRouteLink": null,
+            "gpxLink": null
+          },
+          {
+            "name": "14ish",
+            "leaders": [],
+            "distance": "~14 Mi",
+            "vert": "2700-4000ft",
+            "pace": "Easy",
+            "category": "at-your-own-pace",
+            "meetTime": "08:30",
+            "startTime": "08:35",
+            "eventLink": null,
+            "stravaEventLink": null,
+            "meetupEventLink": null,
+            "stravaRouteLink": null,
+            "gpxLink": null
+          }
+        ],
+        "description": null,
+        "descriptionHtml": null,
+        "eventLink": null,
+        "stravaEventLink": null,
+        "meetupEventLink": null
+      },
+      "relationships": {
+        "location": {
+          "data": {
+            "type": "location",
+            "id": "14"
+          }
+        },
+        "hosts": {
+          "data": [
+            {
+              "type": "organization",
+              "id": "2"
+            }
+          ]
+        },
+        "organizers": {
+          "data": [
+            {
+              "type": "user",
+              "id": "2"
+            }
+          ]
+        },
+        "owner": {
+          "data": {
+            "type": "organization",
+            "id": "2"
+          }
+        },
+        "occurrences": {
+          "data": [
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-01-04"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-01-11"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-01-18"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-01-25"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-02-01"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-02-08"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-02-15"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-02-22"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-03-01"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-03-08"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-03-15"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-03-22"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-03-29"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-04-05"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-04-12"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-04-19"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-04-26"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-05-03"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-05-10"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-05-17"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-05-24"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-05-31"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-06-07"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-06-14"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-06-21"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-06-28"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-07-05"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-07-12"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-07-19"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-07-26"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-08-02"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-08-09"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-08-16"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-08-23"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-08-30"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-09-06"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-09-13"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-09-20"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-09-27"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-10-04"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-10-11"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-10-18"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-10-25"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-11-01"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-11-08"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-11-15"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-11-22"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-11-29"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-12-06"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-12-13"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-12-20"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2026-12-27"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2027-01-03"
+            }
+          ]
+        }
+      }
+    },
+    {
       "type": "location",
       "id": "10",
       "attributes": {
@@ -564,11 +899,28 @@
     },
     {
       "type": "realized-event-date",
+      "id": "5-headlands-saturday-2026-01-10",
+      "attributes": {
+        "date": "2026-01-10",
+        "weekNumberMonday": 2,
+        "weekNumberSunday": 2
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "5-headlands-saturday"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
       "id": "5-headlands-saturday-2026-01-17",
       "attributes": {
         "date": "2026-01-17",
         "weekNumberMonday": 3,
-        "weekNumberSunday": 4
+        "weekNumberSunday": 3
       },
       "relationships": {
         "event": {
@@ -585,7 +937,7 @@
       "attributes": {
         "date": "2026-01-24",
         "weekNumberMonday": 4,
-        "weekNumberSunday": 5
+        "weekNumberSunday": 4
       },
       "relationships": {
         "event": {
@@ -602,7 +954,7 @@
       "attributes": {
         "date": "2026-01-31",
         "weekNumberMonday": 5,
-        "weekNumberSunday": 6
+        "weekNumberSunday": 5
       },
       "relationships": {
         "event": {
@@ -619,7 +971,7 @@
       "attributes": {
         "date": "2026-02-07",
         "weekNumberMonday": 6,
-        "weekNumberSunday": 7
+        "weekNumberSunday": 6
       },
       "relationships": {
         "event": {
@@ -636,7 +988,7 @@
       "attributes": {
         "date": "2026-02-14",
         "weekNumberMonday": 7,
-        "weekNumberSunday": 8
+        "weekNumberSunday": 7
       },
       "relationships": {
         "event": {
@@ -653,7 +1005,7 @@
       "attributes": {
         "date": "2026-02-21",
         "weekNumberMonday": 8,
-        "weekNumberSunday": 9
+        "weekNumberSunday": 8
       },
       "relationships": {
         "event": {
@@ -670,7 +1022,7 @@
       "attributes": {
         "date": "2026-02-28",
         "weekNumberMonday": 9,
-        "weekNumberSunday": 10
+        "weekNumberSunday": 9
       },
       "relationships": {
         "event": {
@@ -687,7 +1039,7 @@
       "attributes": {
         "date": "2026-03-07",
         "weekNumberMonday": 10,
-        "weekNumberSunday": 11
+        "weekNumberSunday": 10
       },
       "relationships": {
         "event": {
@@ -1282,7 +1634,7 @@
       "attributes": {
         "date": "2026-11-07",
         "weekNumberMonday": 45,
-        "weekNumberSunday": 46
+        "weekNumberSunday": 45
       },
       "relationships": {
         "event": {
@@ -1299,7 +1651,7 @@
       "attributes": {
         "date": "2026-11-14",
         "weekNumberMonday": 46,
-        "weekNumberSunday": 47
+        "weekNumberSunday": 46
       },
       "relationships": {
         "event": {
@@ -1316,7 +1668,7 @@
       "attributes": {
         "date": "2026-11-21",
         "weekNumberMonday": 47,
-        "weekNumberSunday": 48
+        "weekNumberSunday": 47
       },
       "relationships": {
         "event": {
@@ -1333,7 +1685,7 @@
       "attributes": {
         "date": "2026-11-28",
         "weekNumberMonday": 48,
-        "weekNumberSunday": 49
+        "weekNumberSunday": 48
       },
       "relationships": {
         "event": {
@@ -1350,7 +1702,7 @@
       "attributes": {
         "date": "2026-12-05",
         "weekNumberMonday": 49,
-        "weekNumberSunday": 50
+        "weekNumberSunday": 49
       },
       "relationships": {
         "event": {
@@ -1367,7 +1719,7 @@
       "attributes": {
         "date": "2026-12-12",
         "weekNumberMonday": 50,
-        "weekNumberSunday": 51
+        "weekNumberSunday": 50
       },
       "relationships": {
         "event": {
@@ -1384,7 +1736,7 @@
       "attributes": {
         "date": "2026-12-19",
         "weekNumberMonday": 51,
-        "weekNumberSunday": 52
+        "weekNumberSunday": 51
       },
       "relationships": {
         "event": {
@@ -1401,7 +1753,7 @@
       "attributes": {
         "date": "2026-12-26",
         "weekNumberMonday": 52,
-        "weekNumberSunday": 53
+        "weekNumberSunday": 52
       },
       "relationships": {
         "event": {
@@ -1418,24 +1770,7 @@
       "attributes": {
         "date": "2027-01-09",
         "weekNumberMonday": 2,
-        "weekNumberSunday": 3
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "5-headlands-saturday"
-          }
-        }
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "5-headlands-saturday-2027-01-16",
-      "attributes": {
-        "date": "2027-01-16",
-        "weekNumberMonday": 3,
-        "weekNumberSunday": 4
+        "weekNumberSunday": 2
       },
       "relationships": {
         "event": {
@@ -1531,7 +1866,7 @@
       "attributes": {
         "date": "2026-02-07",
         "weekNumberMonday": 6,
-        "weekNumberSunday": 7
+        "weekNumberSunday": 6
       },
       "relationships": {
         "event": {
@@ -1548,7 +1883,7 @@
       "attributes": {
         "date": "2026-03-07",
         "weekNumberMonday": 10,
-        "weekNumberSunday": 11
+        "weekNumberSunday": 10
       },
       "relationships": {
         "event": {
@@ -1684,7 +2019,7 @@
       "attributes": {
         "date": "2026-11-07",
         "weekNumberMonday": 45,
-        "weekNumberSunday": 46
+        "weekNumberSunday": 45
       },
       "relationships": {
         "event": {
@@ -1701,13 +2036,957 @@
       "attributes": {
         "date": "2026-12-05",
         "weekNumberMonday": 49,
-        "weekNumberSunday": 50
+        "weekNumberSunday": 49
       },
       "relationships": {
         "event": {
           "data": {
             "type": "trail-run",
             "id": "1-the-saturday-trampas"
+          }
+        }
+      }
+    },
+    {
+      "type": "location",
+      "id": "14",
+      "attributes": {
+        "name": "East Bay",
+        "latitude": null,
+        "longitude": null,
+        "region": "East Bay",
+        "address": null,
+        "googleMapsLink": null,
+        "descriptionHtml": null
+      }
+    },
+    {
+      "type": "organization",
+      "id": "2",
+      "attributes": {
+        "name": "Beer Bucket Runners",
+        "website": null,
+        "stravaId": "1058474",
+        "stravaHandle": "BeerBucketRun",
+        "meetupId": null,
+        "instagramHandle": "beer_bucket_run",
+        "email": null,
+        "phoneNumber": null,
+        "descriptionHtml": "<p>The Beer Bucket Run (BBR) is a weekly trail run in the San Francisco Bay Area (East Bay, primarily).</p>\n<p>Our runs are always on trails and typically 12-14 miles. Runners of all ages and paces are 100 percent welcome and there is also always a shorter route. We recommend saving the route ahead of time.</p>\n<p>BBR is a great way to explore the amazing East Bay trails with a friendly group of runners. We meet every Sunday at 8-9 AM. The location changes each week, and we occasionally travel to other exotic locales (like Marin or the Sierra Foothills) when circumstances permit.</p>\n"
+      },
+      "relationships": {
+        "runs": {
+          "links": {
+            "related": "/api/organization/2/runs.json"
+          },
+          "meta": {
+            "count": 3
+          }
+        },
+        "contacts": {
+          "data": [
+            {
+              "type": "user",
+              "id": "2"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "user",
+      "id": "2",
+      "attributes": {
+        "firstName": "Karen",
+        "lastName": "Barnes",
+        "email": null,
+        "phoneNumber": null,
+        "hasWhatsApp": true,
+        "stravaId": "97687403",
+        "instagramHandle": "traillove_kb",
+        "descriptionHtml": null
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-01-04",
+      "attributes": {
+        "date": "2026-01-04",
+        "weekNumberMonday": 1,
+        "weekNumberSunday": 2
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-01-11",
+      "attributes": {
+        "date": "2026-01-11",
+        "weekNumberMonday": 2,
+        "weekNumberSunday": 3
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-01-18",
+      "attributes": {
+        "date": "2026-01-18",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 4
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-01-25",
+      "attributes": {
+        "date": "2026-01-25",
+        "weekNumberMonday": 4,
+        "weekNumberSunday": 5
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-02-01",
+      "attributes": {
+        "date": "2026-02-01",
+        "weekNumberMonday": 5,
+        "weekNumberSunday": 6
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-02-08",
+      "attributes": {
+        "date": "2026-02-08",
+        "weekNumberMonday": 6,
+        "weekNumberSunday": 7
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-02-15",
+      "attributes": {
+        "date": "2026-02-15",
+        "weekNumberMonday": 7,
+        "weekNumberSunday": 8
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-02-22",
+      "attributes": {
+        "date": "2026-02-22",
+        "weekNumberMonday": 8,
+        "weekNumberSunday": 9
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-03-01",
+      "attributes": {
+        "date": "2026-03-01",
+        "weekNumberMonday": 9,
+        "weekNumberSunday": 10
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-03-08",
+      "attributes": {
+        "date": "2026-03-08",
+        "weekNumberMonday": 10,
+        "weekNumberSunday": 11
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-03-15",
+      "attributes": {
+        "date": "2026-03-15",
+        "weekNumberMonday": 11,
+        "weekNumberSunday": 11
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-03-22",
+      "attributes": {
+        "date": "2026-03-22",
+        "weekNumberMonday": 12,
+        "weekNumberSunday": 12
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-03-29",
+      "attributes": {
+        "date": "2026-03-29",
+        "weekNumberMonday": 13,
+        "weekNumberSunday": 13
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-04-05",
+      "attributes": {
+        "date": "2026-04-05",
+        "weekNumberMonday": 14,
+        "weekNumberSunday": 14
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-04-12",
+      "attributes": {
+        "date": "2026-04-12",
+        "weekNumberMonday": 15,
+        "weekNumberSunday": 15
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-04-19",
+      "attributes": {
+        "date": "2026-04-19",
+        "weekNumberMonday": 16,
+        "weekNumberSunday": 16
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-04-26",
+      "attributes": {
+        "date": "2026-04-26",
+        "weekNumberMonday": 17,
+        "weekNumberSunday": 17
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-05-03",
+      "attributes": {
+        "date": "2026-05-03",
+        "weekNumberMonday": 18,
+        "weekNumberSunday": 18
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-05-10",
+      "attributes": {
+        "date": "2026-05-10",
+        "weekNumberMonday": 19,
+        "weekNumberSunday": 19
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-05-17",
+      "attributes": {
+        "date": "2026-05-17",
+        "weekNumberMonday": 20,
+        "weekNumberSunday": 20
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-05-24",
+      "attributes": {
+        "date": "2026-05-24",
+        "weekNumberMonday": 21,
+        "weekNumberSunday": 21
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-05-31",
+      "attributes": {
+        "date": "2026-05-31",
+        "weekNumberMonday": 22,
+        "weekNumberSunday": 22
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-06-07",
+      "attributes": {
+        "date": "2026-06-07",
+        "weekNumberMonday": 23,
+        "weekNumberSunday": 23
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-06-14",
+      "attributes": {
+        "date": "2026-06-14",
+        "weekNumberMonday": 24,
+        "weekNumberSunday": 24
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-06-21",
+      "attributes": {
+        "date": "2026-06-21",
+        "weekNumberMonday": 25,
+        "weekNumberSunday": 25
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-06-28",
+      "attributes": {
+        "date": "2026-06-28",
+        "weekNumberMonday": 26,
+        "weekNumberSunday": 26
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-07-05",
+      "attributes": {
+        "date": "2026-07-05",
+        "weekNumberMonday": 27,
+        "weekNumberSunday": 27
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-07-12",
+      "attributes": {
+        "date": "2026-07-12",
+        "weekNumberMonday": 28,
+        "weekNumberSunday": 28
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-07-19",
+      "attributes": {
+        "date": "2026-07-19",
+        "weekNumberMonday": 29,
+        "weekNumberSunday": 29
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-07-26",
+      "attributes": {
+        "date": "2026-07-26",
+        "weekNumberMonday": 30,
+        "weekNumberSunday": 30
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-08-02",
+      "attributes": {
+        "date": "2026-08-02",
+        "weekNumberMonday": 31,
+        "weekNumberSunday": 31
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-08-09",
+      "attributes": {
+        "date": "2026-08-09",
+        "weekNumberMonday": 32,
+        "weekNumberSunday": 32
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-08-16",
+      "attributes": {
+        "date": "2026-08-16",
+        "weekNumberMonday": 33,
+        "weekNumberSunday": 33
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-08-23",
+      "attributes": {
+        "date": "2026-08-23",
+        "weekNumberMonday": 34,
+        "weekNumberSunday": 34
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-08-30",
+      "attributes": {
+        "date": "2026-08-30",
+        "weekNumberMonday": 35,
+        "weekNumberSunday": 35
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-09-06",
+      "attributes": {
+        "date": "2026-09-06",
+        "weekNumberMonday": 36,
+        "weekNumberSunday": 36
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-09-13",
+      "attributes": {
+        "date": "2026-09-13",
+        "weekNumberMonday": 37,
+        "weekNumberSunday": 37
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-09-20",
+      "attributes": {
+        "date": "2026-09-20",
+        "weekNumberMonday": 38,
+        "weekNumberSunday": 38
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-09-27",
+      "attributes": {
+        "date": "2026-09-27",
+        "weekNumberMonday": 39,
+        "weekNumberSunday": 39
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-10-04",
+      "attributes": {
+        "date": "2026-10-04",
+        "weekNumberMonday": 40,
+        "weekNumberSunday": 40
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-10-11",
+      "attributes": {
+        "date": "2026-10-11",
+        "weekNumberMonday": 41,
+        "weekNumberSunday": 41
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-10-18",
+      "attributes": {
+        "date": "2026-10-18",
+        "weekNumberMonday": 42,
+        "weekNumberSunday": 42
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-10-25",
+      "attributes": {
+        "date": "2026-10-25",
+        "weekNumberMonday": 43,
+        "weekNumberSunday": 43
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-11-01",
+      "attributes": {
+        "date": "2026-11-01",
+        "weekNumberMonday": 44,
+        "weekNumberSunday": 44
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-11-08",
+      "attributes": {
+        "date": "2026-11-08",
+        "weekNumberMonday": 45,
+        "weekNumberSunday": 46
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-11-15",
+      "attributes": {
+        "date": "2026-11-15",
+        "weekNumberMonday": 46,
+        "weekNumberSunday": 47
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-11-22",
+      "attributes": {
+        "date": "2026-11-22",
+        "weekNumberMonday": 47,
+        "weekNumberSunday": 48
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-11-29",
+      "attributes": {
+        "date": "2026-11-29",
+        "weekNumberMonday": 48,
+        "weekNumberSunday": 49
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-12-06",
+      "attributes": {
+        "date": "2026-12-06",
+        "weekNumberMonday": 49,
+        "weekNumberSunday": 50
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-12-13",
+      "attributes": {
+        "date": "2026-12-13",
+        "weekNumberMonday": 50,
+        "weekNumberSunday": 51
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-12-20",
+      "attributes": {
+        "date": "2026-12-20",
+        "weekNumberMonday": 51,
+        "weekNumberSunday": 52
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2026-12-27",
+      "attributes": {
+        "date": "2026-12-27",
+        "weekNumberMonday": 52,
+        "weekNumberSunday": 53
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
           }
         }
       }

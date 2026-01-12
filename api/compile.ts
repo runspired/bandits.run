@@ -609,8 +609,8 @@ function getWeekNumber(date: Date, startDay: 0 | 1): { year: number; week: numbe
     const daysUntilFirstStartDay = (startDay - jan1Day + 7) % 7;
 
     // Week 1 ends the day before the first occurrence of startDay
-    // First startDay occurs on daysUntilFirstStartDay, so day before is (daysUntilFirstStartDay - 1)
-    week1End = new Date(year, 0, daysUntilFirstStartDay - 1);
+    // First startDay occurs on day (1 + daysUntilFirstStartDay), so week 1 ends on day daysUntilFirstStartDay
+    week1End = new Date(year, 0, daysUntilFirstStartDay);
   }
 
   // Calculate which week this date falls in
@@ -670,14 +670,10 @@ async function generateWeekPayloads(outputDir: string, resources: ProcessedResou
   console.log(`First Monday of ${year} is ${firstMonday.toDateString()}`);
   console.log(`First Sunday of ${year} is ${firstSunday.toDateString()}`);
 
-  // Calculate the start date (nearest Sunday in the past or today)
+  // Calculate the start date (7 days before today, matching calculateRunOccurrences)
   const startDate = new Date();
   startDate.setHours(0, 0, 0, 0);
-  const dayOfWeek = startDate.getDay(); // 0 (Sun) to 6 (Sat)
-  if (dayOfWeek !== 0) {
-    // Go back dayOfWeek days to reach the previous Sunday
-    startDate.setTime(startDate.getTime() - (dayOfWeek * 24 * 60 * 60 * 1000));
-  }
+  startDate.setTime(startDate.getTime() - (7 * 24 * 60 * 60 * 1000));
   console.log(`Start date for week generation is ${startDate.toDateString()}`);
 
   // get date of first sunday
@@ -701,13 +697,13 @@ async function generateWeekPayloads(outputDir: string, resources: ProcessedResou
   const mondayWeekMap = new Map<string, JSONAPIRealizedEventDate[]>();
 
   // 371 days / 7 days per week = 53 weeks + buffer = 54 weeks
+  // Start from startDate to ensure we include all weeks that contain generated occurrences
   for (let i = 0; i < 378; i++) {
     const elapsedTime = i * 24 * 60 * 60 * 1000;
-    const sundayDate = new Date(firstSunday.getTime() + elapsedTime);
-    const mondayDate = new Date(firstMonday.getTime() + elapsedTime);
+    const currentDate = new Date(startDate.getTime() + elapsedTime);
 
-    const sunday = getWeekNumber(sundayDate, 0);
-    const monday = getWeekNumber(mondayDate, 1);
+    const sunday = getWeekNumber(currentDate, 0);
+    const monday = getWeekNumber(currentDate, 1);
 
     const sundayWeekKey = `${sunday.year}-${String(sunday.week).padStart(2, '0')}`;
     const mondayWeekKey = `${monday.year}-${String(monday.week).padStart(2, '0')}`;
@@ -1096,18 +1092,12 @@ function calculateRunOccurrences(
 ): void {
   const recurrence = runData.attributes.recurrence;
 
-  // Get the nearest Sunday in the past (or today if today is Sunday)
+  // Start 7 days prior to the current date
   const today = new Date();
   today.setHours(0, 0, 0, 0); // Normalize to midnight first
 
-  const dayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
-
-  // Calculate the start date (nearest Sunday in the past or today)
-  const startDate = new Date(today);
-  if (dayOfWeek !== 0) {
-    // Go back dayOfWeek days to reach the previous Sunday
-    startDate.setTime(today.getTime() - (dayOfWeek * 24 * 60 * 60 * 1000));
-  }
+  // Calculate the start date (7 days before today)
+  const startDate = new Date(today.getTime() - (7 * 24 * 60 * 60 * 1000));
 
   // Calculate end date (371 days from start)
   const endDate = new Date(startDate.getTime() + (371 * 24 * 60 * 60 * 1000));

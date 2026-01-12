@@ -99,6 +99,10 @@
         "data": [
           {
             "type": "realized-event-date",
+            "id": "5-tam-wednesday-2026-01-07"
+          },
+          {
+            "type": "realized-event-date",
             "id": "5-tam-wednesday-2026-01-14"
           },
           {
@@ -304,10 +308,6 @@
           {
             "type": "realized-event-date",
             "id": "5-tam-wednesday-2027-01-06"
-          },
-          {
-            "type": "realized-event-date",
-            "id": "5-tam-wednesday-2027-01-13"
           }
         ]
       }
@@ -378,6 +378,16 @@
         "instagramHandle": "from_here_we_go",
         "descriptionHtml": null
       }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-tam-wednesday-2026-01-07",
+      "attributes": {
+        "date": "2026-01-07",
+        "weekNumberMonday": 2,
+        "weekNumberSunday": 2
+      },
+      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -896,16 +906,6 @@
         "date": "2027-01-06",
         "weekNumberMonday": 2,
         "weekNumberSunday": 2
-      },
-      "relationships": {}
-    },
-    {
-      "type": "realized-event-date",
-      "id": "5-tam-wednesday-2027-01-13",
-      "attributes": {
-        "date": "2027-01-13",
-        "weekNumberMonday": 3,
-        "weekNumberSunday": 3
       },
       "relationships": {}
     }

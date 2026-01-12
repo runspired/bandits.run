@@ -103,6 +103,10 @@
         "data": [
           {
             "type": "realized-event-date",
+            "id": "1-the-saturday-tilden-2026-01-10"
+          },
+          {
+            "type": "realized-event-date",
             "id": "1-the-saturday-tilden-2026-02-14"
           },
           {
@@ -235,11 +239,21 @@
     },
     {
       "type": "realized-event-date",
+      "id": "1-the-saturday-tilden-2026-01-10",
+      "attributes": {
+        "date": "2026-01-10",
+        "weekNumberMonday": 2,
+        "weekNumberSunday": 2
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
       "id": "1-the-saturday-tilden-2026-02-14",
       "attributes": {
         "date": "2026-02-14",
         "weekNumberMonday": 7,
-        "weekNumberSunday": 8
+        "weekNumberSunday": 7
       },
       "relationships": {}
     },
@@ -329,7 +343,7 @@
       "attributes": {
         "date": "2026-11-14",
         "weekNumberMonday": 46,
-        "weekNumberSunday": 47
+        "weekNumberSunday": 46
       },
       "relationships": {}
     },
@@ -339,7 +353,7 @@
       "attributes": {
         "date": "2026-12-12",
         "weekNumberMonday": 50,
-        "weekNumberSunday": 51
+        "weekNumberSunday": 50
       },
       "relationships": {}
     },
@@ -349,7 +363,7 @@
       "attributes": {
         "date": "2027-01-09",
         "weekNumberMonday": 2,
-        "weekNumberSunday": 3
+        "weekNumberSunday": 2
       },
       "relationships": {}
     }

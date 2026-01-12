@@ -73,6 +73,10 @@
         "data": [
           {
             "type": "realized-event-date",
+            "id": "1-runrise-2026-01-08"
+          },
+          {
+            "type": "realized-event-date",
             "id": "1-runrise-2026-01-15"
           },
           {
@@ -278,10 +282,6 @@
           {
             "type": "realized-event-date",
             "id": "1-runrise-2027-01-07"
-          },
-          {
-            "type": "realized-event-date",
-            "id": "1-runrise-2027-01-14"
           }
         ]
       }
@@ -366,6 +366,16 @@
         "instagramHandle": null,
         "descriptionHtml": null
       }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2026-01-08",
+      "attributes": {
+        "date": "2026-01-08",
+        "weekNumberMonday": 2,
+        "weekNumberSunday": 2
+      },
+      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -884,16 +894,6 @@
         "date": "2027-01-07",
         "weekNumberMonday": 2,
         "weekNumberSunday": 2
-      },
-      "relationships": {}
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-runrise-2027-01-14",
-      "attributes": {
-        "date": "2027-01-14",
-        "weekNumberMonday": 3,
-        "weekNumberSunday": 3
       },
       "relationships": {}
     },
