@@ -9,7 +9,7 @@ import type { TrailRun } from '#app/data/run.ts';
 import FaIcon from '#ui/fa-icon.gts';
 import { faGlobe, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram, faStrava, faMeetup } from '@fortawesome/free-brands-svg-icons';
-import { Tabs } from '#ux/tabs.gts';
+import { Tabs, type TabTransition } from '#ux/tabs.gts';
 import type { Future } from '@warp-drive/core/request';
 import type { ReactiveDataDocument } from '@warp-drive/core/reactive';
 import type { Organization } from '#app/data/organization.ts';
@@ -37,9 +37,9 @@ export default class OrganizationSingleRoute extends Component<{
     return typeof tabParam === 'string' ? tabParam : null;
   }
 
-  handleTabChange = (tabId: string | undefined) => {
+  handleTabChange = (transition: TabTransition) => {
     // Update the query param when tab changes
-    this.router.transitionTo({ queryParams: { tab: tabId || null } });
+    this.router.transitionTo({ queryParams: { tab: transition.to || null } });
   };
 
   /**
@@ -80,8 +80,8 @@ export default class OrganizationSingleRoute extends Component<{
               {{org.name}}
             </:header>
             <:default>
-              <Tabs @activeId={{this.activeTab}} @onTabChange={{this.handleTabChange}} as |Tab|>
-                <Tab @id="overview">
+              <Tabs @activeSlug={{this.activeTab}} @onTabChange={{this.handleTabChange}} as |Tab|>
+                <Tab @slug="overview">
                   <:label>Overview</:label>
                   <:body>
                     <div class="org-overview">
@@ -195,7 +195,7 @@ export default class OrganizationSingleRoute extends Component<{
                     </div>
                   </:body>
                 </Tab>
-                <Tab @id="runs">
+                <Tab @slug="runs">
                   <:label>Runs</:label>
                   <:body>
                     <Request @query={{getOrganizationRuns @model.organizationId}}>
