@@ -5,10 +5,13 @@ import Resolver from 'ember-resolver';
 import config from 'bandits-web/config/environment';
 import { importSync, isDevelopingApp, macroCondition } from '@embroider/macros';
 import setupInspector from '@embroider/legacy-inspector-support/ember-source-4.12';
+import { initializeTheme } from './core/site-theme';
 
 if (macroCondition(isDevelopingApp())) {
   importSync('./deprecation-workflow');
 }
+
+initializeTheme();
 
 export default class App extends Application {
   modulePrefix = config.modulePrefix;
