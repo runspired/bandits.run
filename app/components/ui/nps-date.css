@@ -47,7 +47,7 @@
 
 .date-day {
   font-size: 1.8rem;
-  font-weight: 900;
+  font-weight: 800;
   line-height: .9;
   color: var(--theme-tan-black);
   font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
@@ -59,7 +59,7 @@
   left: 55%;
   transform: translateX(-50%);
   font-size: 0.65rem;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.15em;
   text-align: center;

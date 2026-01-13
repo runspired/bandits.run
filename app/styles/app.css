@@ -2,6 +2,7 @@
 
 /* Import markdown content styles */
 @import url('./markdown.css');
+@import url('./fonts.css');
 
 * {
   box-sizing: border-box;
@@ -388,7 +389,7 @@ h1.title.broken::before {
 }
 
 .opacity-value {
-  font-weight: 700;
+  font-weight: 800;
   color: var(--title);
 }
 
@@ -619,7 +620,7 @@ h3.section-title {
 
 h3 {
   font-size: 1rem;
-  font-weight: 200;
+  font-weight: 300;
   margin: 0;
   color: var(--schedule-text);
 }
@@ -646,7 +647,7 @@ p.error-message {
   border-radius: 12px;
   border-left: 5px solid #fbbf24;
   box-shadow: 0 4px 12px rgb(220 38 38 / 25%);
-  font-weight: 500;
+  font-weight: 400;
   position: relative;
   margin: 2rem auto;
   backdrop-filter: blur(10px);
@@ -745,7 +746,7 @@ ul {
   padding: 0.25rem 0.75rem;
   border-radius: 4px;
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-left: 0.5rem;
@@ -763,7 +764,7 @@ ul {
   padding: 0.4rem 0.8rem;
   border-radius: 4px;
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .run-description {
@@ -818,7 +819,7 @@ ul {
   color: var(--bg-sky);
   border-radius: 4px;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 400;
   transition: opacity 0.2s ease;
 }
 
