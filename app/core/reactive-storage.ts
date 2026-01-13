@@ -157,6 +157,10 @@ class ReactiveStorage implements Storage {
       return this._values[keyStr] ?? null;
     }
 
+    const value = this._values[keyStr];
+    if (value !== undefined) return value;
+
+    // Not yet loaded, fetch from storage
     const item = this._storage.getItem(keyStr);
     this._values[keyStr] = item;
     return item;
