@@ -6,8 +6,54 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script id="prefetch-weeks" type="module">
-      import './app/prefetch';
+    <script id="prefetch-data">
+      (function() {
+        // Only prefetch on home page
+        if (window.location.hash === '' || window.location.hash === '#/') {
+          // Get preferred first day of week from localStorage (default to Monday)
+          const pref = localStorage.getItem('preferred-first-day-of-week');
+          const firstDayNum = pref ? parseInt(pref, 10) : 1;
+          const day = firstDayNum === 0 ? 'sunday' : 'monday';
+
+          // Week number calculation matching app/utils/helpers.ts getWeekNumber
+          function getWeekNumber(date, dayType) {
+            const d = new Date(date);
+            d.setHours(0, 0, 0, 0);
+
+            const year = d.getFullYear();
+            const jan1 = new Date(year, 0, 1);
+            const jan1Day = jan1.getDay(); // 0 = Sunday, 1 = Monday
+
+            // Days since Jan 1 (0-indexed)
+            const dayOfYear = Math.floor((d.getTime() - jan1.getTime()) / 86400000);
+
+            const firstDayNum = dayType === 'monday' ? 1 : 0;
+
+            if (jan1Day === firstDayNum) {
+              return Math.floor(dayOfYear / 7) + 1;
+            }
+
+            const daysUntilFirstStartDay = firstDayNum === 0
+              ? (jan1Day === 0 ? 0 : 7 - jan1Day)
+              : (jan1Day === 1 ? 0 : 8 - jan1Day);
+
+            if (dayOfYear < daysUntilFirstStartDay) {
+              return 1;
+            }
+
+            return Math.floor((dayOfYear - daysUntilFirstStartDay) / 7) + 2;
+          }
+
+          // Get current week
+          const today = new Date();
+          const currentYear = today.getFullYear();
+          const currentWeek = getWeekNumber(today, day);
+
+          // Build URLs
+          const url = '/api/weeks/' + currentYear + '-' + String(currentWeek).padStart(2, '0') + '-' + day + '.json';
+          fetch(url, { priority: 'high' });
+        }
+      })();
     </script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
