@@ -9,7 +9,6 @@ import {
   eq,
   neq,
   and,
-  not,
   or,
   getRecurrenceDescription,
   formatTime,

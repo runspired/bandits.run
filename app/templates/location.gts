@@ -4,8 +4,8 @@ import type { Location } from '#app/data/location.ts';
 import { withReactiveResponse } from '@warp-drive/core/request';
 import { Request } from '@warp-drive/ember';
 import { pageTitle } from 'ember-page-title';
-import LeafletMap from '#components/leaflet-map.gts';
-import LeafletMarker from '#components/leaflet-marker.gts';
+import LeafletMap from '#components/maps/leaflet-map.gts';
+import LeafletMarker from '#components/maps/leaflet-marker.gts';
 import FaIcon from '#app/components/fa-icon.gts';
 import {
   faLocationDot,
@@ -14,7 +14,7 @@ import {
 import { cached, tracked } from '@glimmer/tracking';
 import { colorSchemeManager } from '#app/templates/application.gts';
 import './location.css';
-import LeafletBoundary from '#app/components/leaflet-boundary.gts';
+import LeafletBoundary from '#app/components/maps/leaflet-boundary.gts';
 import { assert } from '@ember/debug';
 import { and } from '#app/utils/helpers.ts';
 

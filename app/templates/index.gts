@@ -1,19 +1,13 @@
 import { pageTitle } from 'ember-page-title';
 import { Request } from '@warp-drive/ember';
 import { withReactiveResponse } from '@warp-drive/core/request';
-import type { ScheduleDay } from '#app/data/schedule.ts';
 import type { Week } from '#app/data/week.ts';
 import type { RealizedEventDate } from '#app/data/realized-event-date.ts';
 import ThemedPage from '#app/components/themed-page.gts';
 import { Tabs } from '#app/components/tabs.gts';
-import { getFirstDayOfWeek, formatDay, formatRunTime, getCurrentWeekIdMonday, getNextWeekIdMonday, getDayOfWeek, isThursdayOrLater, isToday, isPastDate } from '#app/utils/helpers.ts';
+import { getCurrentWeekIdMonday, getNextWeekIdMonday, getDayOfWeek, isThursdayOrLater, isToday } from '#app/utils/helpers.ts';
 import RunPreview from '#app/components/run-preview.gts';
 import RunOccurrence from '#app/components/run-occurrence.gts';
-
-const scheduleQuery = withReactiveResponse<ScheduleDay[]>({
-  url: '/api/schedule.json',
-  method: 'GET',
-} as const);
 
 const thisWeekQuery = withReactiveResponse<Week>({
   url: `/api/weeks/${getCurrentWeekIdMonday()}.json`,
@@ -26,21 +20,6 @@ const nextWeekQuery = withReactiveResponse<Week>({
 } as const);
 
 const showNextWeek = isThursdayOrLater();
-
-
-function sortDaysByFirstDayOfWeek(days: ScheduleDay[]): ScheduleDay[] {
-  const firstDayOfWeek = getFirstDayOfWeek();
-
-  if (firstDayOfWeek !== 1) {
-    return days.slice().sort((a, b) => {
-      const dayA = (a.day - firstDayOfWeek + 7) % 7;
-      const dayB = (b.day - firstDayOfWeek + 7) % 7;
-      return dayA - dayB;
-    });
-  }
-
-  return days;
-}
 
 interface DayGroup {
   date: string;

@@ -16,9 +16,9 @@ import { faStrava, faMeetup } from '@fortawesome/free-brands-svg-icons';
 import { LinkTo } from '@ember/routing';
 import type { Future } from '@warp-drive/core/request';
 import type { ReactiveDataDocument } from '@warp-drive/core/reactive';
-import LeafletMap from '#components/leaflet-map.gts';
-import LeafletMarker from '#components/leaflet-marker.gts';
-import LeafletBoundary from '#app/components/leaflet-boundary.gts';
+import LeafletMap from '#components/maps/leaflet-map.gts';
+import LeafletMarker from '#components/maps/leaflet-marker.gts';
+import LeafletBoundary from '#app/components/maps/leaflet-boundary.gts';
 import { colorSchemeManager } from '#app/templates/application.gts';
 import {
   and,
