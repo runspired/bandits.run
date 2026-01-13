@@ -54,12 +54,12 @@ const darkModeColors = {
 
 // Helper to get current mode's colors
 function getCurrentModeColors() {
-  return globalThis.document.body.classList.contains('dark-mode') ? darkModeColors : lightModeColors;
+  return document.body.classList.contains('dark-mode') ? darkModeColors : lightModeColors;
 }
 
 // Helper to get current mode's default colors
 function getCurrentModeDefaults() {
-  return globalThis.document.body.classList.contains('dark-mode') ? darkThemeDefaultColors : lightThemeDefaultColors;
+  return document.body.classList.contains('dark-mode') ? darkThemeDefaultColors : lightThemeDefaultColors;
 }
 
 // Initialize defaults from CSS if not already set
@@ -67,11 +67,11 @@ function initializeDefaults() {
   const defaults = getCurrentModeDefaults();
 
   if (defaults.logo === null) {
-    const body = globalThis.document.body;
-    const themeColor = globalThis.getComputedStyle(body).getPropertyValue('--title').trim();
-    const titleElement = globalThis.document.querySelector('h1.title') as HTMLElement;
+    const body = document.body;
+    const themeColor = getComputedStyle(body).getPropertyValue('--title').trim();
+    const titleElement = document.querySelector('h1.title') as HTMLElement;
     const fallbackColor = titleElement
-      ? globalThis.getComputedStyle(titleElement).getPropertyValue('color')
+      ? getComputedStyle(titleElement).getPropertyValue('color')
       : '';
 
     const computedColor = themeColor || fallbackColor || '#9333ea';
@@ -79,26 +79,26 @@ function initializeDefaults() {
   }
 
   if (defaults.background === null) {
-    const body = globalThis.document.body;
-    const computedBg = globalThis.getComputedStyle(body).getPropertyValue('--bg-sky').trim();
+    const body = document.body;
+    const computedBg = getComputedStyle(body).getPropertyValue('--bg-sky').trim();
     defaults.background = rgbToHex(computedBg || '#f3e8ff');
   }
 
   if (defaults.backHill === null) {
-    const body = globalThis.document.body;
-    const computed = globalThis.getComputedStyle(body).getPropertyValue('--color-hill-back').trim();
+    const body = document.body;
+    const computed = getComputedStyle(body).getPropertyValue('--color-hill-back').trim();
     defaults.backHill = rgbToHex(computed || '#ff69b4');
   }
 
   if (defaults.tree === null) {
-    const body = globalThis.document.body;
-    const computed = globalThis.getComputedStyle(body).getPropertyValue('--tree-color').trim();
+    const body = document.body;
+    const computed = getComputedStyle(body).getPropertyValue('--tree-color').trim();
     defaults.tree = rgbToHex(computed || '#052c16');
   }
 
   if (defaults.altTree === null) {
-    const body = globalThis.document.body;
-    const computed = globalThis.getComputedStyle(body).getPropertyValue('--alt-tree-color').trim();
+    const body = document.body;
+    const computed = getComputedStyle(body).getPropertyValue('--alt-tree-color').trim();
     defaults.altTree = rgbToHex(computed || '#06a743');
   }
 }
@@ -113,7 +113,7 @@ function getEffectiveColor(colorKey: 'logo' | 'background' | 'backHill' | 'tree'
 // Apply theme colors to CSS variables (scoped to .themeable elements)
 function updateThemeColors() {
   const themeables = Array.from(
-    globalThis.document.querySelectorAll('.themeable')
+    document.querySelectorAll('.themeable')
   ) as unknown as HTMLDivElement[];
 
   if (!themeables.length) return;
@@ -150,7 +150,7 @@ function updateThemeColors() {
   });
 
   // Update square logo backgrounds (only on themeable instances)
-  const logoElements = globalThis.document.querySelectorAll(
+  const logoElements = document.querySelectorAll(
     '.square-logo.themeable'
   ) as unknown as HTMLDivElement[];
 
@@ -183,7 +183,7 @@ function handleOpacityChange(event: Event) {
   updateThemeColors();
 
   // Update opacity label
-  const label = globalThis.document.querySelector(
+  const label = document.querySelector(
     '.opacity-value'
   ) as HTMLElement;
   if (label) {
@@ -206,7 +206,7 @@ function handleBackgroundOpacityChange(event: Event) {
   backgroundOpacity = parseFloat(input.value);
   updateThemeColors();
 
-  const label = globalThis.document.querySelector(
+  const label = document.querySelector(
     '.background-opacity-value'
   ) as HTMLElement;
   if (label) {
@@ -254,8 +254,8 @@ function resetColors() {
   backgroundOpacity = 1;
 
   // Reset opacity labels
-  const opacityLabel = globalThis.document.querySelector('.opacity-value') as HTMLElement;
-  const backgroundOpacityLabel = globalThis.document.querySelector('.background-opacity-value') as HTMLElement;
+  const opacityLabel = document.querySelector('.opacity-value') as HTMLElement;
+  const backgroundOpacityLabel = document.querySelector('.background-opacity-value') as HTMLElement;
   if (opacityLabel) opacityLabel.textContent = '100%';
   if (backgroundOpacityLabel) backgroundOpacityLabel.textContent = '100%';
 
@@ -329,13 +329,13 @@ function applyOpacityToColor(color: string, opacity: number): string {
 
 // Initialize color pickers to show effective colors (overrides or defaults)
 function initializeColorPickers() {
-  const colorInput = globalThis.document.querySelector('.logo-color-input') as HTMLInputElement;
-  const backgroundInput = globalThis.document.querySelector('.background-color-input') as HTMLInputElement;
-  const backHillInput = globalThis.document.querySelector('.back-hill-color-input') as HTMLInputElement;
-  const treeInput = globalThis.document.querySelector('.tree-color-input') as HTMLInputElement;
-  const altTreeInput = globalThis.document.querySelector('.alt-tree-color-input') as HTMLInputElement;
-  const opacityInput = globalThis.document.querySelector('.logo-opacity-input') as HTMLInputElement;
-  const backgroundOpacityInput = globalThis.document.querySelector('.background-opacity-input') as HTMLInputElement;
+  const colorInput = document.querySelector('.logo-color-input') as HTMLInputElement;
+  const backgroundInput = document.querySelector('.background-color-input') as HTMLInputElement;
+  const backHillInput = document.querySelector('.back-hill-color-input') as HTMLInputElement;
+  const treeInput = document.querySelector('.tree-color-input') as HTMLInputElement;
+  const altTreeInput = document.querySelector('.alt-tree-color-input') as HTMLInputElement;
+  const opacityInput = document.querySelector('.logo-opacity-input') as HTMLInputElement;
+  const backgroundOpacityInput = document.querySelector('.background-opacity-input') as HTMLInputElement;
 
   if (colorInput) colorInput.value = getEffectiveColor('logo');
   if (backgroundInput) backgroundInput.value = getEffectiveColor('background');
@@ -348,7 +348,7 @@ function initializeColorPickers() {
 
 const initColorPicker = modifier(() => {
   // Initialize color picker after a short delay to ensure DOM is ready
-  globalThis.setTimeout(() => {
+  setTimeout(() => {
     // Initialize defaults for this mode if needed
     initializeDefaults();
 
@@ -362,7 +362,7 @@ const initColorPicker = modifier(() => {
 });
 
 function isDebugMode(): boolean {
-  const hash = globalThis.location.hash;
+  const hash = location.hash;
   const queryStart = hash.indexOf('?');
   if (queryStart === -1) return false;
 
@@ -386,7 +386,7 @@ function handleSkyImageUpload(event: Event) {
     skyImageOffsetY = 0;
 
     // Show controls
-    const controls = globalThis.document.getElementById('sky-image-controls');
+    const controls = document.getElementById('sky-image-controls');
     if (controls) {
       controls.classList.remove('hidden');
     }
@@ -402,11 +402,11 @@ function clearSkyImage() {
   skyImageOffsetX = 0;
   skyImageOffsetY = 0;
 
-  const input = globalThis.document.querySelector('.sky-image-input') as HTMLInputElement;
+  const input = document.querySelector('.sky-image-input') as HTMLInputElement;
   if (input) input.value = '';
 
   // Hide controls
-  const controls = globalThis.document.getElementById('sky-image-controls');
+  const controls = document.getElementById('sky-image-controls');
   if (controls) {
     controls.classList.add('hidden');
   }
@@ -418,7 +418,7 @@ function handleSkyImageScale(event: Event) {
   const input = event.target as HTMLInputElement;
   skyImageScale = parseFloat(input.value);
 
-  const valueLabel = globalThis.document.querySelector('.sky-image-scale-value');
+  const valueLabel = document.querySelector('.sky-image-scale-value');
   if (valueLabel) {
     valueLabel.textContent = skyImageScale.toFixed(1);
   }
@@ -430,7 +430,7 @@ function handleSkyImageOffsetX(event: Event) {
   const input = event.target as HTMLInputElement;
   skyImageOffsetX = parseFloat(input.value);
 
-  const valueLabel = globalThis.document.querySelector('.sky-image-offset-x-value');
+  const valueLabel = document.querySelector('.sky-image-offset-x-value');
   if (valueLabel) {
     valueLabel.textContent = skyImageOffsetX.toString();
   }
@@ -442,7 +442,7 @@ function handleSkyImageOffsetY(event: Event) {
   const input = event.target as HTMLInputElement;
   skyImageOffsetY = parseFloat(input.value);
 
-  const valueLabel = globalThis.document.querySelector('.sky-image-offset-y-value');
+  const valueLabel = document.querySelector('.sky-image-offset-y-value');
   if (valueLabel) {
     valueLabel.textContent = skyImageOffsetY.toString();
   }
@@ -504,7 +504,7 @@ function updatePreviews() {
 // Generate SVG - shared by both preview and download
 function generateSVG(size: number, titleColor: string): Promise<SVGSVGElement> {
   const svgNS = 'http://www.w3.org/2000/svg';
-  const svg = globalThis.document.createElementNS(svgNS, 'svg');
+  const svg = document.createElementNS(svgNS, 'svg');
 
   // If chevron only mode, use different dimensions
   if (chevronOnly) {
@@ -516,7 +516,7 @@ function generateSVG(size: number, titleColor: string): Promise<SVGSVGElement> {
     svg.setAttribute('viewBox', `0 0 ${boxWidth} ${boxHeight}`);
 
     // Add background
-    const rect = globalThis.document.createElementNS(svgNS, 'rect');
+    const rect = document.createElementNS(svgNS, 'rect');
     rect.setAttribute('width', boxWidth.toString());
     rect.setAttribute('height', boxHeight.toString());
 
@@ -540,8 +540,8 @@ function generateSVG(size: number, titleColor: string): Promise<SVGSVGElement> {
         );
         const chevronSvgEl = chevronDoc.documentElement;
 
-        const defs = globalThis.document.createElementNS(svgNS, 'defs');
-        const symbol = globalThis.document.createElementNS(svgNS, 'symbol');
+        const defs = document.createElementNS(svgNS, 'defs');
+        const symbol = document.createElementNS(svgNS, 'symbol');
         symbol.setAttribute('id', `chevron-${Date.now()}`);
         symbol.setAttribute(
           'viewBox',
@@ -549,7 +549,7 @@ function generateSVG(size: number, titleColor: string): Promise<SVGSVGElement> {
         );
 
         Array.from(chevronSvgEl.children).forEach((child) => {
-          const importedChild = globalThis.document.importNode(
+          const importedChild = document.importNode(
             child,
             true
           ) as SVGElement;
@@ -567,7 +567,7 @@ function generateSVG(size: number, titleColor: string): Promise<SVGSVGElement> {
         const chevronX = (boxWidth - chevronSize) / 2;
         const chevronY = (boxHeight - chevronSize) / 2;
 
-        const useEl = globalThis.document.createElementNS(svgNS, 'use');
+        const useEl = document.createElementNS(svgNS, 'use');
         useEl.setAttribute('href', `#${symbol.id}`);
         useEl.setAttribute('x', chevronX.toString());
         useEl.setAttribute('y', chevronY.toString());
@@ -599,7 +599,7 @@ function generateSVG(size: number, titleColor: string): Promise<SVGSVGElement> {
   svg.setAttribute('viewBox', `0 0 ${boxWidth} ${boxHeight}`);
 
   // Add background
-  const rect = globalThis.document.createElementNS(svgNS, 'rect');
+  const rect = document.createElementNS(svgNS, 'rect');
   rect.setAttribute('width', boxWidth.toString());
   rect.setAttribute('height', boxHeight.toString());
 
@@ -624,8 +624,8 @@ function generateSVG(size: number, titleColor: string): Promise<SVGSVGElement> {
       );
       const chevronSvgEl = chevronDoc.documentElement;
 
-      const defs = globalThis.document.createElementNS(svgNS, 'defs');
-      const symbol = globalThis.document.createElementNS(svgNS, 'symbol');
+      const defs = document.createElementNS(svgNS, 'defs');
+      const symbol = document.createElementNS(svgNS, 'symbol');
       symbol.setAttribute('id', `chevron-${Date.now()}`);
       symbol.setAttribute(
         'viewBox',
@@ -633,7 +633,7 @@ function generateSVG(size: number, titleColor: string): Promise<SVGSVGElement> {
       );
 
       Array.from(chevronSvgEl.children).forEach((child) => {
-        const importedChild = globalThis.document.importNode(
+        const importedChild = document.importNode(
           child,
           true
         ) as SVGElement;
@@ -648,11 +648,11 @@ function generateSVG(size: number, titleColor: string): Promise<SVGSVGElement> {
       defs.appendChild(symbol);
       svg.appendChild(defs);
 
-      const g = globalThis.document.createElementNS(svgNS, 'g');
+      const g = document.createElementNS(svgNS, 'g');
       g.setAttribute('transform', `translate(${offsetX}, ${offsetY})`);
 
       // Use chevron symbol
-      const useEl = globalThis.document.createElementNS(svgNS, 'use');
+      const useEl = document.createElementNS(svgNS, 'use');
       useEl.setAttribute('href', `#${symbol.id}`);
       useEl.setAttribute('x', '0');
       useEl.setAttribute('y', iconOffsetY.toString());
@@ -662,7 +662,7 @@ function generateSVG(size: number, titleColor: string): Promise<SVGSVGElement> {
       g.appendChild(useEl);
 
       // Text
-      const text1 = globalThis.document.createElementNS(svgNS, 'text');
+      const text1 = document.createElementNS(svgNS, 'text');
       text1.setAttribute('x', (chevronSize + chevronMargin).toString());
       text1.setAttribute('y', fontSize.toString());
       text1.setAttribute('font-family', 'Montserrat, sans-serif');
@@ -674,7 +674,7 @@ function generateSVG(size: number, titleColor: string): Promise<SVGSVGElement> {
       text1.textContent = 'BAY';
       g.appendChild(text1);
 
-      const text2 = globalThis.document.createElementNS(svgNS, 'text');
+      const text2 = document.createElementNS(svgNS, 'text');
       text2.setAttribute('x', (chevronSize + chevronMargin).toString());
       text2.setAttribute('y', (fontSize + lineHeight).toString());
       text2.setAttribute('font-family', 'Montserrat, sans-serif');
@@ -698,7 +698,7 @@ function generatePNG(
   titleColor: string,
   scale: number = 1
 ): Promise<HTMLCanvasElement> {
-  const canvas = globalThis.document.createElement('canvas');
+  const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
   if (!ctx) return Promise.reject(new Error('Cannot get canvas context'));
 
@@ -720,7 +720,7 @@ function generatePNG(
     }
 
     // Load and draw centered chevron
-    const img = new globalThis.Image();
+    const img = new Image();
     img.crossOrigin = 'anonymous';
 
     return new Promise((resolve) => {
@@ -730,7 +730,7 @@ function generatePNG(
         ctx.globalCompositeOperation = 'source-over';
 
         // Create a temporary canvas for the colored chevron
-        const tempCanvas = globalThis.document.createElement('canvas');
+        const tempCanvas = document.createElement('canvas');
         const tempCtx = tempCanvas.getContext('2d');
         if (!tempCtx) throw new Error('Cannot get temp canvas context');
 
@@ -791,11 +791,11 @@ function generatePNG(
   }
 
   // Load font and image before rendering
-  const img = new globalThis.Image();
+  const img = new Image();
   img.crossOrigin = 'anonymous';
 
   return Promise.all([
-    globalThis.document.fonts.load('italic 800 30px Montserrat'),
+    document.fonts.load('italic 800 30px Montserrat'),
     new Promise((resolve) => {
       img.onload = resolve;
       img.src = '/logo-orange-chevron.svg';
@@ -807,7 +807,7 @@ function generatePNG(
     ctx.globalCompositeOperation = 'source-over';
 
     // Create a temporary canvas for the colored chevron
-    const tempCanvas = globalThis.document.createElement('canvas');
+    const tempCanvas = document.createElement('canvas');
     const tempCtx = tempCanvas.getContext('2d');
     if (!tempCtx) throw new Error('Cannot get temp canvas context');
 
@@ -848,7 +848,7 @@ function generatePNG(
 
 function generateSVGPreview() {
   const containers = Array.from(
-    globalThis.document.querySelectorAll('.svg-preview-target')
+    document.querySelectorAll('.svg-preview-target')
   );
   if (!containers.length) return;
 
@@ -875,7 +875,7 @@ function generateSVGPreview() {
 }
 
 function generatePNGPreview() {
-  const canvasElement = globalThis.document.getElementById(
+  const canvasElement = document.getElementById(
     'png-preview'
   ) as HTMLCanvasElement;
   if (!canvasElement) return;
@@ -901,17 +901,17 @@ function generatePNGPreview() {
       ctx.drawImage(generatedCanvas, 0, 0);
     })
     .catch((error) => {
-      globalThis.console.error('Error generating PNG preview:', error);
+      console.error('Error generating PNG preview:', error);
     });
 }
 
 function toggleTransparentBackground() {
   useTransparentBackground = !useTransparentBackground;
 
-  const button = globalThis.document.querySelector(
+  const button = document.querySelector(
     '.transparent-toggle-btn'
   ) as HTMLButtonElement;
-  const logoElement = globalThis.document.querySelector(
+  const logoElement = document.querySelector(
     '.square-logo'
   ) as HTMLElement;
 
@@ -936,7 +936,7 @@ function toggleTransparentBackground() {
 let fitToContent = false;
 function toggleFitToContent() {
   fitToContent = !fitToContent;
-  const logoElement = globalThis.document.querySelector(
+  const logoElement = document.querySelector(
     '.square-logo'
   ) as HTMLElement;
   if (!logoElement) return;
@@ -954,7 +954,7 @@ let chevronOnly = false;
 function toggleChevronOnly() {
   chevronOnly = !chevronOnly;
 
-  const button = globalThis.document.querySelector(
+  const button = document.querySelector(
     '.chevron-only-toggle-btn'
   ) as HTMLButtonElement;
 
@@ -971,7 +971,7 @@ let showBannerMasks = false;
 function toggleBannerMasks() {
   showBannerMasks = !showBannerMasks;
 
-  const button = globalThis.document.querySelector(
+  const button = document.querySelector(
     '.banner-mask-toggle-btn'
   ) as HTMLButtonElement;
 
@@ -988,7 +988,7 @@ function toggleColorScheme() {
   const theme = getTheme();
   theme.updateThemePreference(theme.isDarkMode ? 'light' : 'dark');
   // Update previews and color pickers after theme change to recalculate colors
-  globalThis.setTimeout(() => {
+  setTimeout(() => {
     // Initialize defaults for the new mode if needed
     initializeDefaults();
 
@@ -1002,7 +1002,7 @@ function toggleColorScheme() {
 }
 
 function toggleCircleMask() {
-  const logoElement = globalThis.document.querySelector(
+  const logoElement = document.querySelector(
     '.square-logo'
   ) as HTMLElement;
   if (!logoElement) return;
@@ -1011,7 +1011,7 @@ function toggleCircleMask() {
 }
 
 function downloadAsSVG() {
-  const logoElement = globalThis.document.querySelector(
+  const logoElement = document.querySelector(
     '.square-logo'
   ) as HTMLElement;
   if (!logoElement) return;
@@ -1031,7 +1031,7 @@ function downloadAsSVG() {
         .then((fontCss) => {
           // Add style element with embedded font at the beginning
           const svgNS = 'http://www.w3.org/2000/svg';
-          const style = globalThis.document.createElementNS(svgNS, 'style');
+          const style = document.createElementNS(svgNS, 'style');
           style.textContent = fontCss;
           svg.insertBefore(style, svg.firstChild);
           return svg;
@@ -1043,7 +1043,7 @@ function downloadAsSVG() {
       const blob = new Blob([svgData], { type: 'image/svg+xml' });
       const url = URL.createObjectURL(blob);
 
-      const a = globalThis.document.createElement('a');
+      const a = document.createElement('a');
       a.href = url;
       a.download = 'bay-bandits-logo.svg';
       a.click();
@@ -1051,12 +1051,12 @@ function downloadAsSVG() {
       URL.revokeObjectURL(url);
     })
     .catch((error: Error) => {
-      globalThis.console.error('Error downloading SVG:', error);
+      console.error('Error downloading SVG:', error);
     });
 }
 
 function downloadAsPNG() {
-  const logoElement = globalThis.document.querySelector(
+  const logoElement = document.querySelector(
     '.square-logo'
   ) as HTMLElement;
   if (!logoElement) return;
@@ -1072,7 +1072,7 @@ function downloadAsPNG() {
       canvas.toBlob((blob) => {
         if (!blob) return;
         const url = URL.createObjectURL(blob);
-        const a = globalThis.document.createElement('a');
+        const a = document.createElement('a');
         a.href = url;
         a.download = 'bay-bandits-logo.png';
         a.click();
@@ -1080,18 +1080,18 @@ function downloadAsPNG() {
       });
     })
     .catch((error) => {
-      globalThis.console.error('Error downloading PNG:', error);
+      console.error('Error downloading PNG:', error);
     });
 }
 
 function downloadAssetsAsZip() {
-  const logoElement = globalThis.document.querySelector(
+  const logoElement = document.querySelector(
     '.square-logo'
   ) as HTMLElement;
   if (!logoElement) return;
 
   // Store current theme state and chevron mode
-  const currentTheme = globalThis.document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+  const currentTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
   const currentChevronOnly = chevronOnly;
 
   // Define all asset configurations for each theme
@@ -1166,12 +1166,12 @@ function downloadAssetsAsZip() {
 
   // Function to switch theme
   const switchTheme = (targetTheme: 'light' | 'dark', callback: () => void) => {
-    const isDark = globalThis.document.body.classList.contains('dark-mode');
+    const isDark = document.body.classList.contains('dark-mode');
     const needsSwitch = (targetTheme === 'dark' && !isDark) || (targetTheme === 'light' && isDark);
 
     if (needsSwitch) {
       toggleColorScheme();
-      globalThis.setTimeout(callback, 100);
+      setTimeout(callback, 100);
     } else {
       callback();
     }
@@ -1268,12 +1268,12 @@ function downloadAssetsAsZip() {
     invertColors: boolean = false
   ): Promise<SVGElement> => {
     // Get colors for both themes
-    const originalTheme = globalThis.document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+    const originalTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
 
     // Generate light theme SVG
     if (originalTheme === 'dark') {
       toggleColorScheme();
-      await new Promise(resolve => globalThis.setTimeout(resolve, 100));
+      await new Promise(resolve => setTimeout(resolve, 100));
     }
 
     const restoreLight = invertColors ? swapLogoAndBackgroundColors() : null;
@@ -1283,7 +1283,7 @@ function downloadAssetsAsZip() {
 
     // Switch to dark theme
     toggleColorScheme();
-    await new Promise(resolve => globalThis.setTimeout(resolve, 100));
+    await new Promise(resolve => setTimeout(resolve, 100));
 
     const restoreDark = invertColors ? swapLogoAndBackgroundColors() : null;
     const darkTitleColor = getTitleColor();
@@ -1293,14 +1293,14 @@ function downloadAssetsAsZip() {
     // Restore original theme if needed
     if (originalTheme === 'light') {
       toggleColorScheme();
-      await new Promise(resolve => globalThis.setTimeout(resolve, 100));
+      await new Promise(resolve => setTimeout(resolve, 100));
     }
 
     // Create the adaptive SVG
     const svg = isBanner ? await generateStravaBannerSVG() : await generateSVG(300, lightTitleColor);
 
     // Add style element with media queries
-    const style = globalThis.document.createElementNS('http://www.w3.org/2000/svg', 'style');
+    const style = document.createElementNS('http://www.w3.org/2000/svg', 'style');
     style.textContent = `
       .logo-fill { fill: ${lightTitleColor}; }
       .bg-fill { fill: ${lightBgColor}; }
@@ -1358,7 +1358,7 @@ function downloadAssetsAsZip() {
       generateStravaBannerSVG()
         .then((svg) => {
           // Create canvas at specified dimensions
-          const canvas = globalThis.document.createElement('canvas');
+          const canvas = document.createElement('canvas');
           canvas.width = config.width!;
           canvas.height = config.height!;
 
@@ -1371,7 +1371,7 @@ function downloadAssetsAsZip() {
           const url = URL.createObjectURL(svgBlob);
 
           // Load SVG as image
-          const img = new globalThis.Image();
+          const img = new Image();
           img.crossOrigin = 'anonymous';
 
           img.onload = () => {
@@ -1601,7 +1601,7 @@ function downloadAssetsAsZip() {
 // Create zip file and download
 function createAndDownloadZip(assets: { [key: string]: Blob }) {
   // Load JSZip from CDN
-  const script = globalThis.document.createElement('script');
+  const script = document.createElement('script');
   script.src = 'https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js';
   script.onload = () => {
     try {
@@ -1756,23 +1756,23 @@ Theme: Both light and dark variants included
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
       zip.generateAsync({ type: 'blob' }).then((blob: Blob) => {
         const url = URL.createObjectURL(blob);
-        const a = globalThis.document.createElement('a');
+        const a = document.createElement('a');
         a.href = url;
         a.download = 'bay-bandits-logo-assets.zip';
         a.click();
         URL.revokeObjectURL(url);
       });
     } catch (error) {
-      globalThis.console.error('Error creating zip file:', error);
-      globalThis.console.log('JSZip library may not be loaded yet. Please try again.');
+      console.error('Error creating zip file:', error);
+      console.log('JSZip library may not be loaded yet. Please try again.');
     }
   };
 
   script.onerror = () => {
-    globalThis.console.error('Error loading JSZip library');
+    console.error('Error loading JSZip library');
   };
 
-  globalThis.document.head.appendChild(script);
+  document.head.appendChild(script);
 }
 
 // Get theme color values for banner generation
@@ -1793,7 +1793,7 @@ function getThemeColors() {
 // Generate Strava banner as SVG
 function generateStravaBannerSVG(): Promise<SVGSVGElement> {
   const svgNS = 'http://www.w3.org/2000/svg';
-  const svg = globalThis.document.createElementNS(svgNS, 'svg');
+  const svg = document.createElementNS(svgNS, 'svg');
 
   const width = 1210;
   const height = 593;
@@ -1807,8 +1807,8 @@ function generateStravaBannerSVG(): Promise<SVGSVGElement> {
 
   // Add background image if available
   if (skyImageData) {
-    const defs = globalThis.document.createElementNS(svgNS, 'defs');
-    const pattern = globalThis.document.createElementNS(svgNS, 'pattern');
+    const defs = document.createElementNS(svgNS, 'defs');
+    const pattern = document.createElementNS(svgNS, 'pattern');
     pattern.setAttribute('id', 'skyImagePattern');
     pattern.setAttribute('x', '0');
     pattern.setAttribute('y', '0');
@@ -1816,7 +1816,7 @@ function generateStravaBannerSVG(): Promise<SVGSVGElement> {
     pattern.setAttribute('height', height.toString());
     pattern.setAttribute('patternUnits', 'userSpaceOnUse');
 
-    const image = globalThis.document.createElementNS(svgNS, 'image');
+    const image = document.createElementNS(svgNS, 'image');
     // We'll need to embed the image data
     image.setAttribute('href', skyImageData);
     image.setAttribute('x', skyImageOffsetX.toString());
@@ -1830,7 +1830,7 @@ function generateStravaBannerSVG(): Promise<SVGSVGElement> {
     svg.appendChild(defs);
 
     // Use pattern as background
-    const skyRect = globalThis.document.createElementNS(svgNS, 'rect');
+    const skyRect = document.createElementNS(svgNS, 'rect');
     skyRect.setAttribute('width', width.toString());
     skyRect.setAttribute('height', height.toString());
     skyRect.setAttribute('fill', 'url(#skyImagePattern)');
@@ -1838,7 +1838,7 @@ function generateStravaBannerSVG(): Promise<SVGSVGElement> {
   } else {
     // Sky background
     const skyColor = applyOpacityToColor(colors.sky, colors.skyOpacity);
-    const skyRect = globalThis.document.createElementNS(svgNS, 'rect');
+    const skyRect = document.createElementNS(svgNS, 'rect');
     skyRect.setAttribute('width', width.toString());
     skyRect.setAttribute('height', height.toString());
     skyRect.setAttribute('fill', skyColor);
@@ -1855,7 +1855,7 @@ function generateStravaBannerSVG(): Promise<SVGSVGElement> {
   const frontHillOffsetY = height - hillHeight - 55; // anchored at bottom + 55px raised
 
   // Back hill path (scaled from index.gts, with 5vh elevation)
-  const backHillPath = globalThis.document.createElementNS(svgNS, 'path');
+  const backHillPath = document.createElementNS(svgNS, 'path');
   const backHillD = `
     M 0,${backHillOffsetY + 160}
     L ${120 * hillScaleX},${backHillOffsetY + 176}
@@ -1874,7 +1874,7 @@ function generateStravaBannerSVG(): Promise<SVGSVGElement> {
   svg.appendChild(backHillPath);
 
   // Front hill path (scaled from index.gts, anchored at bottom)
-  const frontHillPath = globalThis.document.createElementNS(svgNS, 'path');
+  const frontHillPath = document.createElementNS(svgNS, 'path');
   const frontHillD = `
     M 0,${frontHillOffsetY + 224}
     L ${80 * hillScaleX},${frontHillOffsetY + 213.3}
@@ -1892,22 +1892,24 @@ function generateStravaBannerSVG(): Promise<SVGSVGElement> {
 
   // Load tree and chevron SVGs
   return Promise.all([
-    globalThis.fetch('/redwood.svg').then(r => r.text()),
-    globalThis.fetch('/logo-orange-chevron.svg').then(r => r.text()),
+    // eslint-disable-next-line warp-drive/no-external-request-patterns
+    fetch('/redwood.svg').then(r => r.text()),
+    // eslint-disable-next-line warp-drive/no-external-request-patterns
+    fetch('/logo-orange-chevron.svg').then(r => r.text()),
   ]).then(([treeSvgText, chevronSvgText]) => {
     const parser = new DOMParser();
 
     // Create defs section for reusable elements
-    const defs = globalThis.document.createElementNS(svgNS, 'defs');
+    const defs = document.createElementNS(svgNS, 'defs');
 
     // Parse and add tree symbol
     const treeDoc = parser.parseFromString(treeSvgText, 'image/svg+xml');
     const treeSvgEl = treeDoc.documentElement;
-    const treeSymbol = globalThis.document.createElementNS(svgNS, 'symbol');
+    const treeSymbol = document.createElementNS(svgNS, 'symbol');
     treeSymbol.setAttribute('id', 'tree');
     treeSymbol.setAttribute('viewBox', treeSvgEl.getAttribute('viewBox') || '0 0 100 100');
     Array.from(treeSvgEl.children).forEach(child => {
-      const imported = globalThis.document.importNode(child, true) as SVGElement;
+      const imported = document.importNode(child, true) as SVGElement;
       if (imported instanceof SVGElement) {
         imported.removeAttribute('fill');
       }
@@ -1918,11 +1920,11 @@ function generateStravaBannerSVG(): Promise<SVGSVGElement> {
     // Parse and add chevron symbol
     const chevronDoc = parser.parseFromString(chevronSvgText, 'image/svg+xml');
     const chevronSvgEl = chevronDoc.documentElement;
-    const chevronSymbol = globalThis.document.createElementNS(svgNS, 'symbol');
+    const chevronSymbol = document.createElementNS(svgNS, 'symbol');
     chevronSymbol.setAttribute('id', 'chevron');
     chevronSymbol.setAttribute('viewBox', chevronSvgEl.getAttribute('viewBox') || '0 0 100 100');
     Array.from(chevronSvgEl.children).forEach(child => {
-      const imported = globalThis.document.importNode(child, true) as SVGElement;
+      const imported = document.importNode(child, true) as SVGElement;
       if (imported instanceof SVGElement) {
         imported.removeAttribute('fill');
       }
@@ -1961,7 +1963,7 @@ function generateStravaBannerSVG(): Promise<SVGSVGElement> {
       const elevationOffset = pos.elevated ? height * 0.1 : 0; // 10vh elevation
       const treeY = height - scaledHeight - elevationOffset - 50; // Raised by 50px
 
-      const treeGroup = globalThis.document.createElementNS(svgNS, 'g');
+      const treeGroup = document.createElementNS(svgNS, 'g');
 
       // Apply flip transform if needed
       if (pos.flip) {
@@ -1969,7 +1971,7 @@ function generateStravaBannerSVG(): Promise<SVGSVGElement> {
         treeGroup.setAttribute('transform', `translate(${centerX * 2}, 0) scale(-1, 1)`);
       }
 
-      const useEl = globalThis.document.createElementNS(svgNS, 'use');
+      const useEl = document.createElementNS(svgNS, 'use');
       useEl.setAttribute('href', '#tree');
       useEl.setAttribute('x', pos.x.toString());
       useEl.setAttribute('y', treeY.toString());
@@ -1988,7 +1990,7 @@ function generateStravaBannerSVG(): Promise<SVGSVGElement> {
     // Center logo group - moved up to clear trees
     const centerX = width / 2;
     const centerY = height * 0.35; // Move up from center (0.5) to 0.35
-    const logoGroup = globalThis.document.createElementNS(svgNS, 'g');
+    const logoGroup = document.createElementNS(svgNS, 'g');
 
     // If using sky image, add a semi-transparent colored rectangle behind logo/tagline
     if (skyImageData) {
@@ -1997,7 +1999,7 @@ function generateStravaBannerSVG(): Promise<SVGSVGElement> {
       // Estimate logo area height
       const estimatedHeight = 170;
 
-      const bgRect = globalThis.document.createElementNS(svgNS, 'rect');
+      const bgRect = document.createElementNS(svgNS, 'rect');
       bgRect.setAttribute('x', (centerX - 250).toString());
       bgRect.setAttribute('y', (centerY - 80).toString());
       bgRect.setAttribute('width', '500');
@@ -2013,7 +2015,7 @@ function generateStravaBannerSVG(): Promise<SVGSVGElement> {
     const textY = centerY - 16;
 
     // Create temp text element to measure width (this is an approximation)
-    const tempText = globalThis.document.createElementNS(svgNS, 'text');
+    const tempText = document.createElementNS(svgNS, 'text');
     tempText.setAttribute('font-family', 'Montserrat, sans-serif');
     tempText.setAttribute('font-size', '51.2');
     tempText.setAttribute('font-weight', '800');
@@ -2031,7 +2033,7 @@ function generateStravaBannerSVG(): Promise<SVGSVGElement> {
     const chevronX = logoStartX;
     const chevronY = textY - chevronSize / 2 - 4.8; // Adjusted up by 4.8px (6 * 0.8)
 
-    const chevronUse = globalThis.document.createElementNS(svgNS, 'use');
+    const chevronUse = document.createElementNS(svgNS, 'use');
     chevronUse.setAttribute('href', '#chevron');
     chevronUse.setAttribute('x', chevronX.toString());
     chevronUse.setAttribute('y', chevronY.toString());
@@ -2042,7 +2044,7 @@ function generateStravaBannerSVG(): Promise<SVGSVGElement> {
 
     // Main text - positioned after chevron
     const textX = logoStartX + chevronSize + chevronMargin;
-    const mainText = globalThis.document.createElementNS(svgNS, 'text');
+    const mainText = document.createElementNS(svgNS, 'text');
     mainText.setAttribute('x', textX.toString());
     mainText.setAttribute('y', textY.toString());
     mainText.setAttribute('font-family', 'Montserrat, sans-serif');
@@ -2058,7 +2060,7 @@ function generateStravaBannerSVG(): Promise<SVGSVGElement> {
     // Line separator
     const lineY = textY + 40;
     const lineWidth = textWidth * 0.6;
-    const line = globalThis.document.createElementNS(svgNS, 'line');
+    const line = document.createElementNS(svgNS, 'line');
     line.setAttribute('x1', (centerX - lineWidth / 2).toString());
     line.setAttribute('y1', lineY.toString());
     line.setAttribute('x2', (centerX + lineWidth / 2).toString());
@@ -2071,7 +2073,7 @@ function generateStravaBannerSVG(): Promise<SVGSVGElement> {
     const taglineY = lineY + 32;
     const taglineText = 'Trail Running Community';
 
-    const tagline = globalThis.document.createElementNS(svgNS, 'text');
+    const tagline = document.createElementNS(svgNS, 'text');
     tagline.setAttribute('x', centerX.toString());
     tagline.setAttribute('y', taglineY.toString());
     tagline.setAttribute('font-family', 'Montserrat, sans-serif');
@@ -2088,11 +2090,11 @@ function generateStravaBannerSVG(): Promise<SVGSVGElement> {
 
     // Add mobile fold masks if enabled
     if (showBannerMasks) {
-      const colorScheme = globalThis.document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+      const colorScheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
       const maskColor = colorScheme === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255, 255, 255, 0.5)';
 
       // Top mask (100px)
-      const topMask = globalThis.document.createElementNS(svgNS, 'rect');
+      const topMask = document.createElementNS(svgNS, 'rect');
       topMask.setAttribute('width', width.toString());
       topMask.setAttribute('height', '100');
       topMask.setAttribute('y', '0');
@@ -2100,7 +2102,7 @@ function generateStravaBannerSVG(): Promise<SVGSVGElement> {
       svg.appendChild(topMask);
 
       // Bottom mask (150px)
-      const bottomMask = globalThis.document.createElementNS(svgNS, 'rect');
+      const bottomMask = document.createElementNS(svgNS, 'rect');
       bottomMask.setAttribute('width', width.toString());
       bottomMask.setAttribute('height', '150');
       bottomMask.setAttribute('y', (height - 150).toString());
@@ -2124,7 +2126,7 @@ function downloadStravaBannerSVG() {
         .then((fontCss) => {
           // Add style element with embedded font at the beginning
           const svgNS = 'http://www.w3.org/2000/svg';
-          const style = globalThis.document.createElementNS(svgNS, 'style');
+          const style = document.createElementNS(svgNS, 'style');
           style.textContent = fontCss;
           svg.insertBefore(style, svg.firstChild);
           return svg;
@@ -2136,7 +2138,7 @@ function downloadStravaBannerSVG() {
       const blob = new Blob([svgData], { type: 'image/svg+xml' });
       const url = URL.createObjectURL(blob);
 
-      const a = globalThis.document.createElement('a');
+      const a = document.createElement('a');
       a.href = url;
       a.download = 'bay-bandits-strava-banner.svg';
       a.click();
@@ -2144,7 +2146,7 @@ function downloadStravaBannerSVG() {
       URL.revokeObjectURL(url);
     })
     .catch((error: Error) => {
-      globalThis.console.error('Error downloading Strava banner:', error);
+      console.error('Error downloading Strava banner:', error);
     });
 }
 
@@ -2155,7 +2157,7 @@ function downloadStravaBannerPNG() {
   generateStravaBannerSVG()
     .then((svg) => {
       // Create canvas at exact Strava banner dimensions
-      const canvas = globalThis.document.createElement('canvas');
+      const canvas = document.createElement('canvas');
       canvas.width = width;
       canvas.height = height;
 
@@ -2170,7 +2172,7 @@ function downloadStravaBannerPNG() {
       const url = URL.createObjectURL(svgBlob);
 
       // Load SVG as image
-      const img = new globalThis.Image();
+      const img = new Image();
       img.crossOrigin = 'anonymous';
 
       return new Promise<HTMLCanvasElement>((resolve, reject) => {
@@ -2197,7 +2199,7 @@ function downloadStravaBannerPNG() {
         }
 
         const url = URL.createObjectURL(blob);
-        const a = globalThis.document.createElement('a');
+        const a = document.createElement('a');
         a.href = url;
         a.download = 'bay-bandits-strava-banner.png';
         a.click();
@@ -2205,13 +2207,13 @@ function downloadStravaBannerPNG() {
       }, 'image/png');
     })
     .catch((error: Error) => {
-      globalThis.console.error('Error downloading Strava banner PNG:', error);
+      console.error('Error downloading Strava banner PNG:', error);
     });
 }
 
 // Generate preview for Strava banner
 function generateStravaBannerPreview() {
-  const previewContainer = globalThis.document.getElementById(
+  const previewContainer = document.getElementById(
     'strava-banner-preview'
   );
   if (!previewContainer) return;
@@ -2222,7 +2224,7 @@ function generateStravaBannerPreview() {
       previewContainer.appendChild(svg);
     })
     .catch((error: Error) => {
-      globalThis.console.error('Error generating Strava banner preview:', error);
+      console.error('Error generating Strava banner preview:', error);
       previewContainer.innerHTML = '<p>Error generating preview</p>';
     });
 }

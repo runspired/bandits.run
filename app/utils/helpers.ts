@@ -62,7 +62,7 @@ export function formatDay(day: 0 | 1 | 2 | 3 | 4 | 5 | 6) {
 }
 
 export function getFirstDayOfWeek(): number {
-  const pref = globalThis.localStorage.getItem('preferred-first-day-of-week');
+  const pref = localStorage.getItem('preferred-first-day-of-week');
   return pref ? parseInt(pref, 10) : 1;
 }
 
