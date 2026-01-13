@@ -1,6 +1,8 @@
 import './nps-date.css';
-import { isPastDate, excludeNull } from '#app/utils/helpers.ts';
-
+import { isPastDate } from '#app/utils/helpers.ts';
+import {
+  excludeNull
+} from '#app/utils/comparison.ts';
 interface RunOccurrenceSignature {
   Args: {
     date: string | null;

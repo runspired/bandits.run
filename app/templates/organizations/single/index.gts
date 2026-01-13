@@ -16,7 +16,8 @@ import type { Organization } from '#app/data/organization.ts';
 import { htmlSafe } from '@ember/template';
 import { getOrganizationRuns } from '#api/GET';
 import RunPreview from '#entities/run-preview.gts';
-import { or, getHostname } from '#app/utils/helpers.ts';
+import { getHostname } from '#app/utils/helpers.ts';
+import { or } from '#app/utils/comparison.ts';
 
 export default class OrganizationSingleRoute extends Component<{
   Args: {

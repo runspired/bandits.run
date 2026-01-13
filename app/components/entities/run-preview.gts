@@ -6,16 +6,18 @@ import { faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 import { faStrava, faMeetup } from '@fortawesome/free-brands-svg-icons';
 import type { TrailRun } from '#app/data/run.ts';
 import {
-  eq,
-  neq,
-  and,
-  or,
   getRecurrenceDescription,
   formatTime,
   getCategoryLabel,
   isPastDate,
   isToday,
 } from '#app/utils/helpers.ts';
+import {
+  eq,
+  neq,
+  and,
+  or,
+} from '#app/utils/comparison.ts';
 
 interface RunPreviewSignature {
   Args: {

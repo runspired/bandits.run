@@ -14,8 +14,8 @@ import { colorSchemeManager } from '#app/templates/application.gts';
 import './location.css';
 import LeafletBoundary from '#maps/leaflet-boundary.gts';
 import { assert } from '@ember/debug';
-import { and } from '#app/utils/helpers.ts';
 import { getLocation } from '#api/GET';
+import { and } from '#app/utils/comparison.ts';
 
 const TOKEN = '';
 

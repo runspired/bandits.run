@@ -21,16 +21,19 @@ import LeafletMarker from '#maps/leaflet-marker.gts';
 import LeafletBoundary from '#maps/leaflet-boundary.gts';
 import { colorSchemeManager } from '#app/templates/application.gts';
 import {
-  and,
-  neq,
-  or,
-  eq,
-  excludeNull,
   formatFriendlyDate,
   getRecurrenceDescription,
   formatTime,
   getCategoryLabel,
 } from '#app/utils/helpers.ts';
+import {
+  and,
+  neq,
+  or,
+  eq,
+  excludeNull
+} from '#app/utils/comparison.ts';
+
 
 export default class OrganizationRunRoute extends Component<{
   Args: {

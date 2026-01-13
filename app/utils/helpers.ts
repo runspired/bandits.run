@@ -1,5 +1,5 @@
 import type { Recurrence, RunOption } from '#app/data/run.ts';
-import { assert } from '@ember/debug';
+
 import { clock } from './clock';
 
 
@@ -19,31 +19,6 @@ export function getHostname(url: string): string {
     // If URL parsing fails, return the original string
     return url;
   }
-}
-
-export function excludeNull<T>(value: T | null): T {
-  assert('Value is not null', value !== null);
-  return value;
-}
-
-export function eq(a: unknown, b: unknown): boolean {
-  return a === b;
-}
-
-export function neq(a: unknown, b: unknown): boolean {
-  return a !== b;
-}
-
-export function and(...args: unknown[]): boolean {
-  return args.every(Boolean);
-}
-
-export function not(value: unknown): boolean {
-  return !value;
-}
-
-export function or(...args: unknown[]): boolean {
-  return args.some(Boolean);
 }
 
 /**
