@@ -75,6 +75,9 @@ export function getWeek(year: number, weekNo: number, day: 'monday' | 'sunday' =
   return withReactiveResponse<Week>({
     url: `/api/weeks/${year}-${String(weekNo).padStart(2, '0')}-${day}.json`,
     method: 'GET',
+    priority: 'high',
+    credentials: 'include',
+    mode: 'cors'
   } as const);
 }
 

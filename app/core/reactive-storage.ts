@@ -104,6 +104,7 @@ class ReactiveStorage implements Storage {
 
   @tracked
   private _values = trackedObject<{ [key: string]: string | null }>({});
+  private _seen = new Set<string>();
 
   @tracked
   private _length = 0;
@@ -157,12 +158,15 @@ class ReactiveStorage implements Storage {
       return this._values[keyStr] ?? null;
     }
 
-    const value = this._values[keyStr];
-    if (value !== undefined) return value;
+    const seen = this._seen.has(keyStr);
+    if (seen) {
+      return this._values[keyStr]!;
+    }
 
     // Not yet loaded, fetch from storage
     const item = this._storage.getItem(keyStr);
     this._values[keyStr] = item;
+    this._seen.add(keyStr);
     return item;
   }
 
@@ -190,11 +194,13 @@ class ReactiveStorage implements Storage {
       this._storage.setItem(keyStr, valueStr);
       this._values[keyStr] = valueStr;
       this._length = this._storage.length;
+      this._seen.add(keyStr);
     } catch (error) {
       if (isQuotaExceededError(error)) {
         if (this._options.updateOnQuotaExceeded) {
           // Update tracked state even though write failed
           this._values[keyStr] = valueStr;
+          this._seen.add(keyStr);
         }
 
         if (this._options.onQuotaExceeded) {
@@ -234,21 +240,22 @@ class ReactiveStorage implements Storage {
     this._storage.removeItem(keyStr);
     this._values[keyStr] = null;
     this._length = this._storage.length;
+    this._seen.add(keyStr);
   }
 
   /**
    * Clears all keys from Storage, triggering reactivity
    */
   clear(): void {
+    this._values = trackedObject<{ [key: string]: string | null }>({});
+    this._length = 0;
+
     if (this._memoryOnly) {
-      this._values = trackedObject<{ [key: string]: string | null }>({});
-      this._length = 0;
-      return;
+     return;
     }
 
     this._storage.clear();
-    this._values = trackedObject<{ [key: string]: string | null }>({});
-    this._length = 0;
+    this._seen.clear();
   }
 
   /**

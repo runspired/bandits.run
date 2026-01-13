@@ -7,6 +7,7 @@ import {
   faUsers,
   faPalette,
   faSun,
+  faGear,
   faMoon,
 } from '@fortawesome/free-solid-svg-icons';
 import { on } from '@ember/modifier';
@@ -68,6 +69,7 @@ class ThemedPage extends Component<{
                   Organizations</VtLink>
                 <LinkTo @route="branding"><FaIcon @icon={{faPalette}} />
                   Branding</LinkTo>
+                <LinkTo @route="settings"><FaIcon @icon={{faGear}} /> Settings</LinkTo>
               </HamburgerMenu>
             </div>
           </div>
