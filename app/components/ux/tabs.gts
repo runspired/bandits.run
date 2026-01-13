@@ -85,7 +85,6 @@ export class Tabs extends Component<TabsSignature> {
   #hasEverRendered: boolean = false;
   #isUpdating: boolean = false;
   async #update() {
-    if (!this.#hasEverRendered) return;
     if (this.#isUpdating) return;
     this.#isUpdating = true;
     // wait for the next tick to ensure all tabs are registered
