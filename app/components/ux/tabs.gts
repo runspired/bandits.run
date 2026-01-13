@@ -76,10 +76,10 @@ export class Tabs extends Component<TabsSignature> {
       `No tab found with slug "${activeSlug}", available slugs are: ${tabs
         .map(tab => tab.args.slug)
         .join(', ')}`,
-      tab !== undefined
+      tab !== undefined || this.#hasEverRendered === false
     );
 
-    return tab;
+    return tab ?? null as unknown as Tab;
   }
 
   #hasEverRendered: boolean = false;
@@ -127,7 +127,7 @@ export class Tabs extends Component<TabsSignature> {
    * Check if a tab is active
    */
   isActive = (tab: Tab): boolean => {
-    return this.activeSlug === tab.args.slug;
+    return this.activeTab === tab;
   }
 
   <template>
