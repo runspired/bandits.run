@@ -1,26 +1,4 @@
-/* Tabs Container */
-.tabs {
-  width: 100%;
-  max-width: 90vmax;
-  margin: 2rem auto;
-}
-
-/* Tab Labels */
-.tab-labels {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  border-bottom: 2px solid var(--title);
-  gap: 0.5rem;
-}
-
-.tab-label {
-  margin: 0;
-  padding: 0;
-  border: none;
-}
-
+/* Tab Button */
 .tab-button {
   background: transparent;
   border: none;
@@ -47,18 +25,15 @@
   border-radius: 4px;
 }
 
-.tab-label.active .tab-button {
+.active .tab-button {
   color: var(--title);
   font-weight: 600;
   border-bottom-color: var(--title);
 }
 
-/* Tab Bodies */
-.tab-bodies {
+/* Tab Content */
+.tab-content {
   margin-top: 2rem;
-}
-
-.tab-body {
   animation: fadeIn 0.3s ease;
 }
 
@@ -75,25 +50,17 @@
 
 /* Mobile responsive */
 @media (width <= 768px) {
-  .tab-labels {
-    gap: 0.25rem;
-  }
-
   .tab-button {
     padding: 0.75rem 1rem;
     font-size: 0.9rem;
   }
 
-  .tab-bodies {
+  .tab-content {
     margin-top: 1.5rem;
   }
 }
 
 @media (width <= 500px) {
-  .tab-labels {
-    flex-wrap: wrap;
-  }
-
   .tab-button {
     padding: 0.5rem 0.75rem;
     font-size: 0.85rem;
