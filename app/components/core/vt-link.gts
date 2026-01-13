@@ -1,7 +1,7 @@
 import Component from '@glimmer/component';
 import { service } from '@ember/service';
 import { on } from '@ember/modifier';
-import type ViewTransitionService from '../services/view-transition';
+import type ViewTransitionService from '#app/services/view-transition.ts';
 import type RouterService from '@ember/routing/router-service';
 
 interface VtLinkSignature {

@@ -2,6 +2,7 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { on } from '@ember/modifier';
 import { fn } from '@ember/helper';
+import type { WithBoundArgs } from '@glint/template';
 import './tabs.css';
 
 class Tab extends Component<{
@@ -35,6 +36,9 @@ export class Tabs extends Component<{
   Args: {
     activeId?: string | null;
     onTabChange?: (id: string | undefined) => void;
+  };
+  Blocks: {
+    default: [tabComponent: WithBoundArgs<typeof Tab, 'registerTab'>];
   };
 }> {
   tabs: Tab[] = [];

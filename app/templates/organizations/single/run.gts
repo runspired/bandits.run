@@ -3,10 +3,10 @@ import { service } from '@ember/service';
 import { cached } from '@glimmer/tracking';
 import type RouterService from '@ember/routing/router-service';
 import { Request } from '@warp-drive/ember';
-import ThemedPage from '#app/components/themed-page.gts';
+import ThemedPage from '#layout/themed-page.gts';
 import { pageTitle } from 'ember-page-title';
 import type { TrailRun } from '#app/data/run.ts';
-import FaIcon from '#app/components/fa-icon.gts';
+import FaIcon from '#ui/fa-icon.gts';
 import {
   faCalendarDays,
   faLocationDot,
@@ -16,9 +16,9 @@ import { faStrava, faMeetup } from '@fortawesome/free-brands-svg-icons';
 import { LinkTo } from '@ember/routing';
 import type { Future } from '@warp-drive/core/request';
 import type { ReactiveDataDocument } from '@warp-drive/core/reactive';
-import LeafletMap from '#components/maps/leaflet-map.gts';
-import LeafletMarker from '#components/maps/leaflet-marker.gts';
-import LeafletBoundary from '#app/components/maps/leaflet-boundary.gts';
+import LeafletMap from '#maps/leaflet-map.gts';
+import LeafletMarker from '#maps/leaflet-marker.gts';
+import LeafletBoundary from '#maps/leaflet-boundary.gts';
 import { colorSchemeManager } from '#app/templates/application.gts';
 import {
   and,

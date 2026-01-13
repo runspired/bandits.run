@@ -3,11 +3,11 @@ import { Request } from '@warp-drive/ember';
 import { withReactiveResponse } from '@warp-drive/core/request';
 import type { Week } from '#app/data/week.ts';
 import type { RealizedEventDate } from '#app/data/realized-event-date.ts';
-import ThemedPage from '#app/components/themed-page.gts';
-import { Tabs } from '#app/components/tabs.gts';
+import ThemedPage from '#layout/themed-page.gts';
+import { Tabs } from '#ux/tabs.gts';
 import { getCurrentWeekIdMonday, getNextWeekIdMonday, getDayOfWeek, isThursdayOrLater, isToday } from '#app/utils/helpers.ts';
-import RunPreview from '#app/components/run-preview.gts';
-import RunOccurrence from '#app/components/run-occurrence.gts';
+import RunPreview from '#entities/run-preview.gts';
+import RunOccurrence from '#ui/nps-date.gts';
 
 const thisWeekQuery = withReactiveResponse<Week>({
   url: `/api/weeks/${getCurrentWeekIdMonday()}.json`,

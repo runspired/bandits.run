@@ -3,19 +3,19 @@ import { service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import type RouterService from '@ember/routing/router-service';
 import { Request } from '@warp-drive/ember';
-import ThemedPage from '#app/components/themed-page.gts';
+import ThemedPage from '#layout/themed-page.gts';
 import { pageTitle } from 'ember-page-title';
 import type { TrailRun } from '#app/data/run.ts';
-import FaIcon from '#app/components/fa-icon.gts';
+import FaIcon from '#ui/fa-icon.gts';
 import { faGlobe, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram, faStrava, faMeetup } from '@fortawesome/free-brands-svg-icons';
-import { Tabs } from '#app/components/tabs.gts';
+import { Tabs } from '#ux/tabs.gts';
 import type { Future } from '@warp-drive/core/request';
 import type { ReactiveDataDocument } from '@warp-drive/core/reactive';
 import type { Organization } from '#app/data/organization.ts';
 import { htmlSafe } from '@ember/template';
 import { getOrganizationRuns } from '#app/routes/organizations/single/index.ts';
-import RunPreview from '#app/components/run-preview.gts';
+import RunPreview from '#entities/run-preview.gts';
 import { or } from '#app/utils/helpers.ts';
 
 /**

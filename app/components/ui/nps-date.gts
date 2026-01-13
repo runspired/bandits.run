@@ -1,4 +1,4 @@
-import './run-occurrence.css';
+import './nps-date.css';
 import { isPastDate, excludeNull } from '#app/utils/helpers.ts';
 
 interface RunOccurrenceSignature {
@@ -33,7 +33,10 @@ const RunOccurrence: TemplateOnlyComponent<RunOccurrenceSignature> = <template>
               viewBox="0 0 500 500"
               class="nps-svg"
             >
-              <use href="/nps.svg#nps-badge" xlink:href="/nps.svg#nps-badge"></use>
+              <use
+                href="/nps.svg#nps-badge"
+                xlink:href="/nps.svg#nps-badge"
+              ></use>
             </svg>
             <div class="date-overlay">
               <div class="date-month">

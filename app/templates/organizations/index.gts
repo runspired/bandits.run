@@ -1,12 +1,12 @@
 import { Request } from '@warp-drive/ember';
 import { withReactiveResponse } from '@warp-drive/core/request';
-import ThemedPage from '#app/components/themed-page.gts';
+import ThemedPage from '#layout/themed-page.gts';
 import { pageTitle } from 'ember-page-title';
 import type { Organization } from '#app/data/organization.ts';
-import FaIcon from '#app/components/fa-icon.gts';
+import FaIcon from '#ui/fa-icon.gts';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram, faMeetup, faStrava } from '@fortawesome/free-brands-svg-icons';
-import VtLink from '#app/components/vt-link.gts';
+import VtLink from '#core/vt-link.gts';
 import { getHostname } from '#app/utils/helpers.ts';
 
 const query = withReactiveResponse<Organization[]>({

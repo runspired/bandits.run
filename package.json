@@ -10,7 +10,13 @@
   "imports": {
     "#app/*": "./app/*",
     "#config": "./app/config/environment",
-    "#components/*": "./app/components/*"
+    "#components/*": "./app/components/*",
+    "#entities/*": "./app/components/entities/*",
+    "#ui/*": "./app/components/ui/*",
+    "#ux/*": "./app/components/ux/*",
+    "#layout/*": "./app/components/layout/*",
+    "#maps/*": "./app/components/maps/*",
+    "#core/*": "./app/components/core/*"
   },
   "exports": {
     "./tests/*": "./tests/*",

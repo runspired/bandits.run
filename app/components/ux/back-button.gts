@@ -1,9 +1,9 @@
 import Component from '@glimmer/component';
 import { service } from '@ember/service';
 import { on } from '@ember/modifier';
-import FaIcon from './fa-icon.gts';
+import FaIcon from '#ui/fa-icon.gts';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import type ViewTransitionService from '../services/view-transition';
+import type ViewTransitionService from '#app/services/view-transition.ts';
 
 /**
  * Back Button Component

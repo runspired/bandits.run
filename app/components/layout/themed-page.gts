@@ -1,10 +1,16 @@
 import { colorSchemeManager } from '#app/templates/application.gts';
 import type { TOC } from '@ember/component/template-only';
-import HamburgerMenu from './hamburger-menu.gts';
-import FaIcon from './fa-icon.gts';
+import HamburgerMenu from '#ui/hamburger-menu.gts';
+import FaIcon from '#ui/fa-icon.gts';
 import { LinkTo } from '@ember/routing';
-import VtLink from './vt-link.gts';
-import { faHome, faUsers, faPalette, faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
+import VtLink from '#core/vt-link.gts';
+import {
+  faHome,
+  faUsers,
+  faPalette,
+  faSun,
+  faMoon,
+} from '@fortawesome/free-solid-svg-icons';
 import { on } from '@ember/modifier';
 import { scopedClass } from 'ember-scoped-css';
 
@@ -18,11 +24,13 @@ const ThemedPage: TOC<{
     <div class="landscape-container">
 
       <div class="sky">
-        <div class="logo-header {{if (has-block "header") "page-title"}}">
+        <div class="logo-header {{if (has-block 'header') 'page-title'}}">
           <div class="logo-header-text">
             {{#if (has-block "header")}}
               <h1 class="title">
-                <LinkTo @route="index" class={{scopedClass "link"}}>{{yield to="header"}}</LinkTo>
+                <LinkTo @route="index" class={{scopedClass "link"}}>{{yield
+                    to="header"
+                  }}</LinkTo>
               </h1>
             {{else}}
               <h1 class="title">
@@ -32,9 +40,10 @@ const ThemedPage: TOC<{
           </div>
           <div class="header-controls">
             <div class="mode-toggle">
-              {{!-- template-lint-disable require-presentational-children --}}
+              {{! template-lint-disable require-presentational-children }}
               <div
-                class="toggle-track {{if colorSchemeManager.isDarkMode 'checked'}}"
+                class="toggle-track
+                  {{if colorSchemeManager.isDarkMode 'checked'}}"
                 {{on "click" colorSchemeManager.toggleColorScheme}}
                 role="switch"
                 tabindex="0"
@@ -60,7 +69,7 @@ const ThemedPage: TOC<{
           </div>
         </div>
         <div class="content-area">
-        {{yield}}
+          {{yield}}
         </div>
       </div>
 
