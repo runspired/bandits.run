@@ -19,7 +19,6 @@ import type { ReactiveDataDocument } from '@warp-drive/core/reactive';
 import LeafletMap from '#maps/leaflet-map.gts';
 import LeafletMarker from '#maps/leaflet-marker.gts';
 import LeafletBoundary from '#maps/leaflet-boundary.gts';
-import { colorSchemeManager } from '#app/templates/application.gts';
 import {
   formatFriendlyDate,
   getRecurrenceDescription,
@@ -33,6 +32,7 @@ import {
   eq,
   excludeNull
 } from '#app/utils/comparison.ts';
+import { getTheme } from '#app/core/site-theme.ts';
 
 
 export default class OrganizationRunRoute extends Component<{
@@ -48,7 +48,7 @@ export default class OrganizationRunRoute extends Component<{
 
   @cached
   get tileUrl() {
-    return colorSchemeManager.isDarkMode
+    return getTheme().isDarkMode
       ? 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'
       : 'https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png';
   }

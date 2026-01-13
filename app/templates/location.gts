@@ -10,12 +10,12 @@ import {
   faMapLocationDot,
 } from '@fortawesome/free-solid-svg-icons';
 import { cached, tracked } from '@glimmer/tracking';
-import { colorSchemeManager } from '#app/templates/application.gts';
 import './location.css';
 import LeafletBoundary from '#maps/leaflet-boundary.gts';
 import { assert } from '@ember/debug';
 import { getLocation } from '#api/GET';
 import { and } from '#app/utils/comparison.ts';
+import { getTheme } from '#app/core/site-theme.ts';
 
 const TOKEN = '';
 
@@ -47,7 +47,7 @@ export default class LocationDisplay extends Component<{
     if (this.showSatellite) {
       return 'https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}{r}.png';
     }
-    return colorSchemeManager.isDarkMode
+    return getTheme().isDarkMode
       ? 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'
       : 'https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png';
   }

@@ -1,7 +1,7 @@
 import { pageTitle } from 'ember-page-title';
 import { on } from '@ember/modifier';
 import { modifier } from 'ember-modifier';
-import { toggleColorScheme as baseToggleColorScheme } from './application.gts';
+import { getTheme } from '#app/core/site-theme.ts';
 
 const SiteManifest = {
   "name": "The Bay Bandits",
@@ -985,7 +985,8 @@ function toggleBannerMasks() {
 }
 
 function toggleColorScheme() {
-  baseToggleColorScheme();
+  const theme = getTheme();
+  theme.updateThemePreference(theme.isDarkMode ? 'light' : 'dark');
   // Update previews and color pickers after theme change to recalculate colors
   globalThis.setTimeout(() => {
     // Initialize defaults for the new mode if needed
@@ -997,7 +998,7 @@ function toggleColorScheme() {
     // Reapply theme colors
     updateThemeColors();
     updatePreviews();
-  }, 50);
+  }, 0);
 }
 
 function toggleCircleMask() {
