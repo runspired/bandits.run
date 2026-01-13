@@ -1,6 +1,5 @@
 import { assert } from '@ember/debug';
 import { getLocalStorage } from './reactive-storage';
-import { get } from '@ember/helper';
 
 /**
  * Symbol used to store persistence metadata on classes
@@ -58,6 +57,7 @@ function getResourceMeta(target: object): PersistedResourceMeta {
 export function PersistedResource(id: string): ClassDecorator {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
   return function (target: Function) {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     getResourceMeta(target.prototype).id = id;
   };
 }
