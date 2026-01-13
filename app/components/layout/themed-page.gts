@@ -46,8 +46,7 @@ class ThemedPage extends Component<{
               <div class="mode-toggle">
                 {{! template-lint-disable require-presentational-children }}
                 <div
-                  class="toggle-track
-                    {{if this.theme.isDarkMode 'checked'}}"
+                  class="toggle-track {{if this.theme.isDarkMode 'checked'}}"
                   {{on "click" (fn this.theme.updateThemePreference (if this.theme.isDarkMode 'light' 'dark'))}}
                   role="switch"
                   tabindex="0"
