@@ -1,25 +1,13 @@
 import { pageTitle } from 'ember-page-title';
 import { Request } from '@warp-drive/ember';
-import { withReactiveResponse } from '@warp-drive/core/request';
-import type { Week } from '#app/data/week.ts';
 import type { RealizedEventDate } from '#app/data/realized-event-date.ts';
 import ThemedPage from '#layout/themed-page.gts';
 import { Tabs } from '#ux/tabs.gts';
-import { getCurrentWeekIdMonday, getNextWeekIdMonday, getDayOfWeek, isThursdayOrLater, isToday } from '#app/utils/helpers.ts';
+import { getDayOfWeek, isToday } from '#app/utils/helpers.ts';
 import RunPreview from '#entities/run-preview.gts';
 import RunOccurrence from '#ui/nps-date.gts';
-
-const thisWeekQuery = withReactiveResponse<Week>({
-  url: `/api/weeks/${getCurrentWeekIdMonday()}.json`,
-  method: 'GET',
-} as const);
-
-const nextWeekQuery = withReactiveResponse<Week>({
-  url: `/api/weeks/${getNextWeekIdMonday()}.json`,
-  method: 'GET',
-} as const);
-
-const showNextWeek = isThursdayOrLater();
+import { getCurrentWeek, getNextWeek } from '#api/GET';
+import { weekHasFourDaysRemaining } from '#app/utils/helpers.ts';
 
 interface DayGroup {
   date: string;
@@ -67,12 +55,12 @@ function filterFutureDays(dayGroups: DayGroup[]): DayGroup[] {
       <Tab>
         <:label>This Week</:label>
         <:body>
-          <Request @query={{thisWeekQuery}}>
+          <Request @query={{(getCurrentWeek)}}>
             <:loading> <h2>Peeking through the trees...</h2> </:loading>
             <:content as |week|>
               <div class="schedule">
                 <h3 class="section-title">Runs This Week</h3>
-                {{#each (if showNextWeek (filterFutureDays (groupEventsByDay week.data.events)) (groupEventsByDay week.data.events)) as |dayGroup|}}
+                {{#each (if (weekHasFourDaysRemaining) (filterFutureDays (groupEventsByDay week.data.events)) (groupEventsByDay week.data.events)) as |dayGroup|}}
                   <div class="day-schedule {{if (isToday dayGroup.date) 'today'}}">
                     <RunOccurrence @date={{dayGroup.date}} @label={{dayGroup.dayOfWeek}} />
                     {{#if dayGroup.events.length}}
@@ -89,8 +77,8 @@ function filterFutureDays(dayGroups: DayGroup[]): DayGroup[] {
                   </div>
                 {{/each}}
               </div>
-              {{#if showNextWeek}}
-                <Request @query={{nextWeekQuery}}>
+              {{#if (weekHasFourDaysRemaining)}}
+                <Request @query={{(getNextWeek)}}>
                   <:loading> <h2>Loading next week...</h2> </:loading>
                   <:content as |nextWeek|>
                     <div class="schedule">

@@ -1,7 +1,5 @@
 import ThemedPage from '#layout/themed-page.gts';
 import Component from '@glimmer/component';
-import type { Location } from '#app/data/location.ts';
-import { withReactiveResponse } from '@warp-drive/core/request';
 import { Request } from '@warp-drive/ember';
 import { pageTitle } from 'ember-page-title';
 import LeafletMap from '#maps/leaflet-map.gts';
@@ -17,13 +15,7 @@ import './location.css';
 import LeafletBoundary from '#maps/leaflet-boundary.gts';
 import { assert } from '@ember/debug';
 import { and } from '#app/utils/helpers.ts';
-
-function getLocation(locationId: string) {
-  return withReactiveResponse<Location>({
-    url: `/api/location/${locationId}.json`,
-    method: 'GET',
-  } as const);
-}
+import { getLocation } from '#api/GET';
 
 const TOKEN = '';
 

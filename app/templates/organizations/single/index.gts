@@ -14,27 +14,9 @@ import type { Future } from '@warp-drive/core/request';
 import type { ReactiveDataDocument } from '@warp-drive/core/reactive';
 import type { Organization } from '#app/data/organization.ts';
 import { htmlSafe } from '@ember/template';
-import { getOrganizationRuns } from '#app/routes/organizations/single/index.ts';
+import { getOrganizationRuns } from '#api/GET';
 import RunPreview from '#entities/run-preview.gts';
-import { or } from '#app/utils/helpers.ts';
-
-/**
- * Extracts the hostname (domain and TLD) from a URL, removing www subdomain
- */
-function getHostname(url: string): string {
-  try {
-    const urlObj = new URL(url);
-    let hostname = urlObj.hostname;
-    // Remove www. subdomain if present
-    if (hostname.startsWith('www.')) {
-      hostname = hostname.substring(4);
-    }
-    return hostname;
-  } catch {
-    // If URL parsing fails, return the original string
-    return url;
-  }
-}
+import { or, getHostname } from '#app/utils/helpers.ts';
 
 export default class OrganizationSingleRoute extends Component<{
   Args: {

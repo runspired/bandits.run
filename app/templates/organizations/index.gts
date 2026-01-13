@@ -1,17 +1,12 @@
 import { Request } from '@warp-drive/ember';
-import { withReactiveResponse } from '@warp-drive/core/request';
 import ThemedPage from '#layout/themed-page.gts';
 import { pageTitle } from 'ember-page-title';
-import type { Organization } from '#app/data/organization.ts';
 import FaIcon from '#ui/fa-icon.gts';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram, faMeetup, faStrava } from '@fortawesome/free-brands-svg-icons';
 import VtLink from '#core/vt-link.gts';
 import { getHostname } from '#app/utils/helpers.ts';
-
-const query = withReactiveResponse<Organization[]>({
-  url: '/api/organization.json',
-});
+import { getOrganizations } from '#api/GET';
 
 <template>
   {{pageTitle "Bandits | Community Organizations"}}
@@ -19,7 +14,7 @@ const query = withReactiveResponse<Organization[]>({
   <ThemedPage>
     <:header>Trail Organizations</:header>
     <:default>
-      <Request @query={{query}}>
+      <Request @query={{(getOrganizations)}}>
         <:loading> <h2>Gathering the trail community...</h2> </:loading>
         <:content as |response|>
           <div class="runs-list">
