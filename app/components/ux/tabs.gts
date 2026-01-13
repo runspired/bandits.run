@@ -127,7 +127,7 @@ export class Tabs extends Component<TabsSignature> {
    * Check if a tab is active
    */
   isActive = (tab: Tab): boolean => {
-    return this.activeTab === tab;
+    return this.activeSlug === tab.args.slug;
   }
 
   <template>

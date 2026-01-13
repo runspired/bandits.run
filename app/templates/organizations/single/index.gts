@@ -83,7 +83,7 @@ export default class OrganizationSingleRoute extends Component<{
             <:default>
               <Tabs @activeSlug={{this.activeTab}} @onTabChange={{this.handleTabChange}} as |Tab|>
                 <Tab @slug="overview">
-                  <:label>Overview</:label>
+                  <:title>Overview</:title>
                   <:body>
                     <div class="org-overview">
                       {{#if org.descriptionHtml}}
@@ -197,7 +197,7 @@ export default class OrganizationSingleRoute extends Component<{
                   </:body>
                 </Tab>
                 <Tab @slug="runs">
-                  <:label>Runs</:label>
+                  <:title>Runs</:title>
                   <:body>
                     <Request @query={{getOrganizationRuns @model.organizationId}}>
                       <:loading> <h2>Loading runs...</h2> </:loading>

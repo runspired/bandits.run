@@ -53,7 +53,7 @@ function filterFutureDays(dayGroups: DayGroup[]): DayGroup[] {
   <ThemedPage>
     <Tabs as |Tab|>
       <Tab @slug="this-week">
-        <:label>This Week</:label>
+        <:title>This Week</:title>
         <:body>
           <Request @query={{(getCurrentWeek)}}>
             <:loading> <h2>Peeking through the trees...</h2> </:loading>
