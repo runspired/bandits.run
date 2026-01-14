@@ -61,13 +61,12 @@ const scrollIntoView = modifier((element: HTMLElement) => {
   <ThemedPage>
     <Tabs as |Tab|>
       <Tab @slug="this-week">
-        <:title>This Week</:title>
+        <:title>Runs This Week</:title>
         <:body>
           <Request @query={{(getCurrentWeek)}}>
             <:loading> <h2>Peeking through the trees...</h2> </:loading>
             <:content as |week|>
               <div class="schedule">
-                <h3 class="section-title">Runs This Week</h3>
                 {{#each (if (weekHasFourDaysRemaining) (filterFutureDays (groupEventsByDay week.data.events)) (groupEventsByDay week.data.events)) as |dayGroup|}}
                   <div class="day-schedule {{if (isToday dayGroup.date) 'today'}}" {{(if (isToday dayGroup.date) scrollIntoView)}}>
                     <RunOccurrence @date={{dayGroup.date}} @label={{dayGroup.dayOfWeek}} />
