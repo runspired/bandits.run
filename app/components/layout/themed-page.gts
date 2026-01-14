@@ -18,7 +18,7 @@ import { getTheme } from '#app/core/site-theme.ts';
 import { fn } from '@ember/helper';
 import Component from '@glimmer/component';
 import { getDevicePreferences } from '#app/core/preferences.ts';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 import type RouterService from '@ember/routing/router-service';
 
 class ThemedPage extends Component<{

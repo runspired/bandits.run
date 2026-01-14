@@ -1,0 +1,59 @@
+.map-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.map-section-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--schedule-text);
+}
+
+.fullscreen-map-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background: var(--primary-color, #007bff);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+}
+
+.fullscreen-map-button:hover {
+  background: var(--primary-hover-color, #0056b3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 15%);
+}
+
+.fullscreen-map-button:active {
+  transform: translateY(0);
+}
+
+.run-map-section {
+  margin-top: 2rem;
+}
+
+.map-container {
+  height: 400px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+  width: 100%;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .map-container {
+    height: 300px;
+    min-height: 300px;
+  }
+}

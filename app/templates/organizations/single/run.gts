@@ -1,6 +1,8 @@
 import Component from '@glimmer/component';
 import { service } from '@ember/service';
-import { cached } from '@glimmer/tracking';
+import { cached, tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
+import { on } from '@ember/modifier';
 import type RouterService from '@ember/routing/router-service';
 import { Request } from '@warp-drive/ember';
 import ThemedPage from '#layout/themed-page.gts';
@@ -11,6 +13,7 @@ import {
   faCalendarDays,
   faLocationDot,
   faMapLocationDot,
+  faExpand,
 } from '@fortawesome/free-solid-svg-icons';
 import { faStrava, faMeetup } from '@fortawesome/free-brands-svg-icons';
 import { LinkTo } from '@ember/routing';
@@ -19,6 +22,7 @@ import type { ReactiveDataDocument } from '@warp-drive/core/reactive';
 import LeafletMap from '#maps/leaflet-map.gts';
 import LeafletMarker from '#maps/leaflet-marker.gts';
 import LeafletBoundary from '#maps/leaflet-boundary.gts';
+import FullscreenMap from '#maps/fullscreen-map.gts';
 import {
   formatFriendlyDate,
   getRecurrenceDescription,
@@ -33,6 +37,7 @@ import {
   excludeNull
 } from '#app/utils/comparison.ts';
 import { getTheme } from '#app/core/site-theme.ts';
+import './run.css';
 
 
 export default class OrganizationRunRoute extends Component<{
@@ -46,11 +51,21 @@ export default class OrganizationRunRoute extends Component<{
 }> {
   @service declare router: RouterService;
 
+  @tracked showFullscreenMap = false;
+
   @cached
   get tileUrl() {
     return getTheme().isDarkMode
       ? 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'
       : 'https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png';
+  }
+
+  openFullscreenMap = () => {
+    this.showFullscreenMap = true;
+  }
+
+  closeFullscreenMap = () => {
+    this.showFullscreenMap = false;
   }
 
   <template>
@@ -296,7 +311,18 @@ export default class OrganizationRunRoute extends Component<{
                   )
                 }}
                   <div class="run-map-section">
-                    <h3>Location</h3>
+                    <div class="map-section-header">
+                      <h3>Location</h3>
+                      <button
+                        type="button"
+                        class="fullscreen-map-button"
+                        {{on "click" this.openFullscreenMap}}
+                        aria-label="Open map in fullscreen"
+                      >
+                        <FaIcon @icon={{faExpand}} />
+                        <span>Fullscreen Map</span>
+                      </button>
+                    </div>
                     <div class="map-container">
                       <LeafletBoundary>
                         <LeafletMap
@@ -316,6 +342,19 @@ export default class OrganizationRunRoute extends Component<{
                       </LeafletBoundary>
                     </div>
                   </div>
+
+                  {{! Fullscreen Map }}
+                  {{#if this.showFullscreenMap}}
+                    <FullscreenMap
+                      @locationId={{run.location.id}}
+                      @locationName={{run.location.name}}
+                      @lat={{excludeNull run.location.latitude}}
+                      @lng={{excludeNull run.location.longitude}}
+                      @zoom={{14}}
+                      @tileUrl={{this.tileUrl}}
+                      @onClose={{this.closeFullscreenMap}}
+                    />
+                  {{/if}}
                 {{/if}}
               </div>
             </:default>

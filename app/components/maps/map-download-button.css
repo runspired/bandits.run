@@ -1,0 +1,99 @@
+/* Map Download Button - Enhanced with Large Circle Background */
+
+.map-download-button-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+/* Large circular background */
+.map-download-background {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: var(--theme-tan-black);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+  transition: all 0.3s ease;
+  z-index: 0;
+}
+
+.map-download-button-wrapper:hover .map-download-background {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgb(0 0 0 / 20%);
+}
+
+/* Position the download button on top */
+.map-download-button-wrapper .download-button {
+  position: relative;
+  z-index: 1;
+}
+
+/* Secondary download icon indicator */
+.map-download-secondary-icon {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  width: 24px;
+  height: 24px;
+  background-color: var(--theme-tan-black-inverse);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  color: var(--theme-tan-black);
+  z-index: 2;
+  border: 2px solid var(--theme-tan-black);
+  box-shadow: 0 2px 4px rgb(0 0 0 / 20%);
+  transition: all 0.2s ease;
+}
+
+.map-download-button-wrapper:hover .map-download-secondary-icon {
+  transform: scale(1.1);
+}
+
+/* When button has a checkmark, hide the secondary icon */
+.map-download-button-wrapper .download-button-checkmark ~ .map-download-secondary-icon {
+  display: none;
+}
+
+/* Override to make sure secondary icon doesn't conflict with download button checkmark */
+.map-download-button-wrapper .download-button {
+  background: transparent;
+}
+
+.map-download-button-wrapper .download-button-circle {
+  background: transparent;
+}
+
+/* Mobile adjustments */
+@media (width <= 768px) {
+  .map-download-background {
+    width: 70px;
+    height: 70px;
+  }
+
+  .map-download-secondary-icon {
+    width: 20px;
+    height: 20px;
+    font-size: 0.6rem;
+    bottom: 13px;
+    right: 13px;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .map-download-background,
+  .map-download-secondary-icon {
+    transition: none !important;
+  }
+
+  .map-download-button-wrapper:hover .map-download-background,
+  .map-download-button-wrapper:hover .map-download-secondary-icon {
+    transform: none;
+  }
+}
