@@ -1,7 +1,7 @@
 .location-page {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
+  position: relative;
+  width: 100%;
+  min-height: calc(100vh - 3.9rem);
 }
 
 .location-header {
@@ -35,14 +35,13 @@
   padding: 1.5rem;
   background: var(--callout-background);
   border-radius: 8px;
-  border: 1px solid var(--light-theme-schedule-text);
 }
 
 .location-detail {
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
-  color: var(--light-theme-schedule-text);
+  color: var(--theme-tan-black-inverse);
 }
 
 .location-detail svg {
@@ -52,13 +51,13 @@
 }
 
 .location-detail strong {
-  color: var(--light-theme-schedule-text);
+  color: var(--theme-tan-black-inverse);
 }
 
 .location-detail address {
   font-style: normal;
-  margin: 0.25rem 0 0 0;
-  color: var(--light-theme-schedule-text);
+  margin: 0.25rem 0 0;
+  color: var(--theme-tan-black-inverse);
 }
 
 .location-detail a {
@@ -71,30 +70,24 @@
   text-decoration: underline;
 }
 
-.location-map {
-  margin-top: 2rem;
-}
-
-.location-map h3 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--schedule-text);
-}
-
-.map-container {
-  height: 400px;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
-  width: 100%;
+.location-content {
   position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
 }
+
+.location-content > * {
+  background: rgb(from var(--theme-white-black) r g b / 67%);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+}
+
 
 @media (max-width: 768px) {
-  .location-page {
-    padding: 1rem 0.5rem;
-  }
 
   .location-header h2 {
     font-size: 2rem;

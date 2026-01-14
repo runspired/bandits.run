@@ -2,13 +2,11 @@ import { LinkTo } from '@ember/routing';
 import { array } from '@ember/helper';
 import FaIcon from '#ui/fa-icon.gts';
 import RunOccurrence from '#ui/nps-date.gts';
-import { faCalendarDays } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarDays, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { faStrava, faMeetup } from '@fortawesome/free-brands-svg-icons';
 import type { TrailRun } from '#app/data/run.ts';
 import {
   getRecurrenceDescription,
-  formatTime,
-  getCategoryLabel,
   isPastDate,
   isToday,
 } from '#app/utils/helpers.ts';
@@ -45,6 +43,16 @@ const RunPreview: TemplateOnlyComponent<RunPreviewSignature> = <template>
             </LinkTo>
           </h3>
 
+          <h4 class="run-organization">
+            <LinkTo
+              @route="organizations.single"
+              @model={{@run.owner.id}}
+              class={{scopedClass "organization-link"}}
+            >
+              {{@run.owner.name}}
+            </LinkTo>
+          </h4>
+
           <div class="run-schedule">
             <span class="schedule-badge">{{getRecurrenceDescription
                 @run.recurrence
@@ -52,6 +60,14 @@ const RunPreview: TemplateOnlyComponent<RunPreviewSignature> = <template>
             {{#if (isToday displayDate)}}
               <span class="today-badge">Today</span>
             {{/if}}
+            {{#if @run.location}}
+              <span class="location-badge">
+                <strong><FaIcon @icon={{faLocationDot}} /></strong>
+                <LinkTo @route="location" @model={{@run.location.id}}>
+                  {{@run.location.name}}
+                </LinkTo>
+              </span>
+      {{/if}}
           </div>
         </div>
 
@@ -64,15 +80,6 @@ const RunPreview: TemplateOnlyComponent<RunPreviewSignature> = <template>
 
       {{#if @run.description}}
         <p class="run-description">{{@run.description}}</p>
-      {{/if}}
-
-      {{#if @run.location}}
-        <div class="run-location">
-          <strong>Location:</strong>
-          <LinkTo @route="location" @model={{@run.location.id}}>
-            {{@run.location.name}}
-          </LinkTo>
-        </div>
       {{/if}}
 
       {{#if
@@ -124,81 +131,15 @@ const RunPreview: TemplateOnlyComponent<RunPreviewSignature> = <template>
           <h4>{{#if (eq @run.runs.length 1)}}Run Details:{{else}}Run Options:{{/if}}</h4>
           <ul class="run-options-list">
             {{#each @run.runs as |option|}}
-              <li class="run-option">
-                {{#if option.name}}
-                  <strong>{{option.name}}:</strong>
-                {{/if}}
-                {{option.distance}}
-                •
-                {{option.vert}}
-                {{#if option.pace}}
-                  •
-                  {{option.pace}}
-                  •
-                  {{getCategoryLabel option.category}}
-                {{/if}}
-                <br />
-                {{#let
-                  (if (eq @run.runs.length 1) @run.eventLink option.eventLink)
-                  (if
-                    (eq @run.runs.length 1)
-                    @run.stravaEventLink
-                    option.stravaEventLink
-                  )
-                  (if
-                    (eq @run.runs.length 1)
-                    @run.meetupEventLink
-                    option.meetupEventLink
-                  )
-                  as |eventLink stravaEventLink meetupEventLink|
-                }}
-                  <span class="run-times">
-                    {{formatTime option.meetTime}}
-                    {{#if (or eventLink stravaEventLink meetupEventLink)}}
-                      <span class="run-option-links">
-                        •
-                        <strong>RSVP:</strong>
-                        {{#if eventLink}}
-                          <a
-                            href="{{eventLink}}"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            title="Event Details"
-                            class="rsvp-link"
-                          >
-                            <FaIcon @icon={{faCalendarDays}} />
-                            Event
-                          </a>
-                        {{/if}}
-                        {{#if stravaEventLink}}
-                          <a
-                            href="{{stravaEventLink}}"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            title="Strava Event"
-                            class="rsvp-link"
-                          >
-                            <FaIcon @icon={{faStrava}} />
-                            Strava
-                          </a>
-                        {{/if}}
-                        {{#if meetupEventLink}}
-                          <a
-                            href="{{meetupEventLink}}"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            title="Meetup Event"
-                            class="rsvp-link"
-                          >
-                            <FaIcon @icon={{faMeetup}} />
-                            Meetup
-                          </a>
-                        {{/if}}
-                      </span>
-                    {{/if}}
-                  </span>
-                {{/let}}
-              </li>
+              <RunOption
+                @option={{option}}
+                @eventLink={{if (eq @run.runs.length 1)
+                  @run.eventLink option.eventLink}}
+                @stravaEventLink={{if (eq @run.runs.length 1)
+                    @run.stravaEventLink option.stravaEventLink}}
+                @meetupEventLink={{if (eq @run.runs.length 1)
+                    @run.meetupEventLink option.meetupEventLink}}
+              />
             {{/each}}
           </ul>
         </div>
@@ -210,4 +151,7 @@ const RunPreview: TemplateOnlyComponent<RunPreviewSignature> = <template>
 
 export default RunPreview;
 
-import type { TemplateOnlyComponent } from '@ember/component/template-only';
+import type { TemplateOnlyComponent } from '@ember/component/template-only';import RunOptionComponent from './run-option.gts';
+import RunOption from './run-option.gts';
+import { scopedClass } from 'ember-scoped-css';
+

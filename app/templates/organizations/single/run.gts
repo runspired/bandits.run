@@ -1,7 +1,6 @@
 import Component from '@glimmer/component';
 import { service } from '@ember/service';
 import { cached, tracked } from '@glimmer/tracking';
-import { action } from '@ember/object';
 import { on } from '@ember/modifier';
 import type RouterService from '@ember/routing/router-service';
 import { Request } from '@warp-drive/ember';
@@ -10,29 +9,22 @@ import { pageTitle } from 'ember-page-title';
 import type { TrailRun } from '#app/data/run.ts';
 import FaIcon from '#ui/fa-icon.gts';
 import {
-  faCalendarDays,
   faLocationDot,
   faMapLocationDot,
   faExpand,
 } from '@fortawesome/free-solid-svg-icons';
-import { faStrava, faMeetup } from '@fortawesome/free-brands-svg-icons';
 import { LinkTo } from '@ember/routing';
 import type { Future } from '@warp-drive/core/request';
 import type { ReactiveDataDocument } from '@warp-drive/core/reactive';
-import LeafletMap from '#maps/leaflet-map.gts';
-import LeafletMarker from '#maps/leaflet-marker.gts';
-import LeafletBoundary from '#maps/leaflet-boundary.gts';
+import BackgroundMap from '#maps/background-map.gts';
 import FullscreenMap from '#maps/fullscreen-map.gts';
+import RunOccurrence from '#ui/nps-date.gts';
+import RunOptionComponent from '#entities/run-option.gts';
 import {
-  formatFriendlyDate,
   getRecurrenceDescription,
-  formatTime,
-  getCategoryLabel,
 } from '#app/utils/helpers.ts';
 import {
   and,
-  neq,
-  or,
   eq,
   excludeNull
 } from '#app/utils/comparison.ts';
@@ -84,34 +76,48 @@ export default class OrganizationRunRoute extends Component<{
         {{#let response.data as |run|}}
           {{pageTitle run.title " | Bandits"}}
           <ThemedPage>
-            <:header>
-              {{run.title}}
-            </:header>
+            <:header>{{run.owner.name}}</:header>
             <:default>
-              <div class="run-overview">
-                {{! Schedule info }}
-                <div class="run-card">
-                  {{#if run.nextOccurrence}}
-                    <div class="next-occurrence">
-                      <strong>Next Run:</strong>
-                      <span class="next-date">{{formatFriendlyDate
-                          run.nextOccurrence
-                        }}</span>
-                    </div>
-                  {{/if}}
+            <div class="run-page">
+              {{#if
+                (and
+                  run.location run.location.latitude run.location.longitude
+                )
+              }}
+                <BackgroundMap
+                  @lat={{excludeNull run.location.latitude}}
+                  @lng={{excludeNull run.location.longitude}}
+                  @zoom={{12}}
+                  @minZoom={{8}}
+                  @maxZoom={{18}}
+                  @tileUrl={{this.tileUrl}}
+                  @markerTitle={{run.location.name}}
+                />
+              {{/if}}
 
-                  <div class="run-schedule">
-                    <span
-                      class="schedule-badge"
-                    >{{getRecurrenceDescription run.recurrence}}</span>
+              <div class="run-content">
+                <div class="run-header">
+                  <div class="run-header-main">
+                    <div class="run-header-content">
+                      <h2>{{run.title}}</h2>
+                      <div class="run-schedule">
+                        <span
+                          class="schedule-badge"
+                        >{{getRecurrenceDescription run.recurrence}}</span>
+                      </div>
+                    </div>
+                    {{#if run.nextOccurrence}}
+                      <div class="run-header-occurrence">
+                        <RunOccurrence @date={{run.nextOccurrence}} />
+                      </div>
+                    {{/if}}
                   </div>
 
-                  {{! Location info }}
                   {{#if run.location}}
-                    <div class="run-location-info">
-                      <div class="location-detail">
+                    <div class="run-header-location">
+                      <div class="location-info">
                         <FaIcon @icon={{faLocationDot}} />
-                        <div>
+                        <div class="location-text">
                           <strong>
                             <LinkTo
                               @route="location"
@@ -134,229 +140,81 @@ export default class OrganizationRunRoute extends Component<{
                           {{/if}}
                         </div>
                       </div>
-                      {{#if run.location.googleMapsLink}}
-                        <div class="location-detail">
-                          <FaIcon @icon={{faMapLocationDot}} />
+                      <div class="location-actions">
+                        {{#if run.location.googleMapsLink}}
                           <a
                             href="{{run.location.googleMapsLink}}"
                             target="_blank"
                             rel="noopener noreferrer"
+                            class="location-action-button"
+                            title="Open in Google Maps"
                           >
-                            Open in Google Maps
+                            <FaIcon @icon={{faMapLocationDot}} />
+                            Google Maps
                           </a>
-                        </div>
-                      {{/if}}
-                    </div>
-                  {{/if}}
-
-                  {{! RSVP Links }}
-                  {{#if
-                    (and
-                      (neq run.runs.length 1)
-                      (or
-                        run.eventLink run.stravaEventLink run.meetupEventLink
-                      )
-                    )
-                  }}
-                    <div class="run-links">
-                      <strong>RSVP:</strong>
-                      {{#if run.eventLink}}
-                        <a
-                          href="{{run.eventLink}}"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="details-link"
-                        >
-                          <FaIcon @icon={{faCalendarDays}} />
-                          Event Details
-                        </a>
-                      {{/if}}
-                      {{#if run.stravaEventLink}}
-                        <a
-                          href="{{run.stravaEventLink}}"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="details-link"
-                        >
-                          <FaIcon @icon={{faStrava}} />
-                          Strava Event
-                        </a>
-                      {{/if}}
-                      {{#if run.meetupEventLink}}
-                        <a
-                          href="{{run.meetupEventLink}}"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="details-link"
-                        >
-                          <FaIcon @icon={{faMeetup}} />
-                          Meetup Event
-                        </a>
-                      {{/if}}
-                    </div>
-                  {{/if}}
-
-                  {{! Run Options }}
-                  {{#if run.runs}}
-                    <div class="run-options">
-                      <h4>{{#if (eq run.runs.length 1)}}Run Details:{{else}}Run
-                          Options:{{/if}}</h4>
-                      <ul class="run-options-list">
-                        {{#each run.runs as |option|}}
-                          <li class="run-option">
-                            {{#if option.name}}
-                              <strong>{{option.name}}:</strong>
-                            {{/if}}
-                            {{option.distance}}
-                            •
-                            {{option.vert}}
-                            {{#if option.pace}}
-                              •
-                              {{option.pace}}
-                              •
-                              {{getCategoryLabel option.category}}
-                            {{/if}}
-                            <br />
-                            <span class="run-times">
-                              {{formatTime option.meetTime}}
-                            </span>
-                            {{#let
-                              (if
-                                (eq run.runs.length 1)
-                                run.eventLink
-                                option.eventLink
-                              )
-                              (if
-                                (eq run.runs.length 1)
-                                run.stravaEventLink
-                                option.stravaEventLink
-                              )
-                              (if
-                                (eq run.runs.length 1)
-                                run.meetupEventLink
-                                option.meetupEventLink
-                              )
-                              as |eventLink stravaEventLink meetupEventLink|
-                            }}
-                              {{#if
-                                (or eventLink stravaEventLink meetupEventLink)
-                              }}
-                                <div class="run-option-links">
-                                  <strong>RSVP:</strong>
-                                  {{#if eventLink}}
-                                    <a
-                                      href="{{eventLink}}"
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      title="Event Details"
-                                      class="rsvp-link"
-                                    >
-                                      <FaIcon @icon={{faCalendarDays}} />
-                                      Event
-                                    </a>
-                                  {{/if}}
-                                  {{#if stravaEventLink}}
-                                    <a
-                                      href="{{stravaEventLink}}"
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      title="Strava Event"
-                                      class="rsvp-link"
-                                    >
-                                      <FaIcon @icon={{faStrava}} />
-                                      Strava
-                                    </a>
-                                  {{/if}}
-                                  {{#if meetupEventLink}}
-                                    <a
-                                      href="{{meetupEventLink}}"
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      title="Meetup Event"
-                                      class="rsvp-link"
-                                    >
-                                      <FaIcon @icon={{faMeetup}} />
-                                      Meetup
-                                    </a>
-                                  {{/if}}
-                                </div>
-                              {{/if}}
-                            {{/let}}
-                          </li>
-                        {{/each}}
-                      </ul>
+                        {{/if}}
+                        {{#if
+                          (and run.location.latitude run.location.longitude)
+                        }}
+                          <button
+                            type="button"
+                            class="location-action-button"
+                            {{on "click" this.openFullscreenMap}}
+                            aria-label="Open map in fullscreen"
+                          >
+                            <FaIcon @icon={{faExpand}} />
+                            Show Map
+                          </button>
+                        {{/if}}
+                      </div>
                     </div>
                   {{/if}}
                 </div>
 
-                {{!-- {{! Description }}
-                {{#if run.descriptionHtml}}
-                  <div class="run-description-section">
-                    <h3>About This Run</h3>
-                    <div class="markdown-content">
-                      {{htmlSafe run.descriptionHtml}}
-                    </div>
+                {{! Run Options }}
+                {{#if run.runs}}
+                  <div class="run-options">
+                    <h4>{{#if (eq run.runs.length 1)}}Run Details{{else}}Run
+                        Options{{/if}}</h4>
+                    <ul class="run-options-list">
+                      {{#each run.runs as |option|}}
+                        <RunOptionComponent
+                          @option={{option}}
+                          @eventLink={{if
+                            (eq run.runs.length 1)
+                            run.eventLink
+                            option.eventLink
+                          }}
+                          @stravaEventLink={{if
+                            (eq run.runs.length 1)
+                            run.stravaEventLink
+                            option.stravaEventLink
+                          }}
+                          @meetupEventLink={{if
+                            (eq run.runs.length 1)
+                            run.meetupEventLink
+                            option.meetupEventLink
+                          }}
+                        />
+                      {{/each}}
+                    </ul>
                   </div>
-                {{else if run.description}}
-                  <div class="run-description-section">
-                    <h3>About This Run</h3>
-                    <p class="run-description-text">{{run.description}}</p>
-                  </div>
-                {{/if}} --}}
-
-                {{! Map }}
-                {{#if
-                  (and
-                    run.location run.location.latitude run.location.longitude
-                  )
-                }}
-                  <div class="run-map-section">
-                    <div class="map-section-header">
-                      <h3>Location</h3>
-                      <button
-                        type="button"
-                        class="fullscreen-map-button"
-                        {{on "click" this.openFullscreenMap}}
-                        aria-label="Open map in fullscreen"
-                      >
-                        <FaIcon @icon={{faExpand}} />
-                        <span>Fullscreen Map</span>
-                      </button>
-                    </div>
-                    <div class="map-container">
-                      <LeafletBoundary>
-                        <LeafletMap
-                          @lat={{excludeNull run.location.latitude}}
-                          @lng={{excludeNull run.location.longitude}}
-                          @zoom={{14}}
-                          @tileUrl={{this.tileUrl}}
-                          as |map|
-                        >
-                          <LeafletMarker
-                            @context={{map}}
-                            @lat={{excludeNull run.location.latitude}}
-                            @lng={{excludeNull run.location.longitude}}
-                            @title={{run.location.name}}
-                          />
-                        </LeafletMap>
-                      </LeafletBoundary>
-                    </div>
-                  </div>
-
-                  {{! Fullscreen Map }}
-                  {{#if this.showFullscreenMap}}
-                    <FullscreenMap
-                      @locationId={{run.location.id}}
-                      @locationName={{run.location.name}}
-                      @lat={{excludeNull run.location.latitude}}
-                      @lng={{excludeNull run.location.longitude}}
-                      @zoom={{14}}
-                      @tileUrl={{this.tileUrl}}
-                      @onClose={{this.closeFullscreenMap}}
-                    />
-                  {{/if}}
                 {{/if}}
               </div>
+
+              {{! Fullscreen Map }}
+              {{#if this.showFullscreenMap}}
+                <FullscreenMap
+                  @locationId={{run.location.id}}
+                  @locationName={{run.location.name}}
+                  @lat={{excludeNull run.location.latitude}}
+                  @lng={{excludeNull run.location.longitude}}
+                  @zoom={{14}}
+                  @tileUrl={{this.tileUrl}}
+                  @onClose={{this.closeFullscreenMap}}
+                />
+              {{/if}}
+            </div>
             </:default>
           </ThemedPage>
         {{/let}}

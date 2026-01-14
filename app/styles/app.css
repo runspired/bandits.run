@@ -627,7 +627,6 @@ h3 {
 
 .day-schedule h3 {
   min-width: 7.5rem;
-  border-right: 1px solid var(--schedule-text);
   display: block;
 }
 
@@ -784,7 +783,7 @@ ul {
 }
 
 .run-options h4 {
-  margin: 0 0 0.75rem 0;
+  margin: 0 0 0.75rem;
   font-size: 1rem;
   font-weight: 600;
   color: var(--schedule-text);
@@ -795,55 +794,17 @@ ul {
   padding: 0;
   margin: 0;
   display: grid;
-  gap: 0.375rem;
-}
-
-.run-option {
-  padding: 0.375rem 0.75rem;
-  background: rgb(0 0 0 / 3%);
-  border-radius: 4px;
-  font-size: 0.9rem;
-  line-height: 1.6;
-}
-
-.run-times {
-  font-size: 0.85rem;
-  opacity: 0.8;
-}
-
-.event-link {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.5rem 1rem;
-  background: var(--schedule-text);
-  color: var(--bg-sky);
-  border-radius: 4px;
-  text-decoration: none;
-  font-weight: 400;
-  transition: opacity 0.2s ease;
-}
-
-.event-link:hover {
-  opacity: 0.9;
-  text-decoration: none;
+  gap: 0;
 }
 
 @media (prefers-color-scheme: dark) {
   .run-card {
     background: rgb(255 255 255 / 5%);
   }
-
-  .run-option {
-    background: rgb(255 255 255 / 3%);
-  }
 }
 
 body.dark-mode .run-card {
   background: rgb(255 255 255 / 5%);
-}
-
-body.dark-mode .run-option {
-  background: rgb(255 255 255 / 3%);
 }
 
 /* Past occurrence styling */
@@ -1047,7 +1008,6 @@ body.dark-mode .org-info-link:hover {
 
 /* Mobile-friendly layout tweaks */
 @media (width <= 768px) {
-  /* .sky padding migrated to themed-page.css */
 
   .branding .logo-container {
     width: 92vw;

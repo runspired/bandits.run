@@ -17,6 +17,7 @@ interface LeafletMapSignature {
     dragging?: boolean;
     touchZoom?: boolean;
     doubleClickZoom?: boolean;
+    zoomControl?: boolean;
     tileUrl?: string;
     tileAttribution?: string;
     onMoveEnd?: (event: L.LeafletEvent) => void;
@@ -45,6 +46,7 @@ export default class LeafletMapComponent extends Component<LeafletMapSignature> 
       dragging = true,
       touchZoom = true,
       doubleClickZoom = true,
+      zoomControl = true,
       tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       tileAttribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       onMoveEnd,
@@ -63,6 +65,7 @@ export default class LeafletMapComponent extends Component<LeafletMapSignature> 
       dragging,
       touchZoom,
       doubleClickZoom,
+      zoomControl,
     });
 
     // Add tile layer using the passed tileUrl

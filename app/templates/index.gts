@@ -8,6 +8,7 @@ import RunPreview from '#entities/run-preview.gts';
 import RunOccurrence from '#ui/nps-date.gts';
 import { getCurrentWeek, getNextWeek } from '#api/GET';
 import { weekHasFourDaysRemaining } from '#app/utils/helpers.ts';
+import { modifier } from 'ember-modifier';
 
 interface DayGroup {
   date: string;
@@ -47,6 +48,13 @@ function filterFutureDays(dayGroups: DayGroup[]): DayGroup[] {
   });
 }
 
+const scrollIntoView = modifier((element: HTMLElement) => {
+  // Use requestAnimationFrame to ensure the DOM is fully rendered
+  requestAnimationFrame(() => {
+    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+});
+
 <template>
   {{pageTitle "Bandits | The Bay Area Trail Running Community"}}
 
@@ -61,7 +69,7 @@ function filterFutureDays(dayGroups: DayGroup[]): DayGroup[] {
               <div class="schedule">
                 <h3 class="section-title">Runs This Week</h3>
                 {{#each (if (weekHasFourDaysRemaining) (filterFutureDays (groupEventsByDay week.data.events)) (groupEventsByDay week.data.events)) as |dayGroup|}}
-                  <div class="day-schedule {{if (isToday dayGroup.date) 'today'}}">
+                  <div class="day-schedule {{if (isToday dayGroup.date) 'today'}}" {{(if (isToday dayGroup.date) scrollIntoView)}}>
                     <RunOccurrence @date={{dayGroup.date}} @label={{dayGroup.dayOfWeek}} />
                     {{#if dayGroup.events.length}}
                       <div class="day-events">
@@ -84,7 +92,7 @@ function filterFutureDays(dayGroups: DayGroup[]): DayGroup[] {
                     <div class="schedule">
                       <h3 class="section-title">Runs Next Week</h3>
                       {{#each (groupEventsByDay nextWeek.data.events) as |dayGroup|}}
-                        <div class="day-schedule {{if (isToday dayGroup.date) 'today'}}">
+                        <div class="day-schedule {{if (isToday dayGroup.date) 'today'}}" {{(if (isToday dayGroup.date) scrollIntoView)}}>
                           <RunOccurrence @date={{dayGroup.date}} @label={{dayGroup.dayOfWeek}} />
                           {{#if dayGroup.events.length}}
                             <div class="day-events">

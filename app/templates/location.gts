@@ -2,8 +2,7 @@ import ThemedPage from '#layout/themed-page.gts';
 import Component from '@glimmer/component';
 import { Request } from '@warp-drive/ember';
 import { pageTitle } from 'ember-page-title';
-import LeafletMap from '#maps/leaflet-map.gts';
-import LeafletMarker from '#maps/leaflet-marker.gts';
+import BackgroundMap from '#maps/background-map.gts';
 import FaIcon from '#ui/fa-icon.gts';
 import {
   faLocationDot,
@@ -11,7 +10,6 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { cached, tracked } from '@glimmer/tracking';
 import './location.css';
-import LeafletBoundary from '#maps/leaflet-boundary.gts';
 import { assert } from '@ember/debug';
 import { getLocation } from '#api/GET';
 import { and } from '#app/utils/comparison.ts';
@@ -70,86 +68,76 @@ export default class LocationDisplay extends Component<{
           {{#let response.data as |location|}}
             {{pageTitle location.name " | Bandits"}}
             <div class="location-page">
-              <div class="location-header">
-                <h2>{{location.name}}</h2>
-                {{#if location.region}}
-                  <p class="location-region">{{location.region}}</p>
-                {{/if}}
-              </div>
-
-              {{#if location.descriptionHtml}}
-                <div class="location-description">
-                  {{! Safe because we control the markdown compilation }}
-                  {{! template-lint-disable no-triple-curlies }}
-                  {{{location.descriptionHtml}}}
-                </div>
-              {{/if}}
-
-              <div class="location-details">
-                {{#if location.address}}
-                  <div class="location-detail">
-                    <FaIcon @icon={{faLocationDot}} />
-                    <div>
-                      <strong>Address:</strong>
-                      <address>
-                        {{#if location.address.street}}
-                          {{location.address.street}}<br />
-                        {{/if}}
-                        {{#if location.address.city}}
-                          {{location.address.city}},
-                          {{location.address.state}}
-                          {{location.address.zip}}
-                        {{/if}}
-                      </address>
-                    </div>
-                  </div>
-                {{/if}}
-
-                {{#if location.googleMapsLink}}
-                  <div class="location-detail">
-                    <FaIcon @icon={{faMapLocationDot}} />
-                    <a
-                      href="{{location.googleMapsLink}}"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Open in Google Maps
-                    </a>
-                  </div>
-                {{/if}}
-
-                {{#if (and location.latitude location.longitude)}}
-                  <div class="location-detail">
-                    <strong>Coordinates:</strong>
-                    {{location.latitude}},
-                    {{location.longitude}}
-                  </div>
-                {{/if}}
-              </div>
-
               {{#if (and location.latitude location.longitude)}}
-                <div class="location-map">
-                  <h3>Map</h3>
-                  <div class="map-container">
-                    <LeafletBoundary>
-                      <LeafletMap
-                        @lat={{excludeNull location.latitude}}
-                        @lng={{excludeNull location.longitude}}
-                        @zoom={{12}}
-                        @tileUrl={{this.tileUrl}}
-                        as |map|
-                      >
-                        <LeafletMarker
-                          @context={{map}}
-                          @lat={{excludeNull location.latitude}}
-                          @lng={{excludeNull location.longitude}}
-                          @title={{location.name}}
-                        />
-                      </LeafletMap>
-                    </LeafletBoundary>
-                  </div>
-                </div>
+                <BackgroundMap
+                  @lat={{excludeNull location.latitude}}
+                  @lng={{excludeNull location.longitude}}
+                  @zoom={{12}}
+                  @minZoom={{8}}
+                  @maxZoom={{18}}
+                  @tileUrl={{this.tileUrl}}
+                  @markerTitle={{location.name}}
+                />
               {{/if}}
+
+              <div class="location-content">
+                <div class="location-header">
+                  <h2>{{location.name}}</h2>
+                  {{#if location.region}}
+                    <p class="location-region">{{location.region}}</p>
+                  {{/if}}
+                </div>
+
+                {{#if location.descriptionHtml}}
+                  <div class="location-description">
+                    {{! Safe because we control the markdown compilation }}
+                    {{! template-lint-disable no-triple-curlies }}
+                    {{{location.descriptionHtml}}}
+                  </div>
+                {{/if}}
+
+                <div class="location-details">
+                  {{#if location.address}}
+                    <div class="location-detail">
+                      <FaIcon @icon={{faLocationDot}} />
+                      <div>
+                        <strong>Address:</strong>
+                        <address>
+                          {{#if location.address.street}}
+                            {{location.address.street}}<br />
+                          {{/if}}
+                          {{#if location.address.city}}
+                            {{location.address.city}},
+                            {{location.address.state}}
+                            {{location.address.zip}}
+                          {{/if}}
+                        </address>
+                      </div>
+                    </div>
+                  {{/if}}
+
+                  {{#if location.googleMapsLink}}
+                    <div class="location-detail">
+                      <FaIcon @icon={{faMapLocationDot}} />
+                      <a
+                        href="{{location.googleMapsLink}}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Open in Google Maps
+                      </a>
+                    </div>
+                  {{/if}}
+
+                  {{#if (and location.latitude location.longitude)}}
+                    <div class="location-detail">
+                      <strong>Coordinates:</strong>
+                      {{location.latitude}},
+                      {{location.longitude}}
+                    </div>
+                  {{/if}}
+                </div>
+              </div>
             </div>
           {{/let}}
         </:content>

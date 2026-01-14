@@ -1,0 +1,11 @@
+.run-organization {
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  color: var(--theme-fall-orange);
+  text-transform: uppercase;
+}
+
+.organization-link, .organization-link:visited {
+  color: var(--theme-fall-orange);
+  text-decoration: none;
+}
