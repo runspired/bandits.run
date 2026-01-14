@@ -87,6 +87,16 @@ export class ReactiveDevice {
   supportsServiceWorker: boolean = 'serviceWorker' in navigator;
 
   /**
+   * Whether the device supports geolocation API
+   */
+  supportsGeolocation: boolean = 'geolocation' in navigator;
+
+  /**
+   * Detected platform
+   */
+  platform: 'ios' | 'android' | 'web' = this.#detectPlatform();
+
+  /**
    * A reactive property indicating if the device has
    * the ability to reach beyond the local network.
    */
@@ -139,6 +149,20 @@ export class ReactiveDevice {
    * Holds the timeout ID for the next network check attempt.
    */
   #nextAttempt: number | null = null;
+
+  /**
+   * Detect the platform based on user agent
+   */
+  #detectPlatform(): 'ios' | 'android' | 'web' {
+    const userAgent = navigator.userAgent.toLowerCase();
+    if (/iphone|ipad|ipod/.test(userAgent)) {
+      return 'ios';
+    }
+    if (/android/.test(userAgent)) {
+      return 'android';
+    }
+    return 'web';
+  }
 
   /**
    * Perform a network check by fetching a small resource

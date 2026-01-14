@@ -107,6 +107,12 @@ export class DevicePreferences {
   @field
   downloadForOffline: boolean = false;
 
+  @field
+  enableLocationServices: boolean = false;
+
+  @field
+  locationPermissionType: 'while-using' | 'always' | null = null;
+
   @matchMedia('(prefers-reduced-motion: reduce)')
   prefersReducedMotion: boolean = false;
 

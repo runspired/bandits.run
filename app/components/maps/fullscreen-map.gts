@@ -13,6 +13,8 @@ import type { PolygonPoint } from '#app/utils/tile-preloader.ts';
 import './fullscreen-map.css';
 import { service } from '@ember/service';
 import type PortalsService from '#app/services/ux/portals.ts';
+import { getDevicePreferences } from '#app/core/preferences.ts';
+import { getLeaflet } from '#maps/leaflet-boundary.gts';
 
 interface FullscreenMapSignature {
   Args: {
@@ -56,14 +58,20 @@ interface FullscreenMapSignature {
 export default class FullscreenMap extends Component<FullscreenMapSignature> {
   @service('ux/portals') declare portals: PortalsService;
 
+  preferences = getDevicePreferences();
+
   map: L.Map | null = null;
   currentZoom: number = this.args.zoom ?? 14;
+  locationWatchId: number | null = null;
 
   @tracked
   showPolygonSelector: boolean = false;
 
   @tracked
   polygon: PolygonPoint[] | null = null;
+
+  @tracked
+  userLocation: { lat: number; lng: number } | null = null;
 
   setupEscapeKey = modifier((_element: HTMLElement) => {
     const handleEscape = (event: KeyboardEvent) => {
@@ -79,10 +87,65 @@ export default class FullscreenMap extends Component<FullscreenMapSignature> {
 
     document.addEventListener('keydown', handleEscape);
 
+    // Start watching location if enabled
+    this.startLocationTracking();
+
     return () => {
       document.removeEventListener('keydown', handleEscape);
+      this.stopLocationTracking();
     };
   });
+
+  startLocationTracking = () => {
+    // Only track location if user has enabled it
+    if (!this.preferences.enableLocationServices) {
+      return;
+    }
+
+    if (!('geolocation' in navigator)) {
+      return;
+    }
+
+    // Watch position with high accuracy
+    this.locationWatchId = navigator.geolocation.watchPosition(
+      (position) => {
+        console.log('Received location update:', position);
+        const { latitude, longitude } = position.coords;
+
+        this.userLocation = { lat: latitude, lng: longitude };
+      },
+      (error) => {
+        console.error('Error watching location:', error);
+        this.userLocation = null;
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 5000,
+      }
+    );
+  };
+
+  stopLocationTracking = () => {
+    if (this.locationWatchId !== null) {
+      navigator.geolocation.clearWatch(this.locationWatchId);
+      this.locationWatchId = null;
+    }
+    this.userLocation = null;
+  };
+
+  isLocationInBounds = (lat: number, lng: number): boolean => {
+    // Calculate approximate bounds (roughly 10km radius from center)
+    // 1 degree latitude ≈ 111km, 1 degree longitude varies by latitude
+    const latDelta = 0.1; // ~11km
+    const lngDelta = 0.1 / Math.cos((this.args.lat * Math.PI) / 180); // Adjust for latitude
+
+    const inBounds =
+      Math.abs(lat - this.args.lat) <= latDelta &&
+      Math.abs(lng - this.args.lng) <= lngDelta;
+
+    return inBounds;
+  };
 
   storeMapReference = (context: { map: L.Map; context: object } | null) => {
     if (context && !this.map) {
@@ -114,6 +177,20 @@ export default class FullscreenMap extends Component<FullscreenMapSignature> {
   clearPolygon = () => {
     this.polygon = null;
   };
+
+  get userLocationIcon(): L.DivIcon {
+    const L = getLeaflet();
+    return L.divIcon({
+      className: 'user-location-marker',
+      html: `
+        <div class="user-location-dot">
+          <div class="user-location-pulse"></div>
+        </div>
+      `,
+      iconSize: [20, 20],
+      iconAnchor: [10, 10],
+    });
+  }
 
   <template>
     {{#in-element this.portals.takeover}}
@@ -170,6 +247,18 @@ export default class FullscreenMap extends Component<FullscreenMapSignature> {
                 @lng={{@lng}}
                 @title={{@locationName}}
               />
+
+              {{! User location marker }}
+              {{#if this.userLocation}}
+                <LeafletMarker
+                  @context={{context}}
+                  @lat={{this.userLocation.lat}}
+                  @lng={{this.userLocation.lng}}
+                  @title="Your Location"
+                  @icon={{this.userLocationIcon}}
+                  @zIndexOffset={{1000}}
+                />
+              {{/if}}
             {{/if}}
           </LeafletMap>
         </div>

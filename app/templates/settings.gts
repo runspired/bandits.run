@@ -6,10 +6,18 @@ import { getDevicePreferences } from '#app/core/preferences.ts';
 import { fn } from '@ember/helper';
 import { not } from '#app/utils/comparison.ts';
 import FaIcon from '#ui/fa-icon.gts';
-import { faDownload, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { faDownload, faCircleCheck, faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { getLocationServices } from '#app/core/location-services.ts';
+import { getDevice } from '#app/core/device.ts';
+import { tracked } from '@glimmer/tracking';
 
 class SettingsPage extends Component {
   preferences = getDevicePreferences();
+  locationServices = getLocationServices();
+  device = getDevice();
+
+  @tracked showLocationInstructions = false;
+  @tracked isRequestingPermission = false;
 
   togglePWA = async () => {
     if (this.preferences.isProcessing) return;
@@ -19,6 +27,49 @@ class SettingsPage extends Component {
     } else {
       await this.preferences.installPWA();
     }
+  };
+
+  toggleLocationServices = async () => {
+    if (this.isRequestingPermission) return;
+
+    if (this.preferences.enableLocationServices) {
+      // User is turning off location services
+      this.locationServices.disableLocationServices();
+    } else {
+      // Check if location services are available
+      const permissionState = await this.locationServices.checkPermissionState();
+
+      if (permissionState === 'unavailable') {
+        // Show platform-specific instructions
+        this.showLocationInstructions = true;
+        return;
+      }
+
+      if (permissionState === 'denied') {
+        // Permission was previously denied, show instructions to re-enable
+        this.showLocationInstructions = true;
+        return;
+      }
+
+      // Ask user for permission type preference
+      const backgroundAccess = confirm(
+        'Would you like to enable location access even when the app is in the background?\n\n' +
+        'Click OK for "Always" or Cancel for "While Using the App"'
+      );
+
+      this.isRequestingPermission = true;
+      const result = await this.locationServices.requestPermission(backgroundAccess);
+      this.isRequestingPermission = false;
+
+      if (result === 'denied' || result === 'unavailable') {
+        // Show instructions if permission was denied
+        this.showLocationInstructions = true;
+      }
+    }
+  };
+
+  closeInstructions = () => {
+    this.showLocationInstructions = false;
   };
 
   <template>
@@ -74,6 +125,52 @@ class SettingsPage extends Component {
         </section>
 
         <section class="settings-section">
+          <h2>Location Services</h2>
+
+          <div class="offline-mode-toggle">
+            <div class="offline-mode-info">
+              <div class="offline-mode-icon">
+                {{#if this.preferences.enableLocationServices}}
+                  <FaIcon @icon={{faCircleCheck}} @class="icon-installed" />
+                {{else}}
+                  <FaIcon @icon={{faLocationDot}} @class="icon-not-installed" />
+                {{/if}}
+              </div>
+              <div class="offline-mode-text">
+                <h3>
+                  {{#if this.preferences.enableLocationServices}}
+                    Location Services Enabled
+                  {{else}}
+                    Enable Location Services
+                  {{/if}}
+                </h3>
+                <p>
+                  {{#if this.preferences.enableLocationServices}}
+                    Location services are enabled for maps.
+                    {{#if this.preferences.locationPermissionType}}
+                      <br><br>
+                      Permission: {{this.preferences.locationPermissionType}}
+                    {{/if}}
+                  {{else}}
+                    Allow the app to access your location for map features.
+                  {{/if}}
+                </p>
+              </div>
+            </div>
+
+            <label class="toggle-switch">
+              <input
+                type="checkbox"
+                checked={{this.preferences.enableLocationServices}}
+                {{on "change" this.toggleLocationServices}}
+                disabled={{this.isRequestingPermission}}
+              />
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </section>
+
+        <section class="settings-section">
           <h2>Display Preferences</h2>
 
           <label class="settings-option">
@@ -113,6 +210,38 @@ class SettingsPage extends Component {
           </label>
         </section>
       </div>
+
+      {{! Platform Instructions Dialog }}
+      {{#if this.showLocationInstructions}}
+        <div class="location-instructions-overlay">
+          <div class="location-instructions-panel">
+            {{#let (this.locationServices.getPlatformInstructions) as |instructions|}}
+              <h2>{{instructions.title}}</h2>
+              <p>
+                {{#if this.device.supportsGeolocation}}
+                  Location services are currently blocked. Follow these steps to enable them:
+                {{else}}
+                  Location services are not available on this device. If you're using a supported device, follow these steps:
+                {{/if}}
+              </p>
+
+              <ol class="instruction-steps">
+                {{#each instructions.steps as |step|}}
+                  <li>{{step}}</li>
+                {{/each}}
+              </ol>
+
+              <button
+                type="button"
+                class="close-button"
+                {{on "click" this.closeInstructions}}
+              >
+                Close
+              </button>
+            {{/let}}
+          </div>
+        </div>
+      {{/if}}
     </ThemedPage>
   </template>
 }

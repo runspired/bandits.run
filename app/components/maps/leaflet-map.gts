@@ -29,7 +29,7 @@ interface LeafletMapSignature {
   };
 }
 
-export const MapContext = new WeakMap<object, L.Map>();
+export const MapContext = new Map<object, L.Map>();
 
 export default class LeafletMapComponent extends Component<LeafletMapSignature> {
   @tracked map: L.Map | null = null;
