@@ -1,5 +1,6 @@
 import HamburgerMenu from '#ui/hamburger-menu.gts';
 import FaIcon from '#ui/fa-icon.gts';
+import DownloadButton from '#ui/download-button.gts';
 import { LinkTo } from '@ember/routing';
 import VtLink from '#core/vt-link.gts';
 import {
@@ -10,11 +11,16 @@ import {
   faGear,
   faMoon,
 } from '@fortawesome/free-solid-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { on } from '@ember/modifier';
 import { scopedClass } from 'ember-scoped-css';
 import { getTheme } from '#app/core/site-theme.ts';
 import { fn } from '@ember/helper';
 import Component from '@glimmer/component';
+import { getDevicePreferences } from '#app/core/preferences.ts';
+import { inject as service } from '@ember/service';
+import type RouterService from '@ember/routing/router-service';
+import { getDevice } from '#app/core/device.ts';
 
 class ThemedPage extends Component<{
   Blocks: {
@@ -22,7 +28,40 @@ class ThemedPage extends Component<{
     default: [];
   };
 }> {
+  @service declare router: RouterService;
+
   theme = getTheme();
+  preferences = getDevicePreferences();
+  device = getDevice();
+
+  get downloadStatus() {
+    if (!this.device.supportsServiceWorker)
+      return 'unavailable';
+
+    if (!this.device.hasNetwork) {
+      return 'offline';
+    }
+
+    if (!this.preferences.downloadForOffline)
+      return 'available';
+
+    if (this.preferences.isProcessing)
+      return 'downloading';
+
+    return 'downloaded';
+  }
+
+  handleDownloadClick = () => {
+    if (this.preferences.isProcessing) return;
+
+    if (this.preferences.downloadForOffline) {
+      // Already downloaded - navigate to settings page
+      this.router.transitionTo('settings');
+    } else {
+      // Not downloaded yet - start installation
+      void this.preferences.installPWA();
+    }
+  };
 
   <template>
     <section class="page" ...attributes>
@@ -64,12 +103,18 @@ class ThemedPage extends Component<{
                 </div>
               </div>
               <HamburgerMenu>
+                <:header>
+                  <DownloadButton @status={{this.downloadStatus}} @onClick={{this.handleDownloadClick}} />
+                </:header>
+                <:default>
                 <VtLink @route="index"><FaIcon @icon={{faHome}} /> Home</VtLink>
                 <VtLink @route="organizations.index"><FaIcon @icon={{faUsers}} />
                   Organizations</VtLink>
                 <LinkTo @route="branding"><FaIcon @icon={{faPalette}} />
                   Branding</LinkTo>
                 <LinkTo @route="settings"><FaIcon @icon={{faGear}} /> Settings</LinkTo>
+                <a href="https://github.com/runspired/bandits.run" target="_blank" rel="noopener noreferrer"><FaIcon @icon={{faGithub}} /> GitHub</a>
+                </:default>
               </HamburgerMenu>
             </div>
           </div>

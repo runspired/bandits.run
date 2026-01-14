@@ -14,6 +14,10 @@
   transition: transform 0.2s ease;
 }
 
+.download-button:disabled {
+  cursor: default;
+}
+
 .download-button:hover:not(:disabled) {
   transform: scale(1.05);
 }
@@ -22,12 +26,8 @@
   transform: scale(0.95);
 }
 
-.download-button:disabled {
-  cursor: default;
-}
-
 /* Circle Container */
-.download-button__circle {
+.download-button-circle {
   position: relative;
   width: 100%;
   height: 100%;
@@ -36,13 +36,13 @@
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  border: 2px solid var(--theme-white-black-inverse);
+  border: 2px solid var(--theme-tan-black-inverse);
 }
 
 /* Icon */
-.download-button__icon {
+.download-button-icon {
   font-size: 1.5rem;
-  color: var(--theme-white-black-inverse);
+  color: var(--theme-tan-black-inverse);
   z-index: 2;
   display: flex;
   align-items: center;
@@ -50,7 +50,7 @@
 }
 
 /* Checkmark */
-.download-button__checkmark {
+.download-button-checkmark {
   position: absolute;
   bottom: -2px;
   right: -2px;
@@ -73,34 +73,71 @@
     transform: scale(0);
     opacity: 0;
   }
+
   50% {
     transform: scale(1.2);
   }
+
   100% {
     transform: scale(1);
     opacity: 1;
   }
 }
 
-/* State: Available (Grey Glow) */
-.download-button--available .download-button__circle {
-  background: rgba(128, 128, 128, 0.2);
+/* State: Offline (Red Neon Glow) */
+.download-button-status-offline .download-button-circle {
+  background: transparent;
   box-shadow:
-    0 0 20px rgba(128, 128, 128, 0.3),
-    0 0 40px rgba(128, 128, 128, 0.2),
-    inset 0 0 20px rgba(128, 128, 128, 0.1);
+    0 0 8px rgb(220 38 38 / 90%),
+    0 0 15px rgb(220 38 38 / 60%),
+    0 0 25px rgb(220 38 38 / 40%),
+    inset 0 0 6px rgb(220 38 38 / 100%);
 }
 
-.download-button--available:hover:not(:disabled) .download-button__circle {
-  background: rgba(128, 128, 128, 0.3);
+.download-button-status-offline .download-button-checkmark {
+  background: rgb(220 38 38);
+  color: white;
+}
+
+/* State: Unavailable (Greyed Out, Disabled) */
+.download-button-status-unavailable {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+.download-button-status-unavailable .download-button-circle {
+  background: transparent;
+  border-color: rgb(128 128 128 / 90%);
+}
+
+.download-button-status-unavailable .download-button-icon {
+  color: rgb(128 128 128 / 90%);
+}
+
+.download-button-status-unavailable .download-button-checkmark {
+  background: rgb(234 179 8);
+  color: black;
+}
+
+/* State: Available (Grey Glow) */
+.download-button-status-available .download-button-circle {
+  background: rgb(128 128 128 / 20%);
   box-shadow:
-    0 0 30px rgba(128, 128, 128, 0.4),
-    0 0 50px rgba(128, 128, 128, 0.3),
-    inset 0 0 20px rgba(128, 128, 128, 0.15);
+    0 0 20px rgb(128 128 128 / 30%),
+    0 0 40px rgb(128 128 128 / 20%),
+    inset 0 0 20px rgb(128 128 128 / 10%);
+}
+
+.download-button-status-available:hover:not(:disabled) .download-button-circle {
+  background: rgb(128 128 128 / 30%);
+  box-shadow:
+    0 0 30px rgb(128 128 128 / 40%),
+    0 0 50px rgb(128 128 128 / 30%),
+    inset 0 0 20px rgb(128 128 128 / 15%);
 }
 
 /* State: Downloading (Rotating Progress Glow) */
-.download-button--downloading .download-button__circle {
+.download-button-status-downloading .download-button-circle {
   background:
     conic-gradient(
       from 0deg,
@@ -117,7 +154,7 @@
   animation: rotate-glow 3s linear infinite;
 }
 
-.download-button--downloading .download-button__circle::before {
+.download-button-status-downloading .download-button-circle::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -137,13 +174,14 @@
   0% {
     filter: hue-rotate(0deg);
   }
+
   100% {
     filter: hue-rotate(360deg);
   }
 }
 
 /* Alternative progress indicator based on data-progress attribute */
-.download-button--downloading .download-button__circle::after {
+.download-button-status-downloading .download-button-circle::after {
   content: '';
   position: absolute;
   inset: -4px;
@@ -159,50 +197,70 @@
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
 }
 
-/* State: Complete (Green Glow) */
-.download-button--complete .download-button__circle {
-  background: rgba(34, 197, 94, 0.2);
+/* State: downloaded (Green Neon Glow) */
+.download-button-status-downloaded .download-button-circle {
+  background: transparent;
   box-shadow:
-    0 0 25px rgba(34, 197, 94, 0.4),
-    0 0 50px rgba(34, 197, 94, 0.3),
-    inset 0 0 20px rgba(34, 197, 94, 0.1);
+    0 0 8px rgb(34 197 94 / 90%),
+    0 0 15px rgb(34 197 94 / 60%),
+    0 0 25px rgb(34 197 94 / 40%),
+    inset 0 0 6px rgb(34 197 94 / 100%);
 }
 
-/* State: Error (Red Glow) */
-.download-button--error .download-button__circle {
-  background: rgba(220, 38, 38, 0.2);
+.download-button-status-downloaded:hover:not(:disabled) .download-button-circle {
+  background: transparent;
   box-shadow:
-    0 0 25px rgba(220, 38, 38, 0.4),
-    0 0 50px rgba(220, 38, 38, 0.3),
-    inset 0 0 20px rgba(220, 38, 38, 0.1);
+    0 0 10px rgb(34 197 94 / 100%),
+    0 0 20px rgb(34 197 94 / 70%),
+    0 0 30px rgb(34 197 94 / 50%),
+    inset 0 0 8px rgb(34 197 94 / 100%);
+}
+
+/* State: Error (Red Neon Glow) */
+.download-button-status-error .download-button-circle {
+  background: transparent;
+  box-shadow:
+    0 0 8px rgb(220 38 38 / 90%),
+    0 0 15px rgb(220 38 38 / 60%),
+    0 0 25px rgb(220 38 38 / 40%),
+    inset 0 0 6px rgb(220 38 38 / 100%);
   animation: error-pulse 2s ease-in-out infinite;
+}
+
+.download-button-status-error .download-button-checkmark {
+  background: rgb(220 38 38);
+  color: white;
 }
 
 @keyframes error-pulse {
   0%, 100% {
     box-shadow:
-      0 0 25px rgba(220, 38, 38, 0.4),
-      0 0 50px rgba(220, 38, 38, 0.3),
-      inset 0 0 20px rgba(220, 38, 38, 0.1);
+      0 0 8px rgb(220 38 38 / 90%),
+      0 0 15px rgb(220 38 38 / 60%),
+      0 0 25px rgb(220 38 38 / 40%),
+      inset 0 0 6px rgb(220 38 38 / 100%);
   }
+
   50% {
     box-shadow:
-      0 0 35px rgba(220, 38, 38, 0.6),
-      0 0 60px rgba(220, 38, 38, 0.4),
-      inset 0 0 25px rgba(220, 38, 38, 0.15);
+      0 0 10px rgb(220 38 38 / 100%),
+      0 0 20px rgb(220 38 38 / 70%),
+      0 0 30px rgb(220 38 38 / 50%),
+      inset 0 0 8px rgb(220 38 38 / 100%);
   }
 }
 
 /* Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
   .download-button,
-  .download-button__circle,
-  .download-button__checkmark {
+  .download-button-circle,
+  .download-button-checkmark {
     animation: none !important;
     transition: none !important;
   }
@@ -223,11 +281,11 @@
     height: 50px;
   }
 
-  .download-button__icon {
+  .download-button-icon {
     font-size: 1.25rem;
   }
 
-  .download-button__checkmark {
+  .download-button-checkmark {
     width: 18px;
     height: 18px;
     font-size: 0.6rem;

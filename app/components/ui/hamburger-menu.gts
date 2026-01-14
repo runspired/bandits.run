@@ -4,6 +4,7 @@ import { on } from '@ember/modifier';
 
 export default class HamburgerMenu extends Component<{
   Blocks: {
+    header?: [];
     default: [];
   };
 }> {
@@ -31,6 +32,11 @@ export default class HamburgerMenu extends Component<{
       {{#if this.isOpen}}
         <div class="menu-overlay {{if this.isOpen 'open'}}">
           <nav class="menu-content">
+            {{#if (has-block "header")}}
+              <div class="menu-header">
+                {{yield to="header"}}
+              </div>
+            {{/if}}
             <ul class="menu-links">
               {{yield}}
             </ul>

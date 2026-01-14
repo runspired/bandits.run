@@ -198,20 +198,20 @@
   }
 
   .mode-toggle .toggle-track {
-    width: 2.1rem;
-    height: 1.05rem;
-    border-radius: 0.525rem;
+    width: 4rem;
+    height: 2rem;
+    border-radius: 1rem;
   }
 
   .mode-toggle .toggle-knob {
-    width: 0.7875rem;
-    height: 0.7875rem;
-    left: 0.07875rem;
-    font-size: 0.39375rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    left: 0.15rem;
+    font-size: 0.75rem;
   }
 
   .mode-toggle .toggle-track.checked .toggle-knob {
-    left: calc(100% - 0.86625rem);
+    left: calc(100% - 1.65rem);
   }
 
   .mode-toggle {

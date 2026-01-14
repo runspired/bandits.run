@@ -1,4 +1,4 @@
-import { checkServiceWorker } from './settings.gts';
+import { checkServiceWorker } from '#app/core/preferences.ts';
 
 void checkServiceWorker();
 
