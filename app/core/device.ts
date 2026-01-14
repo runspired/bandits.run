@@ -82,6 +82,11 @@ export class ReactiveDevice {
   @tracked hasLocalNetwork: boolean = navigator.onLine;
 
   /**
+   * Whether the device supports service workers
+   */
+  supportsServiceWorker: boolean = 'serviceWorker' in navigator;
+
+  /**
    * A reactive property indicating if the device has
    * the ability to reach beyond the local network.
    */

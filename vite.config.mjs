@@ -12,11 +12,22 @@ export default defineConfig({
     babel({
       babelHelpers: 'runtime',
       extensions,
+      exclude: [/\/dev-sw\.js/, /\/sw\.js/, /workbox-.*\.js/],
     }),
     VitePWA({
-      registerType: 'prompt',
+      registerType: 'autoUpdate',
       strategies: 'generateSW',
       includeAssets: ['favicon.ico', '**/*.svg', '**/*.png', '**/*.woff2'],
+      injectRegister: false,
+      // scope: '/',
+      // base: '/',
+      //buildBase: '/assets/',
+      srcDir: 'app',
+      outDir: 'dist',
+      devOptions: {
+        enabled: true,
+        type: 'module',
+      },
       manifest: {
         name: 'The Bandits',
         short_name: 'Bandits',

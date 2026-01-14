@@ -45,7 +45,7 @@ export class DevicePreferences {
   showTimezoneDifferences: boolean = true;
 
   @field
-  pwaInstalled: boolean = false;
+  downloadForOffline: boolean = false;
 
   @matchMedia('(prefers-reduced-motion: reduce)')
   prefersReducedMotion: boolean = false;
