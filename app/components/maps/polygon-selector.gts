@@ -60,6 +60,7 @@ export default class PolygonSelector extends Component<PolygonSelectorSignature>
   markers: L.CircleMarker[] = [];
   mapClickHandler: ((e: L.LeafletMouseEvent) => void) | null = null;
   mapMoveHandler: ((e: L.LeafletMouseEvent) => void) | null = null;
+  hasInitialPoints: boolean = (this.args.initialPoints?.length ?? 0) > 0;
 
   get canComplete(): boolean {
     return this.points.length >= 3;
@@ -99,8 +100,8 @@ export default class PolygonSelector extends Component<PolygonSelectorSignature>
     };
     map.on('mousemove', this.mapMoveHandler);
 
-    // If we have initial points, render them
-    if (this.points.length > 0) {
+    // If we have initial points (loaded from args), render them in edit mode
+    if (this.hasInitialPoints) {
       this.isDrawing = false;
       this.renderPolygon();
     }

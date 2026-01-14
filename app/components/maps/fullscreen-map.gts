@@ -151,7 +151,6 @@ export default class FullscreenMap extends Component<FullscreenMapSignature> {
                 @map={{this.map}}
                 @onPolygonComplete={{this.handlePolygonComplete}}
                 @onCancel={{this.handlePolygonCancel}}
-                @initialPoints={{this.polygon}}
               />
             {{/if}}
           {{/if}}
