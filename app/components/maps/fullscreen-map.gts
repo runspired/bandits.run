@@ -1,12 +1,15 @@
 import Component from '@glimmer/component';
 import { on } from '@ember/modifier';
 import { modifier } from 'ember-modifier';
+import { tracked } from '@glimmer/tracking';
 import LeafletMap from '#maps/leaflet-map.gts';
 import LeafletMarker from '#maps/leaflet-marker.gts';
 import MapDownloadButton from '#maps/map-download-button.gts';
+import PolygonSelector from '#maps/polygon-selector.gts';
 import FaIcon from '#ui/fa-icon.gts';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import type * as L from 'leaflet';
+import type { PolygonPoint } from '#app/utils/tile-preloader.ts';
 import './fullscreen-map.css';
 import { service } from '@ember/service';
 import type PortalsService from '#app/services/ux/portals.ts';
@@ -56,10 +59,21 @@ export default class FullscreenMap extends Component<FullscreenMapSignature> {
   map: L.Map | null = null;
   currentZoom: number = this.args.zoom ?? 14;
 
+  @tracked
+  showPolygonSelector: boolean = false;
+
+  @tracked
+  polygon: PolygonPoint[] | null = null;
+
   setupEscapeKey = modifier((_element: HTMLElement) => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        this.args.onClose();
+        // If polygon selector is showing, close it first
+        if (this.showPolygonSelector) {
+          this.handlePolygonCancel();
+        } else {
+          this.args.onClose();
+        }
       }
     };
 
@@ -84,6 +98,23 @@ export default class FullscreenMap extends Component<FullscreenMapSignature> {
     this.args.onClose();
   }
 
+  startPolygonSelection = () => {
+    this.showPolygonSelector = true;
+  };
+
+  handlePolygonComplete = (points: PolygonPoint[]) => {
+    this.polygon = points;
+    this.showPolygonSelector = false;
+  };
+
+  handlePolygonCancel = () => {
+    this.showPolygonSelector = false;
+  };
+
+  clearPolygon = () => {
+    this.polygon = null;
+  };
+
   <template>
     {{#in-element this.portals.takeover}}
       {{! template-lint-disable no-inline-styles }}
@@ -107,8 +138,23 @@ export default class FullscreenMap extends Component<FullscreenMapSignature> {
               @lat={{@lat}}
               @lng={{@lng}}
               @getMap={{this.getMap}}
+              @polygon={{this.polygon}}
+              @onStartPolygonSelection={{this.startPolygonSelection}}
+              @onClearPolygon={{this.clearPolygon}}
             />
           </div>
+
+          {{! Polygon selector overlay - rendered conditionally }}
+          {{#if this.showPolygonSelector}}
+            {{#if this.map}}
+              <PolygonSelector
+                @map={{this.map}}
+                @onPolygonComplete={{this.handlePolygonComplete}}
+                @onCancel={{this.handlePolygonCancel}}
+                @initialPoints={{this.polygon}}
+              />
+            {{/if}}
+          {{/if}}
 
           <LeafletMap
             @lat={{@lat}}

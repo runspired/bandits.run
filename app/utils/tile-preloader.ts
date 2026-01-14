@@ -11,6 +11,11 @@ export interface TileCoordinate {
   z: number;
 }
 
+export interface PolygonPoint {
+  lat: number;
+  lng: number;
+}
+
 export interface PreloadOptions {
   /** Center latitude of the location */
   lat: number;
@@ -22,6 +27,8 @@ export interface PreloadOptions {
   screenHeight: number;
   /** Radius to preload in miles (default: 15) */
   radiusMiles?: number;
+  /** Custom polygon boundary (takes precedence over radiusMiles) */
+  polygon?: PolygonPoint[];
   /** Minimum zoom level (default: 1) */
   minZoom?: number;
   /** Maximum zoom level (default: 18) */
@@ -99,6 +106,74 @@ export function getTileBounds(
 }
 
 /**
+ * Get the bounding box of a polygon
+ */
+export function getPolygonBounds(polygon: PolygonPoint[]): {
+  north: number;
+  south: number;
+  east: number;
+  west: number;
+} {
+  if (polygon.length === 0) {
+    return { north: 0, south: 0, east: 0, west: 0 };
+  }
+
+  let north = polygon[0]!.lat;
+  let south = polygon[0]!.lat;
+  let east = polygon[0]!.lng;
+  let west = polygon[0]!.lng;
+
+  for (const point of polygon) {
+    north = Math.max(north, point.lat);
+    south = Math.min(south, point.lat);
+    east = Math.max(east, point.lng);
+    west = Math.min(west, point.lng);
+  }
+
+  return { north, south, east, west };
+}
+
+/**
+ * Check if a point is inside a polygon using ray casting algorithm
+ */
+export function isPointInPolygon(lat: number, lng: number, polygon: PolygonPoint[]): boolean {
+  if (polygon.length < 3) return false;
+
+  let inside = false;
+  for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+    const pi = polygon[i]!;
+    const pj = polygon[j]!;
+
+    const intersect =
+      pi.lat > lat !== pj.lat > lat &&
+      lng < ((pj.lng - pi.lng) * (lat - pi.lat)) / (pj.lat - pi.lat) + pi.lng;
+
+    if (intersect) inside = !inside;
+  }
+
+  return inside;
+}
+
+/**
+ * Calculate tile bounds for a polygon at a specific zoom level
+ */
+export function getTileBoundsForPolygon(
+  polygon: PolygonPoint[],
+  zoom: number
+): { minX: number; maxX: number; minY: number; maxY: number } {
+  const bounds = getPolygonBounds(polygon);
+  const nw = latLngToTile(bounds.north, bounds.west, zoom);
+  const se = latLngToTile(bounds.south, bounds.east, zoom);
+
+  return {
+    minX: Math.min(nw.x, se.x),
+    maxX: Math.max(nw.x, se.x),
+    minY: Math.min(nw.y, se.y),
+    maxY: Math.max(nw.y, se.y),
+  };
+}
+
+/**
  * Get all tile coordinates needed for the given options
  */
 export function calculateRequiredTiles(options: PreloadOptions): TileCoordinate[] {
@@ -106,6 +181,7 @@ export function calculateRequiredTiles(options: PreloadOptions): TileCoordinate[
     lat,
     lng,
     radiusMiles = 15,
+    polygon,
     minZoom = 1,
     maxZoom = 18,
   } = options;
@@ -114,12 +190,28 @@ export function calculateRequiredTiles(options: PreloadOptions): TileCoordinate[
 
   // Calculate tiles for each zoom level
   for (let z = minZoom; z <= maxZoom; z++) {
-    const bounds = getTileBounds(lat, lng, radiusMiles, z);
+    let bounds: { minX: number; maxX: number; minY: number; maxY: number };
+
+    if (polygon && polygon.length >= 3) {
+      // Use polygon bounds
+      bounds = getTileBoundsForPolygon(polygon, z);
+    } else {
+      // Use radius bounds
+      bounds = getTileBounds(lat, lng, radiusMiles, z);
+    }
 
     // Add all tiles within the bounds
     for (let x = bounds.minX; x <= bounds.maxX; x++) {
       for (let y = bounds.minY; y <= bounds.maxY; y++) {
-        tiles.push({ x, y, z });
+        // If using polygon, check if tile center is inside polygon
+        if (polygon && polygon.length >= 3) {
+          const tileCenter = tileToLatLng(x + 0.5, y + 0.5, z);
+          if (isPointInPolygon(tileCenter.lat, tileCenter.lng, polygon)) {
+            tiles.push({ x, y, z });
+          }
+        } else {
+          tiles.push({ x, y, z });
+        }
       }
     }
   }

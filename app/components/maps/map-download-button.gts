@@ -1,13 +1,15 @@
 import Component from '@glimmer/component';
 import { service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
+import { on } from '@ember/modifier';
 import type MapTileCacheService from '#app/services/map-tile-cache.ts';
 import DownloadButton from '#ui/download-button.gts';
 import FaIcon from '#ui/fa-icon.gts';
-import { faMap, faDownload } from '@fortawesome/free-solid-svg-icons';
+import { faMap, faDownload, faCropSimple } from '@fortawesome/free-solid-svg-icons';
 import type { DownloadStatusType } from '#app/core/preferences.ts';
 import { getDevicePreferences } from '#app/core/preferences.ts';
 import type * as L from 'leaflet';
+import type { PolygonPoint } from '#app/utils/tile-preloader.ts';
 import './map-download-button.css';
 
 interface MapDownloadButtonSignature {
@@ -44,6 +46,21 @@ interface MapDownloadButtonSignature {
      * If provided, will download tiles for the visible area instead of radius
      */
     getMap?: () => L.Map | null;
+
+    /**
+     * Optional polygon points for custom area selection
+     */
+    polygon?: PolygonPoint[] | null;
+
+    /**
+     * Optional callback to start polygon selection
+     */
+    onStartPolygonSelection?: () => void;
+
+    /**
+     * Optional callback to clear polygon
+     */
+    onClearPolygon?: () => void;
   };
 }
 
@@ -84,7 +101,10 @@ export default class MapDownloadButton extends Component<MapDownloadButtonSignat
   get downloadEstimate() {
     try {
       const map = this.args.getMap?.();
-      if (map) {
+      if (this.args.polygon && this.args.polygon.length >= 3 && map) {
+        // Calculate for polygon
+        return this.mapTileCache.estimateDownloadForPolygon(this.args.polygon, map);
+      } else if (map) {
         // Calculate for visible area
         return this.mapTileCache.estimateDownloadForVisibleArea(map);
       } else {
@@ -101,7 +121,11 @@ export default class MapDownloadButton extends Component<MapDownloadButtonSignat
   }
 
   get isVisibleAreaMode() {
-    return !!this.args.getMap;
+    return !!this.args.getMap && !this.args.polygon;
+  }
+
+  get isPolygonMode() {
+    return !!this.args.polygon && this.args.polygon.length >= 3;
   }
 
   get cacheStatus() {
@@ -159,9 +183,17 @@ export default class MapDownloadButton extends Component<MapDownloadButtonSignat
       return `Downloading map tiles for ${this.args.locationName}: ${this.progress}%`;
     }
 
-    const areaText = this.isVisibleAreaMode ? 'visible area' : `${this.radiusMiles} mile radius`;
+    let areaText: string;
+    if (this.isPolygonMode) {
+      areaText = 'selected polygon area';
+    } else if (this.isVisibleAreaMode) {
+      areaText = 'visible area';
+    } else {
+      areaText = `${this.radiusMiles} mile radius`;
+    }
     return `Download map tiles for ${areaText} (${this.downloadEstimate?.sizeMB.toFixed(1)} MB)`;
   }
+
 
   handleClick = async () => {
     // If service worker is not installed, install it first
@@ -180,9 +212,14 @@ export default class MapDownloadButton extends Component<MapDownloadButtonSignat
     // If already cached, show info
     if (this.isCached) {
       const estimate = this.downloadEstimate;
-      const areaText = this.isVisibleAreaMode
-        ? 'the visible area on screen'
-        : `${this.radiusMiles} miles in all directions`;
+      let areaText: string;
+      if (this.isPolygonMode) {
+        areaText = 'the selected polygon area';
+      } else if (this.isVisibleAreaMode) {
+        areaText = 'the visible area on screen';
+      } else {
+        areaText = `${this.radiusMiles} miles in all directions`;
+      }
 
       alert(
         `Map tiles for ${this.args.locationName} are already cached!\n\n` +
@@ -196,17 +233,24 @@ export default class MapDownloadButton extends Component<MapDownloadButtonSignat
       this.errorMessage = null;
       const map = this.args.getMap?.();
       const estimate = this.downloadEstimate;
-      const areaText = this.isVisibleAreaMode
-        ? 'the visible area on screen'
-        : `${this.radiusMiles} miles in all directions`;
-      const zoomText = this.isVisibleAreaMode && map
+
+      let areaText: string;
+      if (this.isPolygonMode) {
+        areaText = 'the selected polygon area';
+      } else if (this.isVisibleAreaMode) {
+        areaText = 'the visible area on screen';
+      } else {
+        areaText = `${this.radiusMiles} miles in all directions`;
+      }
+
+      const zoomText = (this.isVisibleAreaMode || this.isPolygonMode) && map
         ? ` at all zoom levels from ${map.getZoom()} to 18`
         : '';
 
       const confirmed = window.confirm(
-        `Download map tiles for the visible area?\n\n` +
+        `Download map tiles for ${areaText}?\n\n` +
         `This will download approximately ${estimate?.sizeMB.toFixed(1) ?? 'Unknown'} MB ` +
-        `(${estimate?.tileCount ?? 'Unknown'} tiles) covering ${areaText}${zoomText}.\n\n` +
+        `(${estimate?.tileCount ?? 'Unknown'} tiles)${zoomText}.\n\n` +
         `The tiles will be cached for offline use.`
       );
 
@@ -219,7 +263,8 @@ export default class MapDownloadButton extends Component<MapDownloadButtonSignat
         this.args.lat,
         this.args.lng,
         this.radiusMiles,
-        map ?? undefined
+        map ?? undefined,
+        this.args.polygon ?? undefined
       );
 
       // Show success message
@@ -237,6 +282,21 @@ export default class MapDownloadButton extends Component<MapDownloadButtonSignat
   <template>
     {{#if this.isOfflineSupportInstalled}}
       <div class="map-download-button-wrapper" ...attributes>
+        {{#if @getMap}}
+          {{#if @onStartPolygonSelection}}
+            {{! Show polygon selector button in map mode }}
+            <button
+              type="button"
+              class="map-crop-button"
+              {{on "click" @onStartPolygonSelection}}
+              aria-label="Select custom area to download"
+              title="Select custom area"
+            >
+              <FaIcon @icon={{faCropSimple}} />
+            </button>
+          {{/if}}
+        {{/if}}
+
         <div class="map-download-background"></div>
         <DownloadButton
           @status={{this.downloadStatus}}
@@ -249,6 +309,20 @@ export default class MapDownloadButton extends Component<MapDownloadButtonSignat
             <FaIcon @icon={{faDownload}} />
           </span>
         {{/unless}}
+
+        {{#if this.isPolygonMode}}
+          {{#if @onClearPolygon}}
+            <button
+              type="button"
+              class="map-clear-polygon-button"
+              {{on "click" @onClearPolygon}}
+              aria-label="Clear selected area"
+              title="Clear selection"
+            >
+              ×
+            </button>
+          {{/if}}
+        {{/if}}
       </div>
     {{/if}}
   </template>

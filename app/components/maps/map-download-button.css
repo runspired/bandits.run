@@ -85,15 +85,86 @@
   }
 }
 
+/* Crop button for polygon selection */
+.map-crop-button {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--theme-tan-black-inverse);
+  color: var(--theme-tan-black);
+  border: 2px solid var(--theme-tan-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
+}
+
+.map-crop-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 20%);
+}
+
+.map-crop-button:active {
+  transform: scale(0.95);
+}
+
+.map-crop-button svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Clear polygon button */
+.map-clear-polygon-button {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #ef4444;
+  color: white;
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.map-clear-polygon-button:hover {
+  transform: scale(1.1);
+  background-color: #dc2626;
+  box-shadow: 0 4px 12px rgb(239 68 68 / 40%);
+}
+
+.map-clear-polygon-button:active {
+  transform: scale(0.95);
+}
+
 /* Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
   .map-download-background,
-  .map-download-secondary-icon {
+  .map-download-secondary-icon,
+  .map-crop-button,
+  .map-clear-polygon-button {
     transition: none !important;
   }
 
   .map-download-button-wrapper:hover .map-download-background,
-  .map-download-button-wrapper:hover .map-download-secondary-icon {
+  .map-download-button-wrapper:hover .map-download-secondary-icon,
+  .map-crop-button:hover,
+  .map-clear-polygon-button:hover {
     transform: none;
   }
 }
