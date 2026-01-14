@@ -17,11 +17,8 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       strategies: 'generateSW',
-      includeAssets: ['favicon.ico', '**/*.svg', '**/*.png', '**/*.woff2'],
+      includeAssets: ['favicon.ico', '**/*.svg', '**/*.png', '**/*.woff2', '**/*.json'],
       injectRegister: false,
-      // scope: '/',
-      // base: '/',
-      //buildBase: '/assets/',
       srcDir: 'app',
       outDir: 'dist',
       devOptions: {
@@ -55,18 +52,6 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
         // Runtime caching strategies
         runtimeCaching: [
-          {
-            // Cache Google Fonts
-            urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'google-fonts-stylesheets',
-              expiration: {
-                maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365 // 1 year
-              }
-            }
-          },
           {
             // Cache Google Fonts assets
             urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
@@ -107,6 +92,36 @@ export default defineConfig({
               expiration: {
                 maxEntries: 50,
                 maxAgeSeconds: 60 * 60 * 24 // 1 day
+              }
+            }
+          },
+          {
+            // Cache Stadia Maps tiles
+            urlPattern: /^https:\/\/tiles\.stadiamaps\.com\/.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'stadia-map-tiles',
+              expiration: {
+                maxEntries: 500,
+                maxAgeSeconds: 60 * 60 * 24 * 30 // 30 days
+              },
+              cacheableResponse: {
+                statuses: [0, 200]
+              }
+            }
+          },
+          {
+            // Cache Leaflet assets from unpkg
+            urlPattern: /^https:\/\/unpkg\.com\/leaflet@.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'leaflet-assets',
+              expiration: {
+                maxEntries: 20,
+                maxAgeSeconds: 60 * 60 * 24 * 365 // 1 year
+              },
+              cacheableResponse: {
+                statuses: [0, 200]
               }
             }
           }
