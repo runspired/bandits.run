@@ -24,6 +24,11 @@ export default defineConfig({
         'nps.svg',
         'redwood.svg',
         'logo-orange-chevron.svg',
+        'leaflet-images/marker-icon.png',
+        'leaflet-images/marker-icon-2x.png',
+        'leaflet-images/marker-shadow.png',
+        'fonts/montserrat-regular.woff2',
+        'fonts/montserrat-bold.woff2',
         '**/*.json',
         '**/*.css',
         '**/*.js',
@@ -64,21 +69,6 @@ export default defineConfig({
         // Runtime caching strategies
         runtimeCaching: [
           {
-            // Cache Google Fonts assets
-            urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'google-fonts-webfonts',
-              expiration: {
-                maxEntries: 30,
-                maxAgeSeconds: 60 * 60 * 24 * 365 // 1 year
-              },
-              cacheableResponse: {
-                statuses: [0, 200]
-              }
-            }
-          },
-          {
             // Cache week JSON files with StaleWhileRevalidate
             // Serve from cache immediately, update in background
             urlPattern: /\/api\/weeks\/.*\.json$/,
@@ -115,21 +105,6 @@ export default defineConfig({
               expiration: {
                 maxEntries: 500,
                 maxAgeSeconds: 60 * 60 * 24 * 30 // 30 days
-              },
-              cacheableResponse: {
-                statuses: [0, 200]
-              }
-            }
-          },
-          {
-            // Cache Leaflet assets from unpkg
-            urlPattern: /^https:\/\/unpkg\.com\/leaflet@.*/i,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'leaflet-assets',
-              expiration: {
-                maxEntries: 20,
-                maxAgeSeconds: 60 * 60 * 24 * 365 // 1 year
               },
               cacheableResponse: {
                 statuses: [0, 200]
