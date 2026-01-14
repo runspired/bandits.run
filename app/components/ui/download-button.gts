@@ -1,13 +1,12 @@
 import Component from '@glimmer/component';
 import { on } from '@ember/modifier';
 import FaIcon from '#ui/fa-icon.gts';
-import { faDownload, faCheck, faX, faBan, faWifi } from '@fortawesome/free-solid-svg-icons';
+import { faDownload, faCheck, faX, faBan, faWifi, faHourglass } from '@fortawesome/free-solid-svg-icons';
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { eq, not } from '#app/utils/comparison.ts';
 import { scopedClass } from 'ember-scoped-css';
 import './download-button.css';
-
-export type DownloadStatus = 'offline' | 'unavailable' | 'available' | 'downloading' | 'downloaded' | 'error';
+import type { DownloadStatusType } from '#app/core/preferences.ts';
 
 interface DownloadButtonSignature {
   Args: {
@@ -16,11 +15,13 @@ interface DownloadButtonSignature {
      * - 'offline': Device is offline
      * - 'unavailable': Service worker not supported (hidden)
      * - 'available': Ready to download (grey glow, clickable)
-     * - 'downloading': In progress with completion percentage (rotating glow, not clickable)
-     * - 'downloaded': Successfully downloaded (green glow with checkmark, clickable)
+     * - 'installing': Installation in progress (rotating glow, not clickable)
+     * - 'installed': Installed but not yet activated (green glow with checkmark, clickable)
+     * - 'activating': Activation in progress (rotating glow, not clickable)
+     * - 'activated': Successfully activated (green glow with checkmark, clickable)
      * - 'error': Failed to download (red glow, not clickable)
      */
-    status: DownloadStatus;
+    status: DownloadStatusType;
 
     /**
      * Download progress from 0-100 (only relevant when status is 'downloading')
@@ -54,18 +55,16 @@ export default class DownloadButton extends Component<DownloadButtonSignature> {
     return this.args.icon ?? faDownload;
   }
 
-  get progress() {
-    return this.args.progress ?? 0;
-  }
-
   get ariaLabel() {
     const status = this.args.status;
     const defaultLabels = {
       offline: 'Device is offline',
       unavailable: 'Offline download unavailable',
       available: 'Download for offline use',
-      downloading: `Downloading: ${this.progress}% complete`,
-      downloaded: 'Downloaded successfully',
+      installing: 'Installing for offline use',
+      installed: 'Installed for offline use',
+      activating: 'Downloading additional assets for offline use',
+      activated: 'Ready for offline use',
       error: 'Download failed',
     };
 
@@ -73,7 +72,7 @@ export default class DownloadButton extends Component<DownloadButtonSignature> {
   }
 
   get isClickable() {
-    return (this.args.status === 'available' || this.args.status === 'downloaded') && !this.args.disabled;
+    return (this.args.status === 'available' || this.args.status === 'activated') && !this.args.disabled;
   }
 
   get statusClass() {
@@ -84,14 +83,18 @@ export default class DownloadButton extends Component<DownloadButtonSignature> {
         return scopedClass('download-button-status-unavailable');
       case 'available':
         return scopedClass('download-button-status-available');
-      case 'downloading':
-        return scopedClass('download-button-status-downloading');
-      case 'downloaded':
-        return scopedClass('download-button-status-downloaded');
+      case 'installing':
+        return scopedClass('download-button-status-installing');
+      case 'installed':
+        return scopedClass('download-button-status-installed');
+      case 'activating':
+        return scopedClass('download-button-status-activating');
+      case 'activated':
+        return scopedClass('download-button-status-activated');
       case 'error':
+      default:
         return scopedClass('download-button-status-error');
     }
-    return 'unknown';
   }
 
   handleClick = (event: MouseEvent) => {
@@ -110,11 +113,23 @@ export default class DownloadButton extends Component<DownloadButtonSignature> {
       {{on "click" this.handleClick}}
       ...attributes
     >
-      <span class="download-button-circle" data-progress={{this.progress}}>
+      <span class="download-button-circle">
         <span class="download-button-icon">
           <FaIcon @icon={{this.icon}} />
         </span>
-        {{#if (eq @status "downloaded")}}
+        {{#if (eq @status "installing")}}
+          <span class="download-button-checkmark">
+            <FaIcon @icon={{faHourglass}} />
+          </span>
+        {{else if (eq @status "installed")}}
+          <span class="download-button-checkmark">
+            <FaIcon @icon={{faCheck}} />
+          </span>
+        {{else if (eq @status "activating")}}
+          <span class="download-button-checkmark">
+            <FaIcon @icon={{faHourglass}} />
+          </span>
+        {{else if (eq @status "activated")}}
           <span class="download-button-checkmark">
             <FaIcon @icon={{faCheck}} />
           </span>

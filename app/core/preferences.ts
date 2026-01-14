@@ -1,7 +1,22 @@
+import { getDevice } from './device';
 import { field, PersistedResource } from './persisted-resource';
 import { matchMedia } from './reactive-match-media';
-import { tracked } from '@glimmer/tracking';
+import { cached, tracked } from '@glimmer/tracking';
 import { registerSW } from 'virtual:pwa-register';
+
+/**
+ * Possible download statuses
+ *
+ * - 'unavailable': Service worker not supported
+ * - 'offline': Device is offline
+ * - 'available': Ready to download
+ * - 'installing': Installation in progress
+ * - 'installed': Installed but not yet activated
+ * - 'activating': Activation in progress
+ * - 'activated': Successfully activated
+ * - 'error': Failed to download
+ */
+export type DownloadStatusType = 'unavailable' | 'offline' | 'available' | 'installing' | 'installed' | 'activating' | 'activated' | 'error';
 
 const DEBUG = localStorage.getItem('debug-serviceWorker') === 'true';
 function log(msg: string) {
@@ -25,18 +40,16 @@ export async function checkServiceWorker() {
   const registrations = await navigator.serviceWorker.getRegistrations();
 
   const isInstalled = registrations.length > 0;
-  log(`Service worker installed: ${isInstalled}, User preference: ${shouldBeInstalled}`);
+
+  // Check if a service worker is currently installing or waiting
+  const isInstalling = registrations.some(
+    reg => reg.installing !== null || reg.waiting !== null
+  );
+
+  log(`Service worker installed: ${isInstalled}, installing: ${isInstalling}, User preference: ${shouldBeInstalled}`);
 
   if (shouldBeInstalled && !isInstalled) {
-    registerSW({
-      immediate: true,
-      onRegistered: () => {
-        log('Reloading: Service worker registered for offline use as per user preference.');
-        // Reload to activate the service worker
-        // eslint-disable-next-line warp-drive/no-legacy-request-patterns
-        window.location.reload();
-      },
-    });
+    void getDevicePreferences().installPWA();
     log('Service worker installed for offline use as per user preference.');
   } else if (!shouldBeInstalled && isInstalled) {
     // Uninstall the service worker
@@ -97,8 +110,36 @@ export class DevicePreferences {
   @matchMedia('(prefers-reduced-motion: reduce)')
   prefersReducedMotion: boolean = false;
 
+  /**
+   * Whether a registration/unregistration process is ongoing
+   */
   @tracked
   isProcessing: boolean = false;
+
+  /**
+   * Installation state
+   */
+  @tracked
+  installationState: 'installed' | 'activating' | 'activated' | null = null;
+
+  @cached
+  get downloadStatus(): DownloadStatusType {
+    const device = getDevice();
+    if (!device.supportsServiceWorker)
+      return 'unavailable';
+
+    if (!device.hasNetwork) {
+      return 'offline';
+    }
+
+    if (!this.downloadForOffline)
+      return 'available';
+
+    if (this.isProcessing)
+      return this.installationState ?? 'installing';
+
+    return 'activated';
+  }
 
   // eslint-disable-next-line @typescript-eslint/require-await
   async installPWA(): Promise<void> {
@@ -113,9 +154,37 @@ export class DevicePreferences {
 
         registerSW({
           immediate: true,
-          onRegisteredSW: () => {
+          onRegisteredSW: (_swScriptUrl: string, registration?: ServiceWorkerRegistration) => {
             log('PWA service worker registered successfully.');
-            this.isProcessing = false;
+
+            // Monitor the service worker installation and activation
+            if (registration) {
+              const sw = registration.installing || registration.waiting || registration.active;
+
+              if (sw) {
+                if (sw.state === 'activated') {
+                  log('Service worker is already activated.');
+                  this.installationState = 'activated';
+                  this.isProcessing = false;
+                } else {
+                  log(`Service worker state: ${sw.state}. Waiting for activation...`);
+                  sw.addEventListener('statechange', (e) => {
+                    const target = e.target as ServiceWorker;
+                    log(`Service worker state changed to: ${target.state}`);
+                    this.installationState = target.state as 'installed' | 'activating' | 'activated';
+                    if (target.state === 'activated') {
+                      log('Service worker activated. Assets cached.');
+                      this.isProcessing = false;
+                    }
+                  });
+                }
+              } else {
+                this.isProcessing = false;
+              }
+            } else {
+              log('No registration object available after service worker registration.');
+              this.isProcessing = false;
+            }
           },
           onRegisterError: (error: Error) => {
             console.error('Failed to install PWA:', error);

@@ -20,7 +20,6 @@ import Component from '@glimmer/component';
 import { getDevicePreferences } from '#app/core/preferences.ts';
 import { inject as service } from '@ember/service';
 import type RouterService from '@ember/routing/router-service';
-import { getDevice } from '#app/core/device.ts';
 
 class ThemedPage extends Component<{
   Blocks: {
@@ -32,24 +31,6 @@ class ThemedPage extends Component<{
 
   theme = getTheme();
   preferences = getDevicePreferences();
-  device = getDevice();
-
-  get downloadStatus() {
-    if (!this.device.supportsServiceWorker)
-      return 'unavailable';
-
-    if (!this.device.hasNetwork) {
-      return 'offline';
-    }
-
-    if (!this.preferences.downloadForOffline)
-      return 'available';
-
-    if (this.preferences.isProcessing)
-      return 'downloading';
-
-    return 'downloaded';
-  }
 
   handleDownloadClick = () => {
     if (this.preferences.isProcessing) return;
@@ -104,7 +85,7 @@ class ThemedPage extends Component<{
               </div>
               <HamburgerMenu>
                 <:header>
-                  <DownloadButton @status={{this.downloadStatus}} @onClick={{this.handleDownloadClick}} />
+                  <DownloadButton @status={{this.preferences.downloadStatus}} @onClick={{this.handleDownloadClick}} />
                 </:header>
                 <:default>
                 <VtLink @route="index"><FaIcon @icon={{faHome}} /> Home</VtLink>

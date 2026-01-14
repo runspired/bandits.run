@@ -136,8 +136,8 @@
     inset 0 0 20px rgb(128 128 128 / 15%);
 }
 
-/* State: Downloading (Rotating Progress Glow) */
-.download-button-status-downloading .download-button-circle {
+/* State: Installing (Rotating Progress Glow - Orange/Yellow) */
+.download-button-status-installing .download-button-circle {
   background:
     conic-gradient(
       from 0deg,
@@ -154,20 +154,16 @@
   animation: rotate-glow 3s linear infinite;
 }
 
-.download-button-status-downloading .download-button-circle::before {
+.download-button-status-installing .download-button-circle::after {
   content: '';
   position: absolute;
-  inset: 0;
+  inset: -4px;
   border-radius: 50%;
-  background:
-    conic-gradient(
-      from 0deg,
-      transparent 0%,
-      transparent calc(var(--progress, 0) * 1%),
-      rgba(0, 0, 0, 0.3) calc(var(--progress, 0) * 1%),
-      rgba(0, 0, 0, 0.3) 100%
-    );
-  z-index: 1;
+  border: 3px solid transparent;
+  border-top-color: rgba(255, 165, 0, 0.8);
+  border-right-color: rgba(255, 215, 0, 0.6);
+  animation: spinner-rotate 1s linear infinite;
+  z-index: 0;
 }
 
 @keyframes rotate-glow {
@@ -180,19 +176,6 @@
   }
 }
 
-/* Alternative progress indicator based on data-progress attribute */
-.download-button-status-downloading .download-button-circle::after {
-  content: '';
-  position: absolute;
-  inset: -4px;
-  border-radius: 50%;
-  border: 3px solid transparent;
-  border-top-color: rgba(255, 165, 0, 0.8);
-  border-right-color: rgba(255, 215, 0, 0.6);
-  animation: spinner-rotate 1s linear infinite;
-  z-index: 0;
-}
-
 @keyframes spinner-rotate {
   0% {
     transform: rotate(0deg);
@@ -203,8 +186,8 @@
   }
 }
 
-/* State: downloaded (Green Neon Glow) */
-.download-button-status-downloaded .download-button-circle {
+/* State: Installed (Green Glow with Grey Checkmark - Not Yet Activated) */
+.download-button-status-installed .download-button-circle {
   background: transparent;
   box-shadow:
     0 0 8px rgb(34 197 94 / 90%),
@@ -213,7 +196,62 @@
     inset 0 0 6px rgb(34 197 94 / 100%);
 }
 
-.download-button-status-downloaded:hover:not(:disabled) .download-button-circle {
+.download-button-status-installed .download-button-checkmark {
+  background: rgb(128 128 128);
+  color: white;
+}
+
+/* State: Activating (Rotating Glow - Blue/Pink Hues) */
+.download-button-status-activating .download-button-circle {
+  background:
+    conic-gradient(
+      from 0deg,
+      rgb(59 130 246 / 30%) 0%,
+      rgb(147 51 234 / 30%) 25%,
+      rgb(236 72 153 / 30%) 50%,
+      rgb(99 102 241 / 30%) 75%,
+      rgb(59 130 246 / 30%) 100%
+    );
+  box-shadow:
+    0 0 25px rgb(59 130 246 / 40%),
+    0 0 50px rgb(147 51 234 / 30%),
+    inset 0 0 20px rgb(236 72 153 / 15%);
+  animation: rotate-glow-blue-pink 3s linear infinite;
+}
+
+.download-button-status-activating .download-button-circle::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: rgb(59 130 246 / 80%);
+  border-right-color: rgb(236 72 153 / 60%);
+  animation: spinner-rotate 1s linear infinite;
+  z-index: 0;
+}
+
+@keyframes rotate-glow-blue-pink {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* State: Activated (Green Neon Glow) */
+.download-button-status-activated .download-button-circle {
+  background: transparent;
+  box-shadow:
+    0 0 8px rgb(34 197 94 / 90%),
+    0 0 15px rgb(34 197 94 / 60%),
+    0 0 25px rgb(34 197 94 / 40%),
+    inset 0 0 6px rgb(34 197 94 / 100%);
+}
+
+.download-button-status-activated:hover:not(:disabled) .download-button-circle {
   background: transparent;
   box-shadow:
     0 0 10px rgb(34 197 94 / 100%),
