@@ -72,13 +72,13 @@ class SettingsPage extends Component {
 
     if (this.preferences.downloadForOffline) {
       // Uninstall
-      if (confirm('Are you sure you want to uninstall offline mode? This will remove cached data and require an internet connection to use the app.')) {
-        this.isProcessing = true;
-        await this.uninstallPWA();
-      }
+      this.isProcessing = true;
+      this.preferences.downloadForOffline = false;
+      await this.uninstallPWA();
     } else {
       // Install
       this.isProcessing = true;
+      this.preferences.downloadForOffline = true;
       this.installPWA();
       log('PWA installation process completed.');
     }
@@ -93,7 +93,6 @@ class SettingsPage extends Component {
           immediate: true,
           onRegisteredSW: () => {
             log('PWA service worker registered successfully.');
-            this.preferences.downloadForOffline = true;
             this.isProcessing = false;
             // Reload to activate the service worker
             // eslint-disable-next-line warp-drive/no-legacy-request-patterns
@@ -129,9 +128,6 @@ class SettingsPage extends Component {
             cacheNames.map(cacheName => caches.delete(cacheName))
           );
         }
-
-        // Update preference
-        this.preferences.downloadForOffline = false;
 
         // Reload the page to complete uninstall
         // eslint-disable-next-line warp-drive/no-legacy-request-patterns
