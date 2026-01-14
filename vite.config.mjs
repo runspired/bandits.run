@@ -17,7 +17,15 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       strategies: 'generateSW',
-      includeAssets: ['favicon.ico', '**/*.svg', '**/*.png', '**/*.woff2', '**/*.json'],
+      includeAssets: [
+        'favicon.ico',
+        'images/light/logo-chevron-inverted.svg',
+        'images/light/apple-touch-icon-180x180-chevron-inverted.png',
+        'nps.svg',
+        'redwood.svg',
+        'logo-orange-chevron.svg',
+        '**/*.json'
+      ],
       injectRegister: false,
       srcDir: 'app',
       outDir: 'dist',
