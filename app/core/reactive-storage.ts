@@ -109,6 +109,12 @@ class ReactiveStorage implements Storage {
   @tracked
   private _length = 0;
 
+  private _effects = new Map<string, (value: StorageEvent) => void>();
+  setEffect(key: string, fn: (value: StorageEvent) => void): void {
+    assert(`Can only set effect once for key: ${key}`, !this._effects.has(key));
+    this._effects.set(key, fn);
+  }
+
   constructor(storage: Storage, options: ReactiveStorageOptions = {}) {
     this._storage = storage;
     this._options = options;
@@ -135,6 +141,13 @@ class ReactiveStorage implements Storage {
         if (event.storageArea === storage) {
           this._values[event.key as string] = event.newValue;
           this._length = this._storage.length;
+          const effect = this._effects.get(event.key as string);
+          if (effect) {
+            console.log('ReactiveStorage invoking effect for key:', event.key);
+            effect(event);
+          } else {
+            console.log('ReactiveStorage no effect for key:', event.key, this._effects);
+          }
         }
       });
     }

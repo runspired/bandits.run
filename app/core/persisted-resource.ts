@@ -6,16 +6,26 @@ import { getLocalStorage } from './reactive-storage';
  */
 const PERSISTED_RESOURCE_META = Symbol('PersistedResourceMeta');
 
+/**
+ * Setup persisted resource metadata on target
+ * if not already present
+ */
 function initMeta(target: object): PersistedResourceMeta {
   let meta = (target as Record<symbol, PersistedResourceMeta>)[PERSISTED_RESOURCE_META];
   if (!meta) {
     meta = {
       id: '',
-      fields: new Set(),
+      fields: new Map(),
     };
     (target as Record<symbol, PersistedResourceMeta>)[PERSISTED_RESOURCE_META] = meta;
   }
   return meta;
+}
+
+export interface ValueTransition<T = unknown> {
+  key: string;
+  from: T;
+  to: T;
 }
 
 /**
@@ -23,7 +33,7 @@ function initMeta(target: object): PersistedResourceMeta {
  */
 interface PersistedResourceMeta {
   id: string;
-  fields: Set<string>;
+  fields: Map<string, null | ((update: ValueTransition<string>) => void)>;
 }
 
 /**
@@ -91,7 +101,7 @@ export function field(
   _descriptor?: PropertyDescriptor
 ): void {
   const meta = initMeta(target);
-  meta.fields.add(key);
+  meta.fields.set(key, null);
 
   return {
     configurable: true,
@@ -103,4 +113,40 @@ export function field(
       setField(meta.id, key, value as string);
     },
   } as unknown as void;
+}
+
+/**
+ * Effects are fields that run a side-effecting function
+ */
+export function effect(fn: <K>(update: ValueTransition<K>) => void): PropertyDecorator {
+  return function effectField(
+    target: object,
+    key: string,
+    _descriptor?: PropertyDescriptor
+    ): void {
+    const meta = initMeta(target);
+    meta.fields.set(key, fn);
+    void installEffect(meta, key);
+
+    return {
+      configurable: true,
+      enumerable: true,
+      get(this: object): unknown {
+        return getField(meta.id, key);
+      },
+      set(this: object, value: unknown) {
+        setField(meta.id, key, value as string);
+      },
+    } as unknown as void;
+  } as unknown as PropertyDecorator;
+}
+
+async function installEffect(meta: PersistedResourceMeta, key: string): Promise<void> {
+  await Promise.resolve();
+  const effect = meta.fields.get(key) as <K>(v: ValueTransition<K>) => void;
+  getLocalStorage().setEffect(`persisted:${meta.id}:${key}`, (event: StorageEvent) => {
+    const oldValue = event.oldValue ? JSON.parse(event.oldValue) as unknown : null;
+    const newValue = event.newValue ? JSON.parse(event.newValue) as unknown : null;
+    effect({ key, from: oldValue, to: newValue });
+  });
 }

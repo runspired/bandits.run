@@ -125,6 +125,11 @@
   white-space: nowrap;
 }
 
+.location-action-button:visited {
+  background: var(--callout-background);
+  color: var(--theme-fall-black);
+}
+
 .location-action-button:hover {
   background: var(--title);
   color: var(--theme-white-black);

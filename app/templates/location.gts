@@ -7,6 +7,7 @@ import FaIcon from '#ui/fa-icon.gts';
 import {
   faLocationDot,
   faMapLocationDot,
+  faExpand,
 } from '@fortawesome/free-solid-svg-icons';
 import { cached, tracked } from '@glimmer/tracking';
 import './location.css';
@@ -14,6 +15,8 @@ import { assert } from '@ember/debug';
 import { getLocation } from '#api/GET';
 import { and } from '#app/utils/comparison.ts';
 import { getTheme } from '#app/core/site-theme.ts';
+import FullscreenMap from '#maps/fullscreen-map.gts';
+import { on } from '@ember/modifier';
 
 const TOKEN = '';
 
@@ -26,6 +29,15 @@ export default class LocationDisplay extends Component<{
 }> {
   @tracked showTerrain: boolean = false;
   @tracked showSatellite: boolean = false;
+  @tracked showFullscreenMap: boolean = false;
+
+  openFullscreenMap = () => {
+    this.showFullscreenMap = true;
+  };
+
+  closeFullscreenMap = () => {
+    this.showFullscreenMap = false;
+  };
 
   @cached
   get tileUrl() {
@@ -82,10 +94,64 @@ export default class LocationDisplay extends Component<{
 
               <div class="location-content">
                 <div class="location-header">
-                  <h2>{{location.name}}</h2>
-                  {{#if location.region}}
-                    <p class="location-region">{{location.region}}</p>
-                  {{/if}}
+                  <div class="location-header-main">
+                    <div class="location-header-content">
+                      <h2>{{location.name}}</h2>
+                      {{#if location.region}}
+                        <p class="location-region">{{location.region}}</p>
+                      {{/if}}
+                    </div>
+                  </div>
+
+                  <div class="location-header-address">
+                    {{#if location.address}}
+                      <div class="location-info">
+                        <FaIcon @icon={{faLocationDot}} />
+                        <div class="location-text">
+                          <address>
+                            {{#if location.address.street}}
+                              {{location.address.street}}<br />
+                            {{/if}}
+                            {{#if location.address.city}}
+                              {{location.address.city}},
+                              {{location.address.state}}
+                              {{location.address.zip}}
+                            {{/if}}
+                          </address>
+                          {{#if (and location.latitude location.longitude)}}
+                            <div class="location-coordinates">
+                              {{location.latitude}}, {{location.longitude}}
+                            </div>
+                          {{/if}}
+                        </div>
+                      </div>
+                    {{/if}}
+                    <div class="location-actions">
+                      {{#if location.googleMapsLink}}
+                        <a
+                          href="{{location.googleMapsLink}}"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="location-action-button"
+                          title="Open in Google Maps"
+                        >
+                          <FaIcon @icon={{faMapLocationDot}} />
+                          Google Maps
+                        </a>
+                      {{/if}}
+                      {{#if (and location.latitude location.longitude)}}
+                        <button
+                          type="button"
+                          class="location-action-button"
+                          {{on "click" this.openFullscreenMap}}
+                          aria-label="Open map in fullscreen"
+                        >
+                          <FaIcon @icon={{faExpand}} />
+                          Show Map
+                        </button>
+                      {{/if}}
+                    </div>
+                  </div>
                 </div>
 
                 {{#if location.descriptionHtml}}
@@ -95,49 +161,20 @@ export default class LocationDisplay extends Component<{
                     {{{location.descriptionHtml}}}
                   </div>
                 {{/if}}
-
-                <div class="location-details">
-                  {{#if location.address}}
-                    <div class="location-detail">
-                      <FaIcon @icon={{faLocationDot}} />
-                      <div>
-                        <strong>Address:</strong>
-                        <address>
-                          {{#if location.address.street}}
-                            {{location.address.street}}<br />
-                          {{/if}}
-                          {{#if location.address.city}}
-                            {{location.address.city}},
-                            {{location.address.state}}
-                            {{location.address.zip}}
-                          {{/if}}
-                        </address>
-                      </div>
-                    </div>
-                  {{/if}}
-
-                  {{#if location.googleMapsLink}}
-                    <div class="location-detail">
-                      <FaIcon @icon={{faMapLocationDot}} />
-                      <a
-                        href="{{location.googleMapsLink}}"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Open in Google Maps
-                      </a>
-                    </div>
-                  {{/if}}
-
-                  {{#if (and location.latitude location.longitude)}}
-                    <div class="location-detail">
-                      <strong>Coordinates:</strong>
-                      {{location.latitude}},
-                      {{location.longitude}}
-                    </div>
-                  {{/if}}
-                </div>
               </div>
+
+              {{! Fullscreen Map }}
+              {{#if this.showFullscreenMap}}
+                <FullscreenMap
+                  @locationId={{location.id}}
+                  @locationName={{location.name}}
+                  @lat={{excludeNull location.latitude}}
+                  @lng={{excludeNull location.longitude}}
+                  @zoom={{14}}
+                  @tileUrl={{this.tileUrl}}
+                  @onClose={{this.closeFullscreenMap}}
+                />
+              {{/if}}
             </div>
           {{/let}}
         </:content>

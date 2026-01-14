@@ -1,5 +1,5 @@
 import { assert } from '@ember/debug';
-import { field, PersistedResource } from './persisted-resource';
+import { effect, PersistedResource } from './persisted-resource';
 import { matchMedia } from './reactive-match-media';
 
 @PersistedResource('site-theme')
@@ -11,13 +11,13 @@ class SiteTheme {
   #rootElement: HTMLElement;
   constructor(rootElement: HTMLElement) {
     this.#rootElement = rootElement;
-    this.#syncDOM();
+    this._syncDOM();
   }
 
   /**
    * User's theme preference ('light', 'dark', or null for system preference)
    */
-  @field
+  @effect(syncThemeToDOM)
   explicitThemePreference: 'light' | 'dark' | null = null;
 
   @matchMedia('(prefers-color-scheme: dark)')
@@ -62,14 +62,14 @@ class SiteTheme {
    */
   updateThemePreference = (theme: 'light' | 'dark' | null): void => {
     this.explicitThemePreference = theme;
-    this.#syncDOM();
+    this._syncDOM();
   };
 
   /**
    * Initialize the SiteTheme, ensuring the root element has the correct
    * color-scheme style applied.
    */
-  #syncDOM() {
+  private _syncDOM() {
     this.#rootElement.style.colorScheme = this.colorScheme;
     this.#rootElement.classList.add(`${this.theme}-mode`);
     this.#rootElement.classList.remove(this.theme === 'dark' ? 'light-mode' : 'dark-mode');
@@ -99,4 +99,11 @@ export function initializeTheme(rootElement: HTMLElement = document.body): void 
   if (!themeInstance) {
     themeInstance = new SiteTheme(rootElement);
   }
+}
+
+function syncThemeToDOM(): void {
+  console.log('syncThemeToDOM called');
+  const theme = getTheme();
+  // @ts-expect-error Private method
+  theme._syncDOM();
 }
