@@ -24,7 +24,10 @@ export default defineConfig({
         'nps.svg',
         'redwood.svg',
         'logo-orange-chevron.svg',
-        '**/*.json'
+        '**/*.json',
+        '**/*.css',
+        '**/*.js',
+        '**/*.html'
       ],
       injectRegister: false,
       srcDir: 'app',
