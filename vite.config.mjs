@@ -61,8 +61,16 @@ export default defineConfig({
         ]
       },
       workbox: {
-        // Cache all static assets
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+        // Cache all static assets including map styles
+        globPatterns: [
+          '**/*.{js,css,html,ico,png,svg,woff2}',
+          'map-styles/*.json'
+        ],
+        // Additional static assets to precache
+        additionalManifestEntries: [
+          { url: '/map-styles/openstreetmap-us-vector.json', revision: null },
+          { url: '/map-styles/simple-background.json', revision: null }
+        ],
         // Runtime caching strategies
         runtimeCaching: [
           {
@@ -94,14 +102,54 @@ export default defineConfig({
             }
           },
           {
-            // Cache Stadia Maps tiles
-            urlPattern: /^https:\/\/tiles\.stadiamaps\.com\/.*/i,
+            // Cache OpenStreetMap.us vector tiles (openmaptiles, trails, contours)
+            // Matches: https://tiles.openstreetmap.us/vector/{layer}/{z}/{x}/{y}.mvt
+            urlPattern: ({ url }) => {
+              return url.origin === 'https://tiles.openstreetmap.us' &&
+                     url.pathname.startsWith('/vector/') &&
+                     url.pathname.endsWith('.mvt');
+            },
             handler: 'CacheFirst',
             options: {
-              cacheName: 'stadia-map-tiles',
+              cacheName: 'osm-vector-tiles',
+              expiration: {
+                maxEntries: 1000,
+                maxAgeSeconds: 60 * 60 * 24 * 90 // 90 days
+              },
+              cacheableResponse: {
+                statuses: [0, 200]
+              }
+            }
+          },
+          {
+            // Cache OpenStreetMap.us raster tiles (hillshade)
+            // Matches: https://tiles.openstreetmap.us/raster/{layer}/{z}/{x}/{y}.jpg
+            urlPattern: ({ url }) => {
+              return url.origin === 'https://tiles.openstreetmap.us' &&
+                     url.pathname.startsWith('/raster/') &&
+                     (url.pathname.endsWith('.jpg') || url.pathname.endsWith('.png'));
+            },
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'osm-raster-tiles',
               expiration: {
                 maxEntries: 500,
-                maxAgeSeconds: 60 * 60 * 24 * 30 // 30 days
+                maxAgeSeconds: 60 * 60 * 24 * 90 // 90 days
+              },
+              cacheableResponse: {
+                statuses: [0, 200]
+              }
+            }
+          },
+          {
+            // Cache MapLibre GL JS assets (sprites, glyphs, etc.)
+            urlPattern: /^https:\/\/.*\/maplibre-gl.*\.(css|js|woff2?|pbf|png)$/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'maplibre-assets',
+              expiration: {
+                maxEntries: 100,
+                maxAgeSeconds: 60 * 60 * 24 * 90 // 90 days
               },
               cacheableResponse: {
                 statuses: [0, 200]
