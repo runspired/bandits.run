@@ -1,0 +1,30 @@
+# Cloudflare Pages SPA fallback
+# Serve static assets directly, fallback all other routes to index.html
+
+# API routes - serve as-is
+/api/* 200
+
+# Static assets - serve as-is
+/fonts/* 200
+/images/* 200
+/map-styles/* 200
+/assets/* 200
+/@embroider/* 200
+
+# Service worker and workbox files
+/sw.js 200
+/workbox-*.js 200
+
+# Static files by extension
+/*.json 200
+/*.ico 200
+/*.svg 200
+/*.png 200
+/*.woff2 200
+/*.css 200
+/*.js 200
+/*.txt 200
+/*.webmanifest 200
+
+# Everything else falls back to index.html for client-side routing
+/* /index.html 200

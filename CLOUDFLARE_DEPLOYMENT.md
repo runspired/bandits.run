@@ -7,7 +7,7 @@ This document explains how to deploy bandits.run as an SPA with SEO optimization
 The application has been configured for Cloudflare Pages deployment with history-based routing:
 
 1. **Routing Mode**: Switched from hash routing (`#/path`) to history routing (`/path`)
-2. **Cloudflare Config**: Added `_routes.json` to handle client-side routing
+2. **Cloudflare Config**: Added `_redirects` file to handle client-side routing fallback
 3. **SEO Headers**: Added `_headers` file for caching and SEO optimization
 4. **URL Generation**: Updated canonical URLs to use clean paths without hashes
 
@@ -77,10 +77,11 @@ The application has been configured for Cloudflare Pages deployment with history
 
 ## Important Files
 
-### `public/_routes.json`
-This file tells Cloudflare Pages which routes should be handled by the SPA and which are static assets:
-- **Included routes** (`/*`): All routes go to your SPA
-- **Excluded routes**: Static assets (fonts, images, API responses, etc.) are served directly
+### `public/_redirects`
+This file tells Cloudflare Pages to serve static assets directly and fallback all other routes to `index.html` for client-side routing:
+- Static assets (fonts, images, CSS, JS, etc.) are served with `200` status
+- All other routes fallback to `/index.html 200` for SPA routing
+- This enables clean URLs without hash fragments
 
 ### `public/_headers`
 This file configures HTTP headers for different file types:
@@ -155,8 +156,10 @@ The Vite dev server automatically handles history routing with fallback to `inde
 ## Troubleshooting
 
 ### 404 errors on direct URL access
-- **Cause**: `_routes.json` not properly configured
-- **Fix**: Ensure `_routes.json` is in the `public` folder and gets copied to `dist` during build
+- **Cause**: `_redirects` file not properly configured or deployed
+- **Fix**: Ensure `_redirects` is in the `public` folder and gets copied to `dist` during build
+- **Verify**: Check that `dist/_redirects` exists after running `pnpm build`
+- **Deploy**: Make sure to redeploy after adding the `_redirects` file
 
 ### Assets not loading
 - **Cause**: Incorrect `rootURL` or asset paths
