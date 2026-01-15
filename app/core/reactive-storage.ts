@@ -143,10 +143,7 @@ class ReactiveStorage implements Storage {
           this._length = this._storage.length;
           const effect = this._effects.get(event.key as string);
           if (effect) {
-            console.log('ReactiveStorage invoking effect for key:', event.key);
             effect(event);
-          } else {
-            console.log('ReactiveStorage no effect for key:', event.key, this._effects);
           }
         }
       });
