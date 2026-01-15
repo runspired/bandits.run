@@ -63,7 +63,7 @@ The application has been configured for Cloudflare Pages deployment with history
 
 4. **Deploy:**
    ```bash
-   pnpm wrangler pages deploy dist --project-name=bandits-run
+   pnpm wrangler pages deploy dist --project-name=bandits-web
    ```
 
 ## Custom Domain Setup
