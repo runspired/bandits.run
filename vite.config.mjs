@@ -61,6 +61,9 @@ export default defineConfig({
         ]
       },
       workbox: {
+        // Serve index.html for navigation requests when offline
+        navigateFallback: '/index.html',
+        navigateFallbackDenylist: [/^\/api\//],
         // Cache all static assets including map styles
         globPatterns: [
           '**/*.{js,css,html,ico,png,svg,woff2}',
