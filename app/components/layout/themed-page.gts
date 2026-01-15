@@ -89,7 +89,7 @@ class ThemedPage extends Component<{
                 </:header>
                 <:default>
                 <VtLink @route="index"><FaIcon @icon={{faHome}} /> Home</VtLink>
-                <VtLink @route="organizations.index"><FaIcon @icon={{faUsers}} />
+                <VtLink @route="organizations"><FaIcon @icon={{faUsers}} />
                   Organizations</VtLink>
                 <LinkTo @route="branding"><FaIcon @icon={{faPalette}} />
                   Branding</LinkTo>

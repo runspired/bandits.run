@@ -30,6 +30,7 @@ import {
   excludeNull
 } from '#app/utils/comparison.ts';
 import './run.css';
+import { getOrgSlug, getRunSlug } from '#app/utils/org.ts';
 
 function getRunDescription(run: TrailRun): string {
   const recurrence = getRecurrenceDescription(run.recurrence);
@@ -69,7 +70,7 @@ function getRunKeywords(run: TrailRun): string {
 }
 
 function getRunUrl(organizationId: string, runId: string): string {
-  return `https://bandits.run/#/organizations/${organizationId}/runs/${runId}`;
+  return `https://bandits.run/runs/${getOrgSlug(organizationId)}/runs/${getRunSlug(runId)}`;
 }
 
 function getRunTitle(run: TrailRun): string {

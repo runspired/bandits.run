@@ -23,7 +23,7 @@ interface VtLinkSignature {
  * A link component that uses the View Transitions API for smooth page transitions
  *
  * Usage:
- *   <VtLink @route="organizations.single" @model={{org.id}}>
+ *   <VtLink @route="organization.index" @model={{org.id}}>
  *     {{org.name}}
  *   </VtLink>
  */

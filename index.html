@@ -9,7 +9,7 @@
 
     <script id="prefetch-data" type="module">
       // Only prefetch on home page
-      if (window.location.hash === '' || window.location.hash === '#/') {
+      if (window.location.pathname === '/') {
         // Get preferred first day of week from localStorage (default to Monday)
         const pref = localStorage.getItem('preferred-first-day-of-week');
         const firstDayNum = pref ? parseInt(pref, 10) : 1;

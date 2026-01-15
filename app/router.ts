@@ -9,13 +9,10 @@ export default class Router extends EmberRouter {
 Router.map(function () {
   this.route('branding');
   this.route('settings');
-  this.route('organizations', function () {
-    this.route('index', { path: '/' });
-    this.route('single', { path: '/:organization_id' }, function () {
-      this.route('index', { path: '/' });
-      this.route('run', { path: '/runs/:run_id' });
-    });
-  });
+  this.route('organizations');
+  this.route('organization', { path: 'org/:organization_id'});
+  this.route('run', { path: '/runs/:org_slug/:run_slug' });
+  this.route('explore');
   this.route('location', { path: '/location/:location_id' });
   this.route('contact', { path: '/contact/:runner_id' });
   this.route('not-found', { path: '/*path' });

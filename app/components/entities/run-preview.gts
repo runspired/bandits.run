@@ -36,8 +36,8 @@ const RunPreview: TemplateOnlyComponent<RunPreviewSignature> = <template>
         <div class="run-header-content">
           <h3 class="run-title">
             <LinkTo
-              @route="organizations.single.run"
-              @models={{array @organizationId @run.id}}
+              @route="run"
+              @models={{array (getOrgSlug @organizationId) (getRunSlug @run.id)}}
             >
               {{@run.title}}
             </LinkTo>
@@ -45,8 +45,8 @@ const RunPreview: TemplateOnlyComponent<RunPreviewSignature> = <template>
 
           <h4 class="run-organization">
             <LinkTo
-              @route="organizations.single"
-              @model={{@run.owner.id}}
+              @route="organization"
+              @model={{getOrgSlug @run.owner.id}}
               class={{scopedClass "organization-link"}}
             >
               {{@run.owner.name}}
@@ -154,4 +154,5 @@ export default RunPreview;
 import type { TemplateOnlyComponent } from '@ember/component/template-only';import RunOptionComponent from './run-option.gts';
 import RunOption from './run-option.gts';
 import { scopedClass } from 'ember-scoped-css';
+import { getOrgSlug, getRunSlug } from '#app/utils/org.ts';
 

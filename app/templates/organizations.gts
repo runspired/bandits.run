@@ -7,6 +7,7 @@ import { faInstagram, faMeetup, faStrava } from '@fortawesome/free-brands-svg-ic
 import VtLink from '#core/vt-link.gts';
 import { getHostname } from '#app/utils/helpers.ts';
 import { getOrganizations } from '#api/GET';
+import { getOrgSlug } from '#app/utils/org.ts';
 
 <template>
   {{pageTitle "Bandits | Community Organizations"}}
@@ -22,7 +23,7 @@ import { getOrganizations } from '#api/GET';
             {{#each response.data as |org|}}
               <div class="run-card org-card-compact">
                 <div class="org-compact-header">
-                  <h3 class="run-title"><VtLink @route="organizations.single" @model={{org.id}}>{{org.name}}</VtLink></h3>
+                  <h3 class="run-title"><VtLink @route="organization" @model={{getOrgSlug org.id}}>{{org.name}}</VtLink></h3>
                   {{#if org.description}}
                     <span class="org-compact-description">
                       {{!-- template-lint-disable no-triple-curlies --}}

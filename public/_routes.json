@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "description": "Cloudflare Pages routing configuration for client-side SPA routing",
+  "include": ["/*"],
+  "exclude": [
+    "/api/*",
+    "/fonts/*",
+    "/images/*",
+    "/map-styles/*",
+    "/*.json",
+    "/*.ico",
+    "/*.svg",
+    "/*.png",
+    "/*.woff2",
+    "/*.css",
+    "/*.js",
+    "/*.txt",
+    "/manifest.webmanifest",
+    "/sw.js",
+    "/workbox-*.js"
+  ]
+}

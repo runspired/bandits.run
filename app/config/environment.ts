@@ -17,7 +17,7 @@ const ENV: Config = {
   modulePrefix: 'bandits-web',
   environment: import.meta.env.DEV ? 'development' : 'production',
   rootURL: '/',
-  locationType: 'hash',
+  locationType: 'history',
   EmberENV: {},
   APP: {},
 };

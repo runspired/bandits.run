@@ -19,6 +19,7 @@ import RunPreview from '#entities/run-preview.gts';
 import SocialGraph from '#app/components/seo/social-graph.gts';
 import { getHostname } from '#app/utils/helpers.ts';
 import { or } from '#app/utils/comparison.ts';
+import { getOrgSlug } from '#app/utils/org.ts';
 
 function getOrganizationDescription(org: Organization): string {
   return org.description || `${org.name} is a trail running organization in the SF Bay Area. Join group runs, connect with fellow trail runners, and explore amazing trails!`;
@@ -29,7 +30,7 @@ function getOrganizationKeywords(org: Organization): string {
 }
 
 function getOrganizationUrl(organizationId: string): string {
-  return `https://bandits.run/#/organizations/${organizationId}`;
+  return `https://bandits.run/org/${getOrgSlug(organizationId)}`;
 }
 
 export default class OrganizationSingleRoute extends Component<{
