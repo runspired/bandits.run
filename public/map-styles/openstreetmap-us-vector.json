@@ -1,0 +1,465 @@
+{
+  "version": 8,
+  "name": "OpenStreetMap US Vector Tiles",
+  "sources": {
+    "openmaptiles": {
+      "type": "vector",
+      "tiles": ["https://tiles.openstreetmap.us/vector/openmaptiles/{z}/{x}/{y}.mvt"],
+      "minzoom": 0,
+      "maxzoom": 14
+    },
+    "trails": {
+      "type": "vector",
+      "tiles": ["https://tiles.openstreetmap.us/vector/trails/{z}/{x}/{y}.mvt"],
+      "minzoom": 0,
+      "maxzoom": 14
+    },
+    "contours": {
+      "type": "vector",
+      "tiles": ["https://tiles.openstreetmap.us/vector/contours-feet/{z}/{x}/{y}.mvt"],
+      "minzoom": 8,
+      "maxzoom": 12
+    },
+    "hillshade": {
+      "type": "raster",
+      "tiles": ["https://tiles.openstreetmap.us/raster/hillshade/{z}/{x}/{y}.jpg"],
+      "tileSize": 256,
+      "minzoom": 8,
+      "maxzoom": 12
+    }
+  },
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": {
+        "background-color": "#f8f4f0"
+      }
+    },
+    {
+      "id": "landcover_grass",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landcover",
+      "filter": ["==", "class", "grass"],
+      "paint": {
+        "fill-color": "#d8e8c8",
+        "fill-opacity": 0.4
+      }
+    },
+    {
+      "id": "landcover_wood",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "landcover",
+      "filter": ["==", "class", "wood"],
+      "paint": {
+        "fill-color": "#c4e3a3",
+        "fill-opacity": 0.6
+      }
+    },
+    {
+      "id": "park",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "park",
+      "paint": {
+        "fill-color": "#d8e8c8",
+        "fill-opacity": 0.6
+      }
+    },
+    {
+      "id": "waterway",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "waterway",
+      "paint": {
+        "line-color": "#a5bfdd",
+        "line-width": {
+          "base": 1.4,
+          "stops": [[8, 0.5], [20, 15]]
+        }
+      }
+    },
+    {
+      "id": "water",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "water",
+      "paint": {
+        "fill-color": "#a5bfdd"
+      }
+    },
+    {
+      "id": "building",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "building",
+      "minzoom": 13,
+      "paint": {
+        "fill-color": "#d9d0c9",
+        "fill-opacity": 0.7
+      }
+    },
+    {
+      "id": "hillshade",
+      "type": "raster",
+      "source": "hillshade",
+      "paint": {
+        "raster-opacity": 0.6
+      }
+    },
+    {
+      "id": "contours",
+      "type": "line",
+      "source": "contours",
+      "source-layer": "contours",
+      "minzoom": 8,
+      "paint": {
+        "line-color": "#c19a6b",
+        "line-width": 0.5,
+        "line-opacity": 0.5
+      }
+    },
+    {
+      "id": "contours_major",
+      "type": "line",
+      "source": "contours",
+      "source-layer": "contours",
+      "minzoom": 5,
+      "filter": ["==", ["get", "nth_line"], 5],
+      "paint": {
+        "line-color": "#b8865a",
+        "line-width": 1,
+        "line-opacity": 0.7
+      }
+    },
+    {
+      "id": "contours_labels",
+      "type": "symbol",
+      "source": "contours",
+      "source-layer": "contours",
+      "minzoom": 11,
+      "filter": ["==", ["get", "nth_line"], 5],
+      "layout": {
+        "text-field": "{ele} ft",
+        "text-font": ["Noto Sans Regular"],
+        "text-size": 9,
+        "symbol-placement": "line",
+        "text-rotation-alignment": "map",
+        "text-pitch-alignment": "viewport",
+        "text-max-angle": 30,
+        "symbol-spacing": 400
+      },
+      "paint": {
+        "text-color": "#8b6f47",
+        "text-halo-color": "rgba(248, 244, 240, 0.8)",
+        "text-halo-width": 2
+      }
+    },
+    {
+      "id": "road_minor",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "transportation",
+      "filter": ["in", ["get", "class"], ["literal", ["minor", "service"]]],
+      "paint": {
+        "line-color": "#ffffff",
+        "line-width": {
+          "base": 1.55,
+          "stops": [[4, 0.25], [20, 30]]
+        }
+      }
+    },
+    {
+      "id": "road_major",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "transportation",
+      "filter": ["in", ["get", "class"], ["literal", ["primary", "secondary", "tertiary", "trunk"]]],
+      "paint": {
+        "line-color": "#ffa",
+        "line-width": {
+          "base": 1.4,
+          "stops": [[6, 0.5], [20, 30]]
+        }
+      }
+    },
+    {
+      "id": "highway",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "transportation",
+      "filter": ["==", "class", "motorway"],
+      "paint": {
+        "line-color": "#fc8",
+        "line-width": {
+          "base": 1.4,
+          "stops": [[6, 0.5], [20, 30]]
+        }
+      }
+    },
+    {
+      "id": "trails",
+      "type": "line",
+      "source": "trails",
+      "source-layer": "trail",
+      "minzoom": 5,
+      "paint": {
+        "line-color": "#aa9a76",
+        "line-width": {
+          "base": 1.2,
+          "stops": [[10, 1], [20, 4]]
+        },
+        "line-dasharray": [2, 1]
+      }
+    },
+    {
+      "id": "trails_major",
+      "type": "line",
+      "source": "trails",
+      "source-layer": "trail",
+      "minzoom": 5,
+      "filter": ["in", ["get", "sac_scale"], ["literal", ["hiking", "mountain_hiking"]]],
+      "paint": {
+        "line-color": "#aa9a76",
+        "line-width": {
+          "base": 1.2,
+          "stops": [[10, 2], [20, 6]]
+        },
+        "line-dasharray": [2, 1]
+      }
+    },
+    {
+      "id": "place_label_city",
+      "type": "symbol",
+      "source": "openmaptiles",
+      "source-layer": "place",
+      "filter": ["==", "class", "city"],
+      "layout": {
+        "text-field": "{name}",
+        "text-font": ["Noto Sans Regular"],
+        "text-size": 14
+      },
+      "paint": {
+        "text-color": "#333",
+        "text-halo-color": "#fff",
+        "text-halo-width": 2
+      }
+    },
+    {
+      "id": "place_label_town",
+      "type": "symbol",
+      "source": "openmaptiles",
+      "source-layer": "place",
+      "filter": ["==", "class", "town"],
+      "layout": {
+        "text-field": "{name}",
+        "text-font": ["Noto Sans Regular"],
+        "text-size": 12
+      },
+      "paint": {
+        "text-color": "#333",
+        "text-halo-color": "#fff",
+        "text-halo-width": 2
+      }
+    },
+    {
+      "id": "poi_water_fountain",
+      "type": "circle",
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "minzoom": 14,
+      "filter": ["in", ["get", "class"], ["literal", ["drinking_water"]]],
+      "paint": {
+        "circle-radius": 6,
+        "circle-color": "#4a90e2",
+        "circle-stroke-width": 2,
+        "circle-stroke-color": "#ffffff"
+      }
+    },
+    {
+      "id": "poi_restroom",
+      "type": "circle",
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "minzoom": 14,
+      "filter": ["in", ["get", "class"], ["literal", ["toilet", "toilets"]]],
+      "paint": {
+        "circle-radius": 6,
+        "circle-color": "#8b5a8e",
+        "circle-stroke-width": 2,
+        "circle-stroke-color": "#ffffff"
+      }
+    },
+    {
+      "id": "poi_trailhead",
+      "type": "circle",
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "minzoom": 12,
+      "filter": ["all",
+        ["==", ["get", "class"], "information"],
+        ["in", ["get", "subclass"], ["literal", ["guidepost", "map", "board"]]]
+      ],
+      "paint": {
+        "circle-radius": 7,
+        "circle-color": "#d97706",
+        "circle-stroke-width": 2,
+        "circle-stroke-color": "#ffffff"
+      }
+    },
+    {
+      "id": "poi_labels",
+      "type": "symbol",
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "minzoom": 15,
+      "filter": ["in", ["get", "class"], ["literal", ["drinking_water", "toilet", "toilets", "information"]]],
+      "layout": {
+        "text-field": "{name}",
+        "text-font": ["Noto Sans Regular"],
+        "text-size": 10,
+        "text-anchor": "top",
+        "text-offset": [0, 1],
+        "text-optional": true
+      },
+      "paint": {
+        "text-color": "#333",
+        "text-halo-color": "#fff",
+        "text-halo-width": 1.5
+      }
+    },
+    {
+      "id": "parking",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "minzoom": 14,
+      "filter": ["==", ["get", "class"], "parking"],
+      "paint": {
+        "fill-color": "#e8e4e0",
+        "fill-opacity": 0.8,
+        "fill-outline-color": "#888"
+      }
+    },
+    {
+      "id": "parking_outline",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "minzoom": 14,
+      "filter": ["==", ["get", "class"], "parking"],
+      "paint": {
+        "line-color": "#888",
+        "line-width": 1
+      }
+    },
+    {
+      "id": "parking_icon",
+      "type": "symbol",
+      "source": "openmaptiles",
+      "source-layer": "poi",
+      "minzoom": 15,
+      "filter": ["==", ["get", "class"], "parking"],
+      "layout": {
+        "text-field": "P",
+        "text-font": ["Noto Sans Bold"],
+        "text-size": 12
+      },
+      "paint": {
+        "text-color": "#4a5568"
+      }
+    },
+    {
+      "id": "road_labels",
+      "type": "symbol",
+      "source": "openmaptiles",
+      "source-layer": "transportation_name",
+      "minzoom": 13,
+      "filter": ["in", ["get", "class"], ["literal", ["motorway", "trunk", "primary", "secondary", "tertiary", "minor", "service"]]],
+      "layout": {
+        "text-field": "{name}",
+        "text-font": ["Noto Sans Regular"],
+        "text-size": {
+          "stops": [[13, 9], [16, 11], [20, 14]]
+        },
+        "symbol-placement": "line",
+        "text-rotation-alignment": "map",
+        "text-pitch-alignment": "viewport"
+      },
+      "paint": {
+        "text-color": "#444",
+        "text-halo-color": "#fff",
+        "text-halo-width": 2
+      }
+    },
+    {
+      "id": "trail_labels",
+      "type": "symbol",
+      "source": "trails",
+      "source-layer": "trail",
+      "minzoom": 13,
+      "filter": ["has", "name"],
+      "layout": {
+        "text-field": "{name}",
+        "text-font": ["Noto Sans Italic"],
+        "text-size": {
+          "stops": [[13, 9], [16, 11]]
+        },
+        "symbol-placement": "line",
+        "text-rotation-alignment": "map",
+        "text-pitch-alignment": "viewport",
+        "text-max-angle": 30
+      },
+      "paint": {
+        "text-color": "#7a6a4a",
+        "text-halo-color": "#fff",
+        "text-halo-width": 2
+      }
+    },
+    {
+      "id": "peaks_icon",
+      "type": "symbol",
+      "source": "openmaptiles",
+      "source-layer": "mountain_peak",
+      "minzoom": 11,
+      "layout": {
+        "text-field": "▲",
+        "text-font": ["Noto Sans Regular"],
+        "text-size": 10,
+        "text-anchor": "center"
+      },
+      "paint": {
+        "text-color": "#5a4a3a",
+        "text-halo-color": "#fff",
+        "text-halo-width": 1.5
+      }
+    },
+    {
+      "id": "peaks_labels",
+      "type": "symbol",
+      "source": "openmaptiles",
+      "source-layer": "mountain_peak",
+      "minzoom": 12,
+      "layout": {
+        "text-field": ["format",
+          ["get", "name"], {},
+          "\n", {},
+          ["get", "ele"], {"font-scale": 0.8},
+          " ft", {"font-scale": 0.8}
+        ],
+        "text-font": ["Noto Sans Regular"],
+        "text-size": 10,
+        "text-anchor": "top",
+        "text-offset": [0, 0.8],
+        "text-optional": true
+      },
+      "paint": {
+        "text-color": "#5a4a3a",
+        "text-halo-color": "#fff",
+        "text-halo-width": 2
+      }
+    }
+  ]
+}

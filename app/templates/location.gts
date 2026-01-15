@@ -2,23 +2,20 @@ import ThemedPage from '#layout/themed-page.gts';
 import Component from '@glimmer/component';
 import { Request } from '@warp-drive/ember';
 import { pageTitle } from 'ember-page-title';
-import BackgroundMap from '#maps/background-map.gts';
+import MapLibreBackgroundMap from '#maps/maplibre-background-map.gts';
 import FaIcon from '#ui/fa-icon.gts';
 import {
   faLocationDot,
   faMapLocationDot,
   faExpand,
 } from '@fortawesome/free-solid-svg-icons';
-import { cached, tracked } from '@glimmer/tracking';
+import { tracked } from '@glimmer/tracking';
 import './location.css';
 import { assert } from '@ember/debug';
 import { getLocation } from '#api/GET';
 import { and } from '#app/utils/comparison.ts';
-import { getTheme } from '#app/core/site-theme.ts';
-import FullscreenMap from '#maps/fullscreen-map.gts';
+import MapLibreFullscreenMap from '#maps/maplibre-fullscreen-map.gts';
 import { on } from '@ember/modifier';
-
-const TOKEN = '';
 
 export default class LocationDisplay extends Component<{
   Args: {
@@ -27,8 +24,6 @@ export default class LocationDisplay extends Component<{
     };
   };
 }> {
-  @tracked showTerrain: boolean = false;
-  @tracked showSatellite: boolean = false;
   @tracked showFullscreenMap: boolean = false;
 
   openFullscreenMap = () => {
@@ -38,29 +33,6 @@ export default class LocationDisplay extends Component<{
   closeFullscreenMap = () => {
     this.showFullscreenMap = false;
   };
-
-  @cached
-  get tileUrl() {
-    // see https://github.com/leaflet-extras/leaflet-providers/blob/master/leaflet-providers.js
-    // for more providers and https://leaflet-extras.github.io/leaflet-providers/preview/
-    // for a preview
-    //
-    // https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.{ext}
-    // https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.{ext}
-    // https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}{r}.{ext}
-    // https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.{ext}
-    //
-    if (this.showTerrain) {
-      return `https://tile.jawg.io/jawg-terrain/{z}/{x}/{y}{r}.png?access-token=${TOKEN}`;
-      // "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png";
-    }
-    if (this.showSatellite) {
-      return 'https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}{r}.png';
-    }
-    return getTheme().isDarkMode
-      ? 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'
-      : 'https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png';
-  }
 
   <template>
     {{pageTitle "Location | Bandits"}}
@@ -81,13 +53,12 @@ export default class LocationDisplay extends Component<{
             {{pageTitle location.name " | Bandits"}}
             <div class="location-page">
               {{#if (and location.latitude location.longitude)}}
-                <BackgroundMap
+                <MapLibreBackgroundMap
                   @lat={{excludeNull location.latitude}}
                   @lng={{excludeNull location.longitude}}
-                  @zoom={{12}}
-                  @minZoom={{8}}
+                  @zoom={{10}}
+                  @minZoom={{6}}
                   @maxZoom={{18}}
-                  @tileUrl={{this.tileUrl}}
                   @markerTitle={{location.name}}
                 />
               {{/if}}
@@ -165,13 +136,12 @@ export default class LocationDisplay extends Component<{
 
               {{! Fullscreen Map }}
               {{#if this.showFullscreenMap}}
-                <FullscreenMap
+                <MapLibreFullscreenMap
                   @locationId={{location.id}}
                   @locationName={{location.name}}
                   @lat={{excludeNull location.latitude}}
                   @lng={{excludeNull location.longitude}}
                   @zoom={{14}}
-                  @tileUrl={{this.tileUrl}}
                   @onClose={{this.closeFullscreenMap}}
                 />
               {{/if}}

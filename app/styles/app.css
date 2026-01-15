@@ -23,7 +23,7 @@ html {
   **/
   --theme-fall-orange: rgb(255, 64, 39);
   --theme-fall-blue: rgb(156,226,254);
-  --theme-fall-beige: rgb(238, 222,189);
+  --theme-fall-beige: #eedebd;
   --theme-fall-white: #fff;
   --theme-fall-black: #000;
   --theme-spring-light-sky: #f3e8ff;
