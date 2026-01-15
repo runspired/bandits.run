@@ -141,40 +141,6 @@ You can modify any layer properties following the [MapLibre Style Specification]
 5. **Rotation and 3D** - Rotate maps and add 3D terrain/buildings
 6. **Data access** - Query map features and interact with individual elements
 
-## Migration from Leaflet
-
-To migrate existing Leaflet code:
-
-1. Replace `LeafletBoundary` with `MapLibreBoundary`
-2. Replace `LeafletMap` with `MapLibreMap`
-3. Replace `LeafletMarker` with `MapLibreMarker`
-4. Remove `@tileUrl` prop (now using vector style)
-5. Update event handlers (MapLibre uses different event signatures)
-
-### Event Handler Changes
-
-**Leaflet:**
-```gts
-<LeafletMap
-  @onClick={{this.handleClick}}
-/>
-
-handleClick = (event: L.LeafletMouseEvent) => {
-  console.log(event.latlng.lat, event.latlng.lng);
-}
-```
-
-**MapLibre:**
-```gts
-<MapLibreMap
-  @onClick={{this.handleClick}}
-/>
-
-handleClick = (lng: number, lat: number) => {
-  console.log(lat, lng);
-}
-```
-
 ## Resources
 
 - [MapLibre GL JS Documentation](https://maplibre.org/maplibre-gl-js/docs/)
