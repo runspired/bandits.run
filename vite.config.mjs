@@ -69,11 +69,6 @@ export default defineConfig({
           '**/*.{js,css,html,ico,png,svg,woff2}',
           'map-styles/*.json'
         ],
-        // Additional static assets to precache
-        additionalManifestEntries: [
-          { url: '/map-styles/openstreetmap-us-vector.json', revision: null },
-          { url: '/map-styles/simple-background.json', revision: null }
-        ],
         // Runtime caching strategies
         runtimeCaching: [
           {
