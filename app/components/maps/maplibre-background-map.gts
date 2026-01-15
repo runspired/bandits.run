@@ -18,19 +18,19 @@ interface MapLibreBackgroundMapSignature {
 
 export default class MapLibreBackgroundMap extends Component<MapLibreBackgroundMapSignature> {
   get zoom() {
-    return this.args.zoom ?? 12;
+    return this.args.zoom ?? 10;
   }
 
   get minZoom() {
-    return this.args.minZoom ?? 8;
+    return this.args.minZoom ?? 6;
   }
 
   get maxZoom() {
-    return this.args.maxZoom ?? 18;
+    return this.args.maxZoom ?? 14;
   }
 
   get style() {
-    return this.args.style ?? '/map-styles/openstreetmap-us-vector.json';
+    return this.args.style ?? '/map-styles/simple-background.json';
   }
 
   <template>

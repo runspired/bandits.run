@@ -26,6 +26,28 @@ interface MapLibreMapSignature {
   };
 }
 
+const MAP_RESIZE_DEBOUNCE_MS = 160;
+
+interface Token {
+  cancelled: boolean;
+}
+
+function deferredFrame(cb: () => void): Token {
+  const token: Token = { cancelled: false };
+  setTimeout(() => {
+    if (!token.cancelled) {
+      requestAnimationFrame(() => {
+        if (token.cancelled) {
+          return;
+        }
+
+        cb();
+      });
+    }
+  }, MAP_RESIZE_DEBOUNCE_MS);
+
+  return token;
+}
 export default class MapLibreMapComponent extends Component<MapLibreMapSignature> {
   @tracked map: Map | null = null;
 
@@ -60,9 +82,28 @@ export default class MapLibreMapComponent extends Component<MapLibreMapSignature
       touchZoomRotate,
       doubleClickZoom,
       style,
+      trackResize: false, // Disable automatic resize
     };
 
     const map = new maplibregl.Map(mapOptions);
+
+    // Debounced resize handler
+    let token: Token | null = null;
+    const handleResize = () => {
+      if (token !== null) {
+        token.cancelled = true;
+      }
+      token = deferredFrame(() => {
+        map.resize();
+        token = null;
+      });
+    };
+
+    // Set up ResizeObserver for container size changes
+    const resizeObserver = new ResizeObserver(() => {
+      handleResize();
+    });
+    resizeObserver.observe(element);
 
     // Wait for map to load before storing reference
     map.on('load', () => {
@@ -84,6 +125,10 @@ export default class MapLibreMapComponent extends Component<MapLibreMapSignature
 
     return () => {
       // Cleanup
+      if (token !== null) {
+        token.cancelled = true;
+      }
+      resizeObserver.disconnect();
       map.remove();
       this.map = null;
     };

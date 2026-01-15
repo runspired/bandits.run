@@ -1,0 +1,54 @@
+{
+  "version": 8,
+  "name": "Simple Background Map",
+  "sources": {
+    "openmaptiles": {
+      "type": "vector",
+      "tiles": ["https://tiles.openstreetmap.us/vector/openmaptiles/{z}/{x}/{y}.mvt"],
+      "minzoom": 0,
+      "maxzoom": 14
+    }
+  },
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": {
+        "background-color": "#f8f4f0"
+      }
+    },
+    {
+      "id": "water",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "water",
+      "paint": {
+        "fill-color": "#a5bfdd"
+      }
+    },
+    {
+      "id": "park",
+      "type": "fill",
+      "source": "openmaptiles",
+      "source-layer": "park",
+      "paint": {
+        "fill-color": "#d8e8c8",
+        "fill-opacity": 0.4
+      }
+    },
+    {
+      "id": "road_major",
+      "type": "line",
+      "source": "openmaptiles",
+      "source-layer": "transportation",
+      "filter": ["in", ["get", "class"], ["literal", ["primary", "secondary", "trunk", "motorway"]]],
+      "paint": {
+        "line-color": "#ddd",
+        "line-width": {
+          "base": 1.2,
+          "stops": [[6, 0.5], [20, 8]]
+        }
+      }
+    }
+  ]
+}
