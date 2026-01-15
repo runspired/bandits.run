@@ -1,13 +1,12 @@
 import Component from '@glimmer/component';
 import { modifier } from 'ember-modifier';
 import type * as L from 'leaflet';
-import { MapContext } from './leaflet-map.gts';
 import { getLeaflet } from './leaflet-boundary.gts';
 
 interface LeafletPopupSignature {
   Element: HTMLDivElement;
   Args: {
-    context: object;
+    context: { map: L.Map; };
     lat: number;
     lng: number;
     content?: string;
@@ -24,7 +23,7 @@ interface LeafletPopupSignature {
 
 export default class LeafletPopupComponent extends Component<LeafletPopupSignature> {
   setupPopup = modifier((element: HTMLElement) => {
-    const map = MapContext.get(this.args.context);
+    const map = this.args.context.map;
     if (!map) {
       console.error('LeafletPopup: No map found in context');
       return;

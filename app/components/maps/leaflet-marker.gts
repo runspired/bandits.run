@@ -1,7 +1,6 @@
 import Component from '@glimmer/component';
 import { modifier } from 'ember-modifier';
 import type * as L from 'leaflet';
-import { MapContext } from './leaflet-map.gts';
 import { getLeaflet } from './leaflet-boundary.gts';
 
 let fixed = false;
@@ -42,9 +41,9 @@ interface LeafletMarkerSignature {
 
 export default class LeafletMarkerComponent extends Component<LeafletMarkerSignature> {
   setupMarker = modifier(
-    (_element: HTMLElement, [context]: [{ map: L.Map; context: object }]) => {
+    (_element: HTMLElement, [context]: [{ map: L.Map; }]) => {
       fixIconIfNecessary();
-      const map = MapContext.get(context.context);
+      const map = context.map;
       if (!map) {
         console.error('LeafletMarker: No map found in context');
         return;

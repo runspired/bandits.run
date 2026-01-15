@@ -25,15 +25,12 @@ interface LeafletMapSignature {
     onClick?: (event: L.LeafletMouseEvent) => void;
   };
   Blocks: {
-    default: [{ map: L.Map; context: object }];
+    default: [{ map: L.Map; }];
   };
 }
 
-export const MapContext = new Map<object, L.Map>();
-
 export default class LeafletMapComponent extends Component<LeafletMapSignature> {
   @tracked map: L.Map | null = null;
-  contextKey = {};
 
   setupMap = modifier((element: HTMLElement) => {
     const {
@@ -76,7 +73,6 @@ export default class LeafletMapComponent extends Component<LeafletMapSignature> 
 
     // Store map in context
     this.map = map;
-    MapContext.set(this.contextKey, map);
 
     // Event handlers
     if (onMoveEnd) {
@@ -92,7 +88,6 @@ export default class LeafletMapComponent extends Component<LeafletMapSignature> 
     return () => {
       // Cleanup
       map.remove();
-      MapContext.delete(this.contextKey);
       this.map = null;
     };
   });
@@ -111,7 +106,6 @@ export default class LeafletMapComponent extends Component<LeafletMapSignature> 
     }
     return {
       map: this.map,
-      context: this.contextKey,
     };
   }
 

@@ -1,13 +1,12 @@
 import Component from '@glimmer/component';
 import { modifier } from 'ember-modifier';
 import type * as L from 'leaflet';
-import { MapContext } from './leaflet-map.gts';
 import { getLeaflet } from './leaflet-boundary.gts';
 
 interface LeafletCircleSignature {
   Element: HTMLDivElement;
   Args: {
-    context: object;
+    context: { map: L.Map; };
     lat: number;
     lng: number;
     radius: number;
@@ -25,7 +24,7 @@ interface LeafletCircleSignature {
 
 export default class LeafletCircleComponent extends Component<LeafletCircleSignature> {
   setupCircle = modifier((_element: HTMLElement) => {
-    const map = MapContext.get(this.args.context);
+    const map = this.args.context.map;
     if (!map) {
       console.error('LeafletCircle: No map found in context');
       return;
