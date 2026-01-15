@@ -8,7 +8,7 @@ import FaIcon from '#ui/fa-icon.gts';
 import { faMap, faDownload, faCropSimple } from '@fortawesome/free-solid-svg-icons';
 import type { DownloadStatusType } from '#app/core/preferences.ts';
 import { getDevicePreferences } from '#app/core/preferences.ts';
-import type * as L from 'leaflet';
+import type { Map as MapLibreMap } from 'maplibre-gl';
 import type { PolygonPoint } from '#app/utils/tile-preloader.ts';
 import './map-download-button.css';
 
@@ -42,10 +42,10 @@ interface MapDownloadButtonSignature {
     radiusMiles?: number;
 
     /**
-     * Optional Leaflet map instance for calculating visible area
+     * Optional MapLibre map instance for calculating visible area
      * If provided, will download tiles for the visible area instead of radius
      */
-    getMap?: () => L.Map | null;
+    getMap?: () => MapLibreMap | null;
 
     /**
      * Optional polygon points for custom area selection

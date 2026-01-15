@@ -16,6 +16,15 @@ export interface PolygonPoint {
   lng: number;
 }
 
+export interface TileSource {
+  /** URL template for tiles */
+  url: string;
+  /** Minimum zoom for this source */
+  minZoom?: number;
+  /** Maximum zoom for this source */
+  maxZoom?: number;
+}
+
 export interface PreloadOptions {
   /** Center latitude of the location */
   lat: number;
@@ -35,14 +44,48 @@ export interface PreloadOptions {
   maxZoom?: number;
   /** Tile size in pixels (default: 256) */
   tileSize?: number;
-  /** Tile URL template (e.g., 'https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png') */
-  tileUrl: string;
+  /** Tile URL template (e.g., 'https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png') - for raster tiles */
+  tileUrl?: string;
+  /** MapLibre style URL (e.g., '/map-styles/openstreetmap-us-vector.json') - for vector tiles */
+  styleUrl?: string;
   /** Callback for progress updates (current, total) */
   onProgress?: (current: number, total: number) => void;
   /** Callback for individual tile load success */
   onTileLoaded?: (tile: TileCoordinate) => void;
   /** Callback for individual tile load error */
   onTileError?: (tile: TileCoordinate, error: Error) => void;
+}
+
+/**
+ * Extract tile sources from a MapLibre style JSON
+ */
+export async function extractTileSourcesFromStyle(styleUrl: string): Promise<TileSource[]> {
+  try {
+    const response = await fetch(styleUrl);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch style: ${response.status}`);
+    }
+    const style = await response.json();
+
+    const sources: TileSource[] = [];
+
+    if (style.sources) {
+      for (const [_sourceName, source] of Object.entries(style.sources as Record<string, any>)) {
+        if (source.tiles && Array.isArray(source.tiles) && source.tiles.length > 0) {
+          sources.push({
+            url: source.tiles[0],
+            minZoom: source.minzoom,
+            maxZoom: source.maxzoom,
+          });
+        }
+      }
+    }
+
+    return sources;
+  } catch (error) {
+    console.error('Failed to extract tile sources from style:', error);
+    return [];
+  }
 }
 
 /**
@@ -277,6 +320,40 @@ async function preloadTile(url: string, _tile: TileCoordinate): Promise<void> {
  * ```
  */
 export async function preloadTilesForLocation(options: PreloadOptions): Promise<void> {
+  // If styleUrl is provided, extract tile sources and preload for each source
+  if (options.styleUrl) {
+    const sources = await extractTileSourcesFromStyle(options.styleUrl);
+
+    if (sources.length === 0) {
+      throw new Error('No tile sources found in style');
+    }
+
+    // Preload tiles for each source
+    for (const source of sources) {
+      const sourceOptions: PreloadOptions & { tileUrl: string } = {
+        ...options,
+        tileUrl: source.url,
+        styleUrl: undefined,
+        minZoom: Math.max(options.minZoom ?? 1, source.minZoom ?? 1),
+        maxZoom: Math.min(options.maxZoom ?? 18, source.maxZoom ?? 18),
+      };
+      await preloadTilesForSingleSource(sourceOptions);
+    }
+    return;
+  }
+
+  // Otherwise use the tileUrl directly
+  if (!options.tileUrl) {
+    throw new Error('Either tileUrl or styleUrl must be provided');
+  }
+
+  await preloadTilesForSingleSource(options as PreloadOptions & { tileUrl: string });
+}
+
+/**
+ * Preload tiles for a single tile source
+ */
+async function preloadTilesForSingleSource(options: PreloadOptions & { tileUrl: string }): Promise<void> {
   const tiles = calculateRequiredTiles(options);
   const total = tiles.length;
   let current = 0;

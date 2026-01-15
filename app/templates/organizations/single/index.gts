@@ -16,8 +16,21 @@ import type { Organization } from '#app/data/organization.ts';
 import { htmlSafe } from '@ember/template';
 import { getOrganizationRuns } from '#api/GET';
 import RunPreview from '#entities/run-preview.gts';
+import SocialGraph from '#app/components/seo/social-graph.gts';
 import { getHostname } from '#app/utils/helpers.ts';
 import { or } from '#app/utils/comparison.ts';
+
+function getOrganizationDescription(org: Organization): string {
+  return org.description || `${org.name} is a trail running organization in the SF Bay Area. Join group runs, connect with fellow trail runners, and explore amazing trails!`;
+}
+
+function getOrganizationKeywords(org: Organization): string {
+  return `trail running, ${org.name}, running group, SF Bay Area, trail running community`;
+}
+
+function getOrganizationUrl(organizationId: string): string {
+  return `https://bandits.run/#/organizations/${organizationId}`;
+}
 
 export default class OrganizationSingleRoute extends Component<{
   Args: {
@@ -76,6 +89,13 @@ export default class OrganizationSingleRoute extends Component<{
       <:content as |response|>
         {{#let response.data as |org|}}
           {{pageTitle org.name " | Bandits"}}
+          <SocialGraph
+            @title={{org.name}}
+            @description={{getOrganizationDescription org}}
+            @url={{getOrganizationUrl @model.organizationId}}
+            @type="website"
+            @keywords={{getOrganizationKeywords org}}
+          />
           <ThemedPage>
             <:header>
               {{org.name}}

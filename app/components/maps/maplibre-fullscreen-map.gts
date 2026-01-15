@@ -5,6 +5,8 @@ import { tracked } from '@glimmer/tracking';
 import MapLibreMap from '#maps/maplibre-map.gts';
 import MapLibreMarker from '#maps/maplibre-marker.gts';
 import MapLibreBoundary from '#maps/maplibre-boundary.gts';
+import MapDownloadButton from '#maps/map-download-button.gts';
+import MapLibrePolygonSelector from '#maps/maplibre-polygon-selector.gts';
 import FaIcon from '#ui/fa-icon.gts';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import './fullscreen-map.css';
@@ -13,6 +15,7 @@ import type PortalsService from '#app/services/ux/portals.ts';
 import { getDevicePreferences } from '#app/core/preferences.ts';
 import type { Map } from 'maplibre-gl';
 import type { StyleSpecification } from 'maplibre-gl';
+import type { PolygonPoint } from '#app/utils/tile-preloader.ts';
 
 interface MapLibreFullscreenMapSignature {
   Args: {
@@ -63,6 +66,12 @@ export default class MapLibreFullscreenMap extends Component<MapLibreFullscreenM
   locationWatchId: number | null = null;
 
   @tracked
+  showPolygonSelector: boolean = false;
+
+  @tracked
+  polygon: PolygonPoint[] | null = null;
+
+  @tracked
   userLocation: { lat: number; lng: number } | null = null;
 
   @tracked
@@ -71,7 +80,12 @@ export default class MapLibreFullscreenMap extends Component<MapLibreFullscreenM
   setupEscapeKey = modifier((_element: HTMLElement) => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        this.args.onClose();
+        // If polygon selector is showing, close it first
+        if (this.showPolygonSelector) {
+          this.handlePolygonCancel();
+        } else {
+          this.args.onClose();
+        }
       }
     };
 
@@ -152,6 +166,23 @@ export default class MapLibreFullscreenMap extends Component<MapLibreFullscreenM
     this.args.onClose();
   }
 
+  startPolygonSelection = () => {
+    this.showPolygonSelector = true;
+  };
+
+  handlePolygonComplete = (points: PolygonPoint[]) => {
+    this.polygon = points;
+    this.showPolygonSelector = false;
+  };
+
+  handlePolygonCancel = () => {
+    this.showPolygonSelector = false;
+  };
+
+  clearPolygon = () => {
+    this.polygon = null;
+  };
+
   <template>
     {{#in-element this.portals.takeover}}
       {{! template-lint-disable no-inline-styles }}
@@ -166,6 +197,31 @@ export default class MapLibreFullscreenMap extends Component<MapLibreFullscreenM
           >
             <FaIcon @icon={{faXmark}} />
           </button>
+
+          {{! Download button - bottom right }}
+          <div class="fullscreen-map-download">
+            <MapDownloadButton
+              @locationId={{@locationId}}
+              @locationName={{@locationName}}
+              @lat={{@lat}}
+              @lng={{@lng}}
+              @getMap={{this.getMap}}
+              @polygon={{this.polygon}}
+              @onStartPolygonSelection={{this.startPolygonSelection}}
+              @onClearPolygon={{this.clearPolygon}}
+            />
+          </div>
+
+          {{! Polygon selector overlay - rendered conditionally }}
+          {{#if this.showPolygonSelector}}
+            {{#if this.map}}
+              <MapLibrePolygonSelector
+                @map={{this.map}}
+                @onPolygonComplete={{this.handlePolygonComplete}}
+                @onCancel={{this.handlePolygonCancel}}
+              />
+            {{/if}}
+          {{/if}}
 
           <MapLibreBoundary>
             <MapLibreMap

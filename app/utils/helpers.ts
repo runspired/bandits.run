@@ -226,3 +226,10 @@ export function isToday(dateStr: string | null | undefined): boolean {
   today.setHours(0, 0, 0, 0);
   return date.getTime() === today.getTime();
 }
+
+/**
+ * Concatenate multiple strings together
+ */
+export function concat(...strings: (string | null | undefined)[]): string {
+  return strings.filter(Boolean).join('');
+}

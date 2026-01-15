@@ -2,10 +2,27 @@ import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { preloadTilesForLocation, estimateTileCount, estimateDownloadSize } from '#app/utils/tile-preloader.ts';
 import type { PreloadOptions, PolygonPoint } from '#app/utils/tile-preloader.ts';
-import { getTheme } from '#app/core/site-theme.ts';
-import type * as L from 'leaflet';
+import type { Map as MapLibreMap } from 'maplibre-gl';
 
 export type MapDownloadStatus = 'idle' | 'downloading' | 'completed' | 'error';
+
+/**
+ * Calculate distance between two lat/lng points in meters using Haversine formula
+ */
+function calculateDistance(lat1: number, lng1: number, lat2: number, lng2: number): number {
+  const R = 6371e3; // Earth's radius in meters
+  const φ1 = (lat1 * Math.PI) / 180;
+  const φ2 = (lat2 * Math.PI) / 180;
+  const Δφ = ((lat2 - lat1) * Math.PI) / 180;
+  const Δλ = ((lng2 - lng1) * Math.PI) / 180;
+
+  const a =
+    Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+    Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+  return R * c; // Distance in meters
+}
 
 interface LocationCache {
   locationId: string;
@@ -79,20 +96,19 @@ export default class MapTileCacheService extends Service {
       screenWidth: window.innerWidth,
       screenHeight: window.innerHeight,
       radiusMiles,
-      tileUrl: this.getTileUrl(),
+      styleUrl: this.getStyleUrl(),
     };
 
-    // Double the estimate since we download both light and dark tiles
     return {
-      tileCount: estimateTileCount(options) * 2,
-      sizeMB: estimateDownloadSize(options) * 2,
+      tileCount: estimateTileCount(options),
+      sizeMB: estimateDownloadSize(options),
     };
   }
 
   /**
    * Estimate the number of tiles and download size for the visible area of a map
    */
-  estimateDownloadForVisibleArea(map: L.Map): {
+  estimateDownloadForVisibleArea(map: MapLibreMap): {
     tileCount: number;
     sizeMB: number;
   } {
@@ -102,7 +118,7 @@ export default class MapTileCacheService extends Service {
 
     // Calculate radius from center to corner of visible area
     const ne = bounds.getNorthEast();
-    const radiusMeters = center.distanceTo(ne);
+    const radiusMeters = calculateDistance(center.lat, center.lng, ne.lat, ne.lng);
     const radiusMiles = radiusMeters / 1609.34; // Convert meters to miles
 
     const options: PreloadOptions = {
@@ -113,13 +129,12 @@ export default class MapTileCacheService extends Service {
       radiusMiles,
       minZoom: currentZoom,
       maxZoom: 18, // Download from current zoom to max zoom (18)
-      tileUrl: this.getTileUrl(),
+      styleUrl: this.getStyleUrl(),
     };
 
-    // Double the estimate since we download both light and dark tiles
     return {
-      tileCount: estimateTileCount(options) * 2,
-      sizeMB: estimateDownloadSize(options) * 2,
+      tileCount: estimateTileCount(options),
+      sizeMB: estimateDownloadSize(options),
     };
   }
 
@@ -128,7 +143,7 @@ export default class MapTileCacheService extends Service {
    */
   estimateDownloadForPolygon(
     polygon: PolygonPoint[],
-    map: L.Map
+    map: MapLibreMap
   ): {
     tileCount: number;
     sizeMB: number;
@@ -145,13 +160,12 @@ export default class MapTileCacheService extends Service {
       polygon,
       minZoom: currentZoom,
       maxZoom: 18,
-      tileUrl: this.getTileUrl(),
+      styleUrl: this.getStyleUrl(),
     };
 
-    // Double the estimate since we download both light and dark tiles
     return {
-      tileCount: estimateTileCount(options) * 2,
-      sizeMB: estimateDownloadSize(options) * 2,
+      tileCount: estimateTileCount(options),
+      sizeMB: estimateDownloadSize(options),
     };
   }
 
@@ -162,7 +176,7 @@ export default class MapTileCacheService extends Service {
    * @param lat - Latitude of the location
    * @param lng - Longitude of the location
    * @param radiusMiles - Radius to cache in miles (default: 15)
-   * @param map - Optional Leaflet map for visible area mode
+   * @param map - Optional MapLibre map for visible area mode
    * @param polygon - Optional polygon to constrain tile caching
    * @returns Promise that resolves when download is complete
    */
@@ -171,7 +185,7 @@ export default class MapTileCacheService extends Service {
     lat: number,
     lng: number,
     radiusMiles: number = 15,
-    map?: L.Map,
+    map?: MapLibreMap,
     polygon?: PolygonPoint[]
   ): Promise<void> {
     // Prevent concurrent downloads
@@ -230,7 +244,7 @@ export default class MapTileCacheService extends Service {
       const center = bounds.getCenter();
       const currentZoom = map.getZoom();
       const ne = bounds.getNorthEast();
-      const radiusMeters = center.distanceTo(ne);
+      const radiusMeters = calculateDistance(center.lat, center.lng, ne.lat, ne.lng);
       const calculatedRadiusMiles = radiusMeters / 1609.34;
 
       baseOptions = {
@@ -253,40 +267,18 @@ export default class MapTileCacheService extends Service {
       };
     }
 
-    // Download both light and dark tiles
-    const lightTileUrl = 'https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png';
-    const darkTileUrl = 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png';
+    // Download MapLibre vector tiles
+    const styleUrl = this.getStyleUrl();
 
     try {
-      // Track progress for both tile sets
-      let totalProgress = 0;
-
-      // Download light mode tiles (first half of progress)
+      // Download tiles from the style
       await preloadTilesForLocation({
         ...baseOptions,
-        tileUrl: lightTileUrl,
+        styleUrl,
         onProgress: (current, total) => {
           const cache = this.locationCaches.get(locationId);
           if (cache) {
-            // Light tiles account for first 50% of progress
-            totalProgress = Math.round((current / total) * 50);
-            cache.progress = totalProgress;
-            // Trigger reactivity by reassigning
-            this.locationCaches = new Map(this.locationCaches);
-          }
-        },
-      });
-
-      // Download dark mode tiles (second half of progress)
-      await preloadTilesForLocation({
-        ...baseOptions,
-        tileUrl: darkTileUrl,
-        onProgress: (current, total) => {
-          const cache = this.locationCaches.get(locationId);
-          if (cache) {
-            // Dark tiles account for second 50% of progress
-            totalProgress = 50 + Math.round((current / total) * 50);
-            cache.progress = totalProgress;
+            cache.progress = Math.round((current / total) * 100);
             // Trigger reactivity by reassigning
             this.locationCaches = new Map(this.locationCaches);
           }
@@ -332,13 +324,11 @@ export default class MapTileCacheService extends Service {
   }
 
   /**
-   * Get the current tile URL based on theme
+   * Get the MapLibre style URL
    */
-  private getTileUrl(): string {
-    const theme = getTheme();
-    return theme.isDarkMode
-      ? 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'
-      : 'https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png';
+  private getStyleUrl(): string {
+    // For MapLibre, we use the vector tile style
+    return '/map-styles/openstreetmap-us-vector.json';
   }
 }
 

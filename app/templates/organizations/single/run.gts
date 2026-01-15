@@ -16,10 +16,11 @@ import {
 import { LinkTo } from '@ember/routing';
 import type { Future } from '@warp-drive/core/request';
 import type { ReactiveDataDocument } from '@warp-drive/core/reactive';
-import BackgroundMap from '#maps/background-map.gts';
-import FullscreenMap from '#maps/fullscreen-map.gts';
+import MapLibreBackgroundMap from '#maps/maplibre-background-map.gts';
+import MapLibreFullscreenMap from '#maps/maplibre-fullscreen-map.gts';
 import RunOccurrence from '#ui/nps-date.gts';
 import RunOptionComponent from '#entities/run-option.gts';
+import SocialGraph from '#app/components/seo/social-graph.gts';
 import {
   getRecurrenceDescription,
 } from '#app/utils/helpers.ts';
@@ -28,9 +29,52 @@ import {
   eq,
   excludeNull
 } from '#app/utils/comparison.ts';
-import { getTheme } from '#app/core/site-theme.ts';
 import './run.css';
 
+function getRunDescription(run: TrailRun): string {
+  const recurrence = getRecurrenceDescription(run.recurrence);
+  const orgName = run.owner.name;
+  const location = run.location?.name;
+
+  let runDetails = '';
+  for (const option of run.runs ?? []) {
+    if (runDetails.length > 0) {
+      runDetails += ' ';
+    }
+    runDetails += `- ${option.name}: ${option.distance}`;
+    if (option.vert) {
+      runDetails += `, ⛰️ ${option.vert}.`;
+    } else {
+      runDetails += '.';
+    }
+  }
+  runDetails += ' ';
+
+  if (location) {
+    return `${recurrence} group trail run with ${orgName} at ${location}. ${runDetails}Join fellow trail runners for an amazing experience! ${run.description ?? ''}`;
+  }
+  return `${recurrence} group trail run with ${orgName}. ${runDetails}Join fellow trail runners for an amazing experience! ${run.description ?? ''}`;
+}
+
+function getRunKeywords(run: TrailRun): string {
+  const recurrence = getRecurrenceDescription(run.recurrence);
+  const orgName = run.owner.name;
+  const location = run.location?.name;
+
+  const keywords = ['trail running', 'group run', orgName, recurrence];
+  if (location) {
+    keywords.push(location);
+  }
+  return keywords.join(', ');
+}
+
+function getRunUrl(organizationId: string, runId: string): string {
+  return `https://bandits.run/#/organizations/${organizationId}/runs/${runId}`;
+}
+
+function getRunTitle(run: TrailRun): string {
+  return `${run.title} | ${run.owner.name}`;
+}
 
 export default class OrganizationRunRoute extends Component<{
   Args: {
@@ -46,10 +90,8 @@ export default class OrganizationRunRoute extends Component<{
   @tracked showFullscreenMap = false;
 
   @cached
-  get tileUrl() {
-    return getTheme().isDarkMode
-      ? 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png'
-      : 'https://tiles.stadiamaps.com/tiles/outdoors/{z}/{x}/{y}{r}.png';
+  get mapStyle() {
+    return '/map-styles/openstreetmap-us-vector.json';
   }
 
   openFullscreenMap = () => {
@@ -61,8 +103,6 @@ export default class OrganizationRunRoute extends Component<{
   }
 
   <template>
-    {{pageTitle "Organization | Bandits"}}
-
     <Request @request={{@model.run}}>
       <:loading> <h2>Loading run...</h2> </:loading>
       <:error as |error|>
@@ -74,7 +114,13 @@ export default class OrganizationRunRoute extends Component<{
       </:error>
       <:content as |response|>
         {{#let response.data as |run|}}
-          {{pageTitle run.title " | Bandits"}}
+          <SocialGraph
+            @title={{getRunTitle run}}
+            @description={{getRunDescription run}}
+            @url={{getRunUrl @model.organizationId @model.runId}}
+            @type="website"
+            @keywords={{getRunKeywords run}}
+          />
           <ThemedPage>
             <:header>{{run.owner.name}}</:header>
             <:default>
@@ -84,13 +130,13 @@ export default class OrganizationRunRoute extends Component<{
                   run.location run.location.latitude run.location.longitude
                 )
               }}
-                <BackgroundMap
+                <MapLibreBackgroundMap
                   @lat={{excludeNull run.location.latitude}}
                   @lng={{excludeNull run.location.longitude}}
                   @zoom={{12}}
                   @minZoom={{8}}
                   @maxZoom={{18}}
-                  @tileUrl={{this.tileUrl}}
+                  @style={{this.mapStyle}}
                   @markerTitle={{run.location.name}}
                 />
               {{/if}}
@@ -204,13 +250,13 @@ export default class OrganizationRunRoute extends Component<{
 
               {{! Fullscreen Map }}
               {{#if this.showFullscreenMap}}
-                <FullscreenMap
+                <MapLibreFullscreenMap
                   @locationId={{run.location.id}}
                   @locationName={{run.location.name}}
                   @lat={{excludeNull run.location.latitude}}
                   @lng={{excludeNull run.location.longitude}}
                   @zoom={{14}}
-                  @tileUrl={{this.tileUrl}}
+                  @style={{this.mapStyle}}
                   @onClose={{this.closeFullscreenMap}}
                 />
               {{/if}}
