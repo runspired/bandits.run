@@ -138,7 +138,7 @@
   transition: all 0.2s ease;
   box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
   font-size: 1.5rem;
-  font-weight: bold;
+  font-weight: 600;
   line-height: 1;
 }
 

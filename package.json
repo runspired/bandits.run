@@ -24,7 +24,8 @@
     "./*": "./app/*"
   },
   "scripts": {
-    "build": "vite build",
+    "build": "vite build && node scripts/compress-assets.ts",
+    "build:no-compress": "vite build",
     "format": "prettier . --cache --write",
     "lint": "concurrently \"pnpm:lint:*(!fix)\" --names \"lint:\" --prefixColors auto",
     "lint:css": "stylelint \"**/*.css\"",
@@ -112,7 +113,8 @@
     "vite": "^7.3.0",
     "vite-plugin-pwa": "^1.2.0",
     "workbox-window": "^7.1.0",
-    "wrangler": "^4.59.1"
+    "wrangler": "^4.59.1",
+    "zlib": "^1.0.5"
   },
   "engines": {
     "node": ">= 24"
