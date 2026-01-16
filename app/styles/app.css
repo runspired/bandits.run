@@ -12,6 +12,7 @@ html {
   padding: 0;
   margin: 0;
   font-family: Montserrat, -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background: var(--theme-fall-beige);
 }
 
 /* 1. Default Light Mode */
@@ -122,6 +123,10 @@ body {
 
 /* 2. System Dark Mode (Automatic) */
 @media (prefers-color-scheme: dark) {
+  html {
+    background: var(--theme-fall-black);
+  }
+
   body {
     --bg-sky: var(--dark-theme-sky);
     --color-hill-back: var(--dark-theme-hill-back);
@@ -144,6 +149,10 @@ body {
 }
 
 /* 3. Manual Overrides (Highest Priority) */
+html.light-mode {
+  background: var(--theme-fall-beige);
+}
+
 body.light-mode {
   --bg-sky: var(--light-theme-sky);
   --color-hill-back: var(--light-theme-hill-back);
@@ -162,6 +171,10 @@ body.light-mode {
   --theme-tan-black: var(--theme-fall-beige);
   --theme-tan-black-inverse: var(--theme-fall-black);
   background: #fff;
+}
+
+html.dark-mode {
+  background: var(--theme-fall-black);
 }
 
 body.dark-mode {
