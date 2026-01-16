@@ -544,7 +544,7 @@ div.schedule {
 }
 
 div.schedule:last-of-type {
-  padding-bottom: 25vh;
+  padding-bottom: 10vh;
 }
 
 /* Styles migrated to component-scoped CSS:

@@ -20,7 +20,7 @@
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 40vh; /* Adjust height based on viewport */
+  height: 20vh; /* Adjust height based on viewport */
   transition: fill var(--transition-speed) ease;
 }
 
@@ -28,7 +28,7 @@
   pointer-events: none;
   fill: var(--color-hill-back);
   z-index: 5;
-  bottom: 5vh; /* Slightly offset for depth */
+  bottom: 2.5vh; /* Slightly offset for depth */
 }
 
 .front-hill {
@@ -43,7 +43,7 @@
   position: fixed;
   bottom: 0;
   width: 20vw;
-  height: 60vh;
+  height: 30vh;
   background-color: var(--tree-color);
   mask: url('/redwood.svg') no-repeat bottom center / contain;
   z-index: 7;
@@ -64,9 +64,9 @@
 
 .tree-right-3 { right: 30vw; transform: scaleX(-1) scale(0.8); }
 
-.tree-right-0 { bottom: 10vh; right: 25vw; transform: scale(.8); background-color: var(--alt-tree-color); }
+.tree-right-0 { bottom: 5vh; right: 25vw; transform: scale(.8); background-color: var(--alt-tree-color); }
 
-.tree-right-1 { bottom: 10vh; right: 17vw; transform: scale(.8); background-color: var(--alt-tree-color); }
+.tree-right-1 { bottom: 5vh; right: 17vw; transform: scale(.8); background-color: var(--alt-tree-color); }
 
 .logo-header {
   position: fixed;
