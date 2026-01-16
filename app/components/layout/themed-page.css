@@ -2,15 +2,22 @@
 .landscape-container {
   position: relative;
   width: 100%;
-  min-height: 100dvh;
+  height: 100dvh;
   background-color: var(--bg-sky);
   overflow: hidden;
   transition: background-color var(--transition-speed) ease;
 }
 
+.sky {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden auto;
+}
+
 /* The Rolling Hills */
 .hill-svg {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   height: 40vh; /* Adjust height based on viewport */
@@ -20,26 +27,26 @@
 .back-hill {
   pointer-events: none;
   fill: var(--color-hill-back);
-  z-index: 1;
+  z-index: 5;
   bottom: 5vh; /* Slightly offset for depth */
 }
 
 .front-hill {
   pointer-events: none;
   fill: var(--color-hill-front);
-  z-index: 2;
+  z-index: 6;
 }
 
 /* Redwoods (Using mask to allow CSS color control) */
 .tree {
   pointer-events: none;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 20vw;
   height: 60vh;
   background-color: var(--tree-color);
   mask: url('/redwood.svg') no-repeat bottom center / contain;
-  z-index: 3;
+  z-index: 7;
   transition: background-color var(--transition-speed) ease;
 }
 
@@ -62,11 +69,26 @@
 .tree-right-1 { bottom: 10vh; right: 17vw; transform: scale(.8); background-color: var(--alt-tree-color); }
 
 .logo-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
   max-width: 90vmax;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  background-color: rgb(from var(--bg-sky) r g b / 75%);
+  backdrop-filter: blur(8px);
+  transition: background-color var(--transition-speed) ease;
+}
+
+.content-area {
+  position: relative;
+  padding-top: 5rem;
+  min-height: calc(100vh - 5rem);
+  z-index: 1;
 }
 
 /* Header Controls Container */

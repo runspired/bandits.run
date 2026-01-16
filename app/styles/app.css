@@ -526,6 +526,11 @@ div.schedule {
   max-width: 90vmax;
   margin: 0 auto;
 }
+
+div.schedule:last-of-type {
+  padding-bottom: 25vh;
+}
+
 /* Styles migrated to component-scoped CSS:
  * - hamburger-menu.css
  * - back-button.css
@@ -704,7 +709,7 @@ ul {
 .runs-list {
   display: grid;
   gap: 1.5rem;
-  padding: 0 1rem;
+  padding: 0 1rem 25vh;
 }
 
 .run-card {

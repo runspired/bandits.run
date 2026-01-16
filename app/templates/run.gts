@@ -5,7 +5,6 @@ import { on } from '@ember/modifier';
 import type RouterService from '@ember/routing/router-service';
 import { Request } from '@warp-drive/ember';
 import ThemedPage from '#layout/themed-page.gts';
-import { pageTitle } from 'ember-page-title';
 import type { TrailRun } from '#app/data/run.ts';
 import FaIcon from '#ui/fa-icon.gts';
 import {
