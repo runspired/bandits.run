@@ -80,6 +80,25 @@ class SiteTheme {
       document.documentElement.classList.add(`${this.theme}-mode`);
       document.documentElement.classList.remove(this.theme === 'dark' ? 'light-mode' : 'dark-mode');
     }
+
+    // Update theme-color meta tag for PWA
+    this._updateThemeColor();
+  }
+
+  /**
+   * Update the theme-color meta tag to match the current theme
+   */
+  private _updateThemeColor() {
+    const themeColor = this.theme === 'dark' ? '#000000' : '#eedebd';
+
+    // Update or create theme-color meta tag
+    let metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (!metaThemeColor) {
+      metaThemeColor = document.createElement('meta');
+      metaThemeColor.setAttribute('name', 'theme-color');
+      document.head.appendChild(metaThemeColor);
+    }
+    metaThemeColor.setAttribute('content', themeColor);
   }
 }
 
