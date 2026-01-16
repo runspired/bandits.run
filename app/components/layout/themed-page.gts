@@ -21,16 +21,23 @@ import { getDevicePreferences } from '#app/core/preferences.ts';
 import { service } from '@ember/service';
 import type RouterService from '@ember/routing/router-service';
 
+function createScrollElement(): HTMLDivElement {
+  const div = document.createElement('div');
+  div.classList.add(scopedClass('sky'));
+  return div;
+}
+
 class ThemedPage extends Component<{
   Blocks: {
     header: [];
-    default: [];
+    default: [HTMLDivElement];
   };
 }> {
   @service declare router: RouterService;
 
   theme = getTheme();
   preferences = getDevicePreferences();
+  scrollElement = createScrollElement();
 
   handleDownloadClick = () => {
     if (this.preferences.isProcessing) return;
@@ -47,8 +54,9 @@ class ThemedPage extends Component<{
   <template>
     <section class="page" ...attributes>
       <div class="landscape-container">
+        {{this.scrollElement}}
 
-        <div class="sky">
+        {{#in-element this.scrollElement}}
           <div class="logo-header {{if (has-block 'header') 'page-title'}}">
             <div class="logo-header-text">
               {{#if (has-block "header")}}
@@ -99,10 +107,11 @@ class ThemedPage extends Component<{
               </HamburgerMenu>
             </div>
           </div>
+
           <div class="content-area">
-            {{yield}}
+            {{yield this.scrollElement}}
           </div>
-        </div>
+        {{/in-element}}
 
         <svg
           class="hill-svg back-hill"

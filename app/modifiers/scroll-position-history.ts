@@ -17,9 +17,9 @@ function cleanup(instance: ScrollModifier) {
   }
 }
 
-export default class ScrollModifier extends Modifier<{
+export class ScrollModifier extends Modifier<{
   Args: {
-    Positional: [string];
+    Positional: [string|undefined, HTMLElement|undefined, boolean|undefined];
   };
 }> {
   @service declare scrollPositionHistory: ScrollPositionHistory;
@@ -27,13 +27,16 @@ export default class ScrollModifier extends Modifier<{
   scrollBoxId!: string;
   handler: null | ((event: Event) => void) = null;
 
-  modify(element: Element, [scrollBoxId]: [string]) {
-    this._element = element;
+  modify(element: Element, [scrollBoxId, scrollElement, hasEverScrolled]: [string|undefined, HTMLElement|undefined, boolean|undefined]) {
+    if (!scrollBoxId) {
+      return;
+    }
+    this._element = scrollElement ?? element;
     this.scrollBoxId = scrollBoxId;
     assert(`Did not expect to be reinitialized`, !this.handler);
     const { positions } = this.scrollPositionHistory;
-    if (positions[scrollBoxId]) {
-      element.scrollTop = positions[scrollBoxId];
+    if (positions[scrollBoxId] && hasEverScrolled) {
+      this._element.scrollTop = positions[scrollBoxId];
     }
 
     this.handler = (event: Event) => {
@@ -41,7 +44,7 @@ export default class ScrollModifier extends Modifier<{
       const scrollTop = (target as HTMLElement).scrollTop || 0;
       positions[scrollBoxId] = scrollTop;
     };
-    element.addEventListener("scroll", this.handler, {
+    this._element.addEventListener("scroll", this.handler, {
       passive: true,
       capture: true,
     });
