@@ -714,25 +714,8 @@ ul {
   color: var(--schedule-text);
 }
 
-.run-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.run-header-content {
-  flex: 1;
-  min-width: 0;
-}
-
-.run-header-occurrence {
-  flex-shrink: 0;
-}
-
 .run-title {
-  margin: 0 0 1rem 0;
+  margin: 0 0 1rem;
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--title);

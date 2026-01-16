@@ -17,6 +17,12 @@ import {
   or,
 } from '#app/utils/comparison.ts';
 
+import type { TemplateOnlyComponent } from '@ember/component/template-only';
+
+import RunOption from './run-option.gts';
+import { scopedClass } from 'ember-scoped-css';
+import { getOrgSlug, getRunSlug } from '#app/utils/org.ts';
+
 interface RunPreviewSignature {
   Args: {
     run: TrailRun;
@@ -67,7 +73,7 @@ const RunPreview: TemplateOnlyComponent<RunPreviewSignature> = <template>
                   {{@run.location.name}}
                 </LinkTo>
               </span>
-      {{/if}}
+            {{/if}}
           </div>
         </div>
 
@@ -150,9 +156,3 @@ const RunPreview: TemplateOnlyComponent<RunPreviewSignature> = <template>
 </template>;
 
 export default RunPreview;
-
-import type { TemplateOnlyComponent } from '@ember/component/template-only';import RunOptionComponent from './run-option.gts';
-import RunOption from './run-option.gts';
-import { scopedClass } from 'ember-scoped-css';
-import { getOrgSlug, getRunSlug } from '#app/utils/org.ts';
-
