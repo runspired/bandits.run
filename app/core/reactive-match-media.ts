@@ -1,9 +1,13 @@
+import { assert } from "@ember/debug";
 import { trackedObject } from "@ember/reactive/collections";
 
+const HasQuery = new Set<string>();
 const MediaQueries: Record<string, boolean> = trackedObject({});
 function addMediaQueryListener(query: string): boolean {
+  assert(`matchMedia query must be a non-empty string`, typeof query === 'string' && query.length > 0);
   // Initialize on first access
-  if (MediaQueries[query] === undefined) {
+  if (!HasQuery.has(query)) {
+    HasQuery.add(query);
     const mediaQueryList = window.matchMedia(query);
     MediaQueries[query] = mediaQueryList.matches;
 
@@ -15,8 +19,10 @@ function addMediaQueryListener(query: string): boolean {
     mediaQueryList.addEventListener('change', listener);
     return mediaQueryList.matches;
   }
-  return MediaQueries[query];
+
+  return MediaQueries[query]!;
 }
+
 /**
  * Decorator which marks a field as being populated via `window.matchMedia`.
  *

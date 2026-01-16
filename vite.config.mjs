@@ -44,7 +44,7 @@ export default defineConfig({
         description: 'Find Your Trail Friends! The Bandits are a Trail Running Community based in the SF Bay Area.',
         theme_color: '#000000',
         background_color: '#000000',
-        display: 'standalone',
+        display: 'minimal-ui',
         start_url: '/',
         icons: [
           {

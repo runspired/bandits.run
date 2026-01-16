@@ -23,6 +23,21 @@ class SiteTheme {
   @matchMedia('(prefers-color-scheme: dark)')
   systemPrefersDarkMode: boolean = false;
 
+  @matchMedia('(display-mode: minimal-ui)')
+  isMinimalUI: boolean = false;
+
+  @matchMedia('(display-mode: standalone)')
+  isStandalone: boolean = false;
+
+  @matchMedia('(display-mode: fullscreen)')
+  isFullscreen: boolean = false;
+
+  isIOSStandalone: boolean = Boolean('standalone' in navigator && navigator.standalone);
+
+  get isRunningAsInstalledApp(): boolean {
+    return this.isIOSStandalone || this.isMinimalUI || this.isStandalone;
+  }
+
   get isDarkMode(): boolean {
     if (this.explicitThemePreference === 'dark') {
       return true;
