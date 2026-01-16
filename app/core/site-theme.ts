@@ -73,6 +73,13 @@ class SiteTheme {
     this.#rootElement.style.colorScheme = this.colorScheme;
     this.#rootElement.classList.add(`${this.theme}-mode`);
     this.#rootElement.classList.remove(this.theme === 'dark' ? 'light-mode' : 'dark-mode');
+
+    // also apply to documentElement for global styles
+    if (this.#rootElement === document.body) {
+      document.documentElement.style.colorScheme = this.colorScheme;
+      document.documentElement.classList.add(`${this.theme}-mode`);
+      document.documentElement.classList.remove(this.theme === 'dark' ? 'light-mode' : 'dark-mode');
+    }
   }
 }
 

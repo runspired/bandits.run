@@ -8,13 +8,6 @@
   box-sizing: border-box;
 }
 
-html {
-  padding: 0;
-  margin: 0;
-  font-family: Montserrat, -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background: var(--theme-fall-beige);
-}
-
 /* 1. Default Light Mode */
 :root {
   /**
@@ -110,9 +103,17 @@ body {
   --theme-tan-black: var(--theme-fall-beige);
   --theme-tan-black-inverse: var(--theme-fall-black);
 
-  background: #fff;
+  background: var(--theme-fall-beige);
   margin: 0;
 }
+
+html {
+  padding: 0;
+  margin: 0;
+  font-family: Montserrat, -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background: var(--theme-fall-beige);
+}
+
 
 /* Utility classes */
 .hidden {
@@ -143,8 +144,9 @@ body {
     --theme-white-black: var(--theme-fall-black);
     --theme-white-black-inverse: var(--theme-fall-white);
     --theme-tan-black: var(--theme-fall-black);
-  --theme-tan-black-inverse: var(--theme-fall-beige);
-    background: #000;
+    --theme-tan-black-inverse: var(--theme-fall-beige);
+
+    background: var(--theme-fall-black);
   }
 }
 
@@ -170,7 +172,8 @@ body.light-mode {
   --theme-white-black-inverse: var(--theme-fall-black);
   --theme-tan-black: var(--theme-fall-beige);
   --theme-tan-black-inverse: var(--theme-fall-black);
-  background: #fff;
+
+  background: var(--theme-fall-beige);
 }
 
 html.dark-mode {
@@ -195,7 +198,7 @@ body.dark-mode {
   --theme-tan-black: var(--theme-fall-black);
   --theme-tan-black-inverse: var(--theme-fall-beige);
 
-  background: #000;
+  background: var(--theme-fall-black);
 }
 
 /* Styles migrated to themed-page.css */
@@ -1238,75 +1241,6 @@ section.page div.content-area {
   }
 }
 
-/* PWA Install Prompt */
-.pwa-prompt {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-  max-width: 500px;
-  width: calc(100% - 40px);
-  animation: slide-up 0.3s ease-out;
-}
-
-.pwa-prompt-content {
-  background: var(--bg-sky);
-  border: 2px solid var(--title);
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
-}
-
-.pwa-prompt-content h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  color: var(--title);
-  font-size: 1.2rem;
-}
-
-.pwa-prompt-content p {
-  margin-bottom: 16px;
-  color: var(--text-primary);
-  line-height: 1.5;
-}
-
-.pwa-prompt-actions {
-  display: flex;
-  gap: 10px;
-  justify-content: flex-end;
-}
-
-.pwa-prompt-actions .btn {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.pwa-prompt-actions .btn-primary {
-  background: var(--title);
-  color: var(--bg-sky);
-}
-
-.pwa-prompt-actions .btn-primary:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
-}
-
-.pwa-prompt-actions .btn-secondary {
-  background: transparent;
-  color: var(--text-primary);
-  border: 1px solid var(--text-primary);
-}
-
-.pwa-prompt-actions .btn-secondary:hover {
-  background: rgb(0 0 0 / 5%);
-}
-
 @keyframes slide-up {
   from {
     transform: translateX(-50%) translateY(100px);
@@ -1515,13 +1449,5 @@ section.page div.content-area {
 
   .settings-section h2 {
     font-size: 1.25rem;
-  }
-
-  .pwa-prompt-actions {
-    flex-direction: column;
-  }
-
-  .pwa-prompt-actions .btn {
-    width: 100%;
   }
 }

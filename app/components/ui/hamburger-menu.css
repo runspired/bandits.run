@@ -1,3 +1,4 @@
+/* stylelint-disable shorthand-property-no-redundant-values */
 /* Hamburger Menu Styles */
 .hamburger-menu-container {
   position: relative;
@@ -53,7 +54,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgb(0 0 0 / 50%);
   z-index: 999;
   opacity: 0;
   animation: fadeIn 0.3s ease forwards;
@@ -69,10 +70,9 @@
   position: absolute;
   background-color: var(--bg-sky);
   padding: 2rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
   animation: slideIn 0.3s ease forwards;
   border: 2px solid var(--title);
-  z-index: 1000;
 }
 
 /* Mobile: Full screen takeover */
