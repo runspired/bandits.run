@@ -1,3 +1,4 @@
+import type { MapState } from "#app/components/maps/-utils/map-state.ts";
 import { withDefaults } from "@warp-drive/core/reactive";
 import { objectSchema } from "@warp-drive/core/types/schema/fields";
 import type { Type } from "@warp-drive/core/types/symbols";
@@ -19,6 +20,7 @@ export interface Location {
   address: Address | null;
   googleMapsLink: string | null;
   descriptionHtml: string | null;
+  mapState: MapState;
   [Type]: 'location';
 }
 
@@ -32,6 +34,7 @@ export const LocationSchema = withDefaults({
     { name: 'address', kind: 'schema-object', type: 'address' },
     { name: 'googleMapsLink', kind: 'field' },
     { name: 'descriptionHtml', kind: 'field' },
+    { name: 'mapState', kind: 'derived', type: 'map-state' },
   ]
 });
 

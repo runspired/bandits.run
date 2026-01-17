@@ -1,6 +1,6 @@
 import { getDevice } from './device';
-import { field, PersistedResource } from './persisted-resource';
-import { matchMedia } from './reactive-match-media';
+import { field, LocalResource } from './utils/storage-resource';
+import { matchMedia } from './reactive/match-media';
 import { cached, tracked } from '@glimmer/tracking';
 import { registerSW } from 'virtual:pwa-register';
 
@@ -90,7 +90,7 @@ export function getDevicePreferences(): DevicePreferences {
  * - {@link DevicePreferences.useCompactMode | useCompactMode}
  * - {@link DevicePreferences.showTimezoneDifferences | showTimezoneDifferences}
  */
-@PersistedResource('device-preferences')
+@LocalResource('device-preferences')
 export class DevicePreferences {
   @field
   useMetricWeather: boolean = false;

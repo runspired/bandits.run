@@ -9,12 +9,14 @@ import PageTitleService from 'ember-page-title/services/page-title';
 const routes = import.meta.glob('./routes/**/*.ts', { eager: true });
 const templates = import.meta.glob('./templates/**/*.gts', { eager: true });
 const services = import.meta.glob('./services/**/*.ts', { eager: true });
+const controllers = import.meta.glob('./controllers/**/*.ts', { eager: true });
 
 const slimModules = {
   './router': Router,
   ...routes,
   ...templates,
   ...services,
+  ...controllers,
   './services/page-title': PageTitleService,
 }
 

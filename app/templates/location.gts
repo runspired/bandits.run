@@ -137,11 +137,10 @@ export default class LocationDisplay extends Component<{
               {{! Fullscreen Map }}
               {{#if this.showFullscreenMap}}
                 <MapLibreFullscreenMap
-                  @locationId={{location.id}}
+                  @mapState={{location.mapState}}
                   @locationName={{location.name}}
                   @lat={{excludeNull location.latitude}}
                   @lng={{excludeNull location.longitude}}
-                  @zoom={{14}}
                   @onClose={{this.closeFullscreenMap}}
                 />
               {{/if}}

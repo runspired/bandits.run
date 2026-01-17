@@ -3,26 +3,30 @@ import { cached, tracked } from '@glimmer/tracking';
 import { modifier } from 'ember-modifier';
 import type { Map, MapOptions, StyleSpecification } from 'maplibre-gl';
 import { getMapLibre } from './maplibre-boundary.gts';
+import { assert } from '@ember/debug';
+import { excludeNull } from '#app/utils/comparison.ts';
+
+interface MapSignature {
+  minZoom?: number;
+  maxZoom?: number;
+  scrollZoom?: boolean;
+  dragPan?: boolean;
+  touchZoomRotate?: boolean;
+  doubleClickZoom?: boolean;
+  style?: string | StyleSpecification;
+  onMoveEnd?: () => void;
+  onZoomEnd?: () => void;
+  onClick?: (lng: number, lat: number) => void;
+  lat: number;
+  lng: number;
+  zoom: number;
+}
 
 interface MapLibreMapSignature {
   Element: HTMLDivElement;
-  Args: {
-    lat: number;
-    lng: number;
-    zoom?: number;
-    minZoom?: number;
-    maxZoom?: number;
-    scrollZoom?: boolean;
-    dragPan?: boolean;
-    touchZoomRotate?: boolean;
-    doubleClickZoom?: boolean;
-    style?: string | StyleSpecification;
-    onMoveEnd?: () => void;
-    onZoomEnd?: () => void;
-    onClick?: (lng: number, lat: number) => void;
-  };
+  Args: MapSignature;
   Blocks: {
-    default: [{ map: Map; }];
+    default: [Map];
   };
 }
 
@@ -49,9 +53,33 @@ function deferredFrame(cb: () => void): Token {
   return token;
 }
 export default class MapLibreMapComponent extends Component<MapLibreMapSignature> {
-  @tracked map: Map | null = null;
+  @tracked initialized: boolean = false;
+  map: Map | null = null;
+  declare cleanup: (() => void);
 
-  setupMap = modifier((element: HTMLElement) => {
+  @cached
+  get allArgs(): MapSignature {
+    return {
+      lat: this.args.lat,
+      lng: this.args.lng,
+      zoom: this.args.zoom,
+      minZoom: this.args.minZoom,
+      maxZoom: this.args.maxZoom,
+      scrollZoom: this.args.scrollZoom,
+      dragPan: this.args.dragPan,
+      touchZoomRotate: this.args.touchZoomRotate,
+      doubleClickZoom: this.args.doubleClickZoom,
+      style: this.args.style,
+      onMoveEnd: this.args.onMoveEnd,
+      onZoomEnd: this.args.onZoomEnd,
+      onClick: this.args.onClick,
+    };
+  }
+
+  #createMap(element: HTMLElement, options: MapSignature) {
+    console.groupCollapsed('Creating MapLibre Map'); // --- IGNORE ---
+    console.trace(); // --- IGNORE ---
+    console.groupEnd();
     const {
       lat,
       lng,
@@ -65,9 +93,10 @@ export default class MapLibreMapComponent extends Component<MapLibreMapSignature
       style = '/map-styles/openstreetmap-us-vector.json',
       onMoveEnd,
       onZoomEnd,
-      onClick,
-    } = this.args;
-
+      onClick
+    } = options;
+    assert('Latitude is required for MapLibreMap', typeof lat === 'number');
+    assert('Longitude is required for MapLibreMap', typeof lng === 'number');
     const maplibregl = getMapLibre();
 
     // Initialize map
@@ -107,23 +136,28 @@ export default class MapLibreMapComponent extends Component<MapLibreMapSignature
 
     // Wait for map to load before storing reference
     map.on('load', () => {
-      this.map = map;
-
       // Event handlers
       if (onMoveEnd) {
-        map.on('moveend', onMoveEnd);
+        map.on('move', onMoveEnd);
       }
       if (onZoomEnd) {
-        map.on('zoomend', onZoomEnd);
+        map.on('zoom', onZoomEnd);
       }
       if (onClick) {
         map.on('click', (e) => {
           onClick(e.lngLat.lng, e.lngLat.lat);
         });
       }
+
+      void Promise.resolve()
+        .then(() => {
+          // Yield map to block
+          this.initialized = true;
+        });
     });
 
-    return () => {
+    const cleanup = () => {
+      console.log('Destroying MapLibre Map'); // --- IGNORE ---
       // Cleanup
       if (token !== null) {
         token.cancelled = true;
@@ -132,16 +166,83 @@ export default class MapLibreMapComponent extends Component<MapLibreMapSignature
       map.remove();
       this.map = null;
     };
+
+    this.cleanup = cleanup;
+    this.map = map;
+  }
+
+  #updateMap(map: Map, options: MapSignature) {
+    console.log('Updating map with new options', options);
+    const {
+      lat,
+      lng,
+      zoom = 13,
+      minZoom = 0,
+      maxZoom = 22,
+      scrollZoom = true,
+      dragPan = true,
+      touchZoomRotate = true,
+      doubleClickZoom = true,
+    } = options;
+    assert('Latitude is required for MapLibreMap', typeof lat === 'number');
+    assert('Longitude is required for MapLibreMap', typeof lng === 'number');
+
+    // Update center and zoom
+    const currentCenter = map.getCenter();
+    const currentZoom = map.getZoom();
+    if (currentCenter.lng !== lng || currentCenter.lat !== lat || currentZoom !== zoom) {
+      map.jumpTo({ center: [lng, lat], zoom });
+    }
+
+    // Update zoom constraints
+    if (map.getMinZoom() !== minZoom) {
+      map.setMinZoom(minZoom);
+    }
+    if (map.getMaxZoom() !== maxZoom) {
+      map.setMaxZoom(maxZoom);
+    }
+
+    // Update interaction settings
+    if (scrollZoom) {
+      map.scrollZoom.enable();
+    } else {
+      map.scrollZoom.disable();
+    }
+
+    if (dragPan) {
+      map.dragPan.enable();
+    } else {
+      map.dragPan.disable();
+    }
+
+    if (touchZoomRotate) {
+      map.touchZoomRotate.enable();
+    } else {
+      map.touchZoomRotate.disable();
+    }
+
+    if (doubleClickZoom) {
+      map.doubleClickZoom.enable();
+    } else {
+      map.doubleClickZoom.disable();
+    }
+  }
+
+  setupMap = modifier((element: HTMLElement, positional: [MapSignature]) => {
+    // If map already exists, update it instead of recreating
+    const { map } = this;
+    if (!map) {
+      this.#createMap(element, positional[0]);
+    } else {
+      this.#updateMap(map, positional[0]);
+    }
   });
 
-  @cached
-  get context() {
-    if (!this.map) {
-      return null;
+  willDestroy(): void {
+    super.willDestroy();
+    if (this.cleanup) {
+      this.cleanup();
     }
-    return {
-      map: this.map,
-    };
   }
 
   <template>
@@ -149,10 +250,10 @@ export default class MapLibreMapComponent extends Component<MapLibreMapSignature
     <div
       class="maplibre-map-container"
       style="width: 100%; height: 100%;"
-      {{this.setupMap}}
+      {{this.setupMap this.allArgs}}
     >
-      {{#if this.context}}
-        {{yield this.context}}
+      {{#if this.initialized}}
+        {{yield (excludeNull this.map)}}
       {{/if}}
     </div>
   </template>

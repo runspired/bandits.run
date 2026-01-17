@@ -1,11 +1,11 @@
 import Component from '@glimmer/component';
 import { service } from '@ember/service';
-import { cached, tracked } from '@glimmer/tracking';
+import { cached } from '@glimmer/tracking';
 import { on } from '@ember/modifier';
 import type RouterService from '@ember/routing/router-service';
 import { Request } from '@warp-drive/ember';
 import ThemedPage from '#layout/themed-page.gts';
-import type { TrailRun } from '#app/data/run.ts';
+import { getMapStateById, type TrailRun } from '#app/data/run.ts';
 import FaIcon from '#ui/fa-icon.gts';
 import {
   faLocationDot,
@@ -26,7 +26,8 @@ import {
 import {
   and,
   eq,
-  excludeNull
+  excludeNull,
+  not
 } from '#app/utils/comparison.ts';
 import './run.css';
 import { getOrgSlug, getRunSlug } from '#app/utils/org.ts';
@@ -87,19 +88,22 @@ export default class OrganizationRunRoute extends Component<{
 }> {
   @service declare router: RouterService;
 
-  @tracked showFullscreenMap = false;
-
   @cached
   get mapStyle() {
     return '/map-styles/openstreetmap-us-vector.json';
   }
 
+  @cached
+  get mapState() {
+    return getMapStateById(`trail-run:${this.args.model.runId}`);
+  }
+
   openFullscreenMap = () => {
-    this.showFullscreenMap = true;
+    this.mapState.active = true;
   }
 
   closeFullscreenMap = () => {
-    this.showFullscreenMap = false;
+    this.mapState.active = false;
   }
 
   <template>
@@ -127,7 +131,7 @@ export default class OrganizationRunRoute extends Component<{
             <div class="run-page">
               {{#if
                 (and
-                  run.location run.location.latitude run.location.longitude
+                  run.location run.location.latitude run.location.longitude (not this.mapState.active)
                 )
               }}
                 <MapLibreBackgroundMap
@@ -249,13 +253,10 @@ export default class OrganizationRunRoute extends Component<{
               </div>
 
               {{! Fullscreen Map }}
-              {{#if this.showFullscreenMap}}
+              {{#if this.mapState.active}}
                 <MapLibreFullscreenMap
-                  @locationId={{run.location.id}}
+                  @mapState={{run.mapState}}
                   @locationName={{run.location.name}}
-                  @lat={{excludeNull run.location.latitude}}
-                  @lng={{excludeNull run.location.longitude}}
-                  @zoom={{14}}
                   @style={{this.mapStyle}}
                   @onClose={{this.closeFullscreenMap}}
                 />

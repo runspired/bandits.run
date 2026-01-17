@@ -2,12 +2,13 @@ import { AddressObjectSchema, LocationSchema } from '#app/data/location.ts';
 import { MonthSchema } from '#app/data/month.ts';
 import { OrganizationSchema } from '#app/data/organization.ts';
 import { RealizedEventDateSchema } from '#app/data/realized-event-date.ts';
-import { getNextOccurrence, RecurrenceObjectSchema, RunOptionObjectSchema, TrailRunSchema } from '#app/data/run.ts';
+import { getMapState, getNextOccurrence, RecurrenceObjectSchema, RunOptionObjectSchema, TrailRunSchema } from '#app/data/run.ts';
 import { ScheduleDaySchema } from '#app/data/schedule.ts';
 import { UserSchema } from '#app/data/user.ts';
 import { WeekSchema } from '#app/data/week.ts';
 import { useLegacyStore } from '@warp-drive/legacy';
 import { JSONAPICache } from '@warp-drive/json-api';
+import { get } from '@ember/helper';
 
 const Store = useLegacyStore({
   linksMode: true,
@@ -30,7 +31,8 @@ const Store = useLegacyStore({
     WeekSchema
   ],
   derivations: [
-    getNextOccurrence
+    getNextOccurrence,
+    getMapState
   ]
 });
 
