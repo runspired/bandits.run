@@ -4,8 +4,8 @@
     "id": "1",
     "attributes": {
       "name": "Skyline Gate",
-      "latitude": 37.831606,
-      "longitude": -122.185388,
+      "lat": 37.831606,
+      "lng": -122.185388,
       "region": "Reinhardt Redwood Regional Park",
       "address": {
         "street": "8490 Skyline Blvd",

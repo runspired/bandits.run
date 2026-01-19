@@ -4,8 +4,8 @@
     "id": "14",
     "attributes": {
       "name": "East Bay",
-      "latitude": null,
-      "longitude": null,
+      "lat": null,
+      "lng": null,
       "region": "East Bay",
       "address": null,
       "googleMapsLink": null,

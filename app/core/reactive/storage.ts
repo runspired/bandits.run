@@ -101,10 +101,9 @@ class ReactiveStorage implements Storage {
   private _storage: Storage;
   private _options: ReactiveStorageOptions;
   private _memoryOnly = false;
-
+  private _values: Record<string, string | null> = {};
   @tracked
-  private _values = trackedObject<{ [key: string]: string | null }>({});
-  private _seen = new Set<string>();
+  private _signals: Record<string, number> = trackedObject<{ [key: string]: number }>({});
 
   @tracked
   private _length = 0;
@@ -158,6 +157,28 @@ class ReactiveStorage implements Storage {
   }
 
   /**
+   * Non-reactive way to peek the current value of a key in Storage
+   */
+  peekItem(key: string): string | null {
+    assert('ReactiveStorage.peekItem: key must be a string', typeof key === 'string');
+    const keyStr = String(key);
+
+    if (this._memoryOnly) {
+      return this._values[keyStr] ?? null;
+    }
+
+    const value = this._values[keyStr];
+    if (value !== undefined) {
+      return value;
+    }
+
+    // Not yet loaded, fetch from storage, but don't track access
+    const item = this._storage.getItem(keyStr);
+    // this._values[keyStr] = item;
+    return item;
+  }
+
+  /**
    * Reactive access to Storage contents
    */
   getItem(key: string): string | null {
@@ -165,18 +186,22 @@ class ReactiveStorage implements Storage {
     const keyStr = String(key);
 
     if (this._memoryOnly) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      this._signals[keyStr]; // track access
       return this._values[keyStr] ?? null;
     }
 
-    const seen = this._seen.has(keyStr);
-    if (seen) {
-      return this._values[keyStr]!;
+    const value = this._values[keyStr];
+    if (value !== undefined) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      this._signals[keyStr]; // track access
+      return value;
     }
 
     // Not yet loaded, fetch from storage
     const item = this._storage.getItem(keyStr);
     this._values[keyStr] = item;
-    this._seen.add(keyStr);
+    this._signals[keyStr] = 1;
     return item;
   }
 
@@ -190,6 +215,13 @@ class ReactiveStorage implements Storage {
     // Coerce to strings to match Storage API behavior
     const keyStr = String(key);
     const valueStr = String(value);
+    const current = this._values[keyStr];
+    if (current === valueStr) {
+      // No change
+      return;
+    }
+
+    // console.trace(`set field ${key} => ${String(value)}`);
 
     if (this._memoryOnly) {
       const currentValue = this._values[keyStr];
@@ -197,20 +229,21 @@ class ReactiveStorage implements Storage {
         this._length += 1;
       }
       this._values[keyStr] = valueStr;
+      this._signals[keyStr] = (this._signals[keyStr] || 0) + 1;
       return;
     }
 
     try {
       this._storage.setItem(keyStr, valueStr);
       this._values[keyStr] = valueStr;
+      this._signals[keyStr] = (this._signals[keyStr] || 0) + 1;
       this._length = this._storage.length;
-      this._seen.add(keyStr);
     } catch (error) {
       if (isQuotaExceededError(error)) {
         if (this._options.updateOnQuotaExceeded) {
           // Update tracked state even though write failed
           this._values[keyStr] = valueStr;
-          this._seen.add(keyStr);
+          this._signals[keyStr] = (this._signals[keyStr] || 0) + 1;
         }
 
         if (this._options.onQuotaExceeded) {
@@ -249,15 +282,16 @@ class ReactiveStorage implements Storage {
 
     this._storage.removeItem(keyStr);
     this._values[keyStr] = null;
+    this._signals[keyStr] = (this._signals[keyStr] || 0) + 1;
     this._length = this._storage.length;
-    this._seen.add(keyStr);
   }
 
   /**
    * Clears all keys from Storage, triggering reactivity
    */
   clear(): void {
-    this._values = trackedObject<{ [key: string]: string | null }>({});
+    this._values = {};
+    this._signals = trackedObject<{ [key: string]: number }>({});
     this._length = 0;
 
     if (this._memoryOnly) {
@@ -265,7 +299,6 @@ class ReactiveStorage implements Storage {
     }
 
     this._storage.clear();
-    this._seen.clear();
   }
 
   /**

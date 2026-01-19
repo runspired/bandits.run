@@ -69,10 +69,6 @@
         "data": [
           {
             "type": "realized-event-date",
-            "id": "3-tues-run-club-2026-01-06"
-          },
-          {
-            "type": "realized-event-date",
             "id": "3-tues-run-club-2026-01-13"
           },
           {
@@ -278,6 +274,10 @@
           {
             "type": "realized-event-date",
             "id": "3-tues-run-club-2027-01-05"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "3-tues-run-club-2027-01-12"
           }
         ]
       }
@@ -289,8 +289,8 @@
       "id": "1",
       "attributes": {
         "name": "Skyline Gate",
-        "latitude": 37.831606,
-        "longitude": -122.185388,
+        "lat": 37.831606,
+        "lng": -122.185388,
         "region": "Reinhardt Redwood Regional Park",
         "address": {
           "street": "8490 Skyline Blvd",
@@ -348,16 +348,6 @@
         "instagramHandle": "thomasstitt",
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "3-tues-run-club-2026-01-06",
-      "attributes": {
-        "date": "2026-01-06",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -876,6 +866,16 @@
         "date": "2027-01-05",
         "weekNumberMonday": 2,
         "weekNumberSunday": 2
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "3-tues-run-club-2027-01-12",
+      "attributes": {
+        "date": "2027-01-12",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
       },
       "relationships": {}
     }

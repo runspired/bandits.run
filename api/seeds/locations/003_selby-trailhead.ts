@@ -3,8 +3,8 @@ import type { Location } from "../../interfaces/location";
 export const data = {
   "name": "Selby Trailhead",
   "region": "Tilden Regional Park",
-  latitude: 37.904384,
-  longitude: -122.267624,
+  lat: 37.904384,
+  lng: -122.267624,
   "address": {
     "street": "551 Wildcat Canyon Rd",
     "city": "Kensington",

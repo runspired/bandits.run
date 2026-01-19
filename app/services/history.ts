@@ -1,9 +1,9 @@
 import Service, { service } from '@ember/service';
 import type RouterService from '@ember/routing/router-service';
-import { field, PersistedResource } from '#app/core/persisted-resource.ts';
+import { field, LocalResource } from '#app/core/utils/storage-resource.ts';
 import { getTheme } from '#app/core/site-theme.ts';
 
-@PersistedResource('route-history')
+@LocalResource('route-history')
 class HistoryService extends Service {
   @service declare router: RouterService;
 

@@ -8,12 +8,18 @@ export function both(a: unknown, b: unknown): boolean {
  * Logical OR operation: returns the first truthy param
  * or the last param if all are falsy
  */
-export function or(...args: unknown[]): boolean {
-    assert(
+export function or<T>(...args: T[]): T {
+  assert(
     `You must pass at least two params to the or helper`,
     args.length > 1
   );
-  return args.some(Boolean);
+  for (const arg of args) {
+    if (arg) {
+      return arg;
+    }
+  }
+
+  return args[args.length - 1]!;
 }
 
 /**
@@ -47,7 +53,7 @@ export function ifEven<A, B>(v: number, a: A, b: B): A | B {
   return v % 2 === 0 ? a : b;
 }
 
-export function excludeNull<T>(value: T | null): T {
-  assert('Value is not null', value !== null);
+export function excludeNull<T>(value: T | null | undefined) : T {
+  assert('Value is not null or undefined', value !== null && value !== undefined);
   return value;
 }

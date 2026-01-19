@@ -4,8 +4,8 @@
     "id": "5",
     "attributes": {
       "name": "Lafayette Community Park",
-      "latitude": 37.860661,
-      "longitude": -122.101127,
+      "lat": 37.860661,
+      "lng": -122.101127,
       "region": "Las Trampas Regional Wilderness",
       "address": {
         "street": "480 St Marys Rd",

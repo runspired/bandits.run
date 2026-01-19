@@ -3,8 +3,8 @@ import type { Location } from "../../interfaces/location";
 export const data = {
   "name": "Meadows Picnic Area",
   "region": "Tilden Regional Park",
-  latitude: 37.903956,
-  longitude: -122.260391,
+  lat: 37.903956,
+  lng: -122.260391,
   "address": {
     "street": "Central Park Dr",
     "city": "Kensington",

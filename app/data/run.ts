@@ -5,6 +5,7 @@ import type { Organization } from "./organization";
 import type { User } from "./user";
 import type { RealizedEventDate } from "./realized-event-date";
 import { withLegacy } from "./-utils";
+import { MapState } from "#app/components/maps/-utils/map-state.ts";
 
 export interface TrailRun {
   id: string;
@@ -23,6 +24,7 @@ export interface TrailRun {
   owner: Organization;
   occurrences: RealizedEventDate[];
   nextOccurrence: string | null;
+  mapState: MapState;
   [Type]: 'trail-run';
 }
 
@@ -44,6 +46,7 @@ export const TrailRunSchema = withLegacy({
     { name: 'owner', kind: 'belongsTo', type: 'organization', options: { async: false, inverse: 'runs' } },
     { name: 'occurrences', kind: 'hasMany', type: 'realized-event-date', options: { async: false, inverse: 'event' } },
     { name: 'nextOccurrence', kind: 'derived', type: 'next-occurrence-finder' },
+    { name: 'mapState', kind: 'derived', type: 'map-state' }
   ]
 });
 
@@ -233,4 +236,35 @@ function getNextOccurrence(record: unknown): string | null {
 }
 getNextOccurrence[Type] = 'next-occurrence-finder';
 
-export { getNextOccurrence };
+type MapKeyId = `trail-run:${string}` | `location:${string}`;
+const MapStates = new Map<string, MapState>();
+
+/**
+ * Get or create a {@link MapState} by its unique {@link MapKeyId} identifier
+ *
+ */
+export function getMapStateById(id: MapKeyId): MapState {
+  const existing = MapStates.get(id);
+  if (existing) {
+    return existing;
+  }
+  const state = new MapState(id);
+  MapStates.set(id, state);
+  return state;
+}
+
+/**
+ * Get MapState for a run
+ */
+function getMapState(record: unknown): unknown {
+  const run = record as TrailRun | Location;
+  const location = run.$type === 'trail-run' ? run.location : run;
+  const state = getMapStateById(`${run.$type}:${run.id}`);
+
+  state.initialize(location);
+
+  return state;
+}
+getMapState[Type] = 'map-state';
+
+export { getNextOccurrence, getMapState };

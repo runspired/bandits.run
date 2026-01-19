@@ -3,8 +3,8 @@ import type { Location } from "../../interfaces/location";
 export const data = {
   "name": "Tennessee Valley",
   "region": "Marin Headlands",
-  latitude: 37.860590,
-  longitude: -122.535940,
+  lat: 37.860590,
+  lng: -122.535940,
   "address": {
     "street": "591 Tennessee Valley Rd",
     "city": "Mill Valley",

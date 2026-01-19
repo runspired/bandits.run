@@ -1,11 +1,11 @@
 import Component from '@glimmer/component';
 import { service } from '@ember/service';
-import { cached, tracked } from '@glimmer/tracking';
+import { cached } from '@glimmer/tracking';
 import { on } from '@ember/modifier';
 import type RouterService from '@ember/routing/router-service';
 import { Request } from '@warp-drive/ember';
 import ThemedPage from '#layout/themed-page.gts';
-import type { TrailRun } from '#app/data/run.ts';
+import { getMapStateById, type TrailRun } from '#app/data/run.ts';
 import FaIcon from '#ui/fa-icon.gts';
 import {
   faLocationDot,
@@ -26,7 +26,8 @@ import {
 import {
   and,
   eq,
-  excludeNull
+  excludeNull,
+  not
 } from '#app/utils/comparison.ts';
 import './run.css';
 import { getOrgSlug, getRunSlug } from '#app/utils/org.ts';
@@ -87,19 +88,19 @@ export default class OrganizationRunRoute extends Component<{
 }> {
   @service declare router: RouterService;
 
-  @tracked showFullscreenMap = false;
-
   @cached
   get mapStyle() {
     return '/map-styles/openstreetmap-us-vector.json';
   }
 
   openFullscreenMap = () => {
-    this.showFullscreenMap = true;
+    const state = getMapStateById(`trail-run:${this.args.model.runId}`);
+    state.active = true;
   }
 
   closeFullscreenMap = () => {
-    this.showFullscreenMap = false;
+    const state = getMapStateById(`trail-run:${this.args.model.runId}`);
+    state.active = false;
   }
 
   <template>
@@ -127,12 +128,12 @@ export default class OrganizationRunRoute extends Component<{
             <div class="run-page">
               {{#if
                 (and
-                  run.location run.location.latitude run.location.longitude
+                  run.location run.location.lat run.location.lng (not run.mapState.active)
                 )
               }}
                 <MapLibreBackgroundMap
-                  @lat={{excludeNull run.location.latitude}}
-                  @lng={{excludeNull run.location.longitude}}
+                  @lat={{excludeNull run.location.lat}}
+                  @lng={{excludeNull run.location.lng}}
                   @zoom={{12}}
                   @minZoom={{8}}
                   @maxZoom={{18}}
@@ -200,7 +201,7 @@ export default class OrganizationRunRoute extends Component<{
                           </a>
                         {{/if}}
                         {{#if
-                          (and run.location.latitude run.location.longitude)
+                          (and run.location.lat run.location.lng)
                         }}
                           <button
                             type="button"
@@ -249,13 +250,12 @@ export default class OrganizationRunRoute extends Component<{
               </div>
 
               {{! Fullscreen Map }}
-              {{#if this.showFullscreenMap}}
+              {{#if run.mapState.active}}
                 <MapLibreFullscreenMap
-                  @locationId={{run.location.id}}
+                  @mapState={{run.mapState}}
+                  @lat={{excludeNull run.location.lat}}
+                  @lng={{excludeNull run.location.lng}}
                   @locationName={{run.location.name}}
-                  @lat={{excludeNull run.location.latitude}}
-                  @lng={{excludeNull run.location.longitude}}
-                  @zoom={{14}}
                   @style={{this.mapStyle}}
                   @onClose={{this.closeFullscreenMap}}
                 />

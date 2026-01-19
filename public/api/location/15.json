@@ -4,8 +4,8 @@
     "id": "15",
     "attributes": {
       "name": "SCA Trailhead",
-      "latitude": 37.832273,
-      "longitude": -122.482329,
+      "lat": 37.832273,
+      "lng": -122.482329,
       "region": "Marin Headlands",
       "address": {
         "street": "Conzelman Rd",

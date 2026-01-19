@@ -148,6 +148,10 @@
           {
             "type": "realized-event-date",
             "id": "1-the-saturday-chabot-2026-12-19"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-the-saturday-chabot-2027-01-16"
           }
         ]
       }
@@ -159,8 +163,8 @@
       "id": "4",
       "attributes": {
         "name": "Proctor Staging Area",
-        "latitude": 37.721359,
-        "longitude": -122.076503,
+        "lat": 37.721359,
+        "lng": -122.076503,
         "region": "Chabot Regional Park",
         "address": {
           "street": "Redwood Rd",
@@ -350,6 +354,16 @@
         "date": "2026-12-19",
         "weekNumberMonday": 51,
         "weekNumberSunday": 51
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-the-saturday-chabot-2027-01-16",
+      "attributes": {
+        "date": "2027-01-16",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
       },
       "relationships": {}
     }

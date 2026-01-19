@@ -348,10 +348,6 @@
           "data": [
             {
               "type": "realized-event-date",
-              "id": "2-beer-bucket-2026-01-04"
-            },
-            {
-              "type": "realized-event-date",
               "id": "2-beer-bucket-2026-01-11"
             },
             {
@@ -557,6 +553,10 @@
             {
               "type": "realized-event-date",
               "id": "2-beer-bucket-2027-01-03"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2027-01-10"
             }
           ]
         }
@@ -660,10 +660,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "1-runday-2026-01-05"
-            },
             {
               "type": "realized-event-date",
               "id": "1-runday-2026-01-12"
@@ -871,6 +867,10 @@
             {
               "type": "realized-event-date",
               "id": "1-runday-2027-01-04"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-runday-2027-01-11"
             }
           ]
         }
@@ -959,10 +959,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "6-tuesday-night-2026-01-06"
-            },
             {
               "type": "realized-event-date",
               "id": "6-tuesday-night-2026-01-13"
@@ -1170,6 +1166,10 @@
             {
               "type": "realized-event-date",
               "id": "6-tuesday-night-2027-01-05"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2027-01-12"
             }
           ]
         }
@@ -1258,10 +1258,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "4-tilden-tues-2026-01-06"
-            },
             {
               "type": "realized-event-date",
               "id": "4-tilden-tues-2026-01-13"
@@ -1469,6 +1465,10 @@
             {
               "type": "realized-event-date",
               "id": "4-tilden-tues-2027-01-05"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "4-tilden-tues-2027-01-12"
             }
           ]
         }
@@ -1542,10 +1542,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "3-tues-run-club-2026-01-06"
-            },
             {
               "type": "realized-event-date",
               "id": "3-tues-run-club-2026-01-13"
@@ -1753,6 +1749,10 @@
             {
               "type": "realized-event-date",
               "id": "3-tues-run-club-2027-01-05"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "3-tues-run-club-2027-01-12"
             }
           ]
         }
@@ -1856,10 +1856,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "5-tam-wednesday-2026-01-07"
-            },
             {
               "type": "realized-event-date",
               "id": "5-tam-wednesday-2026-01-14"
@@ -2067,6 +2063,10 @@
             {
               "type": "realized-event-date",
               "id": "5-tam-wednesday-2027-01-06"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "5-tam-wednesday-2027-01-13"
             }
           ]
         }
@@ -2144,10 +2144,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "1-runrise-2026-01-08"
-            },
             {
               "type": "realized-event-date",
               "id": "1-runrise-2026-01-15"
@@ -2355,6 +2351,10 @@
             {
               "type": "realized-event-date",
               "id": "1-runrise-2027-01-07"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-runrise-2027-01-14"
             }
           ]
         }
@@ -2428,10 +2428,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "5-ninja-thursday-2026-01-08"
-            },
             {
               "type": "realized-event-date",
               "id": "5-ninja-thursday-2026-01-15"
@@ -2639,6 +2635,10 @@
             {
               "type": "realized-event-date",
               "id": "5-ninja-thursday-2027-01-07"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "5-ninja-thursday-2027-01-14"
             }
           ]
         }
@@ -2712,10 +2712,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "6-thursday-night-2026-01-08"
-            },
             {
               "type": "realized-event-date",
               "id": "6-thursday-night-2026-01-15"
@@ -2923,6 +2919,10 @@
             {
               "type": "realized-event-date",
               "id": "6-thursday-night-2027-01-07"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2027-01-14"
             }
           ]
         }
@@ -2996,10 +2996,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-01-10"
-            },
             {
               "type": "realized-event-date",
               "id": "5-headlands-saturday-2026-01-17"
@@ -3207,6 +3203,10 @@
             {
               "type": "realized-event-date",
               "id": "5-headlands-saturday-2027-01-09"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "5-headlands-saturday-2027-01-16"
             }
           ]
         }
@@ -3316,10 +3316,6 @@
           "data": [
             {
               "type": "realized-event-date",
-              "id": "1-the-saturday-tilden-2026-01-10"
-            },
-            {
-              "type": "realized-event-date",
               "id": "1-the-saturday-tilden-2026-02-14"
             },
             {
@@ -3375,8 +3371,8 @@
       "id": "14",
       "attributes": {
         "name": "East Bay",
-        "latitude": null,
-        "longitude": null,
+        "lat": null,
+        "lng": null,
         "region": "East Bay",
         "address": null,
         "googleMapsLink": null,
@@ -3428,23 +3424,6 @@
         "stravaId": "97687403",
         "instagramHandle": "traillove_kb",
         "descriptionHtml": null
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "2-beer-bucket-2026-01-04",
-      "attributes": {
-        "date": "2026-01-04",
-        "weekNumberMonday": 1,
-        "weekNumberSunday": 2
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "2-beer-bucket"
-          }
-        }
       }
     },
     {
@@ -4315,12 +4294,29 @@
       }
     },
     {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2027-01-10",
+      "attributes": {
+        "date": "2027-01-10",
+        "weekNumberMonday": 2,
+        "weekNumberSunday": 3
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
       "type": "location",
       "id": "1",
       "attributes": {
         "name": "Skyline Gate",
-        "latitude": 37.831606,
-        "longitude": -122.185388,
+        "lat": 37.831606,
+        "lng": -122.185388,
         "region": "Reinhardt Redwood Regional Park",
         "address": {
           "street": "8490 Skyline Blvd",
@@ -4377,23 +4373,6 @@
         "stravaId": "runspired",
         "instagramHandle": "runspired",
         "descriptionHtml": null
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-runday-2026-01-05",
-      "attributes": {
-        "date": "2026-01-05",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "1-runday"
-          }
-        }
       }
     },
     {
@@ -5264,12 +5243,29 @@
       }
     },
     {
+      "type": "realized-event-date",
+      "id": "1-runday-2027-01-11",
+      "attributes": {
+        "date": "2027-01-11",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "1-runday"
+          }
+        }
+      }
+    },
+    {
       "type": "location",
       "id": "11",
       "attributes": {
         "name": "Tennessee Valley",
-        "latitude": 37.86059,
-        "longitude": -122.53594,
+        "lat": 37.86059,
+        "lng": -122.53594,
         "region": "Marin Headlands",
         "address": {
           "street": "591 Tennessee Valley Rd",
@@ -5326,23 +5322,6 @@
         "stravaId": "309460",
         "instagramHandle": "dans_wildlife",
         "descriptionHtml": null
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "6-tuesday-night-2026-01-06",
-      "attributes": {
-        "date": "2026-01-06",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "6-tuesday-night"
-          }
-        }
       }
     },
     {
@@ -6213,12 +6192,29 @@
       }
     },
     {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2027-01-12",
+      "attributes": {
+        "date": "2027-01-12",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-tuesday-night"
+          }
+        }
+      }
+    },
+    {
       "type": "location",
       "id": "7",
       "attributes": {
         "name": "Lone Oak Trailhead",
-        "latitude": 37.905756,
-        "longitude": -122.261288,
+        "lat": 37.905756,
+        "lng": -122.261288,
         "region": "Tilden Regional Park",
         "address": {
           "street": "199 Loop Rd",
@@ -6275,23 +6271,6 @@
         "stravaId": "12268454",
         "instagramHandle": "nedword",
         "descriptionHtml": null
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "4-tilden-tues-2026-01-06",
-      "attributes": {
-        "date": "2026-01-06",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "4-tilden-tues"
-          }
-        }
       }
     },
     {
@@ -7162,6 +7141,23 @@
       }
     },
     {
+      "type": "realized-event-date",
+      "id": "4-tilden-tues-2027-01-12",
+      "attributes": {
+        "date": "2027-01-12",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "4-tilden-tues"
+          }
+        }
+      }
+    },
+    {
       "type": "organization",
       "id": "3",
       "attributes": {
@@ -7206,23 +7202,6 @@
         "stravaId": "2175208",
         "instagramHandle": "thomasstitt",
         "descriptionHtml": null
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "3-tues-run-club-2026-01-06",
-      "attributes": {
-        "date": "2026-01-06",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "3-tues-run-club"
-          }
-        }
       }
     },
     {
@@ -8093,12 +8072,29 @@
       }
     },
     {
+      "type": "realized-event-date",
+      "id": "3-tues-run-club-2027-01-12",
+      "attributes": {
+        "date": "2027-01-12",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "3-tues-run-club"
+          }
+        }
+      }
+    },
+    {
       "type": "location",
       "id": "8",
       "attributes": {
         "name": "Mill Valley Depot",
-        "latitude": 37.906024,
-        "longitude": -122.548075,
+        "lat": 37.906024,
+        "lng": -122.548075,
         "region": "Mt. Tamalpais",
         "address": {
           "street": "87 Throckmorton Ave",
@@ -8155,23 +8151,6 @@
         "stravaId": "2860482",
         "instagramHandle": "from_here_we_go",
         "descriptionHtml": null
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "5-tam-wednesday-2026-01-07",
-      "attributes": {
-        "date": "2026-01-07",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "5-tam-wednesday"
-          }
-        }
       }
     },
     {
@@ -9042,12 +9021,29 @@
       }
     },
     {
+      "type": "realized-event-date",
+      "id": "5-tam-wednesday-2027-01-13",
+      "attributes": {
+        "date": "2027-01-13",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "5-tam-wednesday"
+          }
+        }
+      }
+    },
+    {
       "type": "location",
       "id": "2",
       "attributes": {
         "name": "Serpentine Prairie",
-        "latitude": 37.80348,
-        "longitude": -122.176789,
+        "lat": 37.80348,
+        "lng": -122.176789,
         "region": "Reinhardt Redwood Regional Park",
         "address": {
           "street": "11500 Skyline Blvd",
@@ -9085,23 +9081,6 @@
         "stravaId": null,
         "instagramHandle": null,
         "descriptionHtml": null
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-runrise-2026-01-08",
-      "attributes": {
-        "date": "2026-01-08",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "1-runrise"
-          }
-        }
       }
     },
     {
@@ -9972,12 +9951,29 @@
       }
     },
     {
+      "type": "realized-event-date",
+      "id": "1-runrise-2027-01-14",
+      "attributes": {
+        "date": "2027-01-14",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "1-runrise"
+          }
+        }
+      }
+    },
+    {
       "type": "location",
       "id": "15",
       "attributes": {
         "name": "SCA Trailhead",
-        "latitude": 37.832273,
-        "longitude": -122.482329,
+        "lat": 37.832273,
+        "lng": -122.482329,
         "region": "Marin Headlands",
         "address": {
           "street": "Conzelman Rd",
@@ -9987,23 +9983,6 @@
         },
         "googleMapsLink": "https://maps.app.goo.gl/gYdG5fCJjsbJ4SY56",
         "descriptionHtml": null
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "5-ninja-thursday-2026-01-08",
-      "attributes": {
-        "date": "2026-01-08",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "5-ninja-thursday"
-          }
-        }
       }
     },
     {
@@ -10875,17 +10854,17 @@
     },
     {
       "type": "realized-event-date",
-      "id": "6-thursday-night-2026-01-08",
+      "id": "5-ninja-thursday-2027-01-14",
       "attributes": {
-        "date": "2026-01-08",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
+        "date": "2027-01-14",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
       },
       "relationships": {
         "event": {
           "data": {
             "type": "trail-run",
-            "id": "6-thursday-night"
+            "id": "5-ninja-thursday"
           }
         }
       }
@@ -11758,12 +11737,29 @@
       }
     },
     {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2027-01-14",
+      "attributes": {
+        "date": "2027-01-14",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "6-thursday-night"
+          }
+        }
+      }
+    },
+    {
       "type": "location",
       "id": "10",
       "attributes": {
         "name": "SFRC Mill Valley",
-        "latitude": 37.881261,
-        "longitude": -122.524734,
+        "lat": 37.881261,
+        "lng": -122.524734,
         "region": "Marin Headlands",
         "address": {
           "street": "247 Shoreline Hwy",
@@ -11773,23 +11769,6 @@
         },
         "googleMapsLink": "https://maps.app.goo.gl/KzkAdvxe19owTXTc9",
         "descriptionHtml": null
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-01-10",
-      "attributes": {
-        "date": "2026-01-10",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "5-headlands-saturday"
-          }
-        }
       }
     },
     {
@@ -12660,12 +12639,29 @@
       }
     },
     {
+      "type": "realized-event-date",
+      "id": "5-headlands-saturday-2027-01-16",
+      "attributes": {
+        "date": "2027-01-16",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "5-headlands-saturday"
+          }
+        }
+      }
+    },
+    {
       "type": "location",
       "id": "3",
       "attributes": {
         "name": "Selby Trailhead",
-        "latitude": 37.904384,
-        "longitude": -122.267624,
+        "lat": 37.904384,
+        "lng": -122.267624,
         "region": "Tilden Regional Park",
         "address": {
           "street": "551 Wildcat Canyon Rd",
@@ -12689,23 +12685,6 @@
         "stravaId": "7278715",
         "instagramHandle": null,
         "descriptionHtml": null
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-the-saturday-tilden-2026-01-10",
-      "attributes": {
-        "date": "2026-01-10",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "1-the-saturday-tilden"
-          }
-        }
       }
     },
     {

@@ -3,8 +3,8 @@ import type { Location } from "../../interfaces/location";
 export const data = {
   name: "Skyline Gate",
   region: "Reinhardt Redwood Regional Park",
-  latitude: 37.831606,
-  longitude: -122.185388,
+  lat: 37.831606,
+  lng: -122.185388,
   address: {
     street: "8490 Skyline Blvd",
     city: "Oakland",

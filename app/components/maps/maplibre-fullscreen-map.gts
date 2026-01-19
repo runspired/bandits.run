@@ -16,13 +16,15 @@ import { getDevicePreferences } from '#app/core/preferences.ts';
 import type { Map } from 'maplibre-gl';
 import type { StyleSpecification } from 'maplibre-gl';
 import type { PolygonPoint } from '#app/utils/tile-preloader.ts';
+import type { MapState } from './-utils/map-state';
 
 interface MapLibreFullscreenMapSignature {
   Args: {
     /**
-     * Location ID for caching
+     * The MapState instance to persist map state
+     * like center and zoom level
      */
-    locationId: string;
+    mapState: MapState;
 
     /**
      * Location name for display
@@ -30,19 +32,14 @@ interface MapLibreFullscreenMapSignature {
     locationName: string;
 
     /**
-     * Center latitude
+     * Location latitude
      */
     lat: number;
 
     /**
-     * Center longitude
+     * Location longitude
      */
     lng: number;
-
-    /**
-     * Initial zoom level (default: 14)
-     */
-    zoom?: number;
 
     /**
      * Map style (default: OpenStreetMap style)
@@ -62,7 +59,6 @@ export default class MapLibreFullscreenMap extends Component<MapLibreFullscreenM
   preferences = getDevicePreferences();
 
   map: Map | null = null;
-  currentZoom: number = this.args.zoom ?? 14;
   locationWatchId: number | null = null;
 
   @tracked
@@ -127,7 +123,6 @@ export default class MapLibreFullscreenMap extends Component<MapLibreFullscreenM
     // Watch position with high accuracy
     this.locationWatchId = navigator.geolocation.watchPosition(
       (position) => {
-        console.log('Received location update:', position);
         const { latitude, longitude } = position.coords;
 
         this.userLocation = { lat: latitude, lng: longitude };
@@ -152,9 +147,10 @@ export default class MapLibreFullscreenMap extends Component<MapLibreFullscreenM
     this.userLocation = null;
   };
 
-  storeMapReference = (context: { map: Map } | null) => {
+  storeMapReference = (context: Map| null) => {
+    // console.log('Storing map reference in fullscreen map component', context, this.map);
     if (context && !this.map) {
-      this.map = context.map;
+      this.map = context;
     }
   }
 
@@ -183,6 +179,21 @@ export default class MapLibreFullscreenMap extends Component<MapLibreFullscreenM
     this.polygon = null;
   };
 
+  updateLocation = () => {
+    const center = this.map?.getCenter();
+    if (center) {
+      this.args.mapState.lng = center.lng // Number(center.lng.toFixed(5));
+      this.args.mapState.lat = center.lat // Number(center.lat.toFixed(5));
+    }
+  }
+
+  updateZoom = () => {
+    const zoom = this.map?.getZoom();
+    if (zoom) {
+      this.args.mapState.zoom = zoom;
+    }
+  }
+
   <template>
     {{#in-element this.portals.takeover}}
       {{! template-lint-disable no-inline-styles }}
@@ -201,10 +212,10 @@ export default class MapLibreFullscreenMap extends Component<MapLibreFullscreenM
           {{! Download button - bottom right }}
           <div class="fullscreen-map-download">
             <MapDownloadButton
-              @locationId={{@locationId}}
+              @locationId={{@mapState.id}}
               @locationName={{@locationName}}
-              @lat={{@lat}}
-              @lng={{@lng}}
+              @lat={{@mapState.lat}}
+              @lng={{@mapState.lng}}
               @getMap={{this.getMap}}
               @polygon={{this.polygon}}
               @onStartPolygonSelection={{this.startPolygonSelection}}
@@ -225,34 +236,34 @@ export default class MapLibreFullscreenMap extends Component<MapLibreFullscreenM
 
           <MapLibreBoundary>
             <MapLibreMap
-              @lat={{@lat}}
-              @lng={{@lng}}
-              @zoom={{this.currentZoom}}
+              @lat={{@mapState.lat}}
+              @lng={{@mapState.lng}}
+              @zoom={{@mapState.zoom}}
+              @onMoveEnd={{this.updateLocation}}
+              @onZoomEnd={{this.updateZoom}}
               @style={{@style}}
               as |context|
             >
-              {{#if context}}
-                {{this.storeMapReference context}}
+            {{this.storeMapReference context}}
+            <MapLibreMarker
+              @context={{context}}
+              @lat={{@lat}}
+              @lng={{@lng}}
+              @title={{@locationName}}
+            />
+
+            {{! User location marker }}
+            {{#if this.userLocation}}
+              {{#if this.userLocationElement}}
                 <MapLibreMarker
                   @context={{context}}
-                  @lat={{@lat}}
-                  @lng={{@lng}}
-                  @title={{@locationName}}
+                  @lat={{this.userLocation.lat}}
+                  @lng={{this.userLocation.lng}}
+                  @title="Your Location"
+                  @element={{this.userLocationElement}}
                 />
-
-                {{! User location marker }}
-                {{#if this.userLocation}}
-                  {{#if this.userLocationElement}}
-                    <MapLibreMarker
-                      @context={{context}}
-                      @lat={{this.userLocation.lat}}
-                      @lng={{this.userLocation.lng}}
-                      @title="Your Location"
-                      @element={{this.userLocationElement}}
-                    />
-                  {{/if}}
-                {{/if}}
               {{/if}}
+            {{/if}}
             </MapLibreMap>
           </MapLibreBoundary>
         </div>

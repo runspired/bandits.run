@@ -70,10 +70,6 @@
           "data": [
             {
               "type": "realized-event-date",
-              "id": "6-thursday-night-2026-01-08"
-            },
-            {
-              "type": "realized-event-date",
               "id": "6-thursday-night-2026-01-15"
             },
             {
@@ -279,6 +275,10 @@
             {
               "type": "realized-event-date",
               "id": "6-thursday-night-2027-01-07"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-thursday-night-2027-01-14"
             }
           ]
         }
@@ -367,10 +367,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "6-tuesday-night-2026-01-06"
-            },
             {
               "type": "realized-event-date",
               "id": "6-tuesday-night-2026-01-13"
@@ -578,6 +574,10 @@
             {
               "type": "realized-event-date",
               "id": "6-tuesday-night-2027-01-05"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "6-tuesday-night-2027-01-12"
             }
           ]
         }
@@ -590,8 +590,8 @@
       "id": "11",
       "attributes": {
         "name": "Tennessee Valley",
-        "latitude": 37.86059,
-        "longitude": -122.53594,
+        "lat": 37.86059,
+        "lng": -122.53594,
         "region": "Marin Headlands",
         "address": {
           "street": "591 Tennessee Valley Rd",
@@ -649,16 +649,6 @@
         "instagramHandle": "dans_wildlife",
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "6-thursday-night-2026-01-08",
-      "attributes": {
-        "date": "2026-01-08",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -1182,11 +1172,11 @@
     },
     {
       "type": "realized-event-date",
-      "id": "6-tuesday-night-2026-01-06",
+      "id": "6-thursday-night-2027-01-14",
       "attributes": {
-        "date": "2026-01-06",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
+        "date": "2027-01-14",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
       },
       "relationships": {}
     },
@@ -1707,6 +1697,16 @@
         "date": "2027-01-05",
         "weekNumberMonday": 2,
         "weekNumberSunday": 2
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-tuesday-night-2027-01-12",
+      "attributes": {
+        "date": "2027-01-12",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
       },
       "relationships": {}
     }

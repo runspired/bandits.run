@@ -1,8 +1,8 @@
 import { assert } from '@ember/debug';
-import { effect, PersistedResource } from './persisted-resource';
-import { matchMedia } from './reactive-match-media';
+import { effect, LocalResource } from './utils/storage-resource';
+import { matchMedia } from './reactive/match-media';
 
-@PersistedResource('site-theme')
+@LocalResource('site-theme')
 class SiteTheme {
   /**
    * The root HTML element (for applying color-scheme styles)

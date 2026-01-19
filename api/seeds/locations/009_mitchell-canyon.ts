@@ -3,8 +3,8 @@ import type { Location } from "../../interfaces/location";
 export const data = {
   "name": "Mitchell Canyon",
   "region": "Mt. Diablo",
-  latitude: 37.920490,
-  longitude: -121.941554,
+  lat: 37.920490,
+  lng: -121.941554,
   "address": {
     "street": "96 Mitchell Canyon Rd",
     "city": "Clayton",

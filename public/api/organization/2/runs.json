@@ -100,10 +100,6 @@
           "data": [
             {
               "type": "realized-event-date",
-              "id": "2-beer-bucket-2026-01-04"
-            },
-            {
-              "type": "realized-event-date",
               "id": "2-beer-bucket-2026-01-11"
             },
             {
@@ -309,6 +305,10 @@
             {
               "type": "realized-event-date",
               "id": "2-beer-bucket-2027-01-03"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2027-01-10"
             }
           ]
         }
@@ -473,8 +473,8 @@
       "id": "14",
       "attributes": {
         "name": "East Bay",
-        "latitude": null,
-        "longitude": null,
+        "lat": null,
+        "lng": null,
         "region": "East Bay",
         "address": null,
         "googleMapsLink": null,
@@ -527,16 +527,6 @@
         "instagramHandle": "traillove_kb",
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "2-beer-bucket-2026-01-04",
-      "attributes": {
-        "date": "2026-01-04",
-        "weekNumberMonday": 1,
-        "weekNumberSunday": 2
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -1059,12 +1049,22 @@
       "relationships": {}
     },
     {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2027-01-10",
+      "attributes": {
+        "date": "2027-01-10",
+        "weekNumberMonday": 2,
+        "weekNumberSunday": 3
+      },
+      "relationships": {}
+    },
+    {
       "type": "location",
       "id": "9",
       "attributes": {
         "name": "Mitchell Canyon",
-        "latitude": 37.92049,
-        "longitude": -121.941554,
+        "lat": 37.92049,
+        "lng": -121.941554,
         "region": "Mt. Diablo",
         "address": {
           "street": "96 Mitchell Canyon Rd",
@@ -1091,8 +1091,8 @@
       "id": "8",
       "attributes": {
         "name": "Mill Valley Depot",
-        "latitude": 37.906024,
-        "longitude": -122.548075,
+        "lat": 37.906024,
+        "lng": -122.548075,
         "region": "Mt. Tamalpais",
         "address": {
           "street": "87 Throckmorton Ave",

@@ -70,10 +70,6 @@
           "data": [
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-01-10"
-            },
-            {
-              "type": "realized-event-date",
               "id": "5-headlands-saturday-2026-01-17"
             },
             {
@@ -279,6 +275,10 @@
             {
               "type": "realized-event-date",
               "id": "5-headlands-saturday-2027-01-09"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "5-headlands-saturday-2027-01-16"
             }
           ]
         }
@@ -352,10 +352,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "5-ninja-thursday-2026-01-08"
-            },
             {
               "type": "realized-event-date",
               "id": "5-ninja-thursday-2026-01-15"
@@ -563,6 +559,10 @@
             {
               "type": "realized-event-date",
               "id": "5-ninja-thursday-2027-01-07"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "5-ninja-thursday-2027-01-14"
             }
           ]
         }
@@ -666,10 +666,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "5-tam-wednesday-2026-01-07"
-            },
             {
               "type": "realized-event-date",
               "id": "5-tam-wednesday-2026-01-14"
@@ -877,6 +873,10 @@
             {
               "type": "realized-event-date",
               "id": "5-tam-wednesday-2027-01-06"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "5-tam-wednesday-2027-01-13"
             }
           ]
         }
@@ -889,8 +889,8 @@
       "id": "10",
       "attributes": {
         "name": "SFRC Mill Valley",
-        "latitude": 37.881261,
-        "longitude": -122.524734,
+        "lat": 37.881261,
+        "lng": -122.524734,
         "region": "Marin Headlands",
         "address": {
           "street": "247 Shoreline Hwy",
@@ -948,16 +948,6 @@
         "instagramHandle": "from_here_we_go",
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-01-10",
-      "attributes": {
-        "date": "2026-01-10",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -1480,12 +1470,22 @@
       "relationships": {}
     },
     {
+      "type": "realized-event-date",
+      "id": "5-headlands-saturday-2027-01-16",
+      "attributes": {
+        "date": "2027-01-16",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
+      },
+      "relationships": {}
+    },
+    {
       "type": "location",
       "id": "15",
       "attributes": {
         "name": "SCA Trailhead",
-        "latitude": 37.832273,
-        "longitude": -122.482329,
+        "lat": 37.832273,
+        "lng": -122.482329,
         "region": "Marin Headlands",
         "address": {
           "street": "Conzelman Rd",
@@ -1496,16 +1496,6 @@
         "googleMapsLink": "https://maps.app.goo.gl/gYdG5fCJjsbJ4SY56",
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "5-ninja-thursday-2026-01-08",
-      "attributes": {
-        "date": "2026-01-08",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -2028,12 +2018,22 @@
       "relationships": {}
     },
     {
+      "type": "realized-event-date",
+      "id": "5-ninja-thursday-2027-01-14",
+      "attributes": {
+        "date": "2027-01-14",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
+      },
+      "relationships": {}
+    },
+    {
       "type": "location",
       "id": "8",
       "attributes": {
         "name": "Mill Valley Depot",
-        "latitude": 37.906024,
-        "longitude": -122.548075,
+        "lat": 37.906024,
+        "lng": -122.548075,
         "region": "Mt. Tamalpais",
         "address": {
           "street": "87 Throckmorton Ave",
@@ -2044,16 +2044,6 @@
         "googleMapsLink": "https://maps.app.goo.gl/pSSi6SuSsHTo965t7",
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "5-tam-wednesday-2026-01-07",
-      "attributes": {
-        "date": "2026-01-07",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -2572,6 +2562,16 @@
         "date": "2027-01-06",
         "weekNumberMonday": 2,
         "weekNumberSunday": 2
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-tam-wednesday-2027-01-13",
+      "attributes": {
+        "date": "2027-01-13",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
       },
       "relationships": {}
     }

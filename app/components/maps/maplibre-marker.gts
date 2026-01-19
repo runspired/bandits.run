@@ -5,7 +5,7 @@ import { getMapLibre } from './maplibre-boundary.gts';
 
 interface MapLibreMarkerSignature {
   Args: {
-    context: { map: Map };
+    context: Map;
     lat: number;
     lng: number;
     title?: string;
@@ -30,7 +30,7 @@ export default class MapLibreMarkerComponent extends Component<MapLibreMarkerSig
     } = this.args;
 
     const maplibregl = getMapLibre();
-    const map = context.map;
+    const map = context;
 
     let marker: Marker;
 

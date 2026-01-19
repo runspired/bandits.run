@@ -69,10 +69,6 @@
         "data": [
           {
             "type": "realized-event-date",
-            "id": "5-headlands-saturday-2026-01-10"
-          },
-          {
-            "type": "realized-event-date",
             "id": "5-headlands-saturday-2026-01-17"
           },
           {
@@ -278,6 +274,10 @@
           {
             "type": "realized-event-date",
             "id": "5-headlands-saturday-2027-01-09"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "5-headlands-saturday-2027-01-16"
           }
         ]
       }
@@ -289,8 +289,8 @@
       "id": "10",
       "attributes": {
         "name": "SFRC Mill Valley",
-        "latitude": 37.881261,
-        "longitude": -122.524734,
+        "lat": 37.881261,
+        "lng": -122.524734,
         "region": "Marin Headlands",
         "address": {
           "street": "247 Shoreline Hwy",
@@ -348,16 +348,6 @@
         "instagramHandle": "from_here_we_go",
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-01-10",
-      "attributes": {
-        "date": "2026-01-10",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -876,6 +866,16 @@
         "date": "2027-01-09",
         "weekNumberMonday": 2,
         "weekNumberSunday": 2
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-headlands-saturday-2027-01-16",
+      "attributes": {
+        "date": "2027-01-16",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
       },
       "relationships": {}
     }

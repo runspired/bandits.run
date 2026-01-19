@@ -73,10 +73,6 @@
         "data": [
           {
             "type": "realized-event-date",
-            "id": "1-runrise-2026-01-08"
-          },
-          {
-            "type": "realized-event-date",
             "id": "1-runrise-2026-01-15"
           },
           {
@@ -282,6 +278,10 @@
           {
             "type": "realized-event-date",
             "id": "1-runrise-2027-01-07"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-runrise-2027-01-14"
           }
         ]
       }
@@ -293,8 +293,8 @@
       "id": "2",
       "attributes": {
         "name": "Serpentine Prairie",
-        "latitude": 37.80348,
-        "longitude": -122.176789,
+        "lat": 37.80348,
+        "lng": -122.176789,
         "region": "Reinhardt Redwood Regional Park",
         "address": {
           "street": "11500 Skyline Blvd",
@@ -366,16 +366,6 @@
         "instagramHandle": null,
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-runrise-2026-01-08",
-      "attributes": {
-        "date": "2026-01-08",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -894,6 +884,16 @@
         "date": "2027-01-07",
         "weekNumberMonday": 2,
         "weekNumberSunday": 2
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2027-01-14",
+      "attributes": {
+        "date": "2027-01-14",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
       },
       "relationships": {}
     },
