@@ -17,7 +17,6 @@ import type { Map } from 'maplibre-gl';
 import type { StyleSpecification } from 'maplibre-gl';
 import type { PolygonPoint } from '#app/utils/tile-preloader.ts';
 import type { MapState } from './-utils/map-state';
-import { excludeNull, or } from '#app/utils/comparison.ts';
 
 interface MapLibreFullscreenMapSignature {
   Args: {
@@ -35,12 +34,12 @@ interface MapLibreFullscreenMapSignature {
     /**
      * Location latitude
      */
-    lat?: number;
+    lat: number;
 
     /**
      * Location longitude
      */
-    lng?: number;
+    lng: number;
 
     /**
      * Map style (default: OpenStreetMap style)
@@ -190,7 +189,6 @@ export default class MapLibreFullscreenMap extends Component<MapLibreFullscreenM
 
   updateZoom = () => {
     const zoom = this.map?.getZoom();
-    console.log('Map zoom updated:', zoom);
     if (zoom) {
       this.args.mapState.zoom = zoom;
     }
@@ -238,9 +236,9 @@ export default class MapLibreFullscreenMap extends Component<MapLibreFullscreenM
 
           <MapLibreBoundary>
             <MapLibreMap
-              @lat={{or @mapState.lat @mapState.defaultLat}}
-              @lng={{or @mapState.lng @mapState.defaultLng}}
-              @zoom={{or @mapState.zoom @mapState.defaultZoom}}
+              @lat={{@mapState.lat}}
+              @lng={{@mapState.lng}}
+              @zoom={{@mapState.zoom}}
               @onMoveEnd={{this.updateLocation}}
               @onZoomEnd={{this.updateZoom}}
               @style={{@style}}
@@ -249,8 +247,8 @@ export default class MapLibreFullscreenMap extends Component<MapLibreFullscreenM
             {{this.storeMapReference context}}
             <MapLibreMarker
               @context={{context}}
-              @lat={{excludeNull (or @mapState.defaultLat @lat)}}
-              @lng={{excludeNull (or @mapState.defaultLng @lng)}}
+              @lat={{@lat}}
+              @lng={{@lng}}
               @title={{@locationName}}
             />
 

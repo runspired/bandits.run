@@ -157,6 +157,28 @@ class ReactiveStorage implements Storage {
   }
 
   /**
+   * Non-reactive way to peek the current value of a key in Storage
+   */
+  peekItem(key: string): string | null {
+    assert('ReactiveStorage.peekItem: key must be a string', typeof key === 'string');
+    const keyStr = String(key);
+
+    if (this._memoryOnly) {
+      return this._values[keyStr] ?? null;
+    }
+
+    const value = this._values[keyStr];
+    if (value !== undefined) {
+      return value;
+    }
+
+    // Not yet loaded, fetch from storage, but don't track access
+    const item = this._storage.getItem(keyStr);
+    // this._values[keyStr] = item;
+    return item;
+  }
+
+  /**
    * Reactive access to Storage contents
    */
   getItem(key: string): string | null {

@@ -4,8 +4,8 @@
     "id": "10",
     "attributes": {
       "name": "SFRC Mill Valley",
-      "latitude": 37.881261,
-      "longitude": -122.524734,
+      "lat": 37.881261,
+      "lng": -122.524734,
       "region": "Marin Headlands",
       "address": {
         "street": "247 Shoreline Hwy",

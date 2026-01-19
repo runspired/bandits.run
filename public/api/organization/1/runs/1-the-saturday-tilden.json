@@ -103,10 +103,6 @@
         "data": [
           {
             "type": "realized-event-date",
-            "id": "1-the-saturday-tilden-2026-01-10"
-          },
-          {
-            "type": "realized-event-date",
             "id": "1-the-saturday-tilden-2026-02-14"
           },
           {
@@ -163,8 +159,8 @@
       "id": "3",
       "attributes": {
         "name": "Selby Trailhead",
-        "latitude": 37.904384,
-        "longitude": -122.267624,
+        "lat": 37.904384,
+        "lng": -122.267624,
         "region": "Tilden Regional Park",
         "address": {
           "street": "551 Wildcat Canyon Rd",
@@ -236,16 +232,6 @@
         "instagramHandle": null,
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-the-saturday-tilden-2026-01-10",
-      "attributes": {
-        "date": "2026-01-10",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",

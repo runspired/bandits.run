@@ -127,8 +127,8 @@
       "id": "16",
       "attributes": {
         "name": "Bay Area",
-        "latitude": null,
-        "longitude": null,
+        "lat": null,
+        "lng": null,
         "region": "Bay Area",
         "address": null,
         "googleMapsLink": null,

@@ -261,11 +261,7 @@ function getMapState(record: unknown): unknown {
   const location = run.$type === 'trail-run' ? run.location : run;
   const state = getMapStateById(`${run.$type}:${run.id}`);
 
-  state.initialize({
-    lat: location.latitude ?? 0,
-    lng: location.longitude ?? 0,
-    zoom: 14,
-  });
+  state.initialize(location);
 
   return state;
 }

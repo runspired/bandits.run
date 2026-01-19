@@ -4,8 +4,8 @@
     "id": "8",
     "attributes": {
       "name": "Mill Valley Depot",
-      "latitude": 37.906024,
-      "longitude": -122.548075,
+      "lat": 37.906024,
+      "lng": -122.548075,
       "region": "Mt. Tamalpais",
       "address": {
         "street": "87 Throckmorton Ave",

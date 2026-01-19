@@ -449,8 +449,8 @@ function transformLocation(
     id: location.id,
     attributes: {
       name: location.name,
-      latitude: location.latitude || null,
-      longitude: location.longitude || null,
+      lat: location.lat || null,
+      lng: location.lng || null,
       region: location.region || null,
       address: location.address || null,
       googleMapsLink: location.googleMapsLink || null,
@@ -1489,7 +1489,7 @@ export function printData(data: AggregateData): void {
   for (const [id, location] of data.locations) {
     console.log(`[${id}] ${location.name}`);
     console.log(`    Region: ${location.region}`);
-    console.log(`    Coordinates: ${location.latitude}, ${location.longitude}`);
+    console.log(`    Coordinates: ${location.lat}, ${location.lng}`);
     if (location.address) {
       console.log(`    Address: ${location.address.street}, ${location.address.city}, ${location.address.state} ${location.address.zip}`);
     }

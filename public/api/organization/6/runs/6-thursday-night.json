@@ -69,10 +69,6 @@
         "data": [
           {
             "type": "realized-event-date",
-            "id": "6-thursday-night-2026-01-08"
-          },
-          {
-            "type": "realized-event-date",
             "id": "6-thursday-night-2026-01-15"
           },
           {
@@ -278,6 +274,10 @@
           {
             "type": "realized-event-date",
             "id": "6-thursday-night-2027-01-07"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "6-thursday-night-2027-01-14"
           }
         ]
       }
@@ -289,8 +289,8 @@
       "id": "11",
       "attributes": {
         "name": "Tennessee Valley",
-        "latitude": 37.86059,
-        "longitude": -122.53594,
+        "lat": 37.86059,
+        "lng": -122.53594,
         "region": "Marin Headlands",
         "address": {
           "street": "591 Tennessee Valley Rd",
@@ -348,16 +348,6 @@
         "instagramHandle": "dans_wildlife",
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "6-thursday-night-2026-01-08",
-      "attributes": {
-        "date": "2026-01-08",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -876,6 +866,16 @@
         "date": "2027-01-07",
         "weekNumberMonday": 2,
         "weekNumberSunday": 2
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "6-thursday-night-2027-01-14",
+      "attributes": {
+        "date": "2027-01-14",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
       },
       "relationships": {}
     }

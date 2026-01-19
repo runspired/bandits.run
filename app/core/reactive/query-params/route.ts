@@ -4,16 +4,32 @@ import { service } from '@ember/service';
 import { dependentKeyCompat } from '@ember/object/compat';
 import type { QPController } from './controller';
 import type { ControllerQueryParam } from '@ember/controller';
+import { getParamCompanion } from '../../utils/-storage-infra';
+import type RouterService from '@ember/routing/router-service';
 
-interface QPSource {
+export interface GroupConfig {
+  control: string;  // The field name that controls this group
+  mappings: Record<string, string>;
+}
+
+export interface QPSource {
   prefix: string | null;
-  mappings: Record<string, string> | null;
+  mappings?: Record<string, string>;
+  groups?: Record<string, GroupConfig>;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   source: (target: any) => object,
 }
 
+export interface RouteParamConfig {
+  as: string;
+  refreshModel: boolean;
+  replace: boolean;
+}
+
 export class QPRoute extends Route {
   @service('query-params') declare params: QueryParams;
+  @service declare router: RouterService;
+
   controllerName = '-qp';
   declare _qpControllerParams: ControllerQueryParam[];
 
@@ -79,35 +95,70 @@ export class QPRoute extends Route {
   }
 }
 
-type RouteParamConfig = {
-  as: string;
-  refreshModel: boolean;
-  replace: boolean;
-}
-
 function buildRouteParams(route: Route, scope: string, sourceDirectory: Record<string, unknown>, source: QPSource, serviceProp: string) {
   const routeConfig: Record<string, RouteParamConfig> = {};
   const controllerConfig: ControllerQueryParam[] = [];
-  const { prefix, mappings, source: svc } = source;
-  const keys = mappings ? Object.keys(mappings) : Object.keys(svc);
+  const { prefix, mappings, groups, source: svc } = source;
   const namespace = prefix ? prefix : '@route';
+
+  // Build a flat mapping of all params and track control relationships
+  const allMappings: Record<string, string> = {};
+  const groupControlMap: Record<string, string> = {};  // fieldName -> controlFieldName
+
+  // Process groups first
+  if (groups) {
+    for (const [groupName, groupConfig] of Object.entries(groups)) {
+      // Track which field controls each member of this group
+      for (const fieldName of Object.keys(groupConfig.mappings)) {
+        groupControlMap[fieldName] = groupConfig.control;
+      }
+
+      // Add all mappings from this group
+      Object.assign(allMappings, groupConfig.mappings);
+
+      // Ensure control param is included with group name as URL name
+      if (!allMappings[groupConfig.control]) {
+        allMappings[groupConfig.control] = groupName;
+      }
+    }
+  }
+
+  // Add ungrouped mappings (if any)
+  if (mappings) {
+    Object.assign(allMappings, mappings);
+  }
+
+  // Property descriptor that resolves the StorageResource and returns its param companion
   const desc = {
     get() {
-      const controller = route.controllerFor(scope);
-      const result = svc(controller.model || {});
-      return result;
+      // eslint-disable-next-line ember/no-private-routing-service
+      const activeTransition = route._router._routerMicrolib.activeTransition;
+      const routeParams = activeTransition ? activeTransition.routeInfos?.find(ri => ri.name === scope)?.params : route.paramsFor(scope)
+
+      const storageResource = svc(routeParams || {});
+
+      // Return the param companion object which handles serialization
+      // Pass the group control map so it knows which params are controlled
+      const params = getParamCompanion(storageResource, groupControlMap);
+      return params;
     }
   };
   const newDesc = dependentKeyCompat(sourceDirectory, namespace, desc);
   Object.defineProperty(sourceDirectory, namespace, newDesc);
 
-  keys.forEach(key => {
-    const paramName = mappings && mappings[key] ? mappings[key] : key;
+  // Determine which keys to expose as query params
+  const keys = Object.keys(allMappings);
+
+  for (const key of keys) {
+    const paramName = allMappings[key];
+    if (!paramName) {
+      continue; // Skip if no URL name is defined
+    }
     const asName = prefix ? `${prefix}.${paramName}` : paramName;
     const qpKey = `${serviceProp}.state.${scope}.${namespace}.${key}`;
     routeConfig[qpKey] = { as: asName, refreshModel: false, replace: true };
     controllerConfig.push(qpKey);
-  });
+  }
 
   return { route: routeConfig, controller: controllerConfig };
 }

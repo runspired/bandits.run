@@ -4,8 +4,8 @@
     "id": "9",
     "attributes": {
       "name": "Mitchell Canyon",
-      "latitude": 37.92049,
-      "longitude": -121.941554,
+      "lat": 37.92049,
+      "lng": -121.941554,
       "region": "Mt. Diablo",
       "address": {
         "street": "96 Mitchell Canyon Rd",

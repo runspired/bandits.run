@@ -1,106 +1,66 @@
-import { field, input, SessionResource } from "../../../core/utils/storage-resource";
+import {
+  field,
+  SessionResource,
+} from "../../../core/utils/storage-resource";
+import {
+  param,
+  BooleanParam,
+  NumberParam,
+} from "../../../core/utils/params";
+import { tracked } from "@glimmer/tracking";
+import { assert } from "@ember/debug";
+import { initializeFields } from "#app/core/utils/-storage-infra.ts";
 
-/**
- * QuerParam + sessionStorage rules
- *
- * - the url value comes first
- * - if url param is empty, transition to sessionStorage value
- * - if sessionStorage value is empty, use default value
- * - allow some params to hide if other params aren't set (like lat/lng/zoom when active is false)
- */
+interface CoordSource {
+  lat: number;
+  lng: number;
+}
+
+const RedwoodRegionalPark: CoordSource = {
+  lat: 37.800704,
+  lng: -122.144621,
+};
+const CoordPrecision = 5;
 
 @SessionResource((map: MapState) => `map-state:${map.id}`)
 class MapState {
   id: string;
+  @tracked source: CoordSource | null = null;
+  #initialized: boolean = false;
 
   constructor(id: string) {
     this.id = id;
   }
 
-  get activeParam(): string {
-    return this.active ? '1' : '';
-  }
-  set activeParam(value: string) {
-    this.active = value === '1';
-  }
-
-  get zoomParam(): string {
-    return this.active ? (this.zoom !== this.defaultZoom ? this.zoom.toString() : '') : '';
-  }
-  set zoomParam(value: string) {
-    if (!value) {
-      return;
-    }
-    const zoom = Number(value);
-    if (!isNaN(zoom)) {
-      this.zoom = zoom;
-    }
-  }
-
-  get latParam(): string {
-    return this.active ? (this.lat !== this.defaultLat ? this.lat.toFixed(5) : '') : '';
-  }
-  set latParam(value: string) {
-    if (!value) {
-      return;
-    }
-    const lat = Number(value);
-    if (!isNaN(lat)) {
-      this.lat = lat;
-    }
-  }
-
-  get lngParam(): string {
-    return this.active ? (this.lng !== this.defaultLng ? this.lng.toFixed(5) : '') : '';
-  }
-  set lngParam(value: string) {
-    if (!value) {
-      return;
-    }
-    const lng = Number(value);
-    if (!isNaN(lng)) {
-      this.lng = lng;
-    }
-  }
-
-  @input('number')
-  @field
-  zoom: number = 114;
-
-  @field
-  defaultZoom: number = 12;
-
-  @input('number')
-  @field
-  lat: number = 0;
-
-  @field
-  defaultLat: number = 100;
-
-  @input('number')
-  @field
-  lng: number = 50;
-
-  @field
-  defaultLng: number = 500;
-
-  @input('boolean')
+  @param(BooleanParam())
   @field
   active: boolean = false;
 
-  initialize(options: { lat: number; lng: number; zoom: number }) {
-    const { defaultLat, defaultLng, defaultZoom } = this;
-    if (defaultLat !== options.lat || defaultLng !== options.lng || defaultZoom !== options.zoom) {
-      // update only if different from existing defaults
+  @param(NumberParam(
+    2
+  ))
+  @field
+  zoom: number = 14;
 
-      this.lat = options.lat;
-      this.lng = options.lng;
-      this.zoom = options.zoom;
-      this.defaultLat = options.lat;
-      this.defaultLng = options.lng;
-      this.defaultZoom = options.zoom;
-      return;
-    }
+  @param(NumberParam(
+    CoordPrecision,
+    (instance: MapState) => instance.source?.lat,
+  ))
+  @field
+  lat: number = RedwoodRegionalPark.lat;
+
+  @param(NumberParam(
+    CoordPrecision,
+    (instance: MapState) => instance.source?.lng,
+  ))
+  @field
+  lng: number = RedwoodRegionalPark.lng;
+
+  initialize(source: CoordSource) {
+    assert(`MapState cannot be reinitialized once source has been set`, this.#initialized === false);
+    initializeFields(this, source);
+    this.source = source;
+    this.#initialized = true;
   }
 }
 

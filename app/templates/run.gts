@@ -93,17 +93,14 @@ export default class OrganizationRunRoute extends Component<{
     return '/map-styles/openstreetmap-us-vector.json';
   }
 
-  @cached
-  get mapState() {
-    return getMapStateById(`trail-run:${this.args.model.runId}`);
-  }
-
   openFullscreenMap = () => {
-    this.mapState.active = true;
+    const state = getMapStateById(`trail-run:${this.args.model.runId}`);
+    state.active = true;
   }
 
   closeFullscreenMap = () => {
-    this.mapState.active = false;
+    const state = getMapStateById(`trail-run:${this.args.model.runId}`);
+    state.active = false;
   }
 
   <template>
@@ -131,12 +128,12 @@ export default class OrganizationRunRoute extends Component<{
             <div class="run-page">
               {{#if
                 (and
-                  run.location run.location.latitude run.location.longitude (not this.mapState.active)
+                  run.location run.location.lat run.location.lng (not run.mapState.active)
                 )
               }}
                 <MapLibreBackgroundMap
-                  @lat={{excludeNull run.location.latitude}}
-                  @lng={{excludeNull run.location.longitude}}
+                  @lat={{excludeNull run.location.lat}}
+                  @lng={{excludeNull run.location.lng}}
                   @zoom={{12}}
                   @minZoom={{8}}
                   @maxZoom={{18}}
@@ -204,7 +201,7 @@ export default class OrganizationRunRoute extends Component<{
                           </a>
                         {{/if}}
                         {{#if
-                          (and run.location.latitude run.location.longitude)
+                          (and run.location.lat run.location.lng)
                         }}
                           <button
                             type="button"
@@ -253,9 +250,11 @@ export default class OrganizationRunRoute extends Component<{
               </div>
 
               {{! Fullscreen Map }}
-              {{#if this.mapState.active}}
+              {{#if run.mapState.active}}
                 <MapLibreFullscreenMap
                   @mapState={{run.mapState}}
+                  @lat={{excludeNull run.location.lat}}
+                  @lng={{excludeNull run.location.lng}}
                   @locationName={{run.location.name}}
                   @style={{this.mapStyle}}
                   @onClose={{this.closeFullscreenMap}}

@@ -52,10 +52,10 @@ export default class LocationDisplay extends Component<{
           {{#let response.data as |location|}}
             {{pageTitle location.name " | Bandits"}}
             <div class="location-page">
-              {{#if (and location.latitude location.longitude)}}
+              {{#if (and location.lat location.lng)}}
                 <MapLibreBackgroundMap
-                  @lat={{excludeNull location.latitude}}
-                  @lng={{excludeNull location.longitude}}
+                  @lat={{excludeNull location.lat}}
+                  @lng={{excludeNull location.lng}}
                   @zoom={{10}}
                   @minZoom={{6}}
                   @maxZoom={{18}}
@@ -89,9 +89,9 @@ export default class LocationDisplay extends Component<{
                               {{location.address.zip}}
                             {{/if}}
                           </address>
-                          {{#if (and location.latitude location.longitude)}}
+                          {{#if (and location.lat location.lng)}}
                             <div class="location-coordinates">
-                              {{location.latitude}}, {{location.longitude}}
+                              {{location.lat}}, {{location.lng}}
                             </div>
                           {{/if}}
                         </div>
@@ -110,7 +110,7 @@ export default class LocationDisplay extends Component<{
                           Google Maps
                         </a>
                       {{/if}}
-                      {{#if (and location.latitude location.longitude)}}
+                      {{#if (and location.lat location.lng)}}
                         <button
                           type="button"
                           class="location-action-button"
@@ -139,8 +139,8 @@ export default class LocationDisplay extends Component<{
                 <MapLibreFullscreenMap
                   @mapState={{location.mapState}}
                   @locationName={{location.name}}
-                  @lat={{excludeNull location.latitude}}
-                  @lng={{excludeNull location.longitude}}
+                  @lat={{excludeNull location.lat}}
+                  @lng={{excludeNull location.lng}}
                   @onClose={{this.closeFullscreenMap}}
                 />
               {{/if}}

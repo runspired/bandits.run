@@ -5,23 +5,31 @@ import type Store from '#app/services/store.ts';
 import { getOrgId } from '#app/utils/org.ts';
 import { service } from '@ember/service';
 
+type RunRouteParams = { org_slug: string, run_slug: string; }
+
 export default class OrganizationsSingleRunRoute extends QPRoute {
   @service declare store: Store;
 
   queryParams = this.qp('run', {
     prefix: '',
-    mappings: {
-      'activeParam': 'fs',
-      'zoomParam': 'z',
-      'latParam': 'lat',
-      'lngParam': 'lng'
+    groups: {
+      fs: {
+        control: 'active',
+        mappings: {
+          'zoom': 'z',
+          'lat': 'lat',
+          'lng': 'lng'
+        }
+      }
     },
-    source: (model: { runId: string }) => {
-      return getMapStateById(`trail-run:${model.runId}`);
+    source: (params: RunRouteParams) => {
+      const organizationId = getOrgId(params.org_slug);
+      const runId = organizationId + '-' + params.run_slug;
+      return getMapStateById(`trail-run:${runId}`);
     }
   });
 
-  model(params: { org_slug: string, run_slug: string; }) {
+  model(params: RunRouteParams) {
     const organizationId = getOrgId(params.org_slug);
     const runId = organizationId + '-' + params.run_slug;
 

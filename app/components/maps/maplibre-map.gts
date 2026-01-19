@@ -77,9 +77,6 @@ export default class MapLibreMapComponent extends Component<MapLibreMapSignature
   }
 
   #createMap(element: HTMLElement, options: MapSignature) {
-    console.groupCollapsed('Creating MapLibre Map'); // --- IGNORE ---
-    console.trace(); // --- IGNORE ---
-    console.groupEnd();
     const {
       lat,
       lng,
@@ -157,7 +154,6 @@ export default class MapLibreMapComponent extends Component<MapLibreMapSignature
     });
 
     const cleanup = () => {
-      console.log('Destroying MapLibre Map'); // --- IGNORE ---
       // Cleanup
       if (token !== null) {
         token.cancelled = true;
@@ -172,7 +168,6 @@ export default class MapLibreMapComponent extends Component<MapLibreMapSignature
   }
 
   #updateMap(map: Map, options: MapSignature) {
-    console.log('Updating map with new options', options);
     const {
       lat,
       lng,

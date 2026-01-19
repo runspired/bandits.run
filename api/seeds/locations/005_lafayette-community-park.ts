@@ -3,8 +3,8 @@ import type { Location } from "../../interfaces/location";
 export const data = {
   "name": "Lafayette Community Park",
   "region": "Las Trampas Regional Wilderness",
-  latitude: 37.860661,
-  longitude: -122.101127,
+  lat: 37.860661,
+  lng: -122.101127,
   "address": {
     "street": "480 St Marys Rd",
     "city": "Lafayette",

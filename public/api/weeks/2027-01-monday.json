@@ -150,10 +150,6 @@
           "data": [
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-01-10"
-            },
-            {
-              "type": "realized-event-date",
               "id": "5-headlands-saturday-2026-01-17"
             },
             {
@@ -359,6 +355,10 @@
             {
               "type": "realized-event-date",
               "id": "5-headlands-saturday-2027-01-09"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "5-headlands-saturday-2027-01-16"
             }
           ]
         }
@@ -618,10 +618,6 @@
           "data": [
             {
               "type": "realized-event-date",
-              "id": "2-beer-bucket-2026-01-04"
-            },
-            {
-              "type": "realized-event-date",
               "id": "2-beer-bucket-2026-01-11"
             },
             {
@@ -827,6 +823,10 @@
             {
               "type": "realized-event-date",
               "id": "2-beer-bucket-2027-01-03"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "2-beer-bucket-2027-01-10"
             }
           ]
         }
@@ -837,8 +837,8 @@
       "id": "10",
       "attributes": {
         "name": "SFRC Mill Valley",
-        "latitude": 37.881261,
-        "longitude": -122.524734,
+        "lat": 37.881261,
+        "lng": -122.524734,
         "region": "Marin Headlands",
         "address": {
           "street": "247 Shoreline Hwy",
@@ -895,23 +895,6 @@
         "stravaId": "2860482",
         "instagramHandle": "from_here_we_go",
         "descriptionHtml": null
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-01-10",
-      "attributes": {
-        "date": "2026-01-10",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "5-headlands-saturday"
-          }
-        }
       }
     },
     {
@@ -1782,12 +1765,29 @@
       }
     },
     {
+      "type": "realized-event-date",
+      "id": "5-headlands-saturday-2027-01-16",
+      "attributes": {
+        "date": "2027-01-16",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "5-headlands-saturday"
+          }
+        }
+      }
+    },
+    {
       "type": "location",
       "id": "5",
       "attributes": {
         "name": "Lafayette Community Park",
-        "latitude": 37.860661,
-        "longitude": -122.101127,
+        "lat": 37.860661,
+        "lng": -122.101127,
         "region": "Las Trampas Regional Wilderness",
         "address": {
           "street": "480 St Marys Rd",
@@ -2052,8 +2052,8 @@
       "id": "14",
       "attributes": {
         "name": "East Bay",
-        "latitude": null,
-        "longitude": null,
+        "lat": null,
+        "lng": null,
         "region": "East Bay",
         "address": null,
         "googleMapsLink": null,
@@ -2105,23 +2105,6 @@
         "stravaId": "97687403",
         "instagramHandle": "traillove_kb",
         "descriptionHtml": null
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "2-beer-bucket-2026-01-04",
-      "attributes": {
-        "date": "2026-01-04",
-        "weekNumberMonday": 1,
-        "weekNumberSunday": 2
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "2-beer-bucket"
-          }
-        }
       }
     },
     {
@@ -2981,6 +2964,23 @@
         "date": "2026-12-27",
         "weekNumberMonday": 52,
         "weekNumberSunday": 53
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "2-beer-bucket"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "2-beer-bucket-2027-01-10",
+      "attributes": {
+        "date": "2027-01-10",
+        "weekNumberMonday": 2,
+        "weekNumberSunday": 3
       },
       "relationships": {
         "event": {

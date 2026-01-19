@@ -3,8 +3,8 @@ import type { Location } from "../../interfaces/location";
 export const data = {
   "name": "Proctor Staging Area",
   "region": "Chabot Regional Park",
-  latitude: 37.721359,
-  longitude: -122.076503,
+  lat: 37.721359,
+  lng: -122.076503,
   "address": {
     "street": "Redwood Rd",
     "city": "Castro Valley",

@@ -3,8 +3,8 @@ import type { Location } from "../../interfaces/location";
 export const data = {
   "name": "Serpentine Prairie",
   "region": "Reinhardt Redwood Regional Park",
-  latitude: 37.803480,
-  longitude: -122.176789,
+  "lat": 37.803480,
+  "lng": -122.176789,
   "address": {
     "street": "11500 Skyline Blvd",
     "city": "Oakland",

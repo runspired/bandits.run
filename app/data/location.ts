@@ -14,8 +14,8 @@ export interface Location {
   id: string;
   $type: 'location';
   name: string;
-  latitude: number | null;
-  longitude: number | null;
+  lat: number;
+  lng: number;
   region: string | null;
   address: Address | null;
   googleMapsLink: string | null;
@@ -28,8 +28,8 @@ export const LocationSchema = withDefaults({
   type: 'location',
   fields: [
     { name: 'name', kind: 'field' },
-    { name: 'latitude', kind: 'field' },
-    { name: 'longitude', kind: 'field' },
+    { name: 'lat', kind: 'field' },
+    { name: 'lng', kind: 'field' },
     { name: 'region', kind: 'field' },
     { name: 'address', kind: 'schema-object', type: 'address' },
     { name: 'googleMapsLink', kind: 'field' },

@@ -3,8 +3,8 @@ import type { Location } from "../../interfaces/location";
 export const data = {
   "name": "Bear Creek Staging (EPRPD)",
   "region": "Briones Regional Park",
-  latitude: 37.927396,
-  longitude: -122.158356,
+  lat: 37.927396,
+  lng: -122.158356,
   "address": {
     "street": "1611 Bear Creek Rd",
     "city": "Lafayette",

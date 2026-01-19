@@ -77,8 +77,8 @@ interface MapDownloadButtonSignature {
  * <MapDownloadButton
  *   @locationId={{@run.location.id}}
  *   @locationName={{@run.location.name}}
- *   @lat={{@run.location.latitude}}
- *   @lng={{@run.location.longitude}}
+ *   @lat={{@run.location.lat}}
+ *   @lng={{@run.location.lng}}
  *   @radiusMiles={{15}}
  * />
  * ```

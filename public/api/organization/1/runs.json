@@ -100,10 +100,6 @@
           "data": [
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-01-05"
-            },
-            {
-              "type": "realized-event-date",
               "id": "1-runday-2026-01-12"
             },
             {
@@ -309,6 +305,10 @@
             {
               "type": "realized-event-date",
               "id": "1-runday-2027-01-04"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-runday-2027-01-11"
             }
           ]
         }
@@ -386,10 +386,6 @@
         },
         "occurrences": {
           "data": [
-            {
-              "type": "realized-event-date",
-              "id": "1-runrise-2026-01-08"
-            },
             {
               "type": "realized-event-date",
               "id": "1-runrise-2026-01-15"
@@ -597,6 +593,10 @@
             {
               "type": "realized-event-date",
               "id": "1-runrise-2027-01-07"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-runrise-2027-01-14"
             }
           ]
         }
@@ -905,6 +905,10 @@
             {
               "type": "realized-event-date",
               "id": "1-the-saturday-chabot-2026-12-19"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-the-saturday-chabot-2027-01-16"
             }
           ]
         }
@@ -1136,10 +1140,6 @@
           "data": [
             {
               "type": "realized-event-date",
-              "id": "1-the-saturday-tilden-2026-01-10"
-            },
-            {
-              "type": "realized-event-date",
               "id": "1-the-saturday-tilden-2026-02-14"
             },
             {
@@ -1351,8 +1351,8 @@
       "id": "1",
       "attributes": {
         "name": "Skyline Gate",
-        "latitude": 37.831606,
-        "longitude": -122.185388,
+        "lat": 37.831606,
+        "lng": -122.185388,
         "region": "Reinhardt Redwood Regional Park",
         "address": {
           "street": "8490 Skyline Blvd",
@@ -1410,16 +1410,6 @@
         "instagramHandle": "runspired",
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-runday-2026-01-05",
-      "attributes": {
-        "date": "2026-01-05",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -1942,12 +1932,22 @@
       "relationships": {}
     },
     {
+      "type": "realized-event-date",
+      "id": "1-runday-2027-01-11",
+      "attributes": {
+        "date": "2027-01-11",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
+      },
+      "relationships": {}
+    },
+    {
       "type": "location",
       "id": "2",
       "attributes": {
         "name": "Serpentine Prairie",
-        "latitude": 37.80348,
-        "longitude": -122.176789,
+        "lat": 37.80348,
+        "lng": -122.176789,
         "region": "Reinhardt Redwood Regional Park",
         "address": {
           "street": "11500 Skyline Blvd",
@@ -1986,16 +1986,6 @@
         "instagramHandle": null,
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-runrise-2026-01-08",
-      "attributes": {
-        "date": "2026-01-08",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -2518,12 +2508,22 @@
       "relationships": {}
     },
     {
+      "type": "realized-event-date",
+      "id": "1-runrise-2027-01-14",
+      "attributes": {
+        "date": "2027-01-14",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
+      },
+      "relationships": {}
+    },
+    {
       "type": "location",
       "id": "6",
       "attributes": {
         "name": "Bear Creek Staging (EPRPD)",
-        "latitude": 37.927396,
-        "longitude": -122.158356,
+        "lat": 37.927396,
+        "lng": -122.158356,
         "region": "Briones Regional Park",
         "address": {
           "street": "1611 Bear Creek Rd",
@@ -2674,8 +2674,8 @@
       "id": "4",
       "attributes": {
         "name": "Proctor Staging Area",
-        "latitude": 37.721359,
-        "longitude": -122.076503,
+        "lat": 37.721359,
+        "lng": -122.076503,
         "region": "Chabot Regional Park",
         "address": {
           "street": "Redwood Rd",
@@ -2808,12 +2808,22 @@
       "relationships": {}
     },
     {
+      "type": "realized-event-date",
+      "id": "1-the-saturday-chabot-2027-01-16",
+      "attributes": {
+        "date": "2027-01-16",
+        "weekNumberMonday": 3,
+        "weekNumberSunday": 3
+      },
+      "relationships": {}
+    },
+    {
       "type": "location",
       "id": "16",
       "attributes": {
         "name": "Bay Area",
-        "latitude": null,
-        "longitude": null,
+        "lat": null,
+        "lng": null,
         "region": "Bay Area",
         "address": null,
         "googleMapsLink": null,
@@ -2865,8 +2875,8 @@
       "id": "3",
       "attributes": {
         "name": "Selby Trailhead",
-        "latitude": 37.904384,
-        "longitude": -122.267624,
+        "lat": 37.904384,
+        "lng": -122.267624,
         "region": "Tilden Regional Park",
         "address": {
           "street": "551 Wildcat Canyon Rd",
@@ -2877,16 +2887,6 @@
         "googleMapsLink": "https://maps.app.goo.gl/7AoYphNCcQ3y6GYe7",
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-the-saturday-tilden-2026-01-10",
-      "attributes": {
-        "date": "2026-01-10",
-        "weekNumberMonday": 2,
-        "weekNumberSunday": 2
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -3013,8 +3013,8 @@
       "id": "5",
       "attributes": {
         "name": "Lafayette Community Park",
-        "latitude": 37.860661,
-        "longitude": -122.101127,
+        "lat": 37.860661,
+        "lng": -122.101127,
         "region": "Las Trampas Regional Wilderness",
         "address": {
           "street": "480 St Marys Rd",

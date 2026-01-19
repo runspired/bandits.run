@@ -159,8 +159,8 @@
       "id": "6",
       "attributes": {
         "name": "Bear Creek Staging (EPRPD)",
-        "latitude": 37.927396,
-        "longitude": -122.158356,
+        "lat": 37.927396,
+        "lng": -122.158356,
         "region": "Briones Regional Park",
         "address": {
           "street": "1611 Bear Creek Rd",
