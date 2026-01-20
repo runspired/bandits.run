@@ -4,7 +4,7 @@ import FaIcon from '#ui/fa-icon.gts';
 import RunOccurrence from '#ui/nps-date.gts';
 import { faCalendarDays, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { faStrava, faMeetup } from '@fortawesome/free-brands-svg-icons';
-import type { TrailRun } from '#app/data/run.ts';
+
 import {
   getRecurrenceDescription,
   isPastDate,
@@ -22,10 +22,11 @@ import type { TemplateOnlyComponent } from '@ember/component/template-only';
 import RunOption from './run-option.gts';
 import { scopedClass } from 'ember-scoped-css';
 import { getOrgSlug, getRunSlug } from '#app/utils/org.ts';
+import type { RunPreview as TrailRunPreview } from '#app/data/api/get.ts';
 
 interface RunPreviewSignature {
   Args: {
-    run: TrailRun;
+    run: TrailRunPreview;
     organizationId: string;
     occurrence?: string;
     hideOccurrence?: boolean;

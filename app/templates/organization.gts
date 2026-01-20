@@ -5,27 +5,25 @@ import type RouterService from '@ember/routing/router-service';
 import { Request } from '@warp-drive/ember';
 import ThemedPage from '#layout/themed-page.gts';
 import { pageTitle } from 'ember-page-title';
-import type { TrailRun } from '#app/data/run.ts';
 import FaIcon from '#ui/fa-icon.gts';
 import { faGlobe, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram, faStrava, faMeetup } from '@fortawesome/free-brands-svg-icons';
 import { Tabs, type TabTransition } from '#ux/tabs.gts';
 import type { Future } from '@warp-drive/core/request';
 import type { ReactiveDataDocument } from '@warp-drive/core/reactive';
-import type { Organization } from '#app/data/organization.ts';
 import { htmlSafe } from '@ember/template';
-import { getOrganizationRuns } from '#api/GET';
+import { getOrganizationRuns, type GetOrgTrailRun } from '#api/GET';
 import RunPreview from '#entities/run-preview.gts';
 import SocialGraph from '#app/components/seo/social-graph.gts';
 import { getHostname } from '#app/utils/helpers.ts';
 import { or } from '#app/utils/comparison.ts';
 import { getOrgSlug } from '#app/utils/org.ts';
-
-function getOrganizationDescription(org: Organization): string {
+import { type GetOrganization } from '#api/GET';
+function getOrganizationDescription(org: GetOrganization): string {
   return org.description || `${org.name} is a trail running organization in the SF Bay Area. Join group runs, connect with fellow trail runners, and explore amazing trails!`;
 }
 
-function getOrganizationKeywords(org: Organization): string {
+function getOrganizationKeywords(org: GetOrganization): string {
   return `trail running, ${org.name}, running group, SF Bay Area, trail running community`;
 }
 
@@ -36,7 +34,7 @@ function getOrganizationUrl(organizationId: string): string {
 export default class OrganizationSingleRoute extends Component<{
   Args: {
     model: {
-      organization: Future<ReactiveDataDocument<Organization>>;
+      organization: Future<ReactiveDataDocument<GetOrganization>>;
       organizationId: string;
     };
   };
@@ -60,7 +58,7 @@ export default class OrganizationSingleRoute extends Component<{
   /**
    * Sort runs by next occurrence date, with runs without future occurrences at the end
    */
-  sortRunsByNextOccurrence = (runs: TrailRun[]): TrailRun[] => {
+  sortRunsByNextOccurrence = (runs: GetOrgTrailRun[]): GetOrgTrailRun[] => {
     return [...runs].sort((a, b) => {
       const nextA = a.nextOccurrence;
       const nextB = b.nextOccurrence;

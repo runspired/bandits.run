@@ -6,31 +6,40 @@ import { withReactiveResponse } from '@warp-drive/core/request';
 import type { Week } from '../week';
 import { getToday, getNextWeek as nextWeek } from '#app/utils/helpers.ts';
 
+export type GetOrgsOrganization = Omit<Organization, 'runs' | 'contacts' | 'descriptionHtml'>;
+
 /**
  * Builds a request to fetch all organizations.
  */
 export function getOrganizations() {
-  return withReactiveResponse<Organization[]>({
+  return withReactiveResponse<GetOrgsOrganization[]>({
     url: '/api/organization.json',
     method: 'GET',
   });
 }
 
+export type GetOrganization = Omit<Organization, 'runs' | 'contacts'>;
+
+
 /**
  * Builds a request to fetch a single organization by ID.
  */
 export function getOrganization(organization: string) {
-  return withReactiveResponse<Organization>({
+  return withReactiveResponse<GetOrganization>({
     url: `/api/organization/${organization}.json`,
     method: 'GET',
   });
 }
 
+type RunPreviewFields = 'id' | '$type' | 'nextOccurrence' | 'title' | 'owner' | 'recurrence' | 'location' | 'description' | 'runs' | 'eventLink' | 'stravaEventLink' | 'meetupEventLink';
+export type RunPreview = Pick<TrailRun, RunPreviewFields>;
+export type GetOrgTrailRun = Pick<TrailRun, RunPreviewFields>;
+
 /**
  * Builds a request to fetch all runs for a given organization by organization ID.
  */
 export function getOrganizationRuns(organization: string) {
-  return withReactiveResponse<TrailRun[]>({
+  return withReactiveResponse<GetOrgTrailRun[]>({
     url: `/api/organization/${organization}/runs.json`,
     method: 'GET',
   });
