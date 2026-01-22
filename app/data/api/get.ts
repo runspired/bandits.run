@@ -4,7 +4,7 @@ import type { Location } from '#app/data/location.ts';
 
 import { withReactiveResponse } from '@warp-drive/core/request';
 import type { Week } from '../week';
-import { getToday, getNextWeek as nextWeek } from '#app/utils/helpers.ts';
+import { getToday, getNextWeek as nextWeek } from '@trail-run/core/time/helpers';
 
 export type GetOrgsOrganization = Omit<Organization, 'runs' | 'contacts' | 'descriptionHtml'>;
 

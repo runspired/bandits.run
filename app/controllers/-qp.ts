@@ -1,1 +1,1 @@
-export { QPController as default } from '../core/reactive/query-params/controller';
+export { QPController as default } from '@trail-run/core/reactive/query-param-route';

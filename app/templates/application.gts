@@ -2,9 +2,9 @@ import Component from '@glimmer/component';
 
 import { checkServiceWorker } from '#app/core/preferences.ts';
 import { service } from '@ember/service';
+import type Owner from '@ember/owner';
 import type PortalsService from '#app/services/ux/portals.ts';
 import type HistoryService from '#app/services/history.ts';
-import type Owner from '@ember/owner';
 
 void checkServiceWorker();
 

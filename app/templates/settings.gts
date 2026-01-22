@@ -7,8 +7,8 @@ import { fn } from '@ember/helper';
 import { not } from '#app/utils/comparison.ts';
 import FaIcon from '#ui/fa-icon.gts';
 import { faDownload, faCircleCheck, faLocationDot } from '@fortawesome/free-solid-svg-icons';
-import { getLocationServices } from '#app/core/location-services.ts';
-import { getDevice } from '#app/core/device.ts';
+import { getLocationServices } from '@trail-run/core/device/location-services';
+import { getDevice } from '@trail-run/core/device/device';
 import { tracked } from '@glimmer/tracking';
 
 class SettingsPage extends Component {

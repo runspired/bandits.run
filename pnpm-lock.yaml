@@ -84,6 +84,9 @@ importers:
       '@shikijs/markdown-it':
         specifier: ^3.20.0
         version: 3.20.0
+      '@trail-run/core':
+        specifier: 2026.1.135
+        version: 2026.1.135(@babel/core@7.28.5)
       '@types/maplibre-gl':
         specifier: ^1.14.0
         version: 1.14.0
@@ -1935,6 +1938,9 @@ packages:
 
   '@surma/rollup-plugin-off-main-thread@2.2.3':
     resolution: {integrity: sha512-lR8q/9W7hZpMWweNiAKU7NQerBnzQQLvi8qnTDU/fxItPhtZVMbPV3lbCwjhIlNBe9Bbr5V+KHshvWmVSG9cxQ==}
+
+  '@trail-run/core@2026.1.135':
+    resolution: {integrity: sha512-lvh34VDdWmX7k6AiuD81+aWUbzV3bpdC2XGuBkaI6SFrfVK+s/BdvPQFxGOyWxC7cW1pnTipv0J6QcvPyUgN/Q==}
 
   '@types/cors@2.8.19':
     resolution: {integrity: sha512-mFNylyeyqN93lfe/9CSxOGREz8cpzAhH+E93xJ4xWQf62V8sQ/24reV2nyzUWM6H6Xji+GGHpkbLe7pVoUEskg==}
@@ -7888,6 +7894,14 @@ snapshots:
       json5: 2.2.3
       magic-string: 0.25.9
       string.prototype.matchall: 4.0.12
+
+  '@trail-run/core@2026.1.135(@babel/core@7.28.5)':
+    dependencies:
+      '@embroider/addon-shim': 1.10.2
+      decorator-transforms: 2.3.1(@babel/core@7.28.5)
+    transitivePeerDependencies:
+      - '@babel/core'
+      - supports-color
 
   '@types/cors@2.8.19':
     dependencies:

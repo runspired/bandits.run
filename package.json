@@ -66,6 +66,7 @@
     "@glint/tsserver-plugin": "^2.0.8",
     "@rollup/plugin-babel": "^6.1.0",
     "@shikijs/markdown-it": "^3.20.0",
+    "@trail-run/core": "2026.1.135",
     "@types/maplibre-gl": "^1.14.0",
     "@types/markdown-it": "^14.1.2",
     "@types/markdown-it-container": "^2.0.11",

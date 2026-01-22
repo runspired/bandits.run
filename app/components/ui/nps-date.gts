@@ -1,5 +1,7 @@
 import './nps-date.css';
-import { isPastDate } from '#app/utils/helpers.ts';
+import {
+  isPastDate,
+} from '@trail-run/core/time/helpers';
 import {
   excludeNull
 } from '#app/utils/comparison.ts';

@@ -14,12 +14,12 @@ import {
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { on } from '@ember/modifier';
 import { scopedClass } from 'ember-scoped-css';
-import { getTheme } from '#app/core/site-theme.ts';
 import { fn } from '@ember/helper';
 import Component from '@glimmer/component';
 import { getDevicePreferences } from '#app/core/preferences.ts';
 import { service } from '@ember/service';
 import type RouterService from '@ember/routing/router-service';
+import { getTheme } from '@trail-run/core/device/site-theme';
 
 function createScrollElement(): HTMLDivElement {
   const div = document.createElement('div');

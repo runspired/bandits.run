@@ -1,6 +1,7 @@
-import { getDevice } from './device';
-import { field, LocalResource } from './utils/storage-resource';
-import { matchMedia } from './reactive/match-media';
+import { getDevice } from '@trail-run/core/device/device';
+import { field, LocalResource } from '@trail-run/core/reactive/storage-resource';
+import { matchMedia } from '@trail-run/core/reactive/match-media';
+
 import { cached, tracked } from '@glimmer/tracking';
 import { registerSW } from 'virtual:pwa-register';
 

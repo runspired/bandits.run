@@ -7,9 +7,11 @@ import { faStrava, faMeetup } from '@fortawesome/free-brands-svg-icons';
 
 import {
   getRecurrenceDescription,
-  isPastDate,
-  isToday,
 } from '#app/utils/helpers.ts';
+import {
+  isPastDate,
+  isToday
+} from '@trail-run/core/time/helpers';
 import {
   eq,
   neq,

@@ -1,7 +1,7 @@
 import { pageTitle } from 'ember-page-title';
 import { on } from '@ember/modifier';
 import { modifier } from 'ember-modifier';
-import { getTheme } from '#app/core/site-theme.ts';
+import { getTheme } from '@trail-run/core/device/site-theme';
 
 const SiteManifest = {
   "name": "The Bay Bandits",

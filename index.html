@@ -15,7 +15,7 @@
         const firstDayNum = pref ? parseInt(pref, 10) : 1;
         const day = firstDayNum === 0 ? 'sunday' : 'monday';
 
-        // Week number calculation matching app/utils/helpers.ts getWeekNumber
+        // Week number calculation matching @trail-run/core/time/helpers getWeekNumber
         function getWeekNumber(date, dayType) {
           const d = new Date(date);
           d.setHours(0, 0, 0, 0);

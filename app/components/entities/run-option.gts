@@ -3,7 +3,8 @@ import FaIcon from '#ui/fa-icon.gts';
 import { faCalendarDays } from '@fortawesome/free-solid-svg-icons';
 import { faStrava, faMeetup } from '@fortawesome/free-brands-svg-icons';
 import type { RunOption as RunOptionResource } from '#app/data/run.ts';
-import { formatTime, getCategoryLabel } from '#app/utils/helpers.ts';
+import { formatTime } from '@trail-run/core/time/helpers';
+import { getCategoryLabel } from '#app/utils/helpers.ts';
 import { or } from '#app/utils/comparison.ts';
 import './run-option.css';
 

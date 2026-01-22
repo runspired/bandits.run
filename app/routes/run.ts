@@ -1,4 +1,4 @@
-import { QPRoute } from '#app/core/reactive/query-params/route.ts';
+import { QPRoute } from '@trail-run/core/reactive/query-param-route';
 import { getOrganizationRun } from '#app/data/api/get.ts';
 import { getMapStateById } from '#app/data/run.ts';
 import type Store from '#app/services/store.ts';
@@ -23,6 +23,9 @@ export default class OrganizationsSingleRunRoute extends QPRoute {
       }
     },
     source: (params: RunRouteParams) => {
+      if (!params.org_slug || !params.run_slug) {
+        return null;
+      }
       const organizationId = getOrgId(params.org_slug);
       const runId = organizationId + '-' + params.run_slug;
       return getMapStateById(`trail-run:${runId}`);
