@@ -3,7 +3,7 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { on } from '@ember/modifier';
 import { modifier } from 'ember-modifier';
-import type { Map, MapMouseEvent, LngLat } from 'maplibre-gl';
+import type { Map, MapMouseEvent, LngLat, GeoJSONSource } from 'maplibre-gl';
 import FaIcon from '#ui/fa-icon.gts';
 import { faCropSimple, faCheck, faTimes, faTrash } from '@fortawesome/free-solid-svg-icons';
 import './polygon-selector.css';
@@ -134,6 +134,7 @@ export default class MapLibrePolygonSelector extends Component<MapLibrePolygonSe
 
         if (features.length > 0) {
           e.preventDefault();
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           const index = features[0]?.properties?.index;
           if (typeof index === 'number') {
             this.draggedPointIndex = index;
@@ -396,7 +397,7 @@ export default class MapLibrePolygonSelector extends Component<MapLibrePolygonSe
 
   updatePreviewSource(coordinates: [number, number][]) {
     const map = this.args.map;
-    const source = map.getSource(this.previewSourceId);
+    const source = map.getSource(this.previewSourceId) as unknown as GeoJSONSource | undefined;
     if (source && source.type === 'geojson') {
       source.setData({
         type: 'Feature',
@@ -410,8 +411,6 @@ export default class MapLibrePolygonSelector extends Component<MapLibrePolygonSe
   }
 
   renderPolygon() {
-    const map = this.args.map;
-
     if (this.points.length === 0) {
       // Clear all layers
       this.updatePolygonSource([]);
@@ -443,7 +442,7 @@ export default class MapLibrePolygonSelector extends Component<MapLibrePolygonSe
 
   updatePolygonSource(coordinates: [number, number][][]) {
     const map = this.args.map;
-    const source = map.getSource(this.polygonSourceId);
+    const source = map.getSource(this.polygonSourceId) as unknown as GeoJSONSource | undefined;;
     if (source && source.type === 'geojson') {
       source.setData({
         type: 'Feature',
@@ -458,7 +457,7 @@ export default class MapLibrePolygonSelector extends Component<MapLibrePolygonSe
 
   updateLineSource(coordinates: [number, number][]) {
     const map = this.args.map;
-    const source = map.getSource(this.lineSourceId);
+    const source = map.getSource(this.lineSourceId) as unknown as GeoJSONSource | undefined;;
     if (source && source.type === 'geojson') {
       source.setData({
         type: 'Feature',
@@ -473,7 +472,7 @@ export default class MapLibrePolygonSelector extends Component<MapLibrePolygonSe
 
   updatePointsSource(points: PolygonPoint[]) {
     const map = this.args.map;
-    const source = map.getSource(this.pointsSourceId);
+    const source = map.getSource(this.pointsSourceId) as unknown as GeoJSONSource | undefined;;
     if (source && source.type === 'geojson') {
       source.setData({
         type: 'FeatureCollection',
