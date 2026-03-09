@@ -3,6 +3,7 @@
 /* Import markdown content styles */
 @import url('./markdown.css');
 @import url('./fonts.css');
+@import url('./themes/spring-2026.css');
 
 * {
   box-sizing: border-box;
@@ -10,74 +11,6 @@
 
 /* 1. Default Light Mode */
 :root {
-  /**
-    Available Colors
-
-    These should only be used to define the "meaningful" colors below.
-  **/
-  --theme-fall-orange: rgb(255, 64, 39);
-  --theme-fall-blue: rgb(156,226,254);
-  --theme-fall-beige: #eedebd;
-  --theme-fall-white: #fff;
-  --theme-fall-black: #000;
-  --theme-spring-light-sky: #f3e8ff;
-  --theme-spring-dark-sky: #1e1b4b;
-  --theme-spring-tree-green: #052c16;
-  --theme-gold: #ffc474;
-  --theme-brown: #8b5e3c;
-  --theme-pink: #ff69b4;
-  --theme-purple: #9333ea;
-  --theme-dark-purple: #581c87;
-  --theme-green: #06a743;
-  --theme-light-green: #4ade80;
-  /*
-    Meaningful Colors:
-
-    These variables take theme colors and assign them to specific
-    roles in the theme.
-
-  */
-  /* SPRING THEME */
-  /*
-  --light-theme-sky: var(--theme-spring-light-sky);
-  --light-theme-hill-back: var(--theme-pink);
-  --light-theme-hill-front: var(--theme-purple);
-  --light-theme-tree-color: var(--theme-spring-tree-green);
-  --light-theme-alt-tree-color: var(--theme-green);
-  --light-theme-title: var(--theme-purple);
-  --light-theme-subtitle: var(--theme-pink);
-  --light-theme-schedule-text: var(--theme-brown);
-  --light-theme-text-primary: #2f3947;
-  --dark-theme-sky: var(--theme-spring-dark-sky);
-  --dark-theme-hill-back: var(--theme-dark-purple);
-  --dark-theme-hill-front: var(--theme-light-green);
-  --dark-theme-tree-color: var(--theme-spring-tree-green);
-  --dark-theme-alt-tree-color: var(--theme-gold);
-  --dark-theme-title: var(--theme-light-green);
-  --dark-theme-subtitle: var(--theme-gold);
-  --dark-theme-schedule-text: var(--theme-gold);
-  --dark-theme-text-primary: #e0e0e0;
-  */
-  /* FALL THEME */
-  --light-theme-sky: var(--theme-fall-beige);
-  --light-theme-hill-back: var(--theme-fall-black);
-  --light-theme-hill-front: var(--theme-fall-orange);
-  --light-theme-tree-color: var(--theme-fall-white);
-  --light-theme-alt-tree-color: var(--theme-fall-orange);
-  --light-theme-title: var(--theme-fall-orange);
-  --light-theme-subtitle: var(--theme-fall-black);
-  --light-theme-schedule-text: var(--theme-fall-black);
-  --light-theme-text-primary: #2f3947;
-  --dark-theme-sky: var(--theme-fall-black);
-  --dark-theme-hill-back: var(--theme-fall-orange);
-  --dark-theme-hill-front: var(--theme-fall-beige);
-  --dark-theme-tree-color: var(--theme-fall-black);
-  --dark-theme-alt-tree-color: var(--theme-fall-white);
-  --dark-theme-title: var(--theme-fall-beige);
-  --dark-theme-subtitle: var(--theme-fall-orange);
-  --dark-theme-schedule-text: var(--theme-fall-beige);
-  --dark-theme-text-primary: #e0e0e0;
-
   --transition-speed: 0.6s;
 
   /* View Transitions */
@@ -95,15 +28,15 @@ body {
   --subtitle: var(--light-theme-subtitle);
   --schedule-text: var(--light-theme-schedule-text);
   --text-primary: var(--light-theme-text-primary);
-  --callout-background: var(--theme-fall-white);
-  --nps-badge-primary: var(--theme-fall-black);
-  --nps-badge-secondary: var(--theme-fall-beige);
-  --theme-white-black: var(--theme-fall-white);
-  --theme-white-black-inverse: var(--theme-fall-black);
-  --theme-tan-black: var(--theme-fall-beige);
-  --theme-tan-black-inverse: var(--theme-fall-black);
+  --callout-background: var(--theme-white);
+  --nps-badge-primary: var(--theme-black);
+  --nps-badge-secondary: var(--theme-beige);
+  --theme-white-black: var(--theme-white);
+  --theme-white-black-inverse: var(--theme-black);
+  --theme-tan-black: var(--theme-beige);
+  --theme-tan-black-inverse: var(--theme-black);
 
-  background: var(--theme-fall-beige);
+  background: var(--theme-beige);
   margin: 0;
 }
 
@@ -111,7 +44,7 @@ html {
   padding: 0;
   margin: 0;
   font-family: Montserrat, -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background: var(--theme-fall-beige);
+  background: var(--theme-beige);
 }
 
 
@@ -139,20 +72,19 @@ html {
     --schedule-text: var(--dark-theme-schedule-text);
     --text-primary: var(--dark-theme-text-primary);
     --callout-background: var(--dark-theme-schedule-text);
-    --nps-badge-primary: var(--theme-fall-beige);
-    --nps-badge-secondary: var(--theme-fall-black);
-    --theme-white-black: var(--theme-fall-black);
-    --theme-white-black-inverse: var(--theme-fall-white);
-    --theme-tan-black: var(--theme-fall-black);
-    --theme-tan-black-inverse: var(--theme-fall-beige);
-
-    background: var(--theme-fall-black);
+    --nps-badge-primary: var(--theme-beige);
+    --nps-badge-secondary: var(--theme-black);
+    --theme-white-black: var(--theme-black);
+    --theme-white-black-inverse: var(--theme-white);
+    --theme-tan-black: var(--theme-black);
+    --theme-tan-black-inverse: var(--theme-beige);
+    background: var(--theme-black);
   }
 }
 
 /* 3. Manual Overrides (Highest Priority) */
 html.light-mode {
-  background: var(--theme-fall-beige);
+  background: var(--theme-beige);
 }
 
 body.light-mode {
@@ -165,19 +97,19 @@ body.light-mode {
   --subtitle: var(--light-theme-subtitle);
   --schedule-text: var(--light-theme-schedule-text);
   --text-primary: var(--light-theme-text-primary);
-  --callout-background: var(--theme-fall-white);
-  --nps-badge-primary: var(--theme-fall-black);
-  --nps-badge-secondary: var(--theme-fall-beige);
-  --theme-white-black: var(--theme-fall-white);
-  --theme-white-black-inverse: var(--theme-fall-black);
-  --theme-tan-black: var(--theme-fall-beige);
-  --theme-tan-black-inverse: var(--theme-fall-black);
+  --callout-background: var(--theme-white);
+  --nps-badge-primary: var(--theme-black);
+  --nps-badge-secondary: var(--theme-beige);
+  --theme-white-black: var(--theme-white);
+  --theme-white-black-inverse: var(--theme-black);
+  --theme-tan-black: var(--theme-beige);
+  --theme-tan-black-inverse: var(--theme-black);
 
-  background: var(--theme-fall-beige);
+  background: var(--theme-beige);
 }
 
 html.dark-mode {
-  background: var(--theme-fall-black);
+  background: var(--theme-black);
 }
 
 body.dark-mode {
@@ -191,14 +123,14 @@ body.dark-mode {
   --schedule-text: var(--dark-theme-schedule-text);
   --text-primary: var(--dark-theme-text-primary);
   --callout-background: var(--dark-theme-schedule-text);
-  --nps-badge-primary: var(--theme-fall-beige);
-  --nps-badge-secondary: var(--theme-fall-black);
-  --theme-white-black: var(--theme-fall-black);
-  --theme-white-black-inverse: var(--theme-fall-white);
-  --theme-tan-black: var(--theme-fall-black);
-  --theme-tan-black-inverse: var(--theme-fall-beige);
+  --nps-badge-primary: var(--theme-beige);
+  --nps-badge-secondary: var(--theme-black);
+  --theme-white-black: var(--theme-black);
+  --theme-white-black-inverse: var(--theme-white);
+  --theme-tan-black: var(--theme-black);
+  --theme-tan-black-inverse: var(--theme-beige);
 
-  background: var(--theme-fall-black);
+  background: var(--theme-black);
 }
 
 /* Styles migrated to themed-page.css */
@@ -564,9 +496,9 @@ div.day-schedule {
 }
 
 div.day-schedule.today {
-  background: linear-gradient(135deg, rgb(255 215 0 / 25%) 0%, rgb(255 165 0 / 20%) 100%);
-  border-left: 4px solid rgb(255 165 0 / 80%);
-  box-shadow: 0 2px 8px rgb(255 165 0 / 30%);
+  background: linear-gradient(135deg, rgb(from var(--highlight-1) r g b / 25%) 0%, rgb(from var(--highlight-2) r g b / 20%) 100%);
+  border-left: 4px solid rgb(from var(--highlight-2) r g b / 80%);
+  box-shadow: 0 2px 8px rgb(from var(--highlight-2) r g b / 30%);
   scroll-margin-top: 5rem;
 }
 

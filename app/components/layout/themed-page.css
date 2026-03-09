@@ -156,12 +156,12 @@
 .mode-toggle .toggle-track {
   width: 3rem;
   height: 1.5rem;
-  background-color: var(--theme-fall-orange);
+  background-color: var(--title);
   border-radius: 0.75rem;
   position: relative;
   cursor: pointer;
   transition: background-color 0.3s ease, border-color 0.3s ease;
-  border: 1.5px solid var(--theme-fall-orange);
+  border: 1.5px solid var(--title);
   display: flex;
   align-items: center;
   outline: none;
@@ -181,7 +181,7 @@
   width: 1.125rem;
   height: 1.125rem;
   border-radius: 50%;
-  background-color: var(--theme-fall-black);
+  background-color: var(--theme-black);
   position: absolute;
   left: 0.1125rem;
   transition: left 0.3s ease, background-color 0.3s ease;
@@ -190,12 +190,12 @@
   align-items: center;
   justify-content: center;
   font-size: 0.5625rem;
-  color: var(--theme-fall-white);
+  color: var(--theme-white);
 }
 
 .mode-toggle .toggle-track.checked .toggle-knob {
   left: calc(100% - 1.2375rem);
-  background-color: var(--theme-fall-orange);
+  background-color: var(--title);
   color: white;
 }
 

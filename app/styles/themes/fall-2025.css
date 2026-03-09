@@ -1,0 +1,50 @@
+:root {
+  /**
+    Available Colors
+
+    These should only be used to define the "meaningful" colors below.
+  **/
+  --theme-fall-orange: rgb(255, 64, 39);
+  --theme-fall-blue: rgb(156,226,254);
+  --theme-fall-beige: #eedebd;
+  --theme-fall-white: #fff;
+  --theme-fall-black: #000;
+  --theme-spring-light-sky: #f3e8ff;
+  --theme-spring-dark-sky: #1e1b4b;
+  --theme-spring-tree-green: #052c16;
+  --theme-gold: #ffc474;
+  --theme-brown: #8b5e3c;
+  --theme-pink: #ff69b4;
+  --theme-purple: #9333ea;
+  --theme-dark-purple: #581c87;
+  --theme-green: #06a743;
+  --theme-light-green: #4ade80;
+  --highlight-1: rgb(255 215 0);
+  --highlight-2: rgb(255 165 0);
+  /*
+    Meaningful Colors:
+
+    These variables take theme colors and assign them to specific
+    roles in the theme.
+
+  */
+  /* FALL THEME 2026 */
+  --light-theme-sky: var(--theme-fall-beige);
+  --light-theme-hill-back: var(--theme-fall-black);
+  --light-theme-hill-front: var(--theme-fall-orange);
+  --light-theme-tree-color: var(--theme-fall-white);
+  --light-theme-alt-tree-color: var(--theme-fall-orange);
+  --light-theme-title: var(--theme-fall-orange);
+  --light-theme-subtitle: var(--theme-fall-black);
+  --light-theme-schedule-text: var(--theme-fall-black);
+  --light-theme-text-primary: #2f3947;
+  --dark-theme-sky: var(--theme-fall-black);
+  --dark-theme-hill-back: var(--theme-fall-orange);
+  --dark-theme-hill-front: var(--theme-fall-beige);
+  --dark-theme-tree-color: var(--theme-fall-black);
+  --dark-theme-alt-tree-color: var(--theme-fall-white);
+  --dark-theme-title: var(--theme-fall-beige);
+  --dark-theme-subtitle: var(--theme-fall-orange);
+  --dark-theme-schedule-text: var(--theme-fall-beige);
+  --dark-theme-text-primary: #e0e0e0;
+}

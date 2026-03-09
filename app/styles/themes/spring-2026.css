@@ -1,0 +1,50 @@
+:root {
+  /**
+    Available Colors
+
+    These should only be used to define the "meaningful" colors below.
+  **/
+  --theme-pink: #ff69b4;
+  --theme-purple: #9333ea;
+  --theme-dark-purple: #581c87;
+  --theme-green: #06a743;
+  --theme-light-green: #4ade80;
+  --theme-spring-light-sky: #f3e8ff;
+  --theme-spring-dark-sky: #1e1b4b;
+  --theme-spring-tree-green: #052c16;
+  --theme-white: rgb(255 255 255);
+  --theme-gold: #ffc474;
+  --theme-purple: rgb(187 0 255);
+  --theme-blue: rgb(200, 240, 255);
+  --theme-black: #000;
+  --theme-beige: #eedebd;
+  --theme-brown: #8b5e3c;
+  --highlight-1: var(--theme-light-green);
+  --highlight-2: var(--theme-green);
+  /*
+    Meaningful Colors:
+
+    These variables take theme colors and assign them to specific
+    roles in the theme.
+
+  */
+  /* SPRING THEME 2026 */
+  --light-theme-sky: var(--theme-spring-light-sky);
+  --light-theme-hill-back: var(--theme-pink);
+  --light-theme-hill-front: var(--theme-purple);
+  --light-theme-tree-color: var(--theme-light-green);
+  --light-theme-alt-tree-color: var(--theme-purple);
+  --light-theme-title: var(--theme-purple);
+  --light-theme-subtitle: var(--theme-pink);
+  --light-theme-schedule-text: var(--theme-black);
+  --light-theme-text-primary: #2f3947;
+  --dark-theme-sky: var(--theme-spring-dark-sky);
+  --dark-theme-hill-back: var(--theme-dark-purple);
+  --dark-theme-hill-front: var(--theme-light-green);
+  --dark-theme-tree-color: var(--theme-spring-tree-green);
+  --dark-theme-alt-tree-color: var(--theme-gold);
+  --dark-theme-title: var(--theme-light-green);
+  --dark-theme-subtitle: var(--theme-gold);
+  --dark-theme-schedule-text: var(--theme-gold);
+  --dark-theme-text-primary: #e0e0e0;
+}
