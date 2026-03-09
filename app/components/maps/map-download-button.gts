@@ -6,11 +6,11 @@ import type MapTileCacheService from '#app/services/map-tile-cache.ts';
 import DownloadButton from '#ui/download-button.gts';
 import FaIcon from '#ui/fa-icon.gts';
 import { faMap, faDownload, faCropSimple } from '@fortawesome/free-solid-svg-icons';
-import type { DownloadStatusType } from '#app/core/preferences.ts';
 import { getDevicePreferences } from '#app/core/preferences.ts';
 import type { Map as MapLibreMap } from 'maplibre-gl';
 import type { PolygonPoint } from '#app/utils/tile-preloader.ts';
 import './map-download-button.css';
+import type { DownloadStatusType } from '@trail-run/core/device/preferences';
 
 interface MapDownloadButtonSignature {
   Element: HTMLElement;

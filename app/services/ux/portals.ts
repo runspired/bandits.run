@@ -1,5 +1,1 @@
-import Service from "@ember/service";
-
-export default class PortalsService extends Service {
-  takeover = document.createElement('div')
-}
+export { PortalsService as default } from '@trail-run/core/ux/portals';

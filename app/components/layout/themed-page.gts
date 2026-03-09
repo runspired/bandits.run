@@ -14,12 +14,12 @@ import {
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { on } from '@ember/modifier';
 import { scopedClass } from 'ember-scoped-css';
-import { getTheme } from '#app/core/site-theme.ts';
 import { fn } from '@ember/helper';
 import Component from '@glimmer/component';
 import { getDevicePreferences } from '#app/core/preferences.ts';
 import { service } from '@ember/service';
 import type RouterService from '@ember/routing/router-service';
+import { getTheme } from '@trail-run/core/device/site-theme';
 
 function createScrollElement(): HTMLDivElement {
   const div = document.createElement('div');
@@ -28,6 +28,10 @@ function createScrollElement(): HTMLDivElement {
 }
 
 class ThemedPage extends Component<{
+  Element: HTMLDivElement;
+  Args: {
+    hideFoothills?: boolean;
+  };
   Blocks: {
     header: [];
     default: [HTMLDivElement];
@@ -113,6 +117,7 @@ class ThemedPage extends Component<{
           </div>
         {{/in-element}}
 
+        {{#unless @hideFoothills}}
         <svg
           class="hill-svg back-hill"
           viewBox="0 0 1440 320"
@@ -144,6 +149,7 @@ class ThemedPage extends Component<{
           <div class="tree tree-right-3"></div>
           <div class="tree tree-right-4"></div>
         </div>
+      {{/unless}}
       </div>
     </section>
   </template>

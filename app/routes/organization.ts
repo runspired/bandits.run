@@ -14,15 +14,15 @@ export default class OrganizationsSingleIndexRoute extends Route {
   };
 
   model(params: { organization_id: string; tab?: string }) {
-    const organizationId = getOrgId(params.organization_id as string);
+    const organizationId = getOrgId(params.organization_id);
 
     // if the runs tab is selected, kick off the runs request as well
     if (params.tab === 'runs') {
-      void this.store.request(getOrganizationRuns(organizationId as string));
+      void this.store.request(getOrganizationRuns(organizationId));
     }
 
     return {
-      organization: this.store.request(getOrganization(organizationId as string)),
+      organization: this.store.request(getOrganization(organizationId)),
       organizationId
     }
   }

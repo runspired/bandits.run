@@ -8,7 +8,6 @@ import { UserSchema } from '#app/data/user.ts';
 import { WeekSchema } from '#app/data/week.ts';
 import { useLegacyStore } from '@warp-drive/legacy';
 import { JSONAPICache } from '@warp-drive/json-api';
-import { get } from '@ember/helper';
 
 const Store = useLegacyStore({
   linksMode: true,

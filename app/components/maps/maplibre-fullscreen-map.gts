@@ -16,7 +16,7 @@ import { getDevicePreferences } from '#app/core/preferences.ts';
 import type { Map } from 'maplibre-gl';
 import type { StyleSpecification } from 'maplibre-gl';
 import type { PolygonPoint } from '#app/utils/tile-preloader.ts';
-import type { MapState } from './-utils/map-state';
+import type { MapState } from '@trail-run/core/maps/-utils/map-state';
 
 interface MapLibreFullscreenMapSignature {
   Args: {

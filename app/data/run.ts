@@ -5,7 +5,7 @@ import type { Organization } from "./organization";
 import type { User } from "./user";
 import type { RealizedEventDate } from "./realized-event-date";
 import { withLegacy } from "./-utils";
-import { MapState } from "#app/components/maps/-utils/map-state.ts";
+import { MapState } from "@trail-run/core/maps/-utils/map-state";
 
 export interface TrailRun {
   id: string;

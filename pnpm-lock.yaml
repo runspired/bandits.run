@@ -20,6 +20,9 @@ importers:
       '@fortawesome/free-solid-svg-icons':
         specifier: ^7.1.0
         version: 7.1.0
+      '@trail-run/core':
+        specifier: 2026.3.3
+        version: 2026.3.3(@babel/core@7.28.5)(@warp-drive/ember@5.9.0-alpha.1(@babel/core@7.28.5)(@ember/test-waiters@4.1.1(@glint/template@1.7.3))(@glint/template@1.7.3))(ember-modifier@4.2.2(@babel/core@7.28.5))
       maplibre-gl:
         specifier: ^5.16.0
         version: 5.16.0
@@ -84,9 +87,6 @@ importers:
       '@shikijs/markdown-it':
         specifier: ^3.20.0
         version: 3.20.0
-      '@types/maplibre-gl':
-        specifier: ^1.14.0
-        version: 1.14.0
       '@types/markdown-it':
         specifier: ^14.1.2
         version: 14.1.2
@@ -1936,6 +1936,12 @@ packages:
   '@surma/rollup-plugin-off-main-thread@2.2.3':
     resolution: {integrity: sha512-lR8q/9W7hZpMWweNiAKU7NQerBnzQQLvi8qnTDU/fxItPhtZVMbPV3lbCwjhIlNBe9Bbr5V+KHshvWmVSG9cxQ==}
 
+  '@trail-run/core@2026.3.3':
+    resolution: {integrity: sha512-qmu2ynMzpNWuxmWnmbc9x4U6WVwhtIwN4lrCunybd+s7DovkQy6Pp1DvHt+jqG1EQU1HbQHhvnOsEnbnfEEYHw==}
+    peerDependencies:
+      '@warp-drive/ember': ^5.8.1
+      ember-modifier: ^4.2.2
+
   '@types/cors@2.8.19':
     resolution: {integrity: sha512-mFNylyeyqN93lfe/9CSxOGREz8cpzAhH+E93xJ4xWQf62V8sQ/24reV2nyzUWM6H6Xji+GGHpkbLe7pVoUEskg==}
 
@@ -1972,10 +1978,6 @@ packages:
 
   '@types/linkify-it@5.0.0':
     resolution: {integrity: sha512-sVDA58zAw4eWAffKOaQH5/5j3XeayukzDk+ewSsnv3p4yJEZHCCzMDiZM8e0OUrRvmpGZ85jf4yDHkHsgBNr9Q==}
-
-  '@types/maplibre-gl@1.14.0':
-    resolution: {integrity: sha512-I6ibscT7UdL1oOqqCz9s1gjcolLaUPkHIIfMLusczTvlsMhjORyS6sE1g4V/NESAOL5KhNQX3/31LJH+OCGjkg==}
-    deprecated: This is a stub types definition. maplibre-gl provides its own type definitions, so you do not need this installed.
 
   '@types/markdown-it-container@2.0.11':
     resolution: {integrity: sha512-tiVQNp2zEHoW7EQa3nNjGRoVk1Uqw9FN7xD39k663lknKZFfByPT3oDyHiaGg+IYu0vSL37PGpDjjMOgtw2GUA==}
@@ -3672,6 +3674,7 @@ packages:
   glob@11.1.0:
     resolution: {integrity: sha512-vuNwKSaKiqm7g0THUBu2x7ckSs3XJLXE+2ssL7/MfTGPLLcrJQ/4Uq1CjPTtO5cCIiRxqvN6Twy1qOwhL0Xjcw==}
     engines: {node: 20 || >=22}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
   glob@13.0.0:
@@ -7889,6 +7892,16 @@ snapshots:
       magic-string: 0.25.9
       string.prototype.matchall: 4.0.12
 
+  '@trail-run/core@2026.3.3(@babel/core@7.28.5)(@warp-drive/ember@5.9.0-alpha.1(@babel/core@7.28.5)(@ember/test-waiters@4.1.1(@glint/template@1.7.3))(@glint/template@1.7.3))(ember-modifier@4.2.2(@babel/core@7.28.5))':
+    dependencies:
+      '@embroider/addon-shim': 1.10.2
+      '@warp-drive/ember': 5.9.0-alpha.1(@babel/core@7.28.5)(@ember/test-waiters@4.1.1(@glint/template@1.7.3))(@glint/template@1.7.3)
+      decorator-transforms: 2.3.1(@babel/core@7.28.5)
+      ember-modifier: 4.2.2(@babel/core@7.28.5)
+    transitivePeerDependencies:
+      - '@babel/core'
+      - supports-color
+
   '@types/cors@2.8.19':
     dependencies:
       '@types/node': 22.19.3
@@ -7925,10 +7938,6 @@ snapshots:
   '@types/linkify-it@3.0.5': {}
 
   '@types/linkify-it@5.0.0': {}
-
-  '@types/maplibre-gl@1.14.0':
-    dependencies:
-      maplibre-gl: 5.16.0
 
   '@types/markdown-it-container@2.0.11':
     dependencies:

@@ -2,7 +2,7 @@ import '@warp-drive/ember/install';
 import Application from 'ember-strict-application-resolver';
 import { importSync, isDevelopingApp, macroCondition } from '@embroider/macros';
 // import setupInspector from '@embroider/legacy-inspector-support/ember-source-4.12';
-import { initializeTheme } from './core/site-theme';
+import { initializeTheme } from '@trail-run/core/device/site-theme';
 import Router from './router';
 import PageTitleService from 'ember-page-title/services/page-title';
 

@@ -6,7 +6,7 @@ import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { eq, not } from '#app/utils/comparison.ts';
 import { scopedClass } from 'ember-scoped-css';
 import './download-button.css';
-import type { DownloadStatusType } from '#app/core/preferences.ts';
+import type { DownloadStatusType } from '@trail-run/core/device/preferences';
 
 interface DownloadButtonSignature {
   Args: {

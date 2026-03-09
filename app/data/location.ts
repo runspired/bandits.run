@@ -1,4 +1,4 @@
-import type { MapState } from "#app/components/maps/-utils/map-state.ts";
+import type { MapState } from "@trail-run/core/maps/-utils/map-state";
 import { withDefaults } from "@warp-drive/core/reactive";
 import { objectSchema } from "@warp-drive/core/types/schema/fields";
 import type { Type } from "@warp-drive/core/types/symbols";

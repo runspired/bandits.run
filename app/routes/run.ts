@@ -1,4 +1,4 @@
-import { QPRoute } from '#app/core/reactive/query-params/route.ts';
+import { QPRoute } from '@trail-run/core/reactive/query-param-route';
 import { getOrganizationRun } from '#app/data/api/get.ts';
 import { getMapStateById } from '#app/data/run.ts';
 import type Store from '#app/services/store.ts';

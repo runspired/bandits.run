@@ -1,22 +1,5 @@
-import { getDevice } from './device';
-import { field, LocalResource } from './utils/storage-resource';
-import { matchMedia } from './reactive/match-media';
-import { cached, tracked } from '@glimmer/tracking';
 import { registerSW } from 'virtual:pwa-register';
-
-/**
- * Possible download statuses
- *
- * - 'unavailable': Service worker not supported
- * - 'offline': Device is offline
- * - 'available': Ready to download
- * - 'installing': Installation in progress
- * - 'installed': Installed but not yet activated
- * - 'activating': Activation in progress
- * - 'activated': Successfully activated
- * - 'error': Failed to download
- */
-export type DownloadStatusType = 'unavailable' | 'offline' | 'available' | 'installing' | 'installed' | 'activating' | 'activated' | 'error';
+import { DevicePreferences as CorePreferences } from '@trail-run/core/device/preferences';
 
 const DEBUG = localStorage.getItem('debug-serviceWorker') === 'true';
 function log(msg: string) {
@@ -80,6 +63,7 @@ export function getDevicePreferences(): DevicePreferences {
   return devicePreferencesInstance;
 }
 
+
 /**
  * Reactive user device preferences.
  *
@@ -90,63 +74,7 @@ export function getDevicePreferences(): DevicePreferences {
  * - {@link DevicePreferences.useCompactMode | useCompactMode}
  * - {@link DevicePreferences.showTimezoneDifferences | showTimezoneDifferences}
  */
-@LocalResource('device-preferences')
-export class DevicePreferences {
-  @field
-  useMetricWeather: boolean = false;
-
-  @field
-  useMetricDistance: boolean = false;
-
-  @field
-  useCompactMode: boolean = false;
-
-  @field
-  showTimezoneDifferences: boolean = true;
-
-  @field
-  downloadForOffline: boolean = false;
-
-  @field
-  enableLocationServices: boolean = false;
-
-  @field
-  locationPermissionType: 'while-using' | 'always' | null = null;
-
-  @matchMedia('(prefers-reduced-motion: reduce)')
-  prefersReducedMotion: boolean = false;
-
-  /**
-   * Whether a registration/unregistration process is ongoing
-   */
-  @tracked
-  isProcessing: boolean = false;
-
-  /**
-   * Installation state
-   */
-  @tracked
-  installationState: 'installed' | 'activating' | 'activated' | null = null;
-
-  @cached
-  get downloadStatus(): DownloadStatusType {
-    const device = getDevice();
-    if (!device.supportsServiceWorker)
-      return 'unavailable';
-
-    if (!device.hasNetwork) {
-      return 'offline';
-    }
-
-    if (!this.downloadForOffline)
-      return 'available';
-
-    if (this.isProcessing)
-      return this.installationState ?? 'installing';
-
-    return 'activated';
-  }
-
+export class DevicePreferences extends CorePreferences {
   // eslint-disable-next-line @typescript-eslint/require-await
   async installPWA(): Promise<void> {
     if (this.isProcessing) return;

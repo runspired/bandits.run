@@ -1,7 +1,9 @@
 import { pageTitle } from 'ember-page-title';
 import { on } from '@ember/modifier';
 import { modifier } from 'ember-modifier';
-import { getTheme } from '#app/core/site-theme.ts';
+import { getTheme } from '@trail-run/core/device/site-theme';
+import ThemedPage from '#app/components/layout/themed-page.gts';
+import { scopedClass } from 'ember-scoped-css';
 
 const SiteManifest = {
   "name": "The Bay Bandits",
@@ -2232,280 +2234,278 @@ function generateStravaBannerPreview() {
 <template>
   {{pageTitle "Bandits | The Bay Area Trail Running Community"}}
 
-  <section class="page">
-    <div class="landscape-container">
+  <ThemedPage @hideFoothills={{true}} class="branding">
+    <:header>Brand Assets</:header>
+    <:default>
+      <div class="logo-container">
+        <div
+          class="square-logo themeable svg-preview-target"
+          role="button"
+          aria-roledescription="toggle color scheme"
+          {{on "click" toggleColorScheme}}
+        ></div>
+      </div>
 
-      <div class="sky branding">
-        <div class="logo-container">
-          <div
-            class="square-logo themeable svg-preview-target"
-            role="button"
-            aria-roledescription="toggle color scheme"
-            {{on "click" toggleColorScheme}}
-          ></div>
-        </div>
-
-        <div class="preview-section">
-          <div class="preview-box">
-            <h3>Small Size</h3>
-            <div class="preview-container small-logo-preview">
-              <div class="svg-preview-target"></div>
-            </div>
+      <div class="preview-section">
+        <div class="preview-box">
+          <h3>Small Size</h3>
+          <div class="preview-container small-logo-preview">
+            <div class="svg-preview-target"></div>
           </div>
         </div>
+      </div>
 
-        <div class="color-controls" {{initColorPicker}}>
-          <div class="color-picker-group">
-            <label for="logo-color">Logo Color:</label>
-            <input
-              type="color"
-              id="logo-color"
-              class="logo-color-input"
-              value="#9333ea"
-              {{on "input" handleColorChange}}
-            />
-          </div>
-          <div class="color-picker-group">
-            <label for="background-color">Sky Color:</label>
-            <input
-              type="color"
-              id="background-color"
-              class="background-color-input"
-              value="#f3e8ff"
-              {{on "input" handleBackgroundColorChange}}
-            />
-          </div>
-          <div class="color-picker-group">
-            <label for="back-hill-color">Back Hill:</label>
-            <input
-              type="color"
-              id="back-hill-color"
-              class="back-hill-color-input"
-              value="#ff69b4"
-              {{on "input" handleBackHillColorChange}}
-            />
-          </div>
-          <div class="color-picker-group">
-            <label for="tree-color">Tree Color:</label>
-            <input
-              type="color"
-              id="tree-color"
-              class="tree-color-input"
-              value="#052c16"
-              {{on "input" handleTreeColorChange}}
-            />
-          </div>
-          <div class="color-picker-group">
-            <label for="alt-tree-color">Alt Tree:</label>
-            <input
-              type="color"
-              id="alt-tree-color"
-              class="alt-tree-color-input"
-              value="#06a743"
-              {{on "input" handleAltTreeColorChange}}
-            />
-          </div>
-          <div class="opacity-control-group">
-            <label for="background-opacity">Sky Opacity:
-              <span class="background-opacity-value">100%</span></label>
-            <input
-              type="range"
-              id="background-opacity"
-              class="background-opacity-input"
-              min="0"
-              max="1"
-              step="0.01"
-              value="1"
-              {{on "input" handleBackgroundOpacityChange}}
-            />
-          </div>
-          <div class="opacity-control-group">
-            <label for="logo-opacity">Logo Opacity:
-              <span class="opacity-value">100%</span></label>
-            <input
-              type="range"
-              id="logo-opacity"
-              class="logo-opacity-input"
-              min="0"
-              max="1"
-              step="0.01"
-              value="1"
-              {{on "input" handleOpacityChange}}
-            />
-          </div>
+      <div class="color-controls" {{initColorPicker}}>
+        <div class="color-picker-group">
+          <label for="logo-color">Logo Color:</label>
+          <input
+            type="color"
+            id="logo-color"
+            class="logo-color-input"
+            value="#9333ea"
+            {{on "input" handleColorChange}}
+          />
+        </div>
+        <div class="color-picker-group">
+          <label for="background-color">Sky Color:</label>
+          <input
+            type="color"
+            id="background-color"
+            class="background-color-input"
+            value="#f3e8ff"
+            {{on "input" handleBackgroundColorChange}}
+          />
+        </div>
+        <div class="color-picker-group">
+          <label for="back-hill-color">Back Hill:</label>
+          <input
+            type="color"
+            id="back-hill-color"
+            class="back-hill-color-input"
+            value="#ff69b4"
+            {{on "input" handleBackHillColorChange}}
+          />
+        </div>
+        <div class="color-picker-group">
+          <label for="tree-color">Tree Color:</label>
+          <input
+            type="color"
+            id="tree-color"
+            class="tree-color-input"
+            value="#052c16"
+            {{on "input" handleTreeColorChange}}
+          />
+        </div>
+        <div class="color-picker-group">
+          <label for="alt-tree-color">Alt Tree:</label>
+          <input
+            type="color"
+            id="alt-tree-color"
+            class="alt-tree-color-input"
+            value="#06a743"
+            {{on "input" handleAltTreeColorChange}}
+          />
+        </div>
+        <div class="opacity-control-group">
+          <label for="background-opacity">Sky Opacity:
+            <span class="background-opacity-value">100%</span></label>
+          <input
+            type="range"
+            id="background-opacity"
+            class="background-opacity-input"
+            min="0"
+            max="1"
+            step="0.01"
+            value="1"
+            {{on "input" handleBackgroundOpacityChange}}
+          />
+        </div>
+        <div class="opacity-control-group">
+          <label for="logo-opacity">Logo Opacity:
+            <span class="opacity-value">100%</span></label>
+          <input
+            type="range"
+            id="logo-opacity"
+            class="logo-opacity-input"
+            min="0"
+            max="1"
+            step="0.01"
+            value="1"
+            {{on "input" handleOpacityChange}}
+          />
+        </div>
+        <button
+          type="button"
+          class="download-btn reset-btn"
+          {{on "click" resetColors}}
+        >
+          Reset Current Theme Colors
+        </button>
+      </div>
+
+      <h2>Logo Downloads</h2>
+      <div class="download-buttons">
+        <button
+          type="button"
+          class="download-btn chevron-only-toggle-btn"
+          {{on "click" toggleChevronOnly}}
+        >
+          Chevron Only: Disabled
+        </button>
+        <button
+          type="button"
+          class="download-btn circle-toggle-btn"
+          {{on "click" toggleCircleMask}}
+        >
+          Toggle Circle Mask
+        </button>
+        <button
+          type="button"
+          class="download-btn fit-to-content-btn"
+          {{on "click" toggleFitToContent}}
+        >
+          Toggle Fit to Content
+        </button>
+        <button
+          type="button"
+          class="download-btn transparent-toggle-btn"
+          {{on "click" toggleTransparentBackground}}
+        >
+          Background: Themed
+        </button>
+        <button
+          type="button"
+          class="download-btn"
+          {{on "click" downloadAsSVG}}
+        >
+          Download Logo SVG
+        </button>
+        <button
+          type="button"
+          class="download-btn"
+          {{on "click" downloadAsPNG}}
+        >
+          Download Logo PNG
+        </button>
+        <button
+          type="button"
+          class="download-btn"
+          {{on "click" downloadAssetsAsZip}}
+        >
+          Download All Assets (ZIP)
+        </button>
+      </div>
+
+      <h2>Strava Club Header</h2>
+      <div class="color-controls">
+        <div class="color-picker-group">
+          <label for="sky-image">Upload Background Image (optional):</label>
+          <input
+            type="file"
+            id="sky-image"
+            class="sky-image-input"
+            accept="image/*"
+            {{on "change" handleSkyImageUpload}}
+          />
+        </div>
+        <div id="sky-image-controls" class="hidden">
           <button
             type="button"
             class="download-btn reset-btn"
-            {{on "click" resetColors}}
+            {{on "click" clearSkyImage}}
           >
-            Reset Current Theme Colors
+            Clear Background Image
           </button>
+          <div class="opacity-control-group">
+            <label for="sky-image-scale">Image Scale:
+              <span class="sky-image-scale-value">1.0</span></label>
+            <input
+              type="range"
+              id="sky-image-scale"
+              class="sky-image-scale-input"
+              min="0.5"
+              max="3"
+              step="0.1"
+              value="1"
+              {{on "input" handleSkyImageScale}}
+            />
+          </div>
+          <div class="opacity-control-group">
+            <label for="sky-image-offset-x">Image Offset X:
+              <span class="sky-image-offset-x-value">0</span></label>
+            <input
+              type="range"
+              id="sky-image-offset-x"
+              class="sky-image-offset-x-input"
+              min="-500"
+              max="500"
+              step="10"
+              value="0"
+              {{on "input" handleSkyImageOffsetX}}
+            />
+          </div>
+          <div class="opacity-control-group">
+            <label for="sky-image-offset-y">Image Offset Y:
+              <span class="sky-image-offset-y-value">0</span></label>
+            <input
+              type="range"
+              id="sky-image-offset-y"
+              class="sky-image-offset-y-input"
+              min="-500"
+              max="500"
+              step="10"
+              value="0"
+              {{on "input" handleSkyImageOffsetY}}
+            />
+          </div>
         </div>
-
-        <h2>Logo Downloads</h2>
+      </div>
+      <div class="strava-banner-section themeable">
+        <div class="strava-banner-info">
+          <p>Banner dimensions: 1210px × 593px. Top/bottom 100px may be hidden on Desktop.</p>
+        </div>
+        <div class="strava-banner-preview-container">
+          <div id="strava-banner-preview"></div>
+        </div>
         <div class="download-buttons">
           <button
             type="button"
-            class="download-btn chevron-only-toggle-btn"
-            {{on "click" toggleChevronOnly}}
+            class="download-btn banner-mask-toggle-btn"
+            {{on "click" toggleBannerMasks}}
           >
-            Chevron Only: Disabled
-          </button>
-          <button
-            type="button"
-            class="download-btn circle-toggle-btn"
-            {{on "click" toggleCircleMask}}
-          >
-            Toggle Circle Mask
-          </button>
-          <button
-            type="button"
-            class="download-btn fit-to-content-btn"
-            {{on "click" toggleFitToContent}}
-          >
-            Toggle Fit to Content
-          </button>
-          <button
-            type="button"
-            class="download-btn transparent-toggle-btn"
-            {{on "click" toggleTransparentBackground}}
-          >
-            Background: Themed
+            Safe Area: Hidden
           </button>
           <button
             type="button"
             class="download-btn"
-            {{on "click" downloadAsSVG}}
+            {{on "click" downloadStravaBannerSVG}}
           >
-            Download Logo SVG
+            Download Strava Banner SVG
           </button>
           <button
             type="button"
             class="download-btn"
-            {{on "click" downloadAsPNG}}
+            {{on "click" downloadStravaBannerPNG}}
           >
-            Download Logo PNG
-          </button>
-          <button
-            type="button"
-            class="download-btn"
-            {{on "click" downloadAssetsAsZip}}
-          >
-            Download All Assets (ZIP)
+            Download Strava Banner PNG
           </button>
         </div>
-
-        <h2>Strava Club Header</h2>
-        <div class="color-controls">
-          <div class="color-picker-group">
-            <label for="sky-image">Upload Background Image (optional):</label>
-            <input
-              type="file"
-              id="sky-image"
-              class="sky-image-input"
-              accept="image/*"
-              {{on "change" handleSkyImageUpload}}
-            />
-          </div>
-          <div id="sky-image-controls" class="hidden">
-            <button
-              type="button"
-              class="download-btn reset-btn"
-              {{on "click" clearSkyImage}}
-            >
-              Clear Background Image
-            </button>
-            <div class="opacity-control-group">
-              <label for="sky-image-scale">Image Scale:
-                <span class="sky-image-scale-value">1.0</span></label>
-              <input
-                type="range"
-                id="sky-image-scale"
-                class="sky-image-scale-input"
-                min="0.5"
-                max="3"
-                step="0.1"
-                value="1"
-                {{on "input" handleSkyImageScale}}
-              />
-            </div>
-            <div class="opacity-control-group">
-              <label for="sky-image-offset-x">Image Offset X:
-                <span class="sky-image-offset-x-value">0</span></label>
-              <input
-                type="range"
-                id="sky-image-offset-x"
-                class="sky-image-offset-x-input"
-                min="-500"
-                max="500"
-                step="10"
-                value="0"
-                {{on "input" handleSkyImageOffsetX}}
-              />
-            </div>
-            <div class="opacity-control-group">
-              <label for="sky-image-offset-y">Image Offset Y:
-                <span class="sky-image-offset-y-value">0</span></label>
-              <input
-                type="range"
-                id="sky-image-offset-y"
-                class="sky-image-offset-y-input"
-                min="-500"
-                max="500"
-                step="10"
-                value="0"
-                {{on "input" handleSkyImageOffsetY}}
-              />
-            </div>
-          </div>
-        </div>
-        <div class="strava-banner-section themeable">
-          <div class="strava-banner-info">
-            <p>Banner dimensions: 1210px × 593px. Top/bottom 100px may be hidden on Desktop.</p>
-          </div>
-          <div class="strava-banner-preview-container">
-            <div id="strava-banner-preview"></div>
-          </div>
-          <div class="download-buttons">
-            <button
-              type="button"
-              class="download-btn banner-mask-toggle-btn"
-              {{on "click" toggleBannerMasks}}
-            >
-              Safe Area: Hidden
-            </button>
-            <button
-              type="button"
-              class="download-btn"
-              {{on "click" downloadStravaBannerSVG}}
-            >
-              Download Strava Banner SVG
-            </button>
-            <button
-              type="button"
-              class="download-btn"
-              {{on "click" downloadStravaBannerPNG}}
-            >
-              Download Strava Banner PNG
-            </button>
-          </div>
-        </div>
-
-        {{#if (isDebugMode)}}
-          <div class="preview-section themeable">
-            <div class="preview-box">
-              <h3>SVG Preview</h3>
-              <div class="preview-container svg-preview-target"></div>
-            </div>
-            <div class="preview-box">
-              <h3>PNG Preview</h3>
-              <div class="preview-container png-preview">
-                <canvas id="png-preview"></canvas>
-              </div>
-            </div>
-          </div>
-        {{/if}}
       </div>
-    </div>
-  </section>
+
+      {{#if (isDebugMode)}}
+        <div class="preview-section themeable">
+          <div class="preview-box">
+            <h3>SVG Preview</h3>
+            <div class="preview-container svg-preview-target"></div>
+          </div>
+          <div class="preview-box">
+            <h3>PNG Preview</h3>
+            <div class="preview-container png-preview">
+              <canvas id="png-preview"></canvas>
+            </div>
+          </div>
+        </div>
+      {{/if}}
+    </:default>
+  </ThemedPage>
 </template>
