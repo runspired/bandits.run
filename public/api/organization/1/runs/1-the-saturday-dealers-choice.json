@@ -103,10 +103,6 @@
         "data": [
           {
             "type": "realized-event-date",
-            "id": "1-the-saturday-dealers-choice-2026-01-31"
-          },
-          {
-            "type": "realized-event-date",
             "id": "1-the-saturday-dealers-choice-2026-05-30"
           },
           {
@@ -116,6 +112,10 @@
           {
             "type": "realized-event-date",
             "id": "1-the-saturday-dealers-choice-2026-10-31"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-the-saturday-dealers-choice-2027-01-30"
           }
         ]
       }
@@ -198,16 +198,6 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-the-saturday-dealers-choice-2026-01-31",
-      "attributes": {
-        "date": "2026-01-31",
-        "weekNumberMonday": 5,
-        "weekNumberSunday": 5
-      },
-      "relationships": {}
-    },
-    {
-      "type": "realized-event-date",
       "id": "1-the-saturday-dealers-choice-2026-05-30",
       "attributes": {
         "date": "2026-05-30",
@@ -233,6 +223,16 @@
         "date": "2026-10-31",
         "weekNumberMonday": 44,
         "weekNumberSunday": 44
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-the-saturday-dealers-choice-2027-01-30",
+      "attributes": {
+        "date": "2027-01-30",
+        "weekNumberMonday": 5,
+        "weekNumberSunday": 5
       },
       "relationships": {}
     }

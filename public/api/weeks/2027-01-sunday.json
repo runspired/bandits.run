@@ -129,171 +129,143 @@
           "data": [
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-01-17"
-            },
-            {
-              "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-01-24"
-            },
-            {
-              "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-01-31"
-            },
-            {
-              "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-02-07"
-            },
-            {
-              "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-02-14"
-            },
-            {
-              "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-02-21"
-            },
-            {
-              "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-02-28"
-            },
-            {
-              "type": "realized-event-date",
               "id": "5-headlands-saturday-2026-03-07"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-03-14"
+              "id": "5-headlands-saturday-2026-03-15"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-03-21"
+              "id": "5-headlands-saturday-2026-03-22"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-03-28"
+              "id": "5-headlands-saturday-2026-03-29"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-04-04"
+              "id": "5-headlands-saturday-2026-04-05"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-04-11"
+              "id": "5-headlands-saturday-2026-04-12"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-04-18"
+              "id": "5-headlands-saturday-2026-04-19"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-04-25"
+              "id": "5-headlands-saturday-2026-04-26"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-05-02"
+              "id": "5-headlands-saturday-2026-05-03"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-05-09"
+              "id": "5-headlands-saturday-2026-05-10"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-05-16"
+              "id": "5-headlands-saturday-2026-05-17"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-05-23"
+              "id": "5-headlands-saturday-2026-05-24"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-05-30"
+              "id": "5-headlands-saturday-2026-05-31"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-06-06"
+              "id": "5-headlands-saturday-2026-06-07"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-06-13"
+              "id": "5-headlands-saturday-2026-06-14"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-06-20"
+              "id": "5-headlands-saturday-2026-06-21"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-06-27"
+              "id": "5-headlands-saturday-2026-06-28"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-07-04"
+              "id": "5-headlands-saturday-2026-07-05"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-07-11"
+              "id": "5-headlands-saturday-2026-07-12"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-07-18"
+              "id": "5-headlands-saturday-2026-07-19"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-07-25"
+              "id": "5-headlands-saturday-2026-07-26"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-08-01"
+              "id": "5-headlands-saturday-2026-08-02"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-08-08"
+              "id": "5-headlands-saturday-2026-08-09"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-08-15"
+              "id": "5-headlands-saturday-2026-08-16"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-08-22"
+              "id": "5-headlands-saturday-2026-08-23"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-08-29"
+              "id": "5-headlands-saturday-2026-08-30"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-09-05"
+              "id": "5-headlands-saturday-2026-09-06"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-09-12"
+              "id": "5-headlands-saturday-2026-09-13"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-09-19"
+              "id": "5-headlands-saturday-2026-09-20"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-09-26"
+              "id": "5-headlands-saturday-2026-09-27"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-10-03"
+              "id": "5-headlands-saturday-2026-10-04"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-10-10"
+              "id": "5-headlands-saturday-2026-10-11"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-10-17"
+              "id": "5-headlands-saturday-2026-10-18"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-10-24"
+              "id": "5-headlands-saturday-2026-10-25"
             },
             {
               "type": "realized-event-date",
-              "id": "5-headlands-saturday-2026-10-31"
+              "id": "5-headlands-saturday-2026-11-01"
             },
             {
               "type": "realized-event-date",
@@ -338,6 +310,34 @@
             {
               "type": "realized-event-date",
               "id": "5-headlands-saturday-2027-01-16"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "5-headlands-saturday-2027-01-23"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "5-headlands-saturday-2027-01-30"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "5-headlands-saturday-2027-02-06"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "5-headlands-saturday-2027-02-13"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "5-headlands-saturday-2027-02-20"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "5-headlands-saturday-2027-02-27"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "5-headlands-saturday-2027-03-06"
             }
           ]
         }
@@ -447,10 +447,6 @@
           "data": [
             {
               "type": "realized-event-date",
-              "id": "1-the-saturday-trampas-2026-02-07"
-            },
-            {
-              "type": "realized-event-date",
               "id": "1-the-saturday-trampas-2026-03-07"
             },
             {
@@ -492,6 +488,14 @@
             {
               "type": "realized-event-date",
               "id": "1-the-saturday-trampas-2027-01-02"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-the-saturday-trampas-2027-02-06"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-the-saturday-trampas-2027-03-06"
             }
           ]
         }
@@ -564,125 +568,6 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-01-17",
-      "attributes": {
-        "date": "2026-01-17",
-        "weekNumberMonday": 3,
-        "weekNumberSunday": 3
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "5-headlands-saturday"
-          }
-        }
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-01-24",
-      "attributes": {
-        "date": "2026-01-24",
-        "weekNumberMonday": 4,
-        "weekNumberSunday": 4
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "5-headlands-saturday"
-          }
-        }
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-01-31",
-      "attributes": {
-        "date": "2026-01-31",
-        "weekNumberMonday": 5,
-        "weekNumberSunday": 5
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "5-headlands-saturday"
-          }
-        }
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-02-07",
-      "attributes": {
-        "date": "2026-02-07",
-        "weekNumberMonday": 6,
-        "weekNumberSunday": 6
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "5-headlands-saturday"
-          }
-        }
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-02-14",
-      "attributes": {
-        "date": "2026-02-14",
-        "weekNumberMonday": 7,
-        "weekNumberSunday": 7
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "5-headlands-saturday"
-          }
-        }
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-02-21",
-      "attributes": {
-        "date": "2026-02-21",
-        "weekNumberMonday": 8,
-        "weekNumberSunday": 8
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "5-headlands-saturday"
-          }
-        }
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-02-28",
-      "attributes": {
-        "date": "2026-02-28",
-        "weekNumberMonday": 9,
-        "weekNumberSunday": 9
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "5-headlands-saturday"
-          }
-        }
-      }
-    },
-    {
-      "type": "realized-event-date",
       "id": "5-headlands-saturday-2026-03-07",
       "attributes": {
         "date": "2026-03-07",
@@ -700,9 +585,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-03-14",
+      "id": "5-headlands-saturday-2026-03-15",
       "attributes": {
-        "date": "2026-03-14",
+        "date": "2026-03-15",
         "weekNumberMonday": 11,
         "weekNumberSunday": 11
       },
@@ -717,9 +602,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-03-21",
+      "id": "5-headlands-saturday-2026-03-22",
       "attributes": {
-        "date": "2026-03-21",
+        "date": "2026-03-22",
         "weekNumberMonday": 12,
         "weekNumberSunday": 12
       },
@@ -734,9 +619,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-03-28",
+      "id": "5-headlands-saturday-2026-03-29",
       "attributes": {
-        "date": "2026-03-28",
+        "date": "2026-03-29",
         "weekNumberMonday": 13,
         "weekNumberSunday": 13
       },
@@ -751,9 +636,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-04-04",
+      "id": "5-headlands-saturday-2026-04-05",
       "attributes": {
-        "date": "2026-04-04",
+        "date": "2026-04-05",
         "weekNumberMonday": 14,
         "weekNumberSunday": 14
       },
@@ -768,9 +653,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-04-11",
+      "id": "5-headlands-saturday-2026-04-12",
       "attributes": {
-        "date": "2026-04-11",
+        "date": "2026-04-12",
         "weekNumberMonday": 15,
         "weekNumberSunday": 15
       },
@@ -785,9 +670,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-04-18",
+      "id": "5-headlands-saturday-2026-04-19",
       "attributes": {
-        "date": "2026-04-18",
+        "date": "2026-04-19",
         "weekNumberMonday": 16,
         "weekNumberSunday": 16
       },
@@ -802,9 +687,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-04-25",
+      "id": "5-headlands-saturday-2026-04-26",
       "attributes": {
-        "date": "2026-04-25",
+        "date": "2026-04-26",
         "weekNumberMonday": 17,
         "weekNumberSunday": 17
       },
@@ -819,9 +704,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-05-02",
+      "id": "5-headlands-saturday-2026-05-03",
       "attributes": {
-        "date": "2026-05-02",
+        "date": "2026-05-03",
         "weekNumberMonday": 18,
         "weekNumberSunday": 18
       },
@@ -836,9 +721,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-05-09",
+      "id": "5-headlands-saturday-2026-05-10",
       "attributes": {
-        "date": "2026-05-09",
+        "date": "2026-05-10",
         "weekNumberMonday": 19,
         "weekNumberSunday": 19
       },
@@ -853,9 +738,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-05-16",
+      "id": "5-headlands-saturday-2026-05-17",
       "attributes": {
-        "date": "2026-05-16",
+        "date": "2026-05-17",
         "weekNumberMonday": 20,
         "weekNumberSunday": 20
       },
@@ -870,9 +755,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-05-23",
+      "id": "5-headlands-saturday-2026-05-24",
       "attributes": {
-        "date": "2026-05-23",
+        "date": "2026-05-24",
         "weekNumberMonday": 21,
         "weekNumberSunday": 21
       },
@@ -887,9 +772,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-05-30",
+      "id": "5-headlands-saturday-2026-05-31",
       "attributes": {
-        "date": "2026-05-30",
+        "date": "2026-05-31",
         "weekNumberMonday": 22,
         "weekNumberSunday": 22
       },
@@ -904,9 +789,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-06-06",
+      "id": "5-headlands-saturday-2026-06-07",
       "attributes": {
-        "date": "2026-06-06",
+        "date": "2026-06-07",
         "weekNumberMonday": 23,
         "weekNumberSunday": 23
       },
@@ -921,9 +806,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-06-13",
+      "id": "5-headlands-saturday-2026-06-14",
       "attributes": {
-        "date": "2026-06-13",
+        "date": "2026-06-14",
         "weekNumberMonday": 24,
         "weekNumberSunday": 24
       },
@@ -938,9 +823,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-06-20",
+      "id": "5-headlands-saturday-2026-06-21",
       "attributes": {
-        "date": "2026-06-20",
+        "date": "2026-06-21",
         "weekNumberMonday": 25,
         "weekNumberSunday": 25
       },
@@ -955,9 +840,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-06-27",
+      "id": "5-headlands-saturday-2026-06-28",
       "attributes": {
-        "date": "2026-06-27",
+        "date": "2026-06-28",
         "weekNumberMonday": 26,
         "weekNumberSunday": 26
       },
@@ -972,9 +857,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-07-04",
+      "id": "5-headlands-saturday-2026-07-05",
       "attributes": {
-        "date": "2026-07-04",
+        "date": "2026-07-05",
         "weekNumberMonday": 27,
         "weekNumberSunday": 27
       },
@@ -989,9 +874,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-07-11",
+      "id": "5-headlands-saturday-2026-07-12",
       "attributes": {
-        "date": "2026-07-11",
+        "date": "2026-07-12",
         "weekNumberMonday": 28,
         "weekNumberSunday": 28
       },
@@ -1006,9 +891,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-07-18",
+      "id": "5-headlands-saturday-2026-07-19",
       "attributes": {
-        "date": "2026-07-18",
+        "date": "2026-07-19",
         "weekNumberMonday": 29,
         "weekNumberSunday": 29
       },
@@ -1023,9 +908,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-07-25",
+      "id": "5-headlands-saturday-2026-07-26",
       "attributes": {
-        "date": "2026-07-25",
+        "date": "2026-07-26",
         "weekNumberMonday": 30,
         "weekNumberSunday": 30
       },
@@ -1040,9 +925,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-08-01",
+      "id": "5-headlands-saturday-2026-08-02",
       "attributes": {
-        "date": "2026-08-01",
+        "date": "2026-08-02",
         "weekNumberMonday": 31,
         "weekNumberSunday": 31
       },
@@ -1057,9 +942,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-08-08",
+      "id": "5-headlands-saturday-2026-08-09",
       "attributes": {
-        "date": "2026-08-08",
+        "date": "2026-08-09",
         "weekNumberMonday": 32,
         "weekNumberSunday": 32
       },
@@ -1074,9 +959,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-08-15",
+      "id": "5-headlands-saturday-2026-08-16",
       "attributes": {
-        "date": "2026-08-15",
+        "date": "2026-08-16",
         "weekNumberMonday": 33,
         "weekNumberSunday": 33
       },
@@ -1091,9 +976,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-08-22",
+      "id": "5-headlands-saturday-2026-08-23",
       "attributes": {
-        "date": "2026-08-22",
+        "date": "2026-08-23",
         "weekNumberMonday": 34,
         "weekNumberSunday": 34
       },
@@ -1108,9 +993,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-08-29",
+      "id": "5-headlands-saturday-2026-08-30",
       "attributes": {
-        "date": "2026-08-29",
+        "date": "2026-08-30",
         "weekNumberMonday": 35,
         "weekNumberSunday": 35
       },
@@ -1125,9 +1010,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-09-05",
+      "id": "5-headlands-saturday-2026-09-06",
       "attributes": {
-        "date": "2026-09-05",
+        "date": "2026-09-06",
         "weekNumberMonday": 36,
         "weekNumberSunday": 36
       },
@@ -1142,9 +1027,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-09-12",
+      "id": "5-headlands-saturday-2026-09-13",
       "attributes": {
-        "date": "2026-09-12",
+        "date": "2026-09-13",
         "weekNumberMonday": 37,
         "weekNumberSunday": 37
       },
@@ -1159,9 +1044,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-09-19",
+      "id": "5-headlands-saturday-2026-09-20",
       "attributes": {
-        "date": "2026-09-19",
+        "date": "2026-09-20",
         "weekNumberMonday": 38,
         "weekNumberSunday": 38
       },
@@ -1176,9 +1061,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-09-26",
+      "id": "5-headlands-saturday-2026-09-27",
       "attributes": {
-        "date": "2026-09-26",
+        "date": "2026-09-27",
         "weekNumberMonday": 39,
         "weekNumberSunday": 39
       },
@@ -1193,9 +1078,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-10-03",
+      "id": "5-headlands-saturday-2026-10-04",
       "attributes": {
-        "date": "2026-10-03",
+        "date": "2026-10-04",
         "weekNumberMonday": 40,
         "weekNumberSunday": 40
       },
@@ -1210,9 +1095,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-10-10",
+      "id": "5-headlands-saturday-2026-10-11",
       "attributes": {
-        "date": "2026-10-10",
+        "date": "2026-10-11",
         "weekNumberMonday": 41,
         "weekNumberSunday": 41
       },
@@ -1227,9 +1112,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-10-17",
+      "id": "5-headlands-saturday-2026-10-18",
       "attributes": {
-        "date": "2026-10-17",
+        "date": "2026-10-18",
         "weekNumberMonday": 42,
         "weekNumberSunday": 42
       },
@@ -1244,9 +1129,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-10-24",
+      "id": "5-headlands-saturday-2026-10-25",
       "attributes": {
-        "date": "2026-10-24",
+        "date": "2026-10-25",
         "weekNumberMonday": 43,
         "weekNumberSunday": 43
       },
@@ -1261,9 +1146,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "5-headlands-saturday-2026-10-31",
+      "id": "5-headlands-saturday-2026-11-01",
       "attributes": {
-        "date": "2026-10-31",
+        "date": "2026-11-01",
         "weekNumberMonday": 44,
         "weekNumberSunday": 44
       },
@@ -1447,6 +1332,125 @@
       }
     },
     {
+      "type": "realized-event-date",
+      "id": "5-headlands-saturday-2027-01-23",
+      "attributes": {
+        "date": "2027-01-23",
+        "weekNumberMonday": 4,
+        "weekNumberSunday": 4
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "5-headlands-saturday"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-headlands-saturday-2027-01-30",
+      "attributes": {
+        "date": "2027-01-30",
+        "weekNumberMonday": 5,
+        "weekNumberSunday": 5
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "5-headlands-saturday"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-headlands-saturday-2027-02-06",
+      "attributes": {
+        "date": "2027-02-06",
+        "weekNumberMonday": 6,
+        "weekNumberSunday": 6
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "5-headlands-saturday"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-headlands-saturday-2027-02-13",
+      "attributes": {
+        "date": "2027-02-13",
+        "weekNumberMonday": 7,
+        "weekNumberSunday": 7
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "5-headlands-saturday"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-headlands-saturday-2027-02-20",
+      "attributes": {
+        "date": "2027-02-20",
+        "weekNumberMonday": 8,
+        "weekNumberSunday": 8
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "5-headlands-saturday"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-headlands-saturday-2027-02-27",
+      "attributes": {
+        "date": "2027-02-27",
+        "weekNumberMonday": 9,
+        "weekNumberSunday": 9
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "5-headlands-saturday"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "5-headlands-saturday-2027-03-06",
+      "attributes": {
+        "date": "2027-03-06",
+        "weekNumberMonday": 10,
+        "weekNumberSunday": 10
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "5-headlands-saturday"
+          }
+        }
+      }
+    },
+    {
       "type": "location",
       "id": "5",
       "attributes": {
@@ -1523,23 +1527,6 @@
         "stravaId": "7278715",
         "instagramHandle": null,
         "descriptionHtml": null
-      }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-the-saturday-trampas-2026-02-07",
-      "attributes": {
-        "date": "2026-02-07",
-        "weekNumberMonday": 6,
-        "weekNumberSunday": 6
-      },
-      "relationships": {
-        "event": {
-          "data": {
-            "type": "trail-run",
-            "id": "1-the-saturday-trampas"
-          }
-        }
       }
     },
     {
@@ -1702,6 +1689,40 @@
         "date": "2026-12-05",
         "weekNumberMonday": 49,
         "weekNumberSunday": 49
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "1-the-saturday-trampas"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-the-saturday-trampas-2027-02-06",
+      "attributes": {
+        "date": "2027-02-06",
+        "weekNumberMonday": 6,
+        "weekNumberSunday": 6
+      },
+      "relationships": {
+        "event": {
+          "data": {
+            "type": "trail-run",
+            "id": "1-the-saturday-trampas"
+          }
+        }
+      }
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-the-saturday-trampas-2027-03-06",
+      "attributes": {
+        "date": "2027-03-06",
+        "weekNumberMonday": 10,
+        "weekNumberSunday": 10
       },
       "relationships": {
         "event": {

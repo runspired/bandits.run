@@ -100,171 +100,143 @@
           "data": [
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-01-12"
-            },
-            {
-              "type": "realized-event-date",
-              "id": "1-runday-2026-01-19"
-            },
-            {
-              "type": "realized-event-date",
-              "id": "1-runday-2026-01-26"
-            },
-            {
-              "type": "realized-event-date",
-              "id": "1-runday-2026-02-02"
-            },
-            {
-              "type": "realized-event-date",
-              "id": "1-runday-2026-02-09"
-            },
-            {
-              "type": "realized-event-date",
-              "id": "1-runday-2026-02-16"
-            },
-            {
-              "type": "realized-event-date",
-              "id": "1-runday-2026-02-23"
-            },
-            {
-              "type": "realized-event-date",
               "id": "1-runday-2026-03-02"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-03-09"
+              "id": "1-runday-2026-03-10"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-03-16"
+              "id": "1-runday-2026-03-17"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-03-23"
+              "id": "1-runday-2026-03-24"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-03-30"
+              "id": "1-runday-2026-03-31"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-04-06"
+              "id": "1-runday-2026-04-07"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-04-13"
+              "id": "1-runday-2026-04-14"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-04-20"
+              "id": "1-runday-2026-04-21"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-04-27"
+              "id": "1-runday-2026-04-28"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-05-04"
+              "id": "1-runday-2026-05-05"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-05-11"
+              "id": "1-runday-2026-05-12"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-05-18"
+              "id": "1-runday-2026-05-19"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-05-25"
+              "id": "1-runday-2026-05-26"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-06-01"
+              "id": "1-runday-2026-06-02"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-06-08"
+              "id": "1-runday-2026-06-09"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-06-15"
+              "id": "1-runday-2026-06-16"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-06-22"
+              "id": "1-runday-2026-06-23"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-06-29"
+              "id": "1-runday-2026-06-30"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-07-06"
+              "id": "1-runday-2026-07-07"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-07-13"
+              "id": "1-runday-2026-07-14"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-07-20"
+              "id": "1-runday-2026-07-21"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-07-27"
+              "id": "1-runday-2026-07-28"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-08-03"
+              "id": "1-runday-2026-08-04"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-08-10"
+              "id": "1-runday-2026-08-11"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-08-17"
+              "id": "1-runday-2026-08-18"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-08-24"
+              "id": "1-runday-2026-08-25"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-08-31"
+              "id": "1-runday-2026-09-01"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-09-07"
+              "id": "1-runday-2026-09-08"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-09-14"
+              "id": "1-runday-2026-09-15"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-09-21"
+              "id": "1-runday-2026-09-22"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-09-28"
+              "id": "1-runday-2026-09-29"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-10-05"
+              "id": "1-runday-2026-10-06"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-10-12"
+              "id": "1-runday-2026-10-13"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-10-19"
+              "id": "1-runday-2026-10-20"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runday-2026-10-26"
+              "id": "1-runday-2026-10-27"
             },
             {
               "type": "realized-event-date",
@@ -309,6 +281,34 @@
             {
               "type": "realized-event-date",
               "id": "1-runday-2027-01-11"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-runday-2027-01-18"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-runday-2027-01-25"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-runday-2027-02-01"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-runday-2027-02-08"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-runday-2027-02-15"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-runday-2027-02-22"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-runday-2027-03-01"
             }
           ]
         }
@@ -388,171 +388,143 @@
           "data": [
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-01-15"
-            },
-            {
-              "type": "realized-event-date",
-              "id": "1-runrise-2026-01-22"
-            },
-            {
-              "type": "realized-event-date",
-              "id": "1-runrise-2026-01-29"
-            },
-            {
-              "type": "realized-event-date",
-              "id": "1-runrise-2026-02-05"
-            },
-            {
-              "type": "realized-event-date",
-              "id": "1-runrise-2026-02-12"
-            },
-            {
-              "type": "realized-event-date",
-              "id": "1-runrise-2026-02-19"
-            },
-            {
-              "type": "realized-event-date",
-              "id": "1-runrise-2026-02-26"
-            },
-            {
-              "type": "realized-event-date",
               "id": "1-runrise-2026-03-05"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-03-12"
+              "id": "1-runrise-2026-03-13"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-03-19"
+              "id": "1-runrise-2026-03-20"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-03-26"
+              "id": "1-runrise-2026-03-27"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-04-02"
+              "id": "1-runrise-2026-04-03"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-04-09"
+              "id": "1-runrise-2026-04-10"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-04-16"
+              "id": "1-runrise-2026-04-17"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-04-23"
+              "id": "1-runrise-2026-04-24"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-04-30"
+              "id": "1-runrise-2026-05-01"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-05-07"
+              "id": "1-runrise-2026-05-08"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-05-14"
+              "id": "1-runrise-2026-05-15"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-05-21"
+              "id": "1-runrise-2026-05-22"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-05-28"
+              "id": "1-runrise-2026-05-29"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-06-04"
+              "id": "1-runrise-2026-06-05"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-06-11"
+              "id": "1-runrise-2026-06-12"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-06-18"
+              "id": "1-runrise-2026-06-19"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-06-25"
+              "id": "1-runrise-2026-06-26"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-07-02"
+              "id": "1-runrise-2026-07-03"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-07-09"
+              "id": "1-runrise-2026-07-10"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-07-16"
+              "id": "1-runrise-2026-07-17"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-07-23"
+              "id": "1-runrise-2026-07-24"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-07-30"
+              "id": "1-runrise-2026-07-31"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-08-06"
+              "id": "1-runrise-2026-08-07"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-08-13"
+              "id": "1-runrise-2026-08-14"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-08-20"
+              "id": "1-runrise-2026-08-21"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-08-27"
+              "id": "1-runrise-2026-08-28"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-09-03"
+              "id": "1-runrise-2026-09-04"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-09-10"
+              "id": "1-runrise-2026-09-11"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-09-17"
+              "id": "1-runrise-2026-09-18"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-09-24"
+              "id": "1-runrise-2026-09-25"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-10-01"
+              "id": "1-runrise-2026-10-02"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-10-08"
+              "id": "1-runrise-2026-10-09"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-10-15"
+              "id": "1-runrise-2026-10-16"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-10-22"
+              "id": "1-runrise-2026-10-23"
             },
             {
               "type": "realized-event-date",
-              "id": "1-runrise-2026-10-29"
+              "id": "1-runrise-2026-10-30"
             },
             {
               "type": "realized-event-date",
@@ -597,6 +569,34 @@
             {
               "type": "realized-event-date",
               "id": "1-runrise-2027-01-14"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-runrise-2027-01-21"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-runrise-2027-01-28"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-runrise-2027-02-04"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-runrise-2027-02-11"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-runrise-2027-02-18"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-runrise-2027-02-25"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-runrise-2027-03-04"
             }
           ]
         }
@@ -706,14 +706,6 @@
           "data": [
             {
               "type": "realized-event-date",
-              "id": "1-the-saturday-briones-2026-01-24"
-            },
-            {
-              "type": "realized-event-date",
-              "id": "1-the-saturday-briones-2026-02-28"
-            },
-            {
-              "type": "realized-event-date",
               "id": "1-the-saturday-briones-2026-03-28"
             },
             {
@@ -751,6 +743,14 @@
             {
               "type": "realized-event-date",
               "id": "1-the-saturday-briones-2026-12-26"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-the-saturday-briones-2027-01-23"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-the-saturday-briones-2027-02-27"
             }
           ]
         }
@@ -860,14 +860,6 @@
           "data": [
             {
               "type": "realized-event-date",
-              "id": "1-the-saturday-chabot-2026-01-17"
-            },
-            {
-              "type": "realized-event-date",
-              "id": "1-the-saturday-chabot-2026-02-21"
-            },
-            {
-              "type": "realized-event-date",
               "id": "1-the-saturday-chabot-2026-03-21"
             },
             {
@@ -909,6 +901,10 @@
             {
               "type": "realized-event-date",
               "id": "1-the-saturday-chabot-2027-01-16"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-the-saturday-chabot-2027-02-20"
             }
           ]
         }
@@ -1018,10 +1014,6 @@
           "data": [
             {
               "type": "realized-event-date",
-              "id": "1-the-saturday-dealers-choice-2026-01-31"
-            },
-            {
-              "type": "realized-event-date",
               "id": "1-the-saturday-dealers-choice-2026-05-30"
             },
             {
@@ -1031,6 +1023,10 @@
             {
               "type": "realized-event-date",
               "id": "1-the-saturday-dealers-choice-2026-10-31"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-the-saturday-dealers-choice-2027-01-30"
             }
           ]
         }
@@ -1140,10 +1136,6 @@
           "data": [
             {
               "type": "realized-event-date",
-              "id": "1-the-saturday-tilden-2026-02-14"
-            },
-            {
-              "type": "realized-event-date",
               "id": "1-the-saturday-tilden-2026-03-14"
             },
             {
@@ -1185,6 +1177,10 @@
             {
               "type": "realized-event-date",
               "id": "1-the-saturday-tilden-2027-01-09"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-the-saturday-tilden-2027-02-13"
             }
           ]
         }
@@ -1294,10 +1290,6 @@
           "data": [
             {
               "type": "realized-event-date",
-              "id": "1-the-saturday-trampas-2026-02-07"
-            },
-            {
-              "type": "realized-event-date",
               "id": "1-the-saturday-trampas-2026-03-07"
             },
             {
@@ -1339,6 +1331,14 @@
             {
               "type": "realized-event-date",
               "id": "1-the-saturday-trampas-2027-01-02"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-the-saturday-trampas-2027-02-06"
+            },
+            {
+              "type": "realized-event-date",
+              "id": "1-the-saturday-trampas-2027-03-06"
             }
           ]
         }
@@ -1413,76 +1413,6 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-01-12",
-      "attributes": {
-        "date": "2026-01-12",
-        "weekNumberMonday": 3,
-        "weekNumberSunday": 3
-      },
-      "relationships": {}
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-runday-2026-01-19",
-      "attributes": {
-        "date": "2026-01-19",
-        "weekNumberMonday": 4,
-        "weekNumberSunday": 4
-      },
-      "relationships": {}
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-runday-2026-01-26",
-      "attributes": {
-        "date": "2026-01-26",
-        "weekNumberMonday": 5,
-        "weekNumberSunday": 5
-      },
-      "relationships": {}
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-runday-2026-02-02",
-      "attributes": {
-        "date": "2026-02-02",
-        "weekNumberMonday": 6,
-        "weekNumberSunday": 6
-      },
-      "relationships": {}
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-runday-2026-02-09",
-      "attributes": {
-        "date": "2026-02-09",
-        "weekNumberMonday": 7,
-        "weekNumberSunday": 7
-      },
-      "relationships": {}
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-runday-2026-02-16",
-      "attributes": {
-        "date": "2026-02-16",
-        "weekNumberMonday": 8,
-        "weekNumberSunday": 8
-      },
-      "relationships": {}
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-runday-2026-02-23",
-      "attributes": {
-        "date": "2026-02-23",
-        "weekNumberMonday": 9,
-        "weekNumberSunday": 9
-      },
-      "relationships": {}
-    },
-    {
-      "type": "realized-event-date",
       "id": "1-runday-2026-03-02",
       "attributes": {
         "date": "2026-03-02",
@@ -1493,340 +1423,340 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-03-09",
+      "id": "1-runday-2026-03-10",
       "attributes": {
-        "date": "2026-03-09",
-        "weekNumberMonday": 10,
+        "date": "2026-03-10",
+        "weekNumberMonday": 11,
         "weekNumberSunday": 11
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-03-16",
+      "id": "1-runday-2026-03-17",
       "attributes": {
-        "date": "2026-03-16",
-        "weekNumberMonday": 11,
+        "date": "2026-03-17",
+        "weekNumberMonday": 12,
         "weekNumberSunday": 12
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-03-23",
+      "id": "1-runday-2026-03-24",
       "attributes": {
-        "date": "2026-03-23",
-        "weekNumberMonday": 12,
+        "date": "2026-03-24",
+        "weekNumberMonday": 13,
         "weekNumberSunday": 13
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-03-30",
+      "id": "1-runday-2026-03-31",
       "attributes": {
-        "date": "2026-03-30",
-        "weekNumberMonday": 13,
+        "date": "2026-03-31",
+        "weekNumberMonday": 14,
         "weekNumberSunday": 14
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-04-06",
+      "id": "1-runday-2026-04-07",
       "attributes": {
-        "date": "2026-04-06",
-        "weekNumberMonday": 14,
+        "date": "2026-04-07",
+        "weekNumberMonday": 15,
         "weekNumberSunday": 15
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-04-13",
+      "id": "1-runday-2026-04-14",
       "attributes": {
-        "date": "2026-04-13",
-        "weekNumberMonday": 15,
+        "date": "2026-04-14",
+        "weekNumberMonday": 16,
         "weekNumberSunday": 16
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-04-20",
+      "id": "1-runday-2026-04-21",
       "attributes": {
-        "date": "2026-04-20",
-        "weekNumberMonday": 16,
+        "date": "2026-04-21",
+        "weekNumberMonday": 17,
         "weekNumberSunday": 17
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-04-27",
+      "id": "1-runday-2026-04-28",
       "attributes": {
-        "date": "2026-04-27",
-        "weekNumberMonday": 17,
+        "date": "2026-04-28",
+        "weekNumberMonday": 18,
         "weekNumberSunday": 18
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-05-04",
+      "id": "1-runday-2026-05-05",
       "attributes": {
-        "date": "2026-05-04",
-        "weekNumberMonday": 18,
+        "date": "2026-05-05",
+        "weekNumberMonday": 19,
         "weekNumberSunday": 19
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-05-11",
+      "id": "1-runday-2026-05-12",
       "attributes": {
-        "date": "2026-05-11",
-        "weekNumberMonday": 19,
+        "date": "2026-05-12",
+        "weekNumberMonday": 20,
         "weekNumberSunday": 20
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-05-18",
+      "id": "1-runday-2026-05-19",
       "attributes": {
-        "date": "2026-05-18",
-        "weekNumberMonday": 20,
+        "date": "2026-05-19",
+        "weekNumberMonday": 21,
         "weekNumberSunday": 21
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-05-25",
+      "id": "1-runday-2026-05-26",
       "attributes": {
-        "date": "2026-05-25",
-        "weekNumberMonday": 21,
+        "date": "2026-05-26",
+        "weekNumberMonday": 22,
         "weekNumberSunday": 22
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-06-01",
+      "id": "1-runday-2026-06-02",
       "attributes": {
-        "date": "2026-06-01",
-        "weekNumberMonday": 22,
+        "date": "2026-06-02",
+        "weekNumberMonday": 23,
         "weekNumberSunday": 23
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-06-08",
+      "id": "1-runday-2026-06-09",
       "attributes": {
-        "date": "2026-06-08",
-        "weekNumberMonday": 23,
+        "date": "2026-06-09",
+        "weekNumberMonday": 24,
         "weekNumberSunday": 24
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-06-15",
+      "id": "1-runday-2026-06-16",
       "attributes": {
-        "date": "2026-06-15",
-        "weekNumberMonday": 24,
+        "date": "2026-06-16",
+        "weekNumberMonday": 25,
         "weekNumberSunday": 25
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-06-22",
+      "id": "1-runday-2026-06-23",
       "attributes": {
-        "date": "2026-06-22",
-        "weekNumberMonday": 25,
+        "date": "2026-06-23",
+        "weekNumberMonday": 26,
         "weekNumberSunday": 26
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-06-29",
+      "id": "1-runday-2026-06-30",
       "attributes": {
-        "date": "2026-06-29",
-        "weekNumberMonday": 26,
+        "date": "2026-06-30",
+        "weekNumberMonday": 27,
         "weekNumberSunday": 27
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-07-06",
+      "id": "1-runday-2026-07-07",
       "attributes": {
-        "date": "2026-07-06",
-        "weekNumberMonday": 27,
+        "date": "2026-07-07",
+        "weekNumberMonday": 28,
         "weekNumberSunday": 28
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-07-13",
+      "id": "1-runday-2026-07-14",
       "attributes": {
-        "date": "2026-07-13",
-        "weekNumberMonday": 28,
+        "date": "2026-07-14",
+        "weekNumberMonday": 29,
         "weekNumberSunday": 29
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-07-20",
+      "id": "1-runday-2026-07-21",
       "attributes": {
-        "date": "2026-07-20",
-        "weekNumberMonday": 29,
+        "date": "2026-07-21",
+        "weekNumberMonday": 30,
         "weekNumberSunday": 30
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-07-27",
+      "id": "1-runday-2026-07-28",
       "attributes": {
-        "date": "2026-07-27",
-        "weekNumberMonday": 30,
+        "date": "2026-07-28",
+        "weekNumberMonday": 31,
         "weekNumberSunday": 31
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-08-03",
+      "id": "1-runday-2026-08-04",
       "attributes": {
-        "date": "2026-08-03",
-        "weekNumberMonday": 31,
+        "date": "2026-08-04",
+        "weekNumberMonday": 32,
         "weekNumberSunday": 32
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-08-10",
+      "id": "1-runday-2026-08-11",
       "attributes": {
-        "date": "2026-08-10",
-        "weekNumberMonday": 32,
+        "date": "2026-08-11",
+        "weekNumberMonday": 33,
         "weekNumberSunday": 33
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-08-17",
+      "id": "1-runday-2026-08-18",
       "attributes": {
-        "date": "2026-08-17",
-        "weekNumberMonday": 33,
+        "date": "2026-08-18",
+        "weekNumberMonday": 34,
         "weekNumberSunday": 34
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-08-24",
+      "id": "1-runday-2026-08-25",
       "attributes": {
-        "date": "2026-08-24",
-        "weekNumberMonday": 34,
+        "date": "2026-08-25",
+        "weekNumberMonday": 35,
         "weekNumberSunday": 35
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-08-31",
+      "id": "1-runday-2026-09-01",
       "attributes": {
-        "date": "2026-08-31",
-        "weekNumberMonday": 35,
+        "date": "2026-09-01",
+        "weekNumberMonday": 36,
         "weekNumberSunday": 36
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-09-07",
+      "id": "1-runday-2026-09-08",
       "attributes": {
-        "date": "2026-09-07",
-        "weekNumberMonday": 36,
+        "date": "2026-09-08",
+        "weekNumberMonday": 37,
         "weekNumberSunday": 37
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-09-14",
+      "id": "1-runday-2026-09-15",
       "attributes": {
-        "date": "2026-09-14",
-        "weekNumberMonday": 37,
+        "date": "2026-09-15",
+        "weekNumberMonday": 38,
         "weekNumberSunday": 38
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-09-21",
+      "id": "1-runday-2026-09-22",
       "attributes": {
-        "date": "2026-09-21",
-        "weekNumberMonday": 38,
+        "date": "2026-09-22",
+        "weekNumberMonday": 39,
         "weekNumberSunday": 39
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-09-28",
+      "id": "1-runday-2026-09-29",
       "attributes": {
-        "date": "2026-09-28",
-        "weekNumberMonday": 39,
+        "date": "2026-09-29",
+        "weekNumberMonday": 40,
         "weekNumberSunday": 40
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-10-05",
+      "id": "1-runday-2026-10-06",
       "attributes": {
-        "date": "2026-10-05",
-        "weekNumberMonday": 40,
+        "date": "2026-10-06",
+        "weekNumberMonday": 41,
         "weekNumberSunday": 41
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-10-12",
+      "id": "1-runday-2026-10-13",
       "attributes": {
-        "date": "2026-10-12",
-        "weekNumberMonday": 41,
+        "date": "2026-10-13",
+        "weekNumberMonday": 42,
         "weekNumberSunday": 42
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-10-19",
+      "id": "1-runday-2026-10-20",
       "attributes": {
-        "date": "2026-10-19",
-        "weekNumberMonday": 42,
+        "date": "2026-10-20",
+        "weekNumberMonday": 43,
         "weekNumberSunday": 43
       },
       "relationships": {}
     },
     {
       "type": "realized-event-date",
-      "id": "1-runday-2026-10-26",
+      "id": "1-runday-2026-10-27",
       "attributes": {
-        "date": "2026-10-26",
-        "weekNumberMonday": 43,
+        "date": "2026-10-27",
+        "weekNumberMonday": 44,
         "weekNumberSunday": 44
       },
       "relationships": {}
@@ -1942,6 +1872,76 @@
       "relationships": {}
     },
     {
+      "type": "realized-event-date",
+      "id": "1-runday-2027-01-18",
+      "attributes": {
+        "date": "2027-01-18",
+        "weekNumberMonday": 4,
+        "weekNumberSunday": 4
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runday-2027-01-25",
+      "attributes": {
+        "date": "2027-01-25",
+        "weekNumberMonday": 5,
+        "weekNumberSunday": 5
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runday-2027-02-01",
+      "attributes": {
+        "date": "2027-02-01",
+        "weekNumberMonday": 6,
+        "weekNumberSunday": 6
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runday-2027-02-08",
+      "attributes": {
+        "date": "2027-02-08",
+        "weekNumberMonday": 7,
+        "weekNumberSunday": 7
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runday-2027-02-15",
+      "attributes": {
+        "date": "2027-02-15",
+        "weekNumberMonday": 8,
+        "weekNumberSunday": 8
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runday-2027-02-22",
+      "attributes": {
+        "date": "2027-02-22",
+        "weekNumberMonday": 9,
+        "weekNumberSunday": 9
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runday-2027-03-01",
+      "attributes": {
+        "date": "2027-03-01",
+        "weekNumberMonday": 10,
+        "weekNumberSunday": 10
+      },
+      "relationships": {}
+    },
+    {
       "type": "location",
       "id": "2",
       "attributes": {
@@ -1989,76 +1989,6 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-01-15",
-      "attributes": {
-        "date": "2026-01-15",
-        "weekNumberMonday": 3,
-        "weekNumberSunday": 3
-      },
-      "relationships": {}
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-runrise-2026-01-22",
-      "attributes": {
-        "date": "2026-01-22",
-        "weekNumberMonday": 4,
-        "weekNumberSunday": 4
-      },
-      "relationships": {}
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-runrise-2026-01-29",
-      "attributes": {
-        "date": "2026-01-29",
-        "weekNumberMonday": 5,
-        "weekNumberSunday": 5
-      },
-      "relationships": {}
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-runrise-2026-02-05",
-      "attributes": {
-        "date": "2026-02-05",
-        "weekNumberMonday": 6,
-        "weekNumberSunday": 6
-      },
-      "relationships": {}
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-runrise-2026-02-12",
-      "attributes": {
-        "date": "2026-02-12",
-        "weekNumberMonday": 7,
-        "weekNumberSunday": 7
-      },
-      "relationships": {}
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-runrise-2026-02-19",
-      "attributes": {
-        "date": "2026-02-19",
-        "weekNumberMonday": 8,
-        "weekNumberSunday": 8
-      },
-      "relationships": {}
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-runrise-2026-02-26",
-      "attributes": {
-        "date": "2026-02-26",
-        "weekNumberMonday": 9,
-        "weekNumberSunday": 9
-      },
-      "relationships": {}
-    },
-    {
-      "type": "realized-event-date",
       "id": "1-runrise-2026-03-05",
       "attributes": {
         "date": "2026-03-05",
@@ -2069,9 +1999,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-03-12",
+      "id": "1-runrise-2026-03-13",
       "attributes": {
-        "date": "2026-03-12",
+        "date": "2026-03-13",
         "weekNumberMonday": 11,
         "weekNumberSunday": 11
       },
@@ -2079,9 +2009,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-03-19",
+      "id": "1-runrise-2026-03-20",
       "attributes": {
-        "date": "2026-03-19",
+        "date": "2026-03-20",
         "weekNumberMonday": 12,
         "weekNumberSunday": 12
       },
@@ -2089,9 +2019,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-03-26",
+      "id": "1-runrise-2026-03-27",
       "attributes": {
-        "date": "2026-03-26",
+        "date": "2026-03-27",
         "weekNumberMonday": 13,
         "weekNumberSunday": 13
       },
@@ -2099,9 +2029,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-04-02",
+      "id": "1-runrise-2026-04-03",
       "attributes": {
-        "date": "2026-04-02",
+        "date": "2026-04-03",
         "weekNumberMonday": 14,
         "weekNumberSunday": 14
       },
@@ -2109,9 +2039,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-04-09",
+      "id": "1-runrise-2026-04-10",
       "attributes": {
-        "date": "2026-04-09",
+        "date": "2026-04-10",
         "weekNumberMonday": 15,
         "weekNumberSunday": 15
       },
@@ -2119,9 +2049,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-04-16",
+      "id": "1-runrise-2026-04-17",
       "attributes": {
-        "date": "2026-04-16",
+        "date": "2026-04-17",
         "weekNumberMonday": 16,
         "weekNumberSunday": 16
       },
@@ -2129,9 +2059,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-04-23",
+      "id": "1-runrise-2026-04-24",
       "attributes": {
-        "date": "2026-04-23",
+        "date": "2026-04-24",
         "weekNumberMonday": 17,
         "weekNumberSunday": 17
       },
@@ -2139,9 +2069,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-04-30",
+      "id": "1-runrise-2026-05-01",
       "attributes": {
-        "date": "2026-04-30",
+        "date": "2026-05-01",
         "weekNumberMonday": 18,
         "weekNumberSunday": 18
       },
@@ -2149,9 +2079,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-05-07",
+      "id": "1-runrise-2026-05-08",
       "attributes": {
-        "date": "2026-05-07",
+        "date": "2026-05-08",
         "weekNumberMonday": 19,
         "weekNumberSunday": 19
       },
@@ -2159,9 +2089,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-05-14",
+      "id": "1-runrise-2026-05-15",
       "attributes": {
-        "date": "2026-05-14",
+        "date": "2026-05-15",
         "weekNumberMonday": 20,
         "weekNumberSunday": 20
       },
@@ -2169,9 +2099,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-05-21",
+      "id": "1-runrise-2026-05-22",
       "attributes": {
-        "date": "2026-05-21",
+        "date": "2026-05-22",
         "weekNumberMonday": 21,
         "weekNumberSunday": 21
       },
@@ -2179,9 +2109,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-05-28",
+      "id": "1-runrise-2026-05-29",
       "attributes": {
-        "date": "2026-05-28",
+        "date": "2026-05-29",
         "weekNumberMonday": 22,
         "weekNumberSunday": 22
       },
@@ -2189,9 +2119,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-06-04",
+      "id": "1-runrise-2026-06-05",
       "attributes": {
-        "date": "2026-06-04",
+        "date": "2026-06-05",
         "weekNumberMonday": 23,
         "weekNumberSunday": 23
       },
@@ -2199,9 +2129,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-06-11",
+      "id": "1-runrise-2026-06-12",
       "attributes": {
-        "date": "2026-06-11",
+        "date": "2026-06-12",
         "weekNumberMonday": 24,
         "weekNumberSunday": 24
       },
@@ -2209,9 +2139,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-06-18",
+      "id": "1-runrise-2026-06-19",
       "attributes": {
-        "date": "2026-06-18",
+        "date": "2026-06-19",
         "weekNumberMonday": 25,
         "weekNumberSunday": 25
       },
@@ -2219,9 +2149,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-06-25",
+      "id": "1-runrise-2026-06-26",
       "attributes": {
-        "date": "2026-06-25",
+        "date": "2026-06-26",
         "weekNumberMonday": 26,
         "weekNumberSunday": 26
       },
@@ -2229,9 +2159,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-07-02",
+      "id": "1-runrise-2026-07-03",
       "attributes": {
-        "date": "2026-07-02",
+        "date": "2026-07-03",
         "weekNumberMonday": 27,
         "weekNumberSunday": 27
       },
@@ -2239,9 +2169,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-07-09",
+      "id": "1-runrise-2026-07-10",
       "attributes": {
-        "date": "2026-07-09",
+        "date": "2026-07-10",
         "weekNumberMonday": 28,
         "weekNumberSunday": 28
       },
@@ -2249,9 +2179,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-07-16",
+      "id": "1-runrise-2026-07-17",
       "attributes": {
-        "date": "2026-07-16",
+        "date": "2026-07-17",
         "weekNumberMonday": 29,
         "weekNumberSunday": 29
       },
@@ -2259,9 +2189,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-07-23",
+      "id": "1-runrise-2026-07-24",
       "attributes": {
-        "date": "2026-07-23",
+        "date": "2026-07-24",
         "weekNumberMonday": 30,
         "weekNumberSunday": 30
       },
@@ -2269,9 +2199,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-07-30",
+      "id": "1-runrise-2026-07-31",
       "attributes": {
-        "date": "2026-07-30",
+        "date": "2026-07-31",
         "weekNumberMonday": 31,
         "weekNumberSunday": 31
       },
@@ -2279,9 +2209,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-08-06",
+      "id": "1-runrise-2026-08-07",
       "attributes": {
-        "date": "2026-08-06",
+        "date": "2026-08-07",
         "weekNumberMonday": 32,
         "weekNumberSunday": 32
       },
@@ -2289,9 +2219,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-08-13",
+      "id": "1-runrise-2026-08-14",
       "attributes": {
-        "date": "2026-08-13",
+        "date": "2026-08-14",
         "weekNumberMonday": 33,
         "weekNumberSunday": 33
       },
@@ -2299,9 +2229,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-08-20",
+      "id": "1-runrise-2026-08-21",
       "attributes": {
-        "date": "2026-08-20",
+        "date": "2026-08-21",
         "weekNumberMonday": 34,
         "weekNumberSunday": 34
       },
@@ -2309,9 +2239,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-08-27",
+      "id": "1-runrise-2026-08-28",
       "attributes": {
-        "date": "2026-08-27",
+        "date": "2026-08-28",
         "weekNumberMonday": 35,
         "weekNumberSunday": 35
       },
@@ -2319,9 +2249,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-09-03",
+      "id": "1-runrise-2026-09-04",
       "attributes": {
-        "date": "2026-09-03",
+        "date": "2026-09-04",
         "weekNumberMonday": 36,
         "weekNumberSunday": 36
       },
@@ -2329,9 +2259,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-09-10",
+      "id": "1-runrise-2026-09-11",
       "attributes": {
-        "date": "2026-09-10",
+        "date": "2026-09-11",
         "weekNumberMonday": 37,
         "weekNumberSunday": 37
       },
@@ -2339,9 +2269,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-09-17",
+      "id": "1-runrise-2026-09-18",
       "attributes": {
-        "date": "2026-09-17",
+        "date": "2026-09-18",
         "weekNumberMonday": 38,
         "weekNumberSunday": 38
       },
@@ -2349,9 +2279,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-09-24",
+      "id": "1-runrise-2026-09-25",
       "attributes": {
-        "date": "2026-09-24",
+        "date": "2026-09-25",
         "weekNumberMonday": 39,
         "weekNumberSunday": 39
       },
@@ -2359,9 +2289,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-10-01",
+      "id": "1-runrise-2026-10-02",
       "attributes": {
-        "date": "2026-10-01",
+        "date": "2026-10-02",
         "weekNumberMonday": 40,
         "weekNumberSunday": 40
       },
@@ -2369,9 +2299,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-10-08",
+      "id": "1-runrise-2026-10-09",
       "attributes": {
-        "date": "2026-10-08",
+        "date": "2026-10-09",
         "weekNumberMonday": 41,
         "weekNumberSunday": 41
       },
@@ -2379,9 +2309,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-10-15",
+      "id": "1-runrise-2026-10-16",
       "attributes": {
-        "date": "2026-10-15",
+        "date": "2026-10-16",
         "weekNumberMonday": 42,
         "weekNumberSunday": 42
       },
@@ -2389,9 +2319,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-10-22",
+      "id": "1-runrise-2026-10-23",
       "attributes": {
-        "date": "2026-10-22",
+        "date": "2026-10-23",
         "weekNumberMonday": 43,
         "weekNumberSunday": 43
       },
@@ -2399,9 +2329,9 @@
     },
     {
       "type": "realized-event-date",
-      "id": "1-runrise-2026-10-29",
+      "id": "1-runrise-2026-10-30",
       "attributes": {
-        "date": "2026-10-29",
+        "date": "2026-10-30",
         "weekNumberMonday": 44,
         "weekNumberSunday": 44
       },
@@ -2518,6 +2448,76 @@
       "relationships": {}
     },
     {
+      "type": "realized-event-date",
+      "id": "1-runrise-2027-01-21",
+      "attributes": {
+        "date": "2027-01-21",
+        "weekNumberMonday": 4,
+        "weekNumberSunday": 4
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2027-01-28",
+      "attributes": {
+        "date": "2027-01-28",
+        "weekNumberMonday": 5,
+        "weekNumberSunday": 5
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2027-02-04",
+      "attributes": {
+        "date": "2027-02-04",
+        "weekNumberMonday": 6,
+        "weekNumberSunday": 6
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2027-02-11",
+      "attributes": {
+        "date": "2027-02-11",
+        "weekNumberMonday": 7,
+        "weekNumberSunday": 7
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2027-02-18",
+      "attributes": {
+        "date": "2027-02-18",
+        "weekNumberMonday": 8,
+        "weekNumberSunday": 8
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2027-02-25",
+      "attributes": {
+        "date": "2027-02-25",
+        "weekNumberMonday": 9,
+        "weekNumberSunday": 9
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-runrise-2027-03-04",
+      "attributes": {
+        "date": "2027-03-04",
+        "weekNumberMonday": 10,
+        "weekNumberSunday": 10
+      },
+      "relationships": {}
+    },
+    {
       "type": "location",
       "id": "6",
       "attributes": {
@@ -2548,26 +2548,6 @@
         "instagramHandle": null,
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-the-saturday-briones-2026-01-24",
-      "attributes": {
-        "date": "2026-01-24",
-        "weekNumberMonday": 4,
-        "weekNumberSunday": 4
-      },
-      "relationships": {}
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-the-saturday-briones-2026-02-28",
-      "attributes": {
-        "date": "2026-02-28",
-        "weekNumberMonday": 9,
-        "weekNumberSunday": 9
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -2670,6 +2650,26 @@
       "relationships": {}
     },
     {
+      "type": "realized-event-date",
+      "id": "1-the-saturday-briones-2027-01-23",
+      "attributes": {
+        "date": "2027-01-23",
+        "weekNumberMonday": 4,
+        "weekNumberSunday": 4
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-the-saturday-briones-2027-02-27",
+      "attributes": {
+        "date": "2027-02-27",
+        "weekNumberMonday": 9,
+        "weekNumberSunday": 9
+      },
+      "relationships": {}
+    },
+    {
       "type": "location",
       "id": "4",
       "attributes": {
@@ -2686,26 +2686,6 @@
         "googleMapsLink": "https://maps.app.goo.gl/CG23pPPdahmftSAr6",
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-the-saturday-chabot-2026-01-17",
-      "attributes": {
-        "date": "2026-01-17",
-        "weekNumberMonday": 3,
-        "weekNumberSunday": 3
-      },
-      "relationships": {}
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-the-saturday-chabot-2026-02-21",
-      "attributes": {
-        "date": "2026-02-21",
-        "weekNumberMonday": 8,
-        "weekNumberSunday": 8
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -2818,6 +2798,16 @@
       "relationships": {}
     },
     {
+      "type": "realized-event-date",
+      "id": "1-the-saturday-chabot-2027-02-20",
+      "attributes": {
+        "date": "2027-02-20",
+        "weekNumberMonday": 8,
+        "weekNumberSunday": 8
+      },
+      "relationships": {}
+    },
+    {
       "type": "location",
       "id": "16",
       "attributes": {
@@ -2829,16 +2819,6 @@
         "googleMapsLink": null,
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-the-saturday-dealers-choice-2026-01-31",
-      "attributes": {
-        "date": "2026-01-31",
-        "weekNumberMonday": 5,
-        "weekNumberSunday": 5
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -2871,6 +2851,16 @@
       "relationships": {}
     },
     {
+      "type": "realized-event-date",
+      "id": "1-the-saturday-dealers-choice-2027-01-30",
+      "attributes": {
+        "date": "2027-01-30",
+        "weekNumberMonday": 5,
+        "weekNumberSunday": 5
+      },
+      "relationships": {}
+    },
+    {
       "type": "location",
       "id": "3",
       "attributes": {
@@ -2887,16 +2877,6 @@
         "googleMapsLink": "https://maps.app.goo.gl/7AoYphNCcQ3y6GYe7",
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-the-saturday-tilden-2026-02-14",
-      "attributes": {
-        "date": "2026-02-14",
-        "weekNumberMonday": 7,
-        "weekNumberSunday": 7
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -3009,6 +2989,16 @@
       "relationships": {}
     },
     {
+      "type": "realized-event-date",
+      "id": "1-the-saturday-tilden-2027-02-13",
+      "attributes": {
+        "date": "2027-02-13",
+        "weekNumberMonday": 7,
+        "weekNumberSunday": 7
+      },
+      "relationships": {}
+    },
+    {
       "type": "location",
       "id": "5",
       "attributes": {
@@ -3025,16 +3015,6 @@
         "googleMapsLink": "https://maps.app.goo.gl/U56EgVrPiqhLkqof6",
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-the-saturday-trampas-2026-02-07",
-      "attributes": {
-        "date": "2026-02-07",
-        "weekNumberMonday": 6,
-        "weekNumberSunday": 6
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -3143,6 +3123,26 @@
         "date": "2027-01-02",
         "weekNumberMonday": 1,
         "weekNumberSunday": 1
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-the-saturday-trampas-2027-02-06",
+      "attributes": {
+        "date": "2027-02-06",
+        "weekNumberMonday": 6,
+        "weekNumberSunday": 6
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-the-saturday-trampas-2027-03-06",
+      "attributes": {
+        "date": "2027-03-06",
+        "weekNumberMonday": 10,
+        "weekNumberSunday": 10
       },
       "relationships": {}
     }

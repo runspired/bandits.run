@@ -103,14 +103,6 @@
         "data": [
           {
             "type": "realized-event-date",
-            "id": "1-the-saturday-briones-2026-01-24"
-          },
-          {
-            "type": "realized-event-date",
-            "id": "1-the-saturday-briones-2026-02-28"
-          },
-          {
-            "type": "realized-event-date",
             "id": "1-the-saturday-briones-2026-03-28"
           },
           {
@@ -148,6 +140,14 @@
           {
             "type": "realized-event-date",
             "id": "1-the-saturday-briones-2026-12-26"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-the-saturday-briones-2027-01-23"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-the-saturday-briones-2027-02-27"
           }
         ]
       }
@@ -232,26 +232,6 @@
         "instagramHandle": null,
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-the-saturday-briones-2026-01-24",
-      "attributes": {
-        "date": "2026-01-24",
-        "weekNumberMonday": 4,
-        "weekNumberSunday": 4
-      },
-      "relationships": {}
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-the-saturday-briones-2026-02-28",
-      "attributes": {
-        "date": "2026-02-28",
-        "weekNumberMonday": 9,
-        "weekNumberSunday": 9
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -350,6 +330,26 @@
         "date": "2026-12-26",
         "weekNumberMonday": 52,
         "weekNumberSunday": 52
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-the-saturday-briones-2027-01-23",
+      "attributes": {
+        "date": "2027-01-23",
+        "weekNumberMonday": 4,
+        "weekNumberSunday": 4
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-the-saturday-briones-2027-02-27",
+      "attributes": {
+        "date": "2027-02-27",
+        "weekNumberMonday": 9,
+        "weekNumberSunday": 9
       },
       "relationships": {}
     }
