@@ -42,8 +42,10 @@ export class ScrollModifier extends Modifier<{
     this.handler = (event: Event) => {
       const { target } = event;
       const scrollTop = (target as HTMLElement).scrollTop || 0;
-      positions[scrollBoxId] = scrollTop;
+      this.scrollPositionHistory.positions[scrollBoxId] = scrollTop;
+      this.scrollPositionHistory.positions = positions;
     };
+
     this._element.addEventListener("scroll", this.handler, {
       passive: true,
       capture: true,

@@ -151,21 +151,6 @@ function updateThemeColors() {
     }
   });
 
-  // Update square logo backgrounds (only on themeable instances)
-  const logoElements = document.querySelectorAll(
-    '.square-logo.themeable'
-  ) as unknown as HTMLDivElement[];
-
-  logoElements.forEach((logoElement) => {
-    if (useTransparentBackground) {
-      logoElement.style.backgroundColor = '';
-    } else {
-      const r = parseInt(backgroundColor.slice(1, 3), 16);
-      const g = parseInt(backgroundColor.slice(3, 5), 16);
-      const b = parseInt(backgroundColor.slice(5, 7), 16);
-      logoElement.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${backgroundOpacity})`;
-    }
-  });
 }
 
 let logoOpacity = 1;
@@ -329,6 +314,32 @@ function applyOpacityToColor(color: string, opacity: number): string {
   return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${opacity})`;
 }
 
+function getEffectiveColorForTheme(
+  colorKey: 'logo' | 'background' | 'backHill' | 'tree' | 'altTree',
+  theme: 'light' | 'dark'
+): string {
+  const modeColors = theme === 'dark' ? darkModeColors : lightModeColors;
+  const defaults = theme === 'dark' ? darkThemeDefaultColors : lightThemeDefaultColors;
+  return modeColors[colorKey] || defaults[colorKey] || '#000000';
+}
+
+function getColorsForTheme(theme: 'light' | 'dark') {
+  const logo = applyOpacityToColor(getEffectiveColorForTheme('logo', theme), logoOpacity);
+  const background = applyOpacityToColor(getEffectiveColorForTheme('background', theme), backgroundOpacity);
+  const backHill = getEffectiveColorForTheme('backHill', theme);
+  const tree = getEffectiveColorForTheme('tree', theme);
+  const altTree = getEffectiveColorForTheme('altTree', theme);
+  return {
+    sky: background,
+    backHill,
+    frontHill: logo,
+    tree,
+    altTree,
+    logo,
+    skyOpacity: backgroundOpacity,
+  };
+}
+
 // Initialize color pickers to show effective colors (overrides or defaults)
 function initializeColorPickers() {
   const colorInput = document.querySelector('.logo-color-input') as HTMLInputElement;
@@ -349,18 +360,30 @@ function initializeColorPickers() {
 }
 
 const initColorPicker = modifier(() => {
-  // Initialize color picker after a short delay to ensure DOM is ready
-  setTimeout(() => {
-    // Initialize defaults for this mode if needed
+  async function setup() {
+    await new Promise((r) => setTimeout(r, 100));
+
+    const theme = getTheme();
+    const isDark = document.body.classList.contains('dark-mode');
+
+    // Initialize defaults for the current theme
     initializeDefaults();
 
-    // Set color pickers to show effective colors
-    initializeColorPickers();
+    // Briefly switch to the other theme to capture its CSS variable defaults
+    theme.updateThemePreference(isDark ? 'light' : 'dark');
+    await new Promise((r) => setTimeout(r, 60));
+    initializeDefaults();
 
-    // Apply theme colors
+    // Switch back
+    theme.updateThemePreference(isDark ? 'dark' : 'light');
+    await new Promise((r) => setTimeout(r, 60));
+
+    initializeColorPickers();
     updateThemeColors();
     updatePreviews();
-  }, 100);
+  }
+
+  setup().catch(console.error);
 });
 
 function isDebugMode(): boolean {
@@ -465,9 +488,37 @@ function getBackgroundColor(): string {
 }
 
 // Shared logo dimension calculations
-function calculateLogoDimensions(size: number) {
-  const padding = fitToContent ? 0 : 6;
-  const sizeFactor = fitToContent ? 38: 50;
+function calculateLogoDimensions(size: number, opts: { fitToContent?: boolean; singleLine?: boolean } = {}) {
+  const fc = opts.fitToContent ?? fitToContent;
+  const sl = opts.singleLine ?? false;
+
+  if (sl) {
+    // Single-line horizontal layout matching banner proportions:
+    // banner uses chevronSize=40, fontSize=51.2 → ratio ≈ 0.781
+    const fontSize = size;
+    const chevronSize = Math.round(size * (40 / 51.2)); // ~78% of fontSize, banner ratio
+    const chevronMargin = Math.round(chevronSize / 11);  // matches two-line ratio (1/11 of chevronSize)
+    const iconOffsetY = (size - chevronSize) / 2;        // center chevron vertically
+    // Initial estimate; actual width measured via getBBox in generateSVG to prevent clipping
+    const textWidthEstimate = fontSize * 7.5;
+    const boxHeight = size;
+    const boxWidth = chevronSize + chevronMargin + textWidthEstimate;
+    return {
+      boxWidth,
+      boxHeight,
+      chevronSize,
+      chevronMargin,
+      fontSize,
+      lineHeight: size,
+      iconOffsetY,
+      totalHeight: size,
+      offsetX: 0,
+      offsetY: 0,
+    };
+  }
+
+  const padding = fc ? 0 : 6;
+  const sizeFactor = fc ? 38 : 50;
   const leftMargin = size * (padding / sizeFactor);
 
   const chevronSize = (size * 11) / sizeFactor;
@@ -479,9 +530,9 @@ function calculateLogoDimensions(size: number) {
   const totalHeight = 2 * lineHeight;
 
   const offsetX = leftMargin;
-  const offsetY = fitToContent ? 0 : (size - totalHeight) / 2;
+  const offsetY = fc ? 0 : (size - totalHeight) / 2;
   const boxWidth = size;
-  const boxHeight = fitToContent ? totalHeight : size;
+  const boxHeight = fc ? totalHeight : size;
 
   return {
     boxWidth,
@@ -497,19 +548,188 @@ function calculateLogoDimensions(size: number) {
   };
 }
 
+function appendPreviewActions(el: HTMLElement) {
+  const actions = document.createElement('div');
+  actions.className = 'preview-cell-actions';
+
+  const svgBtn = document.createElement('button');
+  svgBtn.className = 'preview-dl-btn';
+  svgBtn.textContent = 'SVG';
+  svgBtn.addEventListener('click', (e) => { e.stopPropagation(); downloadPreviewEl(el, 'svg'); });
+
+  const pngBtn = document.createElement('button');
+  pngBtn.className = 'preview-dl-btn';
+  pngBtn.textContent = 'PNG';
+  pngBtn.addEventListener('click', (e) => { e.stopPropagation(); downloadPreviewEl(el, 'png'); });
+
+  actions.appendChild(svgBtn);
+  actions.appendChild(pngBtn);
+  el.appendChild(actions);
+}
+
+async function downloadPreviewEl(el: HTMLElement, format: 'svg' | 'png') {
+  const theme = (el.getAttribute('data-theme') ?? 'light') as 'light' | 'dark';
+  const previewType = el.getAttribute('data-preview');
+  const isTransparent = el.getAttribute('data-transparent') === 'true';
+  const isInverted = el.getAttribute('data-inverted') === 'true';
+  const colors = getColorsForTheme(theme);
+  const logoColor = isInverted ? colors.sky : colors.logo;
+  const bgColor = isInverted ? colors.logo : colors.sky;
+  const nameParts = ['bay-bandits'];
+
+  let svg: SVGSVGElement;
+
+  if (previewType === 'logo') {
+    const size = parseInt(el.getAttribute('data-size') ?? '250');
+    const isChevronOnly = el.getAttribute('data-chevron-only') === 'true';
+    const isFitToContent = el.getAttribute('data-fit-to-content') === 'true';
+    const isSingleLine = el.getAttribute('data-single-line') === 'true';
+    if (isChevronOnly) nameParts.push('chevron');
+    else if (isSingleLine) nameParts.push('logo-single');
+    else if (isFitToContent) nameParts.push('logo-fit');
+    else nameParts.push('logo');
+    nameParts.push(`${size}px`, theme);
+    if (isInverted) nameParts.push('inverted');
+    if (isTransparent) nameParts.push('transparent');
+    svg = await generateSVG(size, logoColor, {
+      chevronOnly: isChevronOnly, fitToContent: isFitToContent,
+      singleLine: isSingleLine, backgroundColor: bgColor, transparent: isTransparent,
+    });
+  } else if (previewType === 'banner') {
+    const noText = el.getAttribute('data-no-text') === 'true';
+    const noTrees = el.getAttribute('data-no-trees') === 'true';
+    nameParts.push('banner');
+    if (noTrees) nameParts.push('minimal');
+    else if (noText) nameParts.push('no-text');
+    nameParts.push(theme);
+    svg = await generateStravaBannerSVG({ noText, noTrees, colors });
+  } else {
+    return;
+  }
+
+  const filename = nameParts.join('-');
+
+  if (format === 'svg') {
+    const svgStr = new XMLSerializer().serializeToString(svg);
+    const blob = new Blob([svgStr], { type: 'image/svg+xml' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${filename}.svg`;
+    a.click();
+    URL.revokeObjectURL(url);
+  } else {
+    const vb = (svg.getAttribute('viewBox') ?? '').split(' ');
+    const vbW = parseFloat(vb[2] ?? '300');
+    const vbH = parseFloat(vb[3] ?? '300');
+    const svgStr = new XMLSerializer().serializeToString(svg);
+    const svgBlob = new Blob([svgStr], { type: 'image/svg+xml' });
+    const svgUrl = URL.createObjectURL(svgBlob);
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.round(vbW * 2);
+      canvas.height = Math.round(vbH * 2);
+      const ctx = canvas.getContext('2d');
+      if (!ctx) { URL.revokeObjectURL(svgUrl); return; }
+      ctx.scale(2, 2);
+      ctx.drawImage(img, 0, 0, vbW, vbH);
+      URL.revokeObjectURL(svgUrl);
+      canvas.toBlob((pngBlob) => {
+        if (!pngBlob) return;
+        const pngUrl = URL.createObjectURL(pngBlob);
+        const a = document.createElement('a');
+        a.href = pngUrl;
+        a.download = `${filename}.png`;
+        a.click();
+        URL.revokeObjectURL(pngUrl);
+      }, 'image/png');
+    };
+    img.onerror = () => URL.revokeObjectURL(svgUrl);
+    img.src = svgUrl;
+  }
+}
+
 function updatePreviews() {
-  generateSVGPreview();
-  generatePNGPreview();
-  generateStravaBannerPreview();
+  // Logo previews — driven by data attributes on each container
+  (Array.from(document.querySelectorAll('[data-preview="logo"]')) as HTMLElement[]).forEach((el) => {
+    const theme = (el.getAttribute('data-theme') ?? 'light') as 'light' | 'dark';
+    const size = parseInt(el.getAttribute('data-size') ?? '250');
+    const displayHeight = el.getAttribute('data-display-height') ? parseInt(el.getAttribute('data-display-height')!) : null;
+    const isChevronOnly = el.getAttribute('data-chevron-only') === 'true';
+    const isFitToContent = el.getAttribute('data-fit-to-content') === 'true';
+    const isSingleLine = el.getAttribute('data-single-line') === 'true';
+    const isTransparent = el.getAttribute('data-transparent') === 'true';
+    const isInverted = el.getAttribute('data-inverted') === 'true';
+
+    const colors = getColorsForTheme(theme);
+    const logoColor = isInverted ? colors.sky : colors.logo;
+    const bgColor = isInverted ? colors.logo : colors.sky;
+    generateSVG(size, logoColor, {
+      chevronOnly: isChevronOnly,
+      fitToContent: isFitToContent,
+      singleLine: isSingleLine,
+      backgroundColor: bgColor,
+      transparent: isTransparent,
+    }).then((svg) => {
+      const vb = (svg.getAttribute('viewBox') ?? '').split(' ');
+      const vbW = parseFloat(vb[2] ?? size.toString());
+      const vbH = parseFloat(vb[3] ?? size.toString());
+      if (displayHeight && Math.abs(displayHeight - vbH) > 1) {
+        const scale = displayHeight / vbH;
+        svg.setAttribute('width', Math.round(vbW * scale).toString());
+        svg.setAttribute('height', displayHeight.toString());
+      } else {
+        svg.setAttribute('width', Math.round(vbW).toString());
+        svg.setAttribute('height', Math.round(vbH).toString());
+      }
+      el.innerHTML = '';
+      el.appendChild(svg);
+      appendPreviewActions(el);
+    }).catch(() => {
+      el.innerHTML = '<p style="font-size:10px">Error</p>';
+    });
+  });
+
+  // Banner previews — driven by data attributes on each container
+  (Array.from(document.querySelectorAll('[data-preview="banner"]')) as HTMLElement[]).forEach((el) => {
+    const theme = (el.getAttribute('data-theme') ?? 'light') as 'light' | 'dark';
+    const noText = el.getAttribute('data-no-text') === 'true';
+    const noTrees = el.getAttribute('data-no-trees') === 'true';
+    const colors = getColorsForTheme(theme);
+    generateStravaBannerSVG({ noText, noTrees, colors }).then((svg) => {
+      el.innerHTML = '';
+      el.appendChild(svg);
+      appendPreviewActions(el);
+    }).catch(() => {
+      el.innerHTML = '<p>Error generating banner</p>';
+    });
+  });
 }
 
 // Generate SVG - shared by both preview and download
-function generateSVG(size: number, titleColor: string): Promise<SVGSVGElement> {
+function generateSVG(
+  size: number,
+  titleColor: string,
+  svgOptions: {
+    chevronOnly?: boolean;
+    fitToContent?: boolean;
+    singleLine?: boolean;
+    backgroundColor?: string;
+    transparent?: boolean;
+  } = {}
+): Promise<SVGSVGElement> {
   const svgNS = 'http://www.w3.org/2000/svg';
   const svg = document.createElementNS(svgNS, 'svg');
 
-  // If chevron only mode, use different dimensions
-  if (chevronOnly) {
+  const isChevronOnly = svgOptions.chevronOnly ?? chevronOnly;
+  const isFitToContent = svgOptions.fitToContent ?? fitToContent;
+  const isSingleLine = svgOptions.singleLine ?? false;
+  const isTransparent = svgOptions.transparent ?? useTransparentBackground;
+  const bgColor = svgOptions.backgroundColor ?? getBackgroundColor();
+
+  // Chevron-only mode: square box with centred chevron
+  if (isChevronOnly) {
     const chevronSize = size * 0.75;
     const boxWidth = size;
     const boxHeight = size;
@@ -517,44 +737,27 @@ function generateSVG(size: number, titleColor: string): Promise<SVGSVGElement> {
     svg.setAttribute('xmlns', svgNS);
     svg.setAttribute('viewBox', `0 0 ${boxWidth} ${boxHeight}`);
 
-    // Add background
     const rect = document.createElementNS(svgNS, 'rect');
     rect.setAttribute('width', boxWidth.toString());
     rect.setAttribute('height', boxHeight.toString());
-
-    if (!useTransparentBackground) {
-      const backgroundColor = getBackgroundColor();
-      rect.setAttribute('fill', backgroundColor);
-    } else {
-      rect.setAttribute('fill', 'none');
-    }
+    rect.setAttribute('fill', isTransparent ? 'none' : bgColor);
     svg.appendChild(rect);
 
-    // Fetch chevron SVG and render centered
     return globalThis
       .fetch('/logo-orange-chevron.svg')
       .then((response) => response.text())
       .then((chevronSvgText) => {
         const parser = new DOMParser();
-        const chevronDoc = parser.parseFromString(
-          chevronSvgText,
-          'image/svg+xml'
-        );
+        const chevronDoc = parser.parseFromString(chevronSvgText, 'image/svg+xml');
         const chevronSvgEl = chevronDoc.documentElement;
 
         const defs = document.createElementNS(svgNS, 'defs');
         const symbol = document.createElementNS(svgNS, 'symbol');
         symbol.setAttribute('id', `chevron-${Date.now()}`);
-        symbol.setAttribute(
-          'viewBox',
-          chevronSvgEl.getAttribute('viewBox') || '0 0 100 100'
-        );
+        symbol.setAttribute('viewBox', chevronSvgEl.getAttribute('viewBox') || '0 0 100 100');
 
         Array.from(chevronSvgEl.children).forEach((child) => {
-          const importedChild = document.importNode(
-            child,
-            true
-          ) as SVGElement;
+          const importedChild = document.importNode(child, true) as SVGElement;
           if (importedChild instanceof SVGElement) {
             importedChild.removeAttribute('fill');
             importedChild.setAttribute('fill', titleColor);
@@ -565,7 +768,6 @@ function generateSVG(size: number, titleColor: string): Promise<SVGSVGElement> {
         defs.appendChild(symbol);
         svg.appendChild(defs);
 
-        // Center the chevron
         const chevronX = (boxWidth - chevronSize) / 2;
         const chevronY = (boxHeight - chevronSize) / 2;
 
@@ -582,7 +784,7 @@ function generateSVG(size: number, titleColor: string): Promise<SVGSVGElement> {
       });
   }
 
-  // Use shared dimension calculations
+  // Full logo: chevron + text (single-line or two-line)
   const {
     boxWidth,
     boxHeight,
@@ -593,53 +795,32 @@ function generateSVG(size: number, titleColor: string): Promise<SVGSVGElement> {
     iconOffsetY,
     offsetX,
     offsetY,
-  } = calculateLogoDimensions(size);
+  } = calculateLogoDimensions(size, { fitToContent: isFitToContent, singleLine: isSingleLine });
 
-  // svg.setAttribute('width', boxWidth.toString());
-  // svg.setAttribute('height', boxHeight.toString());
   svg.setAttribute('xmlns', svgNS);
   svg.setAttribute('viewBox', `0 0 ${boxWidth} ${boxHeight}`);
 
-  // Add background
   const rect = document.createElementNS(svgNS, 'rect');
   rect.setAttribute('width', boxWidth.toString());
   rect.setAttribute('height', boxHeight.toString());
-
-  if (!useTransparentBackground) {
-    const backgroundColor = getBackgroundColor();
-    rect.setAttribute('fill', backgroundColor);
-  } else {
-    rect.setAttribute('fill', 'none');
-  }
+  rect.setAttribute('fill', isTransparent ? 'none' : bgColor);
   svg.appendChild(rect);
 
-  // Fetch chevron SVG and render
   return globalThis
     .fetch('/logo-orange-chevron.svg')
     .then((response) => response.text())
     .then((chevronSvgText) => {
-      // Parse chevron SVG and create symbol
       const parser = new DOMParser();
-      const chevronDoc = parser.parseFromString(
-        chevronSvgText,
-        'image/svg+xml'
-      );
+      const chevronDoc = parser.parseFromString(chevronSvgText, 'image/svg+xml');
       const chevronSvgEl = chevronDoc.documentElement;
 
       const defs = document.createElementNS(svgNS, 'defs');
       const symbol = document.createElementNS(svgNS, 'symbol');
       symbol.setAttribute('id', `chevron-${Date.now()}`);
-      symbol.setAttribute(
-        'viewBox',
-        chevronSvgEl.getAttribute('viewBox') || '0 0 100 100'
-      );
+      symbol.setAttribute('viewBox', chevronSvgEl.getAttribute('viewBox') || '0 0 100 100');
 
       Array.from(chevronSvgEl.children).forEach((child) => {
-        const importedChild = document.importNode(
-          child,
-          true
-        ) as SVGElement;
-        // Remove any fill attributes to allow the use element to control the color
+        const importedChild = document.importNode(child, true) as SVGElement;
         if (importedChild instanceof SVGElement) {
           importedChild.removeAttribute('fill');
           importedChild.setAttribute('fill', titleColor);
@@ -653,7 +834,6 @@ function generateSVG(size: number, titleColor: string): Promise<SVGSVGElement> {
       const g = document.createElementNS(svgNS, 'g');
       g.setAttribute('transform', `translate(${offsetX}, ${offsetY})`);
 
-      // Use chevron symbol
       const useEl = document.createElementNS(svgNS, 'use');
       useEl.setAttribute('href', `#${symbol.id}`);
       useEl.setAttribute('x', '0');
@@ -663,30 +843,59 @@ function generateSVG(size: number, titleColor: string): Promise<SVGSVGElement> {
       useEl.setAttribute('fill', titleColor);
       g.appendChild(useEl);
 
-      // Text
-      const text1 = document.createElementNS(svgNS, 'text');
-      text1.setAttribute('x', (chevronSize + chevronMargin).toString());
-      text1.setAttribute('y', fontSize.toString());
-      text1.setAttribute('font-family', 'Montserrat, sans-serif');
-      text1.setAttribute('font-size', fontSize.toString());
-      text1.setAttribute('font-weight', '800');
-      text1.setAttribute('font-style', 'italic');
-      text1.setAttribute('fill', titleColor);
-      text1.setAttribute('text-transform', 'uppercase');
-      text1.textContent = 'BAY';
-      g.appendChild(text1);
+      if (isSingleLine) {
+        // Single line: "BAY BANDITS" vertically centred on the chevron
+        const text = document.createElementNS(svgNS, 'text');
+        text.setAttribute('x', (chevronSize + chevronMargin).toString());
+        // dominant-baseline='middle' centers the em box; cap height center is ~9.4% of fontSize
+        // above the em-box center (banner empirical: 4.8px at fontSize 51.2). Shift y down
+        // by that ratio so visual caps align with the vertically-centered chevron.
+        text.setAttribute('y', (boxHeight / 2 + fontSize * (4.8 / 51.2)).toString());
+        text.setAttribute('font-family', 'Montserrat, sans-serif');
+        text.setAttribute('font-size', fontSize.toString());
+        text.setAttribute('font-weight', '800');
+        text.setAttribute('font-style', 'italic');
+        text.setAttribute('fill', titleColor);
+        text.setAttribute('dominant-baseline', 'middle');
+        text.textContent = 'BAY BANDITS';
+        g.appendChild(text);
+        svg.appendChild(g);
 
-      const text2 = document.createElementNS(svgNS, 'text');
-      text2.setAttribute('x', (chevronSize + chevronMargin).toString());
-      text2.setAttribute('y', (fontSize + lineHeight).toString());
-      text2.setAttribute('font-family', 'Montserrat, sans-serif');
-      text2.setAttribute('font-size', fontSize.toString());
-      text2.setAttribute('font-weight', '800');
-      text2.setAttribute('font-style', 'italic');
-      text2.setAttribute('fill', titleColor);
-      text2.setAttribute('text-transform', 'uppercase');
-      text2.textContent = 'BANDITS';
-      g.appendChild(text2);
+        // getBBox requires the element to be in the document; attach temporarily to measure
+        const tempDiv = document.createElement('div');
+        tempDiv.style.cssText = 'position:fixed;top:-9999px;left:-9999px;visibility:hidden;pointer-events:none;';
+        document.body.appendChild(tempDiv);
+        tempDiv.appendChild(svg);
+        const measuredTextWidth = (text as SVGTextElement).getBBox?.()?.width ?? (fontSize * 7.5);
+        document.body.removeChild(tempDiv); // detaches svg from DOM; svg object still usable
+
+        const actualBoxWidth = chevronSize + chevronMargin + measuredTextWidth + chevronMargin;
+        svg.setAttribute('viewBox', `0 0 ${actualBoxWidth} ${boxHeight}`);
+        rect.setAttribute('width', actualBoxWidth.toString());
+      } else {
+        // Two lines: "BAY" over "BANDITS"
+        const text1 = document.createElementNS(svgNS, 'text');
+        text1.setAttribute('x', (chevronSize + chevronMargin).toString());
+        text1.setAttribute('y', fontSize.toString());
+        text1.setAttribute('font-family', 'Montserrat, sans-serif');
+        text1.setAttribute('font-size', fontSize.toString());
+        text1.setAttribute('font-weight', '800');
+        text1.setAttribute('font-style', 'italic');
+        text1.setAttribute('fill', titleColor);
+        text1.textContent = 'BAY';
+        g.appendChild(text1);
+
+        const text2 = document.createElementNS(svgNS, 'text');
+        text2.setAttribute('x', (chevronSize + chevronMargin).toString());
+        text2.setAttribute('y', (fontSize + lineHeight).toString());
+        text2.setAttribute('font-family', 'Montserrat, sans-serif');
+        text2.setAttribute('font-size', fontSize.toString());
+        text2.setAttribute('font-weight', '800');
+        text2.setAttribute('font-style', 'italic');
+        text2.setAttribute('fill', titleColor);
+        text2.textContent = 'BANDITS';
+        g.appendChild(text2);
+      }
 
       svg.appendChild(g);
 
@@ -848,87 +1057,14 @@ function generatePNG(
   });
 }
 
-function generateSVGPreview() {
-  const containers = Array.from(
-    document.querySelectorAll('.svg-preview-target')
-  );
-  if (!containers.length) return;
-
-  const titleColor = getTitleColor();
-
-  containers.forEach((container) => {
-    const size = container.clientWidth || 300;
-
-    if (!fitToContent) {
-      container.classList.remove('fit-to-content');
-    } else {
-      container.classList.add('fit-to-content');
-    }
-
-    generateSVG(size, titleColor)
-      .then((svg) => {
-        container.innerHTML = '';
-        container.appendChild(svg);
-      })
-      .catch(() => {
-        container.innerHTML = '<p>Error generating preview</p>';
-      });
-  });
-}
-
-function generatePNGPreview() {
-  const canvasElement = document.getElementById(
-    'png-preview'
-  ) as HTMLCanvasElement;
-  if (!canvasElement) return;
-
-  if (!fitToContent) {
-    canvasElement.parentElement?.classList.remove('fit-to-content');
-  } else {
-    canvasElement.parentElement?.classList.add('fit-to-content');
-  }
-
-  const size = 300;
-  const titleColor = getTitleColor();
-
-  // Use shared PNG generation
-  generatePNG(size, titleColor, 1)
-    .then((generatedCanvas) => {
-      // Copy the generated canvas to the preview canvas
-      const ctx = canvasElement.getContext('2d');
-      if (!ctx) return;
-
-      canvasElement.width = generatedCanvas.width;
-      canvasElement.height = generatedCanvas.height;
-      ctx.drawImage(generatedCanvas, 0, 0);
-    })
-    .catch((error) => {
-      console.error('Error generating PNG preview:', error);
-    });
-}
-
 function toggleTransparentBackground() {
   useTransparentBackground = !useTransparentBackground;
 
-  const button = document.querySelector(
-    '.transparent-toggle-btn'
-  ) as HTMLButtonElement;
-  const logoElement = document.querySelector(
-    '.square-logo'
-  ) as HTMLElement;
-
+  const button = document.querySelector('.transparent-toggle-btn') as HTMLButtonElement;
   if (button) {
     button.textContent = useTransparentBackground
       ? 'Background: Transparent ✓'
       : 'Background: Themed';
-  }
-
-  if (logoElement) {
-    if (useTransparentBackground) {
-      logoElement.classList.add('transparent-bg');
-    } else {
-      logoElement.classList.remove('transparent-bg');
-    }
   }
 
   updateThemeColors();
@@ -938,17 +1074,6 @@ function toggleTransparentBackground() {
 let fitToContent = false;
 function toggleFitToContent() {
   fitToContent = !fitToContent;
-  const logoElement = document.querySelector(
-    '.square-logo'
-  ) as HTMLElement;
-  if (!logoElement) return;
-
-  if (fitToContent) {
-    logoElement.classList.add('fit-to-content');
-  } else {
-    logoElement.classList.remove('fit-to-content');
-  }
-
   updatePreviews();
 }
 
@@ -972,17 +1097,10 @@ function toggleChevronOnly() {
 let showBannerMasks = false;
 function toggleBannerMasks() {
   showBannerMasks = !showBannerMasks;
-
-  const button = document.querySelector(
-    '.banner-mask-toggle-btn'
-  ) as HTMLButtonElement;
-
-  if (button) {
-    button.textContent = showBannerMasks
-      ? 'Safe Area: Visible ✓'
-      : 'Safe Area: Hidden';
-  }
-
+  const label = showBannerMasks ? 'Safe Area: Visible ✓' : 'Safe Area: Hidden';
+  document.querySelectorAll('.banner-mask-toggle-btn').forEach((btn) => {
+    (btn as HTMLButtonElement).textContent = label;
+  });
   updatePreviews();
 }
 
@@ -1003,22 +1121,8 @@ function toggleColorScheme() {
   }, 0);
 }
 
-function toggleCircleMask() {
-  const logoElement = document.querySelector(
-    '.square-logo'
-  ) as HTMLElement;
-  if (!logoElement) return;
-
-  logoElement.classList.toggle('circle-mask');
-}
-
 function downloadAsSVG() {
-  const logoElement = document.querySelector(
-    '.square-logo'
-  ) as HTMLElement;
-  if (!logoElement) return;
-
-  const width = logoElement.offsetWidth;
+  const width = 300;
   const titleColor = getTitleColor();
 
   // Use shared SVG generation
@@ -1058,12 +1162,7 @@ function downloadAsSVG() {
 }
 
 function downloadAsPNG() {
-  const logoElement = document.querySelector(
-    '.square-logo'
-  ) as HTMLElement;
-  if (!logoElement) return;
-
-  const width = logoElement.offsetWidth;
+  const width = 300;
   const titleColor = getTitleColor();
   const scale = 4; // 4x resolution for crisp PNG
 
@@ -1087,11 +1186,6 @@ function downloadAsPNG() {
 }
 
 function downloadAssetsAsZip() {
-  const logoElement = document.querySelector(
-    '.square-logo'
-  ) as HTMLElement;
-  if (!logoElement) return;
-
   // Store current theme state and chevron mode
   const currentTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
   const currentChevronOnly = chevronOnly;
@@ -1557,6 +1651,143 @@ function downloadAssetsAsZip() {
     generateNextAdaptiveSVG();
   };
 
+  // Generate all on-screen variants not covered by the existing theme asset configs.
+  // Uses getColorsForTheme() directly so no theme switching is needed.
+  const generateDirectVariants = (callback: () => void) => {
+    const svgToBlob = (svg: SVGSVGElement) => {
+      const str = new XMLSerializer().serializeToString(svg);
+      return new Blob([str], { type: 'image/svg+xml' });
+    };
+
+    const svgToPngBlob = (svg: SVGSVGElement, scale = 2): Promise<Blob> => {
+      const vb = (svg.getAttribute('viewBox') ?? '').split(' ');
+      const vbW = parseFloat(vb[2] ?? '100');
+      const vbH = parseFloat(vb[3] ?? '100');
+      const str = new XMLSerializer().serializeToString(svg);
+      const url = URL.createObjectURL(new Blob([str], { type: 'image/svg+xml' }));
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = Math.max(1, Math.round(vbW * scale));
+          canvas.height = Math.max(1, Math.round(vbH * scale));
+          const ctx = canvas.getContext('2d');
+          if (!ctx) { URL.revokeObjectURL(url); reject(new Error('no ctx')); return; }
+          ctx.scale(scale, scale);
+          ctx.drawImage(img, 0, 0, vbW, vbH);
+          URL.revokeObjectURL(url);
+          canvas.toBlob((blob) => {
+            if (blob) resolve(blob); else reject(new Error('toBlob null'));
+          }, 'image/png');
+        };
+        img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('load failed')); };
+        img.src = url;
+      });
+    };
+
+    const themes: Array<'light' | 'dark'> = ['light', 'dark'];
+    const mods = [
+      { transparent: false, inverted: false, suffix: '' },
+      { transparent: true,  inverted: false, suffix: '-transparent' },
+      { transparent: false, inverted: true,  suffix: '-inverted' },
+    ];
+
+    interface DV {
+      folder: string; name: string; size: number;
+      theme: 'light' | 'dark'; chevronOnly: boolean;
+      transparent: boolean; inverted: boolean;
+      fitToContent?: boolean; singleLine?: boolean;
+      isBanner?: boolean; noText?: boolean; noTrees?: boolean;
+      format: 'png' | 'svg';
+    }
+
+    const variants: DV[] = [];
+
+    // Chevron sizes shown on screen but not in existing ZIP (16, 50, 100, 250)
+    // Also add transparent for existing 32px
+    for (const size of [16, 32, 50, 100, 250]) {
+      for (const theme of themes) {
+        for (const { transparent, inverted, suffix } of mods) {
+          // Skip non-transparent 32px (normal + inverted already in ZIP)
+          if (size === 32 && !transparent && !inverted) continue;
+          // Skip inverted 32px already in ZIP
+          if (size === 32 && !transparent && inverted) continue;
+          variants.push({ folder: theme, name: `chevron-${size}x${size}${suffix}.png`, size, theme, chevronOnly: true, transparent, inverted, format: 'png' });
+        }
+      }
+    }
+
+    // Logo (two-line square) sizes on screen but not in ZIP (100, 250)
+    // Also add transparent for existing 32px
+    for (const size of [32, 100, 250]) {
+      for (const theme of themes) {
+        for (const { transparent, inverted, suffix } of mods) {
+          if (size === 32 && !transparent && !inverted) continue; // already in ZIP
+          if (size === 32 && !transparent && inverted) continue;  // already in ZIP
+          variants.push({ folder: theme, name: `logo-${size}x${size}${suffix}.png`, size, theme, chevronOnly: false, transparent, inverted, format: 'png' });
+        }
+      }
+    }
+
+    // Fit-to-content (two-line) — both display heights generate the same underlying SVG
+    for (const theme of themes) {
+      for (const { transparent, inverted, suffix } of mods) {
+        variants.push({ folder: theme, name: `logo-fit${suffix}.png`,  size: 250, theme, chevronOnly: false, transparent, inverted, fitToContent: true, format: 'png' });
+        variants.push({ folder: theme, name: `logo-fit${suffix}.svg`,  size: 250, theme, chevronOnly: false, transparent, inverted, fitToContent: true, format: 'svg' });
+      }
+    }
+
+    // Single-line variants
+    for (const size of [100, 50]) {
+      for (const theme of themes) {
+        for (const { transparent, inverted, suffix } of mods) {
+          variants.push({ folder: theme, name: `logo-single-${size}px${suffix}.png`, size, theme, chevronOnly: false, transparent, inverted, singleLine: true, format: 'png' });
+          variants.push({ folder: theme, name: `logo-single-${size}px${suffix}.svg`, size, theme, chevronOnly: false, transparent, inverted, singleLine: true, format: 'svg' });
+        }
+      }
+    }
+
+    // Banner variants: full, no-text, minimal — SVG + PNG for each theme
+    const bannerDefs = [
+      { noText: false, noTrees: false, nameSuffix: 'og-banner-1210x593' },
+      { noText: true,  noTrees: false, nameSuffix: 'banner-no-text' },
+      { noText: true,  noTrees: true,  nameSuffix: 'banner-minimal' },
+    ];
+    for (const theme of themes) {
+      for (const { noText, noTrees, nameSuffix } of bannerDefs) {
+        variants.push({ folder: theme, name: `${nameSuffix}.svg`, size: 0, theme, chevronOnly: false, transparent: false, inverted: false, isBanner: true, noText, noTrees, format: 'svg' });
+        variants.push({ folder: theme, name: `${nameSuffix}.png`, size: 0, theme, chevronOnly: false, transparent: false, inverted: false, isBanner: true, noText, noTrees, format: 'png' });
+      }
+    }
+
+    const run = async () => {
+      for (const v of variants) {
+        const colors = getColorsForTheme(v.theme);
+        try {
+          let svg: SVGSVGElement;
+          if (v.isBanner) {
+            svg = await generateStravaBannerSVG({ noText: v.noText, noTrees: v.noTrees, colors });
+          } else {
+            const logoColor = v.inverted ? colors.sky : colors.logo;
+            const bgColor   = v.inverted ? colors.logo : colors.sky;
+            svg = await generateSVG(v.size, logoColor, {
+              chevronOnly: v.chevronOnly,
+              fitToContent: v.fitToContent ?? false,
+              singleLine: v.singleLine ?? false,
+              backgroundColor: bgColor,
+              transparent: v.transparent,
+            });
+          }
+          assets[`${v.folder}/${v.name}`] = v.format === 'svg' ? svgToBlob(svg) : await svgToPngBlob(svg);
+        } catch {
+          // skip failed assets
+        }
+      }
+    };
+
+    run().then(() => callback()).catch(() => callback());
+  };
+
   // Generate all assets for both themes
   generateThemeAssets('light', () => {
     generateThemeAssets('dark', () => {
@@ -1565,6 +1796,7 @@ function downloadAssetsAsZip() {
         generateBannerSVGs('dark', () => {
           // Generate adaptive SVGs
           generateAdaptiveSVGs(() => {
+            generateDirectVariants(() => {
             // Restore original theme and chevron mode
             chevronOnly = currentChevronOnly;
             switchTheme(currentTheme, () => {
@@ -1593,6 +1825,7 @@ function downloadAssetsAsZip() {
               // All assets generated, create zip
               createAndDownloadZip(assets);
             });
+            }); // generateDirectVariants
           });
         });
       });
@@ -1793,7 +2026,11 @@ function getThemeColors() {
 }
 
 // Generate Strava banner as SVG
-function generateStravaBannerSVG(): Promise<SVGSVGElement> {
+function generateStravaBannerSVG(options: {
+  noText?: boolean;
+  noTrees?: boolean;
+  colors?: ReturnType<typeof getThemeColors>;
+} = {}): Promise<SVGSVGElement> {
   const svgNS = 'http://www.w3.org/2000/svg';
   const svg = document.createElementNS(svgNS, 'svg');
 
@@ -1805,7 +2042,7 @@ function generateStravaBannerSVG(): Promise<SVGSVGElement> {
   svg.setAttribute('xmlns', svgNS);
   svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
 
-  const colors = getThemeColors();
+  const colors = options.colors ?? getThemeColors();
 
   // Add background image if available
   if (skyImageData) {
@@ -1936,12 +2173,10 @@ function generateStravaBannerSVG(): Promise<SVGSVGElement> {
 
     svg.appendChild(defs);
 
-    // Draw trees - matching homepage CSS positions
-    // Base tree dimensions: 20vw wide × 60vh tall
-    // For banner: trees should be anchored at bottom and extend up through the scene
-    // Further reducing to 40% of height for better proportions
-    const baseTreeWidth = width * 0.20; // 20vw
-    const baseTreeHeight = height * 0.40; // Scale to 40% of banner height for proper proportions
+    // Draw trees
+    if (!options.noTrees) {
+    const baseTreeWidth = width * 0.20;
+    const baseTreeHeight = height * 0.40;
 
     const treePositions = [
       // Left trees (anchored at bottom with varied heights)
@@ -1988,10 +2223,12 @@ function generateStravaBannerSVG(): Promise<SVGSVGElement> {
         svg.appendChild(useEl);
       }
     });
+    } // end noTrees
 
-    // Center logo group - moved up to clear trees
+    // Center logo group
+    if (!options.noText) {
     const centerX = width / 2;
-    const centerY = height * 0.35; // Move up from center (0.5) to 0.35
+    const centerY = height * 0.35;
     const logoGroup = document.createElementNS(svgNS, 'g');
 
     // If using sky image, add a semi-transparent colored rectangle behind logo/tagline
@@ -2089,6 +2326,7 @@ function generateStravaBannerSVG(): Promise<SVGSVGElement> {
     logoGroup.appendChild(tagline);
 
     svg.appendChild(logoGroup);
+    } // end noText
 
     // Add mobile fold masks if enabled
     if (showBannerMasks) {
@@ -2213,23 +2451,6 @@ function downloadStravaBannerPNG() {
     });
 }
 
-// Generate preview for Strava banner
-function generateStravaBannerPreview() {
-  const previewContainer = document.getElementById(
-    'strava-banner-preview'
-  );
-  if (!previewContainer) return;
-
-  generateStravaBannerSVG()
-    .then((svg) => {
-      previewContainer.innerHTML = '';
-      previewContainer.appendChild(svg);
-    })
-    .catch((error: Error) => {
-      console.error('Error generating Strava banner preview:', error);
-      previewContainer.innerHTML = '<p>Error generating preview</p>';
-    });
-}
 
 <template>
   {{pageTitle "Bandits | The Bay Area Trail Running Community"}}
@@ -2237,275 +2458,438 @@ function generateStravaBannerPreview() {
   <ThemedPage @hideFoothills={{true}} class="branding">
     <:header>Brand Assets</:header>
     <:default>
-      <div class="logo-container">
-        <div
-          class="square-logo themeable svg-preview-target"
-          role="button"
-          aria-roledescription="toggle color scheme"
-          {{on "click" toggleColorScheme}}
-        ></div>
+
+      {{! ── Download All ── }}
+      <div class="download-all-bar">
+        <button type="button" class="download-btn download-all-btn" {{on "click" downloadAssetsAsZip}}>Download All Assets (ZIP)</button>
       </div>
 
-      <div class="preview-section">
-        <div class="preview-box">
-          <h3>Small Size</h3>
-          <div class="preview-container small-logo-preview">
-            <div class="svg-preview-target"></div>
-          </div>
-        </div>
-      </div>
-
+      {{! Color Controls }}
       <div class="color-controls" {{initColorPicker}}>
         <div class="color-picker-group">
           <label for="logo-color">Logo Color:</label>
-          <input
-            type="color"
-            id="logo-color"
-            class="logo-color-input"
-            value="#9333ea"
-            {{on "input" handleColorChange}}
-          />
+          <input type="color" id="logo-color" class="logo-color-input" value="#9333ea" {{on "input" handleColorChange}} />
         </div>
         <div class="color-picker-group">
           <label for="background-color">Sky Color:</label>
-          <input
-            type="color"
-            id="background-color"
-            class="background-color-input"
-            value="#f3e8ff"
-            {{on "input" handleBackgroundColorChange}}
-          />
+          <input type="color" id="background-color" class="background-color-input" value="#f3e8ff" {{on "input" handleBackgroundColorChange}} />
         </div>
         <div class="color-picker-group">
           <label for="back-hill-color">Back Hill:</label>
-          <input
-            type="color"
-            id="back-hill-color"
-            class="back-hill-color-input"
-            value="#ff69b4"
-            {{on "input" handleBackHillColorChange}}
-          />
+          <input type="color" id="back-hill-color" class="back-hill-color-input" value="#ff69b4" {{on "input" handleBackHillColorChange}} />
         </div>
         <div class="color-picker-group">
           <label for="tree-color">Tree Color:</label>
-          <input
-            type="color"
-            id="tree-color"
-            class="tree-color-input"
-            value="#052c16"
-            {{on "input" handleTreeColorChange}}
-          />
+          <input type="color" id="tree-color" class="tree-color-input" value="#052c16" {{on "input" handleTreeColorChange}} />
         </div>
         <div class="color-picker-group">
           <label for="alt-tree-color">Alt Tree:</label>
-          <input
-            type="color"
-            id="alt-tree-color"
-            class="alt-tree-color-input"
-            value="#06a743"
-            {{on "input" handleAltTreeColorChange}}
-          />
+          <input type="color" id="alt-tree-color" class="alt-tree-color-input" value="#06a743" {{on "input" handleAltTreeColorChange}} />
         </div>
         <div class="opacity-control-group">
-          <label for="background-opacity">Sky Opacity:
-            <span class="background-opacity-value">100%</span></label>
-          <input
-            type="range"
-            id="background-opacity"
-            class="background-opacity-input"
-            min="0"
-            max="1"
-            step="0.01"
-            value="1"
-            {{on "input" handleBackgroundOpacityChange}}
-          />
+          <label for="background-opacity">Sky Opacity: <span class="background-opacity-value">100%</span></label>
+          <input type="range" id="background-opacity" class="background-opacity-input" min="0" max="1" step="0.01" value="1" {{on "input" handleBackgroundOpacityChange}} />
         </div>
         <div class="opacity-control-group">
-          <label for="logo-opacity">Logo Opacity:
-            <span class="opacity-value">100%</span></label>
-          <input
-            type="range"
-            id="logo-opacity"
-            class="logo-opacity-input"
-            min="0"
-            max="1"
-            step="0.01"
-            value="1"
-            {{on "input" handleOpacityChange}}
-          />
+          <label for="logo-opacity">Logo Opacity: <span class="opacity-value">100%</span></label>
+          <input type="range" id="logo-opacity" class="logo-opacity-input" min="0" max="1" step="0.01" value="1" {{on "input" handleOpacityChange}} />
         </div>
-        <button
-          type="button"
-          class="download-btn reset-btn"
-          {{on "click" resetColors}}
-        >
-          Reset Current Theme Colors
-        </button>
+        <button type="button" class="download-btn reset-btn" {{on "click" resetColors}}>Reset Current Theme Colors</button>
       </div>
 
-      <h2>Logo Downloads</h2>
-      <div class="download-buttons">
-        <button
-          type="button"
-          class="download-btn chevron-only-toggle-btn"
-          {{on "click" toggleChevronOnly}}
-        >
-          Chevron Only: Disabled
-        </button>
-        <button
-          type="button"
-          class="download-btn circle-toggle-btn"
-          {{on "click" toggleCircleMask}}
-        >
-          Toggle Circle Mask
-        </button>
-        <button
-          type="button"
-          class="download-btn fit-to-content-btn"
-          {{on "click" toggleFitToContent}}
-        >
-          Toggle Fit to Content
-        </button>
-        <button
-          type="button"
-          class="download-btn transparent-toggle-btn"
-          {{on "click" toggleTransparentBackground}}
-        >
-          Background: Themed
-        </button>
-        <button
-          type="button"
-          class="download-btn"
-          {{on "click" downloadAsSVG}}
-        >
-          Download Logo SVG
-        </button>
-        <button
-          type="button"
-          class="download-btn"
-          {{on "click" downloadAsPNG}}
-        >
-          Download Logo PNG
-        </button>
-        <button
-          type="button"
-          class="download-btn"
-          {{on "click" downloadAssetsAsZip}}
-        >
-          Download All Assets (ZIP)
-        </button>
+      {{! ── Chevron Only ── }}
+      <h2>Chevron Only</h2>
+      <div class="preview-sizes">
+
+        <div class="preview-size-item">
+          <h3>250 × 250</h3>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="250" data-chevron-only="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="250" data-chevron-only="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light · Transparent</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="250" data-chevron-only="true" data-transparent="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark · Transparent</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="250" data-chevron-only="true" data-transparent="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light · Inverted</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="250" data-chevron-only="true" data-inverted="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark · Inverted</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="250" data-chevron-only="true" data-inverted="true"></div>
+          </div>
+        </div>
+
+        <div class="preview-size-item">
+          <h3>100 × 100</h3>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="100" data-chevron-only="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="100" data-chevron-only="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light · Transparent</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="100" data-chevron-only="true" data-transparent="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark · Transparent</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="100" data-chevron-only="true" data-transparent="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light · Inverted</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="100" data-chevron-only="true" data-inverted="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark · Inverted</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="100" data-chevron-only="true" data-inverted="true"></div>
+          </div>
+        </div>
+
+        <div class="preview-size-item">
+          <h3>50 × 50</h3>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="50" data-chevron-only="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="50" data-chevron-only="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light · Transparent</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="50" data-chevron-only="true" data-transparent="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark · Transparent</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="50" data-chevron-only="true" data-transparent="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light · Inverted</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="50" data-chevron-only="true" data-inverted="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark · Inverted</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="50" data-chevron-only="true" data-inverted="true"></div>
+          </div>
+        </div>
+
+        <div class="preview-size-item">
+          <h3>32 × 32</h3>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="32" data-chevron-only="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="32" data-chevron-only="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light · Transparent</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="32" data-chevron-only="true" data-transparent="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark · Transparent</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="32" data-chevron-only="true" data-transparent="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light · Inverted</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="32" data-chevron-only="true" data-inverted="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark · Inverted</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="32" data-chevron-only="true" data-inverted="true"></div>
+          </div>
+        </div>
+
+        <div class="preview-size-item">
+          <h3>16 × 16</h3>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="16" data-chevron-only="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="16" data-chevron-only="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light · Transparent</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="16" data-chevron-only="true" data-transparent="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark · Transparent</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="16" data-chevron-only="true" data-transparent="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light · Inverted</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="16" data-chevron-only="true" data-inverted="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark · Inverted</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="16" data-chevron-only="true" data-inverted="true"></div>
+          </div>
+        </div>
+
       </div>
 
+      {{! ── Chevron + Logo (Two Lines) ── }}
+      <h2>Chevron + Logo (Two Lines)</h2>
+      <div class="preview-sizes">
+
+        <div class="preview-size-item">
+          <h3>250 × 250</h3>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="250"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="250"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light · Transparent</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="250" data-transparent="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark · Transparent</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="250" data-transparent="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light · Inverted</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="250" data-inverted="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark · Inverted</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="250" data-inverted="true"></div>
+          </div>
+        </div>
+
+        <div class="preview-size-item">
+          <h3>100 × 100</h3>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="100"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="100"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light · Transparent</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="100" data-transparent="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark · Transparent</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="100" data-transparent="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light · Inverted</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="100" data-inverted="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark · Inverted</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="100" data-inverted="true"></div>
+          </div>
+        </div>
+
+        <div class="preview-size-item">
+          <h3>Fit — height 250px</h3>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="250" data-fit-to-content="true" data-display-height="250"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="250" data-fit-to-content="true" data-display-height="250"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light · Transparent</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="250" data-fit-to-content="true" data-display-height="250" data-transparent="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark · Transparent</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="250" data-fit-to-content="true" data-display-height="250" data-transparent="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light · Inverted</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="250" data-fit-to-content="true" data-display-height="250" data-inverted="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark · Inverted</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="250" data-fit-to-content="true" data-display-height="250" data-inverted="true"></div>
+          </div>
+        </div>
+
+        <div class="preview-size-item">
+          <h3>Fit — height 100px</h3>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="250" data-fit-to-content="true" data-display-height="100"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="250" data-fit-to-content="true" data-display-height="100"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light · Transparent</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="250" data-fit-to-content="true" data-display-height="100" data-transparent="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark · Transparent</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="250" data-fit-to-content="true" data-display-height="100" data-transparent="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light · Inverted</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="250" data-fit-to-content="true" data-display-height="100" data-inverted="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark · Inverted</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="250" data-fit-to-content="true" data-display-height="100" data-inverted="true"></div>
+          </div>
+        </div>
+
+      </div>
+
+      {{! ── Chevron + Logo (Single Line) ── }}
+      <h2>Chevron + Logo (Single Line)</h2>
+      <div class="preview-sizes">
+
+        <div class="preview-size-item">
+          <h3>Fit — height 100px</h3>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="100" data-single-line="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="100" data-single-line="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light · Transparent</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="100" data-single-line="true" data-transparent="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark · Transparent</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="100" data-single-line="true" data-transparent="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light · Inverted</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="100" data-single-line="true" data-inverted="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark · Inverted</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="100" data-single-line="true" data-inverted="true"></div>
+          </div>
+        </div>
+
+        <div class="preview-size-item">
+          <h3>Fit — height 50px</h3>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="50" data-single-line="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="50" data-single-line="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light · Transparent</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="50" data-single-line="true" data-transparent="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark · Transparent</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="50" data-single-line="true" data-transparent="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Light · Inverted</span>
+            <div class="preview-cell checkered" data-preview="logo" data-theme="light" data-size="50" data-single-line="true" data-inverted="true"></div>
+          </div>
+          <div class="theme-preview-wrapper">
+            <span class="theme-label">Dark · Inverted</span>
+            <div class="preview-cell checkered-dark" data-preview="logo" data-theme="dark" data-size="50" data-single-line="true" data-inverted="true"></div>
+          </div>
+        </div>
+
+      </div>
+
+      {{! ── Strava Club Header / Banner ── }}
       <h2>Strava Club Header</h2>
+
       <div class="color-controls">
         <div class="color-picker-group">
           <label for="sky-image">Upload Background Image (optional):</label>
-          <input
-            type="file"
-            id="sky-image"
-            class="sky-image-input"
-            accept="image/*"
-            {{on "change" handleSkyImageUpload}}
-          />
+          <input type="file" id="sky-image" class="sky-image-input" accept="image/*" {{on "change" handleSkyImageUpload}} />
         </div>
         <div id="sky-image-controls" class="hidden">
-          <button
-            type="button"
-            class="download-btn reset-btn"
-            {{on "click" clearSkyImage}}
-          >
-            Clear Background Image
-          </button>
+          <button type="button" class="download-btn reset-btn" {{on "click" clearSkyImage}}>Clear Background Image</button>
           <div class="opacity-control-group">
-            <label for="sky-image-scale">Image Scale:
-              <span class="sky-image-scale-value">1.0</span></label>
-            <input
-              type="range"
-              id="sky-image-scale"
-              class="sky-image-scale-input"
-              min="0.5"
-              max="3"
-              step="0.1"
-              value="1"
-              {{on "input" handleSkyImageScale}}
-            />
+            <label for="sky-image-scale">Image Scale: <span class="sky-image-scale-value">1.0</span></label>
+            <input type="range" id="sky-image-scale" class="sky-image-scale-input" min="0.5" max="3" step="0.1" value="1" {{on "input" handleSkyImageScale}} />
           </div>
           <div class="opacity-control-group">
-            <label for="sky-image-offset-x">Image Offset X:
-              <span class="sky-image-offset-x-value">0</span></label>
-            <input
-              type="range"
-              id="sky-image-offset-x"
-              class="sky-image-offset-x-input"
-              min="-500"
-              max="500"
-              step="10"
-              value="0"
-              {{on "input" handleSkyImageOffsetX}}
-            />
+            <label for="sky-image-offset-x">Image Offset X: <span class="sky-image-offset-x-value">0</span></label>
+            <input type="range" id="sky-image-offset-x" class="sky-image-offset-x-input" min="-500" max="500" step="10" value="0" {{on "input" handleSkyImageOffsetX}} />
           </div>
           <div class="opacity-control-group">
-            <label for="sky-image-offset-y">Image Offset Y:
-              <span class="sky-image-offset-y-value">0</span></label>
-            <input
-              type="range"
-              id="sky-image-offset-y"
-              class="sky-image-offset-y-input"
-              min="-500"
-              max="500"
-              step="10"
-              value="0"
-              {{on "input" handleSkyImageOffsetY}}
-            />
+            <label for="sky-image-offset-y">Image Offset Y: <span class="sky-image-offset-y-value">0</span></label>
+            <input type="range" id="sky-image-offset-y" class="sky-image-offset-y-input" min="-500" max="500" step="10" value="0" {{on "input" handleSkyImageOffsetY}} />
           </div>
-        </div>
-      </div>
-      <div class="strava-banner-section themeable">
-        <div class="strava-banner-info">
-          <p>Banner dimensions: 1210px × 593px. Top/bottom 100px may be hidden on Desktop.</p>
-        </div>
-        <div class="strava-banner-preview-container">
-          <div id="strava-banner-preview"></div>
-        </div>
-        <div class="download-buttons">
-          <button
-            type="button"
-            class="download-btn banner-mask-toggle-btn"
-            {{on "click" toggleBannerMasks}}
-          >
-            Safe Area: Hidden
-          </button>
-          <button
-            type="button"
-            class="download-btn"
-            {{on "click" downloadStravaBannerSVG}}
-          >
-            Download Strava Banner SVG
-          </button>
-          <button
-            type="button"
-            class="download-btn"
-            {{on "click" downloadStravaBannerPNG}}
-          >
-            Download Strava Banner PNG
-          </button>
         </div>
       </div>
 
-      {{#if (isDebugMode)}}
-        <div class="preview-section themeable">
-          <div class="preview-box">
-            <h3>SVG Preview</h3>
-            <div class="preview-container svg-preview-target"></div>
+      <p class="banner-info">Banner: 1210 × 593px. Top/bottom 100px may be cropped on desktop.</p>
+
+      <div class="banner-variants">
+
+        <div class="banner-variant-group">
+          <h3>Full <button type="button" class="banner-mask-toggle-btn inline-toggle-btn" {{on "click" toggleBannerMasks}}>Safe Area: Hidden</button></h3>
+          <div class="theme-preview-wrapper banner-wrapper">
+            <span class="theme-label">Light</span>
+            <div class="preview-cell banner-preview-cell checkered" data-preview="banner" data-theme="light"></div>
           </div>
-          <div class="preview-box">
-            <h3>PNG Preview</h3>
-            <div class="preview-container png-preview">
-              <canvas id="png-preview"></canvas>
-            </div>
+          <div class="theme-preview-wrapper banner-wrapper">
+            <span class="theme-label">Dark</span>
+            <div class="preview-cell banner-preview-cell checkered-dark" data-preview="banner" data-theme="dark"></div>
           </div>
         </div>
-      {{/if}}
+
+        <div class="banner-variant-group">
+          <h3>No Text <button type="button" class="banner-mask-toggle-btn inline-toggle-btn" {{on "click" toggleBannerMasks}}>Safe Area: Hidden</button></h3>
+          <div class="theme-preview-wrapper banner-wrapper">
+            <span class="theme-label">Light</span>
+            <div class="preview-cell banner-preview-cell checkered" data-preview="banner" data-theme="light" data-no-text="true"></div>
+          </div>
+          <div class="theme-preview-wrapper banner-wrapper">
+            <span class="theme-label">Dark</span>
+            <div class="preview-cell banner-preview-cell checkered-dark" data-preview="banner" data-theme="dark" data-no-text="true"></div>
+          </div>
+        </div>
+
+        <div class="banner-variant-group">
+          <h3>No Trees / No Text <button type="button" class="banner-mask-toggle-btn inline-toggle-btn" {{on "click" toggleBannerMasks}}>Safe Area: Hidden</button></h3>
+          <div class="theme-preview-wrapper banner-wrapper">
+            <span class="theme-label">Light</span>
+            <div class="preview-cell banner-preview-cell checkered" data-preview="banner" data-theme="light" data-no-trees="true" data-no-text="true"></div>
+          </div>
+          <div class="theme-preview-wrapper banner-wrapper">
+            <span class="theme-label">Dark</span>
+            <div class="preview-cell banner-preview-cell checkered-dark" data-preview="banner" data-theme="dark" data-no-trees="true" data-no-text="true"></div>
+          </div>
+        </div>
+
+      </div>
+
     </:default>
   </ThemedPage>
 </template>
