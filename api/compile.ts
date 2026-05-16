@@ -720,7 +720,7 @@ async function generateWeekPayloads(outputDir: string, resources: ProcessedResou
     assert(`Event ${event.id} is missing weekNumberSunday`, event.attributes.weekNumberSunday !== undefined);
     assert(`Event ${event.id} is missing weekNumberMonday`, event.attributes.weekNumberMonday !== undefined);
 
-    const year = new Date(event.attributes.date).getFullYear();
+    const year = parseDateString(event.attributes.date).getFullYear();
     const sundayKey = `${year}-${String(event.attributes.weekNumberSunday).padStart(2, '0')}`;
     const mondayKey = `${year}-${String(event.attributes.weekNumberMonday).padStart(2, '0')}`;
 
@@ -841,7 +841,7 @@ async function generateMonthPayloads(
   const eventsByMonth = new Map<string, JSONAPIRealizedEventDate[]>();
 
   for (const event of resources.events.values()) {
-    const eventDate = new Date(event.attributes.date);
+    const eventDate = parseDateString(event.attributes.date);
     const year = eventDate.getFullYear();
     const month = eventDate.getMonth() + 1; // Convert to 1-12
     const monthKey = `${year}-${String(month).padStart(2, '0')}`;
@@ -1109,7 +1109,7 @@ function calculateRunOccurrences(
     assert(`Recurrence of type 'once' must have a date`, recurrence.date);
 
     // we ignore the occurrence if the date is out of range
-    const eventDate = new Date(recurrence.date);
+    const eventDate = parseDateString(recurrence.date);
     if (eventDate >= startDate && eventDate < endDate) {
       const eventId = createEventOccurrence(runData.id, recurrence.date, resources);
       occurrences.push(eventId);
@@ -1258,7 +1258,7 @@ function calculateRunOccurrences(
       }
     } else if (recurrence.date) {
       // Annual recurrence on a specific date (e.g., same date every year)
-      const baseDate = new Date(recurrence.date);
+      const baseDate = parseDateString(recurrence.date);
       const currentYear = startDate.getFullYear();
       const endYear = endDate.getFullYear();
 
@@ -1300,6 +1300,16 @@ function calculateRunOccurrences(
     type: 'realized-event-date',
     id
   }));
+}
+
+/**
+ * Parse a YYYY-MM-DD string as local midnight, not UTC midnight.
+ * `new Date("YYYY-MM-DD")` parses as UTC, which shifts the date backward
+ * in negative-UTC-offset timezones (e.g. PDT: "2026-05-01" → Apr 30 locally).
+ */
+function parseDateString(dateStr: string): Date {
+  const [year, month, day] = dateStr.split('-').map(Number);
+  return new Date(year!, month! - 1, day!);
 }
 
 /**

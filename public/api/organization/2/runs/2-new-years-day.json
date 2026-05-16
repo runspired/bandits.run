@@ -69,7 +69,7 @@
         "data": [
           {
             "type": "realized-event-date",
-            "id": "2-new-years-day-2026-12-31"
+            "id": "2-new-years-day-2027-01-01"
           }
         ]
       }
@@ -143,11 +143,11 @@
     },
     {
       "type": "realized-event-date",
-      "id": "2-new-years-day-2026-12-31",
+      "id": "2-new-years-day-2027-01-01",
       "attributes": {
-        "date": "2026-12-31",
-        "weekNumberMonday": 53,
-        "weekNumberSunday": 53
+        "date": "2027-01-01",
+        "weekNumberMonday": 1,
+        "weekNumberSunday": 1
       },
       "relationships": {}
     }

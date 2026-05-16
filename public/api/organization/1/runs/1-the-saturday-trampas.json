@@ -103,18 +103,6 @@
         "data": [
           {
             "type": "realized-event-date",
-            "id": "1-the-saturday-trampas-2026-03-07"
-          },
-          {
-            "type": "realized-event-date",
-            "id": "1-the-saturday-trampas-2026-04-04"
-          },
-          {
-            "type": "realized-event-date",
-            "id": "1-the-saturday-trampas-2026-05-02"
-          },
-          {
-            "type": "realized-event-date",
             "id": "1-the-saturday-trampas-2026-06-06"
           },
           {
@@ -152,6 +140,14 @@
           {
             "type": "realized-event-date",
             "id": "1-the-saturday-trampas-2027-03-06"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-the-saturday-trampas-2027-04-03"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-the-saturday-trampas-2027-05-01"
           }
         ]
       }
@@ -236,36 +232,6 @@
         "instagramHandle": null,
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-the-saturday-trampas-2026-03-07",
-      "attributes": {
-        "date": "2026-03-07",
-        "weekNumberMonday": 10,
-        "weekNumberSunday": 10
-      },
-      "relationships": {}
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-the-saturday-trampas-2026-04-04",
-      "attributes": {
-        "date": "2026-04-04",
-        "weekNumberMonday": 14,
-        "weekNumberSunday": 14
-      },
-      "relationships": {}
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-the-saturday-trampas-2026-05-02",
-      "attributes": {
-        "date": "2026-05-02",
-        "weekNumberMonday": 18,
-        "weekNumberSunday": 18
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -364,6 +330,26 @@
         "date": "2027-03-06",
         "weekNumberMonday": 10,
         "weekNumberSunday": 10
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-the-saturday-trampas-2027-04-03",
+      "attributes": {
+        "date": "2027-04-03",
+        "weekNumberMonday": 14,
+        "weekNumberSunday": 14
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-the-saturday-trampas-2027-05-01",
+      "attributes": {
+        "date": "2027-05-01",
+        "weekNumberMonday": 18,
+        "weekNumberSunday": 18
       },
       "relationships": {}
     }

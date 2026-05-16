@@ -1,0 +1,18 @@
+{
+  "data": {
+    "type": "week",
+    "id": "2027-21-monday",
+    "attributes": {
+      "year": 2027,
+      "weekNumber": 21,
+      "startDay": "monday",
+      "startDate": "2026-05-18",
+      "endDate": "2026-05-24"
+    },
+    "relationships": {
+      "events": {
+        "data": []
+      }
+    }
+  }
+}

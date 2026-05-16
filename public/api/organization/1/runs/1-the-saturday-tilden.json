@@ -103,14 +103,6 @@
         "data": [
           {
             "type": "realized-event-date",
-            "id": "1-the-saturday-tilden-2026-03-14"
-          },
-          {
-            "type": "realized-event-date",
-            "id": "1-the-saturday-tilden-2026-04-11"
-          },
-          {
-            "type": "realized-event-date",
             "id": "1-the-saturday-tilden-2026-05-09"
           },
           {
@@ -148,6 +140,18 @@
           {
             "type": "realized-event-date",
             "id": "1-the-saturday-tilden-2027-02-13"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-the-saturday-tilden-2027-03-13"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-the-saturday-tilden-2027-04-10"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-the-saturday-tilden-2027-05-08"
           }
         ]
       }
@@ -232,26 +236,6 @@
         "instagramHandle": null,
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-the-saturday-tilden-2026-03-14",
-      "attributes": {
-        "date": "2026-03-14",
-        "weekNumberMonday": 11,
-        "weekNumberSunday": 11
-      },
-      "relationships": {}
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-the-saturday-tilden-2026-04-11",
-      "attributes": {
-        "date": "2026-04-11",
-        "weekNumberMonday": 15,
-        "weekNumberSunday": 15
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -350,6 +334,36 @@
         "date": "2027-02-13",
         "weekNumberMonday": 7,
         "weekNumberSunday": 7
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-the-saturday-tilden-2027-03-13",
+      "attributes": {
+        "date": "2027-03-13",
+        "weekNumberMonday": 11,
+        "weekNumberSunday": 11
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-the-saturday-tilden-2027-04-10",
+      "attributes": {
+        "date": "2027-04-10",
+        "weekNumberMonday": 15,
+        "weekNumberSunday": 15
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-the-saturday-tilden-2027-05-08",
+      "attributes": {
+        "date": "2027-05-08",
+        "weekNumberMonday": 19,
+        "weekNumberSunday": 19
       },
       "relationships": {}
     }

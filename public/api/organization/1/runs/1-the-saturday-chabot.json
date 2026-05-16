@@ -103,14 +103,6 @@
         "data": [
           {
             "type": "realized-event-date",
-            "id": "1-the-saturday-chabot-2026-03-21"
-          },
-          {
-            "type": "realized-event-date",
-            "id": "1-the-saturday-chabot-2026-04-18"
-          },
-          {
-            "type": "realized-event-date",
             "id": "1-the-saturday-chabot-2026-05-16"
           },
           {
@@ -148,6 +140,14 @@
           {
             "type": "realized-event-date",
             "id": "1-the-saturday-chabot-2027-02-20"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-the-saturday-chabot-2027-03-20"
+          },
+          {
+            "type": "realized-event-date",
+            "id": "1-the-saturday-chabot-2027-04-17"
           }
         ]
       }
@@ -232,26 +232,6 @@
         "instagramHandle": null,
         "descriptionHtml": null
       }
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-the-saturday-chabot-2026-03-21",
-      "attributes": {
-        "date": "2026-03-21",
-        "weekNumberMonday": 12,
-        "weekNumberSunday": 12
-      },
-      "relationships": {}
-    },
-    {
-      "type": "realized-event-date",
-      "id": "1-the-saturday-chabot-2026-04-18",
-      "attributes": {
-        "date": "2026-04-18",
-        "weekNumberMonday": 16,
-        "weekNumberSunday": 16
-      },
-      "relationships": {}
     },
     {
       "type": "realized-event-date",
@@ -350,6 +330,26 @@
         "date": "2027-02-20",
         "weekNumberMonday": 8,
         "weekNumberSunday": 8
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-the-saturday-chabot-2027-03-20",
+      "attributes": {
+        "date": "2027-03-20",
+        "weekNumberMonday": 12,
+        "weekNumberSunday": 12
+      },
+      "relationships": {}
+    },
+    {
+      "type": "realized-event-date",
+      "id": "1-the-saturday-chabot-2027-04-17",
+      "attributes": {
+        "date": "2027-04-17",
+        "weekNumberMonday": 16,
+        "weekNumberSunday": 16
       },
       "relationships": {}
     }
